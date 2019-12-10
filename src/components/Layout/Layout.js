@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { ToastContainer } from 'react-toastify'
 import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
+import { StateProvider } from '../../context/SiteContext';
 
 import Header from './Header'
 import 'bootstrap/dist/css/bootstrap.min.css';

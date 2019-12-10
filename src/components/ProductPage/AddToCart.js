@@ -146,12 +146,6 @@ const AddToCart = ({ productId, tags }) => {
       element.classList.remove('cartopen')
     }
   }
-  function returnWeightInfo(x){
-    if(weightInfo.hasOwnProperty(x)){
-      return weightInfo[x];
-    }
-
-  }
 
 
   return (

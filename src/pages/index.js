@@ -12,11 +12,11 @@ import BlanketDifference from '../components/HomePage/BlanketDifference'
 import CustomerReview from '../components/HomePage/CustomerReview'
 
 
-function IndexPage({
+function IndexPage({/*
   data: {
     categories: { edges: categories }
   }
-}) {
+*/}) {
 
 
 

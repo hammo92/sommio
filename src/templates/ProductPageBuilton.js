@@ -73,26 +73,21 @@ const ImageGrid = styled.div`
   }
 `
 
-function ProductPage({ data: { product, contentful } }) {
 
 
 
-  let CurrentProduct
-  const ContentfulProduct = contentful.edges
-  ContentfulProduct.slice(0).map(({ node: prod }) => (
-          prod.moltinId === product.id ? CurrentProduct = prod : ''
-  ))
+  
+const ProductPageBuilton = ({ data: { product, contentfulProduct } }) => {
   const Titles = ["Overview", "Materials","Learn","Usage","FAQ"]
-  const Overview = CurrentProduct.overview
-  const Faq = CurrentProduct.faqQuestions
-  const Features = CurrentProduct.feature
-  const FeatureSlides = CurrentProduct.featureSlide[0]
-  let Headings = CurrentProduct.overviewHeading.split(" ")
+  const Overview = contentfulProduct.overview
+  const Faq = contentfulProduct.faqQuestions
+  const Features = contentfulProduct.feature
+  //const FeatureSlides = CurrentProduct.featureSlide[0]
+  let Headings = contentfulProduct.overviewHeading.split(" ")
   const LastWord = Headings.pop()
   Headings = Headings.join(" ")
-  console.log(FeatureSlides);
+  //console.log(FeatureSlides);
 
-const ProductPageBuilton = ({ data: { product } }) => {
   return (
     <div>
       <SEO
@@ -146,10 +141,10 @@ const ProductPageBuilton = ({ data: { product } }) => {
               <h3>What is it?</h3>
               </Col>
               <Col md={9}>
-                <div dangerouslySetInnerHTML={{
+                {<div dangerouslySetInnerHTML={{
                       __html: Overview.childMarkdownRemark.html,
                     }}
-                />
+                  />}
               </Col>
               <Col md={3} className="justify-content-md-center d-flex">
                 <ul>
@@ -196,7 +191,7 @@ const ProductPageBuilton = ({ data: { product } }) => {
                     />
                   </Accordion.Collapse>
                 </Card>
-              ))}
+                      ))}
             </Accordion>
           </Tab>
         </Tabs>
@@ -209,12 +204,7 @@ const ProductPageBuilton = ({ data: { product } }) => {
       </section>
 
       <FreeDelivery />
-<<<<<<< HEAD:src/templates/ProductPage.js
-    </React.Fragment>
-
-=======
     </div>
->>>>>>> 7f0bb8e9b8d51ddac195f61d1eacb41e3296b093:src/templates/ProductPageBuilton.js
   )
 }
 export const query = graphql`
@@ -233,11 +223,10 @@ export const query = graphql`
         url
       }
     }
-    contentful: allContentfulProduct{
-      edges{
-        node{
+    contentfulProduct: contentfulProduct(builtonId: { eq: $id }){
+
           name
-          moltinId
+          builtonId
           overviewHeading
           overview{
             childMarkdownRemark {
@@ -277,8 +266,6 @@ export const query = graphql`
               html
               excerpt(pruneLength: 80)
               }
-            }
-          }
         }
       }
 
