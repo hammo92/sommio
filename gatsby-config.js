@@ -39,13 +39,6 @@ module.exports = {
         icon: 'src/images/i-love-lamp-icon.png'
       }
     },
-    {
-      resolve: '@moltin/gatsby-source-moltin',
-      options: {
-        client_id: process.env.GATSBY_MOLTIN_CLIENT_ID
-      }
-    },
-    `gatsby-plugin-styled-components`,
     'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-plugin-purgecss',
@@ -73,6 +66,13 @@ module.exports = {
       options: {
         spaceId: `1eaguqndmewd`,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+      }
+    },
+    {
+      resolve: `gatsby-builton`,
+      options: {
+        apiKey:
+          'W3ZcWLcHbfeHcz8wR_bdH29uzNQMGzZkwDfXt-5Jhcv4SHMyNVAkVoA8I1srMdxCnupv7mQKSKck6dk9SOG1bQ=='
       }
     },
     'gatsby-plugin-stripe'

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'gatsby'
 import { CartContext, CheckoutContext } from '../../context'
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import CartItemList from '../CartItemList'
 import Logo from '../../images/logo.png'
 import logoCheckout from '../../images/logo-checkout.png'
@@ -10,23 +9,22 @@ import CartButton from '../CartButton'
 import TransitionLink from "gatsby-plugin-transition-link"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
-const Header = ({ siteTitle, collections, slug }, props) => {
+const Header = ({ siteTitle, collections, slug, human_id }, props) => {
   const { count, isEmpty, setToggle } = useContext(CartContext)
   const { orderId } = useContext(CheckoutContext)
   const [modal, setModal] = useState(false)
 
   const toggle = () => setModal(!modal)
+  console.log('modal, Header => ', modal)
+
   return (
     <div>
       {window.location.pathname === '/checkout' ? (
         <header className="header-checkout">
           {!orderId ? (
-            <Link
-              className="backcart-btn"
-              to={`/products/${slug}`}
-            >
+            <Link className="backcart-btn" to={`/products/${human_id}`}>
               <svg
-                class="StyledBackArrow-amagyn-6 fIdZUy"
+                className="StyledBackArrow-amagyn-6 fIdZUy"
                 width="6px"
                 height="10px"
                 viewBox="0 0 6 10"
@@ -41,7 +39,7 @@ const Header = ({ siteTitle, collections, slug }, props) => {
                   stroke="none"
                   stroke-width="1"
                   fill="none"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                 >
                   <g
                     id="Checkout/Shipping-filled-desktop"
@@ -89,7 +87,7 @@ const Header = ({ siteTitle, collections, slug }, props) => {
               >
                 <ul className="navbar-nav ml-auto menu-list">
                   <li className="nav-item">
-                    <AniLink paintDrip hex="#5B2761" top="entry" to="/products/weighted-blanket">Shop</AniLink>
+                    <AniLink paintDrip hex="#5B2761" top="entry" to={`/products/${human_id}`}>Shop</AniLink>
                   </li>
                   <li className="nav-item">
                     <Link to="/about">About us</Link>

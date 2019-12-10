@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import classnames from 'classnames'
 import { CartContext } from '../../context/CartContext'
 import PlushImages from '../../images/plush.png'
@@ -12,107 +12,132 @@ import {
   DropdownItem
 } from 'reactstrap'
 import { useStaticQuery, Link } from 'gatsby'
-const AddToCart = ({ disabled, productId, variationData }) => {
-  const { allMoltinProduct } = useStaticQuery(graphql`
+const AddToCart = ({ productId, tags }) => {
+  const { allBuiltonProduct } = useStaticQuery(graphql`
     query {
-      allMoltinProduct {
+      allBuiltonProduct {
         nodes {
-          id
+          tags
+          short_description
+          price
+          image_url
+          parents {
+            _oid
+          }
           name
-          slug
-          meta {
-            display_price {
-              without_tax {
-                amount
-                formatted
-              }
-            }
+          currency
+          parent {
+            id
           }
-          mainImage {
-            childImageSharp {
-              fluid(maxWidth: 560) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-          relationships {
-            parent {
-              data {
-                id
-              }
-            }
+          main_product
+          id
+          human_id
+          description
+          _sub_products {
+            _oid
           }
         }
       }
     }
   `)
   const {
-    addToCart,
-    subTotal,
-    rate,
+    setSubProductPrice,
     setVariation,
     Weight,
     Size,
     Cover,
     setToggle,
-    toggle
+    toggle,
+    weightPrice,
+    coverPrice,
+    setCartData,
+    isEmpty,
+    countBuilton,
+    quantityBuilton
   } = useContext(CartContext)
 
-  const [quantity, setQuantity] = useState(1)
-
-  const [blancketCover, setBlancketCover] = useState('Plush')
-  const [dropdownOpen, setDropdownOpen] = useState(false)
-  const weightInfo = {
-    '6':'kg | 13lb',
-    '8':'kg | 18lb',
-    '10':'kg | 22lb',
-    '12':'kg | 26lb',
-  }
-  let i = 0
+  let weightSubProduct = []
+  let coverSubProduct = []
+  let shippingSubProduct = []
   let childData = []
   let parentData = []
-  console.log('Weight,Size,Cover => ', Weight, Size, Cover)
+  console.log('coverPrice, weightPrice =>', coverPrice, weightPrice)
 
-  allMoltinProduct.nodes.map(data => {
-    if (
-      data.relationships.parent !== null &&
-      productId === data.relationships.parent.data.id
-    ) {
+  allBuiltonProduct.nodes.map(data => {
+    if (productId !== data.id && data.main_product === false) {
       childData.push(data)
     } else {
       parentData.push(data)
     }
   })
+  childData.map(sub => {
+    if (sub.tags[0] === 'Weight') {
+      weightSubProduct.push(sub)
+    } else if (sub.tags[0] === 'Cover') {
+      coverSubProduct.push(sub)
+    } else {
+      shippingSubProduct.push(sub)
+    }
+  })
+
+  const selectedCover = coverSubProduct.filter(sub => {
+    return sub.name === Cover
+  })
+
+  const selectedWeight = weightSubProduct.filter(sub => {
+    return sub.name === Weight
+  })
+  useEffect(() => {
+    setSubProductPrice(selectedWeight, selectedCover, shippingSubProduct)
+  }, [Weight, Cover])
+
+  const [quantity, setQuantity] = useState(1)
+
+  const [blancketCover, setBlancketCover] = useState('Plush')
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  let i = 0
 
   const toggleHandle = () => {
     setDropdownOpen(!dropdownOpen)
   }
 
-  const updateVariations = (e, name) => {
+  const updateVariations = (e, name, price) => {
     if (name === 'Weight') {
-      setVariation(name, e.target.value)
+      setVariation(name, e.target.value, price)
     } else if (name === 'Cover') {
-      setVariation(name, e)
+      setVariation(name, e, price)
     } else {
-      setVariation(name, 'Single')
+      setVariation(name, 'Single', price)
     }
   }
 
-  const comparision = () => {
-    const comboVariations = `${Size}-${Weight}-${Cover}`
-    const id_obj = childData.filter(item => comboVariations === item.slug)
-
-    return (id_obj && id_obj.length > 0 && id_obj[0].id) || false
-  }
-
-  const selectedProductPrice = childData.filter(i => {
-    const id = comparision()
-    return id === i.id
+  let selectedProduct
+  parentData.filter(i => {
+    if (productId === i.id) {
+      selectedProduct = i
+    }
   })
 
   const handleAddToCart = () => {
-    const id = comparision()
-    addToCart(id, parseInt(quantity, 10), Size, Weight, Cover, subTotal, rate)
+    let cartItemsBuilton = [
+      {
+        id: selectedProduct.id,
+        name: selectedProduct.name,
+        quantityBuilton: 1,
+        human_id: selectedProduct.human_id,
+        type: 'cart_item_builton',
+        description: selectedProduct.description,
+        price: selectedProduct.price,
+        main_product: selectedProduct.main_product,
+        subProduct: { selectedWeight, selectedCover },
+        isAddToCart: true,
+        currency: selectedProduct.currency
+      }
+    ]
+
+    console.log('cartItemsBuilton => ', cartItemsBuilton)
+
+    setCartData(cartItemsBuilton)
     setToggle()
     let element = document.getElementsByTagName('body')[0]
     if (toggle === false) {
@@ -130,123 +155,98 @@ const AddToCart = ({ disabled, productId, variationData }) => {
 
 
   return (
-    <div className="product-variation" >
-      {variationData &&
-        variationData.map(data => {
-          if (data.name === 'Size') {
-            return (
-              <div className="blanket-boxs">
-                <div className="size-boxs">
-                  <h4>Blanket {data.name}</h4>
-                  {data &&
-                    data.options &&
-                    data.options.map(size => <p>{size.name}</p>)}
-                </div>
-                <SommioModal text={"are other sizes available?"} >
-                <h3>Is this a good size for me?</h3>
-                <p>auctor nulla arcu dolor enim netus pharetra eget in feugiat et nibh malesuada sed malesuada fermentum 👮 in sollicitudin 🔔 lectus ullamcorper augue consequat ut eu gravida tempor, diam sit in etiam tellus dignissim rhoncus, mattis 📆 justo, vulputate ut 🏢 imperdiet egestas 📩 volutpat, tempus velit risus sit elit hac sit leo 🌀 porttitor nascetur quam 👯 orci, et adipiscing amet, tortor, nullam orci lacus ultrices neque, congue faucibus. Molestie 📥 et etiam justo, faucibus a 🍪</p>
-                </SommioModal>
-              </div>
-            )
-          } else if (data.name === 'Weight') {
-            return (
-              <div className="blanket-boxs">
-                <div className="size-boxs">
-                  <h4>Blanket {data.name}</h4>
-                </div>
-                <SommioModal text={"help me choose"} >
-                <h3>Choose your weight</h3>
-                <p>Amet molestie rhoncus semper augue placerat arcu, nascetur interdum 🎪 faucibus nisi metus enim, 📵 tortor velit laoreet 🎤 vel adipiscing sodales in aliquam ac ultrices nunc egestas. Id ipsum, magna donec tincidunt enim, proin auctor libero fringilla venenatis pharetra, enim 🔎 nunc sagittis mauris bibendum cursus imperdiet tempus magnis id tempus sed vel, arcu mollis pellentesque risus congue faucibus blandit 🎴 nibh posuere tellus eget. Pulvinar ligula eget tincidunt fames turpis velit mollis a ut condimentum viverra convallis enim tellus velit blandit fermentum 🐽 curabitur pulvinar cursus consequat, adipiscing egestas auctor augue porttitor proin in tortor, nec id platea habitant imperdiet diam volutpat, neque mauris risus faucibus 🍐 </p>
-                </SommioModal>
+    <div className="product-variation">
+      <div className="blanket-boxs">
+        <div className="size-boxs">
+          <h4>Blanket Size</h4>
+          <p>Single 130*120</p>
+        </div>
+        <Link to="#" className="btn btn-link ml-auto">
+          are other sizes available?
+        </Link>
+      </div>
+      <div className="blanket-boxs">
+        <div className="size-boxs">
+          <h4>Blanket Weight</h4>
+        </div>
+        <Link to="#" className="btn btn-link ml-auto">
+          help me choose
+        </Link>
 
-                <div className="radio-group">
-                  {data &&
-                    data.options &&
-                    data.options.map((w, k) => (
-                      <div className="radio-boxs" data-order={i}>
-                        <input
-                          type="radio"
-                          name="weight"
-                          value={w.name}
-                          id={data.name + i}
-                          onChange={e => updateVariations(e, data.name)}
-                          defaultChecked={k === 0 ? true : false}
-                        />
-                        <label for={data.name + i++}>
-                          <div className="title">
-                            {w.name}
-                            <span>
-                              {returnWeightInfo(w.name)}
-                            </span>
+        <div className="radio-group">
+          {weightSubProduct.map((weight, k) => (
+            <div className="radio-boxs">
+              <input
+                type="radio"
+                name="weight"
+                value={weight.name}
+                id={weight.tags[0] + i}
+                onChange={e =>
+                  updateVariations(e, weight.tags[0], weight.price)
+                }
+                defaultChecked={k === 0 ? true : false}
+              />
+              <label for={weight.tags[0] + i++}>
+                <div className="title">{weight.name}</div>
+                <div className="content">
+                  <h4>Recommended for users who weigh between:</h4>
+                  <span>{weight.short_description}</span>
+                </div>
+              </label>
+            </div>
+          ))}
+        </div>
+      </div>
 
-                          </div>
-                          <div className="content">
-                            <h4>Recommended for users who weigh between:</h4>
-                            <span>{w.description}</span>
-                          </div>
-                        </label>
-                      </div>
-                    ))}
-                </div>
-              </div>
-            )
-          } else {
-            return (
-              <div className="blanket-boxs">
-                <div className="size-boxs">
-                  <h4>Blanket {data.name}</h4>
-                </div>
-                <SommioModal text={"help me choose"} >
-                <h3>Choose your cover</h3>
-                <p>Amet molestie rhoncus semper augue placerat arcu, nascetur interdum 🎪 faucibus nisi metus enim, 📵 tortor velit laoreet 🎤 vel adipiscing sodales in aliquam ac ultrices nunc egestas. Id ipsum, magna donec tincidunt enim, proin auctor libero fringilla venenatis pharetra, enim 🔎 nunc sagittis mauris bibendum cursus imperdiet tempus magnis id tempus sed vel, arcu mollis pellentesque risus congue faucibus blandit 🎴 nibh posuere tellus eget. Pulvinar ligula eget tincidunt fames turpis velit mollis a ut condimentum viverra convallis enim tellus velit blandit fermentum 🐽 curabitur pulvinar cursus consequat, adipiscing egestas auctor augue porttitor proin in tortor, nec id platea habitant imperdiet diam volutpat, neque mauris risus faucibus 🍐 </p>
-                </SommioModal>
-                <Dropdown
-                  defaultValue={blancketCover}
-                  isOpen={dropdownOpen}
-                  toggle={toggleHandle}
+      <div className="blanket-boxs">
+        <div className="size-boxs">
+          <h4>Blanket Cover</h4>
+        </div>
+        <Link to="#" className="btn btn-link ml-auto">
+          help me choose
+        </Link>
+        <Dropdown
+          defaultValue={blancketCover}
+          isOpen={dropdownOpen}
+          toggle={toggleHandle}
+        >
+          <DropdownToggle caret>
+            <img src={PlushImages} />
+            <div className="content ml-auto">
+              <h3>{blancketCover}</h3>
+              <p>A luxuriously soft faux fur cover</p>
+            </div>
+          </DropdownToggle>
+          <DropdownMenu>
+            {coverSubProduct.map(cover => (
+              <div
+                onClick={e =>
+                  updateVariations(cover.name, cover.tags[0], cover.price)
+                }
+              >
+                <DropdownItem
+                  defaultValue={cover.name}
+                  onClick={() => setBlancketCover(cover.name)}
                 >
-                  <DropdownToggle caret>
-                    <img src={PlushImages} />
-                    <div className="content ml-auto">
-                      <h3>{blancketCover}</h3>
-                      <p>A luxuriously soft faux fur cover</p>
-                    </div>
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    {data &&
-                      data.options &&
-                      data.options.map(cover => (
-                        <div
-                          onClick={e => updateVariations(cover.name, data.name)}
-                        >
-                          <DropdownItem
-                            defaultValue={cover.name}
-                            onClick={() => setBlancketCover(cover.name)}
-                          >
-                            <img src={PlushImages} />
-                            <div className="content ml-auto">
-                              <h3>{cover.name}</h3>
-                              <p>A luxuriously soft faux fur cover</p>
-                            </div>
-                          </DropdownItem>
-                        </div>
-                      ))}
-                  </DropdownMenu>
-                </Dropdown>
+                  <img src={PlushImages} />
+                  <div className="content ml-auto">
+                    <h3>{cover.name}</h3>
+                    <p>A luxuriously soft faux fur cover</p>
+                  </div>
+                </DropdownItem>
               </div>
-            )
-          }
-        })}
+            ))}
+          </DropdownMenu>
+        </Dropdown>
+      </div>
       <div className="price-main">
         <h4>
-          <span>{Weight} kg</span> blanket with <span>{Cover}</span> cover
+          <span>{Weight}</span> blanket with <span>{Cover}</span> cover
         </h4>
         <div className="price-boxs">
           <span className="price">
-            {selectedProductPrice[0] &&
-              selectedProductPrice[0].meta &&
-              selectedProductPrice[0].meta.display_price.without_tax
-                .formatted}{' '}
+            {selectedProduct &&
+              selectedProduct.price + weightPrice + coverPrice}{' '}
           </span>
           <p>Or 6 weekly Interest free payments from £ 21.12</p>
         </div>

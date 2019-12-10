@@ -1,7 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { graphql, withPrefix } from 'gatsby'
-import useMoltinInventory from '../hooks/useMoltinInventory'
 import SEO from '../components/SEO'
 import AddToCart from '../components/ProductPage/AddToCart'
 import Noimage from '../images/no_img.jpg'
@@ -77,9 +76,7 @@ const ImageGrid = styled.div`
 function ProductPage({ data: { product, contentful } }) {
 
 
-  const [inventory, inventoryLoading, inventoryError] = useMoltinInventory(
-    product
-  )
+
   let CurrentProduct
   const ContentfulProduct = contentful.edges
   ContentfulProduct.slice(0).map(({ node: prod }) => (
@@ -94,17 +91,16 @@ function ProductPage({ data: { product, contentful } }) {
   const LastWord = Headings.pop()
   Headings = Headings.join(" ")
   console.log(FeatureSlides);
-  return (
 
-    <React.Fragment >
+const ProductPageBuilton = ({ data: { product } }) => {
+  return (
+    <div>
       <SEO
         type="product"
-        title={product.meta_title || product.name}
+        title={product.short_description || product.name}
         description={product.meta_description || product.description}
         image={withPrefix(
-          product.mainImage && product.mainImage.childImageSharp
-            ? product.mainImage.childImageSharp.fluid.src
-            : Noimage
+          product && product.image_url ? product.image_url : Noimage
         )}
       />
       <div className="container-fluid">
@@ -121,14 +117,10 @@ function ProductPage({ data: { product, contentful } }) {
             <div className="blanket-bg">
               <div className="row">
                 <div className="col-12 col-lg-4">
-                  <AddToCart
-                    productId={product.id}
-                    disabled={!inventory.inStock}
-                    variationData={product.meta.variations}
-                  />
+                  <AddToCart productId={product.id} tags={product.tags} />
                 </div>
                 <div className="col-12 col-lg-8">
-                  <ProductImage />
+                  <ProductImage productId={product.id} />
                 </div>
               </div>
             </div>
@@ -217,42 +209,29 @@ function ProductPage({ data: { product, contentful } }) {
       </section>
 
       <FreeDelivery />
+<<<<<<< HEAD:src/templates/ProductPage.js
     </React.Fragment>
 
+=======
+    </div>
+>>>>>>> 7f0bb8e9b8d51ddac195f61d1eacb41e3296b093:src/templates/ProductPageBuilton.js
   )
 }
-
 export const query = graphql`
   query($id: String!) {
-    product: moltinProduct(id: { eq: $id }) {
+    product: builtonProduct(id: { eq: $id }) {
       id
       name
+      price
+      main_product
+      human_id
       description
-      sku
-      mainImage {
-        childImageSharp {
-          fluid(maxWidth: 560) {
-            ...GatsbyImageSharpFluid
-          }
-        }
+      image_url
+      short_description
+      tags
+      media {
+        url
       }
-      meta {
-        variations {
-          id
-          name
-          options {
-            description
-            id
-            name
-          }
-        }
-        display_price {
-          without_tax {
-            formatted
-          }
-        }
-      }
-      manage_stock
     }
     contentful: allContentfulProduct{
       edges{
@@ -306,5 +285,4 @@ export const query = graphql`
     }
   }
 `
-
-export default ProductPage
+export default ProductPageBuilton

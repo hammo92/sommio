@@ -83,29 +83,4 @@ function IndexPage({
   )
 }
 
-export const query = graphql`
-  query IndexPageQuery {
-    categories: allMoltinCategory {
-      edges {
-        node {
-          id
-          name
-          slug
-          description
-          products {
-            name
-            mainImage {
-              childImageSharp {
-                fluid(maxWidth: 560) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
 export default IndexPage
