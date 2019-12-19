@@ -6,8 +6,6 @@ import Logo from '../../images/logo.png'
 import logoCheckout from '../../images/logo-checkout.png'
 import CartIcon from '../../images/shopping-basket-duotone.svg'
 import CartButton from '../CartButton'
-import TransitionLink from "gatsby-plugin-transition-link"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const Header = ({ siteTitle, collections, slug, human_id }, props) => {
   const { count, isEmpty, setToggle } = useContext(CartContext)
@@ -66,9 +64,9 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
         <header>
           <div className="container-fluid">
             <div className="navbar navbar-expand-lg">
-              <AniLink paintDrip top="entry" to="/" hex="#5B2761" className="navbar-brand" duration={0.8}>
+              <Link className="navbar-brand" to="/">
                 <img src={Logo} />
-              </AniLink>
+              </Link>
               <button
                 className="navbar-toggler"
                 type="button"
@@ -87,10 +85,10 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
               >
                 <ul className="navbar-nav ml-auto menu-list">
                   <li className="nav-item">
-                    <AniLink paintDrip hex="#5B2761" top="entry" to={`/products/${human_id}`}>Shop</AniLink>
+                    <Link to={`/products/${human_id}`}>Shop</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/about">About us</Link>
+                    <Link to="/about">Learn</Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/about">Contact us</Link>

@@ -46,6 +46,7 @@ const HelpSlider = () => {
                   src={condition.cardImage.file.url}
                   alt={condition.cardImage.file.fileName}
                 />
+                <div className="gradient-overlay"></div>
                 <div className="help-content">
                   <h2>{condition.conditionName}</h2>
                   <Link

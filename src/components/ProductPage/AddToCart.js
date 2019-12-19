@@ -158,17 +158,18 @@ const AddToCart = ({ productId, tags }) => {
           <h4>Blanket Size</h4>
           <p>Single 130*120</p>
         </div>
-        <Link to="#" className="btn btn-link ml-auto">
-          are other sizes available?
-        </Link>
+        <SommioModal text="are other sizes available?">
+          <p>Currently only the standard single size is available</p>
+        </SommioModal>
+
       </div>
       <div className="blanket-boxs">
         <div className="size-boxs">
           <h4>Blanket Weight</h4>
         </div>
-        <Link to="#" className="btn btn-link ml-auto">
-          help me choose
-        </Link>
+        <SommioModal text="Help me choose">
+          <p>Currently only the standard single size is available</p>
+        </SommioModal>
 
         <div className="radio-group">
           {weightSubProduct.map((weight, k) => (
@@ -199,9 +200,9 @@ const AddToCart = ({ productId, tags }) => {
         <div className="size-boxs">
           <h4>Blanket Cover</h4>
         </div>
-        <Link to="#" className="btn btn-link ml-auto">
-          help me choose
-        </Link>
+        <SommioModal text="Help me choose">
+          <p>Currently only the standard single size is available</p>
+        </SommioModal>
         <Dropdown
           defaultValue={blancketCover}
           isOpen={dropdownOpen}
@@ -242,7 +243,7 @@ const AddToCart = ({ productId, tags }) => {
         </h4>
         <div className="price-boxs">
           <span className="price">
-            {selectedProduct &&
+            {'£'}{selectedProduct &&
               selectedProduct.price + weightPrice + coverPrice}{' '}
           </span>
           <p>Or 6 weekly Interest free payments from £ 21.12</p>

@@ -165,9 +165,7 @@ const ProductPageBuilton = ({ data: { product, contentfulProduct } }) => {
 
 
           </Tab>
-          <Tab eventKey="materials" title="Materials">
-            <p>two</p>
-          </Tab>
+          
           <Tab eventKey="learn" title="Learn" >
 
               <HelpSlider />

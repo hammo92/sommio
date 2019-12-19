@@ -25,7 +25,7 @@ const ProductVideo = () => {
   return(
 
     <VideoWrap>
-      <VisibilitySensor>
+      <VisibilitySensor partialVisibility={true} offset={{top:-100}}>
       {({isVisible}) =>
         <ReactPlayer url={Explode}
         playing={(isVisible && isClosed) ? true : false}

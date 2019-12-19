@@ -4,20 +4,13 @@ require('dotenv').config()
 module.exports = {
   siteMetadata: {
     title: 'Sommio',
-    description:
-      'Sommio Weighted Blankets',
-    author: 'Sommio',
+    description: 'Sommio',
+    author: '',
     url: process.env.DEPLOY_PRIME_URL || process.env.URL || 'localhost:8000'
   },
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
-    {
-      resolve: "gatsby-plugin-transition-link",
-      options: {
-          layout: require.resolve(`./src/components/Layout/Layout.js`)
-      }
-    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -47,18 +40,13 @@ module.exports = {
         purgeOnly: ['src/styles/main.css']
       }
     },
+    
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
           include: /svgImages/ // See below to configure properly
         }
-      }
-    },
-    {
-      resolve: "gatsby-transformer-remark",
-      options: {
-        plugins: ["gatsby-remark-component"]
       }
     },
     {
@@ -69,10 +57,16 @@ module.exports = {
       }
     },
     {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: ["gatsby-remark-component"]
+      }
+    },
+    {
       resolve: `gatsby-builton`,
       options: {
         apiKey:
-          'W3ZcWLcHbfeHcz8wR_bdH29uzNQMGzZkwDfXt-5Jhcv4SHMyNVAkVoA8I1srMdxCnupv7mQKSKck6dk9SOG1bQ=='
+          'Rqd56FLNq539fNET8PGvIsA9kNkr12dkyHwk8SLyLtKISlMgEJ-cyQ3aTKtQapYxXNwx-u18dByEnViH59QBBQ=='
       }
     },
     'gatsby-plugin-stripe'

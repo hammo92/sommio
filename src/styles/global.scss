@@ -1,6 +1,7 @@
 body {
     background: $midnight;
     font-family: $tksofiapro;
+    
 
     &.so-checkout-page {
         background: $midnight;
@@ -8,6 +9,10 @@ body {
 
     &.cartopen {
         overflow: hidden;
+    }
+    .container-fluid, .container-sm, .container-md, .container-lg, .container-xl{
+        padding-left:30px;
+        padding-right: 30px;
     }
 
 }
