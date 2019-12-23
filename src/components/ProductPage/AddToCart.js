@@ -17,6 +17,9 @@ const AddToCart = ({ productId, tags }) => {
     query {
       allBuiltonProduct {
         nodes {
+          _id {
+            _oid
+          }
           tags
           short_description
           price
@@ -118,10 +121,18 @@ const AddToCart = ({ productId, tags }) => {
       selectedProduct = i
     }
   })
+  console.log(
+    'selectedProducts ,productId,parentData,selectedWeight => ',
+    selectedProduct,
+    productId,
+    parentData,
+    selectedWeight
+  )
 
   const handleAddToCart = () => {
     let cartItemsBuilton = [
       {
+        main_product_id: selectedProduct._id._oid,
         id: selectedProduct.id,
         name: selectedProduct.name,
         quantityBuilton: 1,
@@ -137,8 +148,6 @@ const AddToCart = ({ productId, tags }) => {
         currency: selectedProduct.currency
       }
     ]
-
-    console.log('cartItemsBuilton => ', cartItemsBuilton)
 
     setCartData(cartItemsBuilton)
     setToggle()

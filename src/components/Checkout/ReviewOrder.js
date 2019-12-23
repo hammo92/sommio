@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { injectStripe } from 'react-stripe-elements'
 import { CartContext, CheckoutContext } from '../../context'
 import CartItemList from '../CartItemList'
-import firebase from '../../firebase/index'
+
 const RiviewOrder = ({ stripe, formEnable }) => {
   const {
     cartId,
@@ -16,7 +16,8 @@ const RiviewOrder = ({ stripe, formEnable }) => {
     deleteCart,
     setToggle,
     shippingRate,
-    toggle
+    toggle,
+    shippingSubProductId
   } = useContext(CartContext)
   const {
     checkout,
@@ -43,17 +44,22 @@ const RiviewOrder = ({ stripe, formEnable }) => {
         payment_method: 'stripe',
         token: token.token.id
       })
+      console.log(
+        'cartItemsBuilton,cartItemsBuilton[0].id => ',
+        cartItemsBuilton,
+        cartItemsBuilton[0].id
+      )
 
       //creating orders
       const createdOrder = await builton.orders.create({
         items: [
           {
-            product: cartItemsBuilton[0].id,
+            product: cartItemsBuilton[0].main_product_id,
             quantity: quantityBuilton,
             sub_products: [
-              selectedWeight[0].id,
-              selectedCover[0].id,
-              '5dede72c53865b000a93d0bb'
+              selectedWeight[0]._id._oid,
+              selectedCover[0]._id._oid,
+              shippingSubProductId
             ]
           }
         ],
@@ -80,7 +86,7 @@ const RiviewOrder = ({ stripe, formEnable }) => {
       await paymentBuilton(payBuilton)
 
       //user logout
-      firebase.auth().signOut()
+      // firebase.auth().signOut()
       // setToggle()
     } catch (errors) {
       console.info('errors ====>', JSON.stringify(errors))

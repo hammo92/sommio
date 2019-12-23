@@ -1,19 +1,17 @@
 import React, { useContext, useState } from 'react'
-import firebase from '../../firebse/index'
-import { CartContext } from '../../context'
+
+import { CartContext, UserContext, FirebaseContext } from '../../context'
 import Builton from '@builton/core-sdk'
-// import validtion from '../../validation/checkout'
 
-const RegisterOrLogin = () => {
-  var currentUser = firebase.auth().currentUser
-  console.log('currentUser => ', currentUser)
-
+const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
   const {
     shipping_address,
     customerDetails,
     cartItemsBuilton,
     setUserBuilton
   } = useContext(CartContext)
+
+  const { firebase } = useContext(FirebaseContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -41,6 +39,8 @@ const RegisterOrLogin = () => {
           })
           SetCurrentUser(resp.user)
           setUserBuilton({ email, password }, builton)
+          toggleModal()
+          // setCurrentUser(isCurrentUser)
         })
         .catch(error => {
           setErrorMessage(error.message)
@@ -52,16 +52,12 @@ const RegisterOrLogin = () => {
   }
 
   const handleLogin = () => {
-    // setRegisterError({})
-    console.log('checkValidation() => ', checkValidation())
-
     if (checkValidation().status) {
       setRegisterError({
         email: '',
         password: ''
       })
       var user = firebase.auth().currentUser
-      console.log('user => ', user)
 
       if (user !== null) {
         user
@@ -74,6 +70,9 @@ const RegisterOrLogin = () => {
             })
             SetCurrentUser(user)
             setUserBuilton({ email, password }, builton)
+            toggleModal()
+            setDropdownOpen(false)
+            // setCurrentUser(isCurrentUser)
             setErrorMessage('')
           })
           .catch(err => {
@@ -99,6 +98,11 @@ const RegisterOrLogin = () => {
 
             setUserBuilton({ email, password }, builton)
             SetCurrentUser(res.user)
+            toggleModal()
+            setDropdownOpen(false)
+
+            // setCurrentUser(isCurrentUser)
+
             setErrorMessage('')
           })
           .catch(error => {
@@ -111,23 +115,7 @@ const RegisterOrLogin = () => {
     }
   }
 
-  const handleLogout = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(function() {
-        setEmail('')
-        setPassword('')
-        SetCurrentUser(false)
-        setErrorMessage('')
-      })
-      .catch(function(error) {
-        SetCurrentUser(true)
-      })
-  }
-
   const checkValidation = () => {
-    // setErrorMessage('')
     var _errors = {}
 
     var isValid = true
@@ -188,17 +176,7 @@ const RegisterOrLogin = () => {
 
   return (
     <div>
-      <h2 className="text-black font-medium leading-loose p-0 mb-3 pt-6 pb-3 border-b border-grey-light">
-        <span>1</span>
-        <span className="text">CONTACT INFORMATION</span>
-      </h2>
-
-      {isCurrentUser ? (
-        <div>
-          <p>You are Logged In Go for next steps</p>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
+      {!isCurrentUser && isModal && isModal === true && (
         <>
           <div className="frm_grp">
             <input
@@ -209,6 +187,7 @@ const RegisterOrLogin = () => {
             />
             <span>{error.email}</span>
           </div>
+
           <div className="frm_grp">
             <input
               type="password"
