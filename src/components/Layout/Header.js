@@ -11,14 +11,16 @@ import Logo from '../../images/logo.png'
 import logoCheckout from '../../images/logo-checkout.png'
 import CartIcon from '../../images/shopping-basket-duotone.svg'
 import CartButton from '../CartButton'
-import RegiserOrLogin from '../../components/Checkout/RegisterOrLogin'
+import RegisterOrLogin from '../../components/Checkout/RegisterOrLogin'
 import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
 } from 'reactstrap'
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import Modal from 'react-bootstrap/Modal'
+import ModalHeader from 'react-bootstrap/ModalHeader'
+import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 
 const Header = ({ siteTitle, collections, slug, human_id }, props) => {
@@ -142,7 +144,7 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
                   <li className="nav-item">
                     <Link to="/about">Contact us</Link>
                   </li>
-                  <li>
+                  <li className="nav-item nav-account">
                     {refresh && firebase && firebase.auth().currentUser ? (
                       <Dropdown isOpen={dropdownOpen} toggle={toggleDropDown}>
                         <DropdownToggle>
@@ -161,7 +163,7 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
                       </Dropdown>
                     ) : (
                       <div>
-                        <button onClick={toggleModal}>Login/Register</button>
+                        <button onClick={toggleModal}>My Account</button>
                       </div>
                     )}
                   </li>
@@ -174,10 +176,10 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
               </div>
             </div>
           </div>
-          <Modal isOpen={modal} toggle={toggleModal}>
+          <Modal show={modal} toggle={toggleModal}>
             <ModalHeader toggle={toggleModal}>User Account</ModalHeader>
             <ModalBody>
-              <RegiserOrLogin
+              <RegisterOrLogin
                 isModal={true}
                 toggleModal={toggleModal}
                 setDropdownOpen={setDropdownOpen}

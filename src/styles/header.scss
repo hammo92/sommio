@@ -19,6 +19,23 @@
         &.menu-list {
 
             .nav-item {
+                button {
+                    display: block;
+                    padding: 45px 25px;
+                    line-height: 1;
+                    font-weight: 700;
+                    font-size: 24px;
+                    color: #fff;
+                    
+                    align-content: center;
+                    text-decoration: none;
+                    background: none;
+                    border: 0;
+                    outline: 0;
+
+                    border-left: solid 2px rgba(255,255,255,0.3);
+
+                }
 
                 a {
                     display: block;
