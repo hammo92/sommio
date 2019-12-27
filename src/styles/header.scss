@@ -18,6 +18,8 @@
 
         &.menu-list {
 
+            
+
             .nav-item {
                 button {
                     display: block;
@@ -61,6 +63,17 @@
                     }
 
                 }
+                #accountDropdown{
+                    border-radius:0;
+                }
+                .dropdown-menu{
+                    background:#000;
+                    a{
+                        padding:0;
+                    }
+                }
+                
+                
 
             }
 

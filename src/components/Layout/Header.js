@@ -12,12 +12,8 @@ import logoCheckout from '../../images/logo-checkout.png'
 import CartIcon from '../../images/shopping-basket-duotone.svg'
 import CartButton from '../CartButton'
 import RegisterOrLogin from '../../components/Checkout/RegisterOrLogin'
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from 'reactstrap'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
 import Modal from 'react-bootstrap/Modal'
 import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
@@ -146,21 +142,13 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
                   </li>
                   <li className="nav-item nav-account">
                     {refresh && firebase && firebase.auth().currentUser ? (
-                      <Dropdown isOpen={dropdownOpen} toggle={toggleDropDown}>
-                        <DropdownToggle>
-                          {firebase.auth().currentUser.email}
-                        </DropdownToggle>
-                        <DropdownMenu>
-                          <DropdownItem>
-                            <button>
-                              <Link to="/myOrderDetails">My Orders</Link>
-                            </button>
-                          </DropdownItem>
-                          <DropdownItem>
-                            <button onClick={handleLogout}>Logout</button>
-                          </DropdownItem>
-                        </DropdownMenu>
-                      </Dropdown>
+                      <DropdownButton
+                        title = {firebase.auth().currentUser.email}
+                        id = {'accountDropdown'}
+                      >
+                        <Dropdown.Item><Link to="/myOrderDetails">My Orders</Link></Dropdown.Item>
+                        <Dropdown.Item onClick={handleLogout}>Log Out</Dropdown.Item>
+                      </DropdownButton>
                     ) : (
                       <div>
                         <button onClick={toggleModal}>My Account</button>
