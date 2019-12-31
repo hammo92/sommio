@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { graphql } from 'gatsby'
-
+import { Router, Link } from '@reach/router'
 import Goodbye from '../components/HomePage/Goodbye'
 import Quiz from '../components/HomePage/Quiz'
 import HomeService from '../components/HomePage/HomeService'
@@ -11,17 +11,9 @@ import MagicWeightex from '../components/HomePage/MagicWeightex'
 import BlanketDifference from '../components/HomePage/BlanketDifference'
 import CustomerReview from '../components/HomePage/CustomerReview'
 
-
-function IndexPage({/*
-  data: {
-    categories: { edges: categories }
-  }
-*/}) {
-
-
-
+function IndexPage() {
   return (
-    <div className="homepage-bg" >
+    <div className="homepage-bg">
       <div className="goodquiz-bg">
         <div className="container-fluid">
           <div className="row no-gutters">

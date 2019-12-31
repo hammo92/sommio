@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import Img from "gatsby-image"
 
 const ReadMorePage = ({ data }) => {
-  console.log('query , data => ', query, data)
+  console.log('query , data => ', data)
   return (
   <>
     <div className="container-fluid">
