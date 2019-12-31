@@ -14,7 +14,7 @@ const QuizSlide = () => {
     const CurrentQuestion = Questions[quiz.currentQuestion]
     return(
         <Row>
-          {CurrentQuestion !== 0 ? (<div 
+          {quiz.currentQuestion != 0 ? (<div 
           className="back"
           onClick={() => dispatch({
             type: 'changeQuestion',

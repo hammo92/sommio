@@ -34,6 +34,7 @@ module.exports = {
       }
     },
     'gatsby-plugin-postcss',
+    `gatsby-plugin-transition-link`,
     {
       resolve: 'gatsby-plugin-purgecss',
       options: {
