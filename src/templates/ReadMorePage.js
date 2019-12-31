@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import Img from "gatsby-image"
 
 const ReadMorePage = ({ data }) => {
-  console.log('query , data => ', query, data)
+  console.log('query , data => ', data)
   return (
     <div className="container-fluid">
 
@@ -19,9 +19,9 @@ const ReadMorePage = ({ data }) => {
     </div>
 
       <p>
-        {data.contentfulCondition.description.content.map(content =>
+        {/* {data.contentfulCondition.description.content.map(content =>
           content.content.map(cont => <p>{cont.value}</p>)
-        )}
+        )} */}
       </p>
 
     </div>
