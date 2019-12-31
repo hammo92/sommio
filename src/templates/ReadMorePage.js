@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 const ReadMorePage = ({ data }) => {
   console.log('query , data => ', query, data)
   return (
+  <>
     <div className="container-fluid">
 
     <div className="condition-hero">
@@ -17,14 +18,14 @@ const ReadMorePage = ({ data }) => {
       
       
     </div>
-
-      <p>
-        {data.contentfulCondition.description.content.map(content =>
-          content.content.map(cont => <p>{cont.value}</p>)
-        )}
-      </p>
+    </div>
+    <div className="container">
+      <div dangerouslySetInnerHTML={{
+        __html: data.contentfulCondition.content.childMarkdownRemark.html,
+      }}></div>
 
     </div>
+    </>
   )
 }
 
@@ -39,11 +40,9 @@ export const query = graphql`
           url
         }
       }
-      description {
-        content {
-          content {
-            value
-          }
+      content {
+        childMarkdownRemark {
+        html
         }
       }
     }

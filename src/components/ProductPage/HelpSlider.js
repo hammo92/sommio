@@ -13,9 +13,6 @@ const HelpSlider = () => {
           slug
           id
           conditionName
-          description {
-            description
-          }
           cardImage {
             file {
               url

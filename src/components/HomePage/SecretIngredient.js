@@ -9,7 +9,7 @@ const SecretIngredient = () => {
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the
       </p>
-      <button className="btn btn-primary">Find Yours</button>
+      <button className="btn btn-primary">Discover Yours</button>
     </div>
   )
 }

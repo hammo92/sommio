@@ -1,14 +1,14 @@
 .btn {
-    padding: 15px 40px;
+    padding: 10px 30px 15px 30px;
     margin: 0;
-    font-size: 43px;
+    font-size: 35px;
     line-height: 1;
     font-weight: 700;
     border-radius: 50px;
     border: 0;
 
     @media (max-width:$desktop18) {
-        font-size: 30px;
+        font-size: 20px;
         padding: 12px 30px;
     }
 
