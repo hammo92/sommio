@@ -20,8 +20,7 @@ import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 
 const Header = ({ siteTitle, collections, slug, human_id }, props) => {
-  const { count, isEmpty, setToggle, setUserBuilton } = useContext(CartContext)
-  const { currentUserCheck, userDetail } = useContext(UserContext)
+  const { userDetail } = useContext(UserContext)
   const { orderId } = useContext(CheckoutContext)
   const { setFirebase, firebase } = useContext(FirebaseContext)
   const [refresh, setRefresh] = useState(false)
