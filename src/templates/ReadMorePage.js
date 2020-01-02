@@ -18,20 +18,11 @@ const ReadMorePage = ({ data }) => {
       
       
     </div>
-<<<<<<< HEAD
-
-      <p>
-        {/* {data.contentfulCondition.description.content.map(content =>
-          content.content.map(cont => <p>{cont.value}</p>)
-        )} */}
-      </p>
-=======
     </div>
     <div className="container">
       <div dangerouslySetInnerHTML={{
         __html: data.contentfulCondition.content.childMarkdownRemark.html,
       }}></div>
->>>>>>> 82f3b42abc9434576106ad8e89fadb8f7bdb6c06
 
     </div>
     </>

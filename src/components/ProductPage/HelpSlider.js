@@ -13,10 +13,6 @@ const HelpSlider = () => {
           slug
           id
           conditionName
-<<<<<<< HEAD
-
-=======
->>>>>>> 82f3b42abc9434576106ad8e89fadb8f7bdb6c06
           cardImage {
             file {
               url
