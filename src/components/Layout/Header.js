@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'gatsby'
-import { navigate } from 'gatsby'
 import {
   CartContext,
   CheckoutContext,
@@ -19,9 +18,6 @@ import Modal from 'react-bootstrap/Modal'
 import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
-// import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
-
-import Loader from '../Loader'
 
 const Header = ({ siteTitle, collections, slug, human_id }, props) => {
   const { count, isEmpty, setToggle, setUserBuilton } = useContext(CartContext)
@@ -34,28 +30,24 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
   const toggleModal = () => setModal(!modal)
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen)
 
-  //-----------------React-bootstrap modal-----------------------------
-  const [show, setShow] = useState(false)
-  const handelModal = () => setShow(!show)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
-  //-----------------------------------------------
-
   useEffect(() => {
     const lazyApp = import('firebase')
     lazyApp.then(firebaseObj => {
       const firebase = getFirebase(firebaseObj)
-      setFirebase(firebase)
 
+      setFirebase(firebase)
       if (firebase && firebase.auth().currentUser) {
-        setShow(false)
+        setModal(false)
       }
       !(firebase && firebase.auth().currentUser)
         ? setTimeout(() => setRefresh(true), 1000)
         : setRefresh(false)
     })
   }, [])
-  console.log('refresh SS => ', refresh)
+  console.log(
+    'refresh && firebase && firebase.auth().currentUser => ',
+    refresh && firebase && firebase.auth().currentUser
+  )
 
   const handleLogout = () => {
     firebase &&
@@ -63,8 +55,8 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
         .auth()
         .signOut()
         .then(res => {
-          navigate(`/`)
-          localStorage.removeItem('firebaseToken')
+          // setCurrentUser(false)
+          // toggleDropDown()
         })
         .catch(err => {
           console.log('sis err Logout => ', err)
@@ -155,7 +147,9 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
                         id = {'accountDropdown'}
                       >
                         <Dropdown.Item><Link to="/userOrdersList">My Orders</Link></Dropdown.Item>
-                        <Dropdown.Item onClick={handleLogout}>Log Out</Dropdown.Item>
+                        <Dropdown.Item >
+                          <button onClick={handleLogout}>Log Out</button>
+                          </Dropdown.Item>
                       </DropdownButton>
                     ) : (
                       <div>
@@ -177,7 +171,7 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
             <ModalBody>
               <RegisterOrLogin
                 isModal={true}
-                toggleModal={handelModal}
+                toggleModal={toggleModal}
                 setDropdownOpen={setDropdownOpen}
               />
             </ModalBody>

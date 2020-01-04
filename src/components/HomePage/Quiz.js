@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import Link from 'gatsby-plugin-transition-link'
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 import PlayIcon from '../../images/play-duotone.png'
 import { useStateValue } from '../../context/SiteContext'
 
@@ -14,10 +15,10 @@ const Quiz = () => {
         Take our short quiz to discover whether a sommio weighted blanket could
         help you sleep better and enjoy lower stress
       </p>
-      <Link to="/quizPage" className="btn btn-info ml-auto">
+      <AniLink paintDrip to="/quizPage" hex="#ACF0B5"  className="btn btn-info ml-auto">
         {quiz.currentQuestion !== 0 ? "Resume" : "Start" }
         <img src={PlayIcon} />
-      </Link >
+      </AniLink >
     </div>
   )
 }
