@@ -20,7 +20,7 @@ import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 // import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
-import { Modal, Button } from 'react-bootstrap'
+
 import Loader from '../Loader'
 
 const Header = ({ siteTitle, collections, slug, human_id }, props) => {
@@ -30,8 +30,8 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
   const { setFirebase, firebase } = useContext(FirebaseContext)
   const [refresh, setRefresh] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
-  // const [modal, setModal] = useState(false)
-  // const toggleModal = () => setModal(!modal)
+  const [modal, setModal] = useState(false)
+  const toggleModal = () => setModal(!modal)
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen)
 
   //-----------------React-bootstrap modal-----------------------------
@@ -180,7 +180,7 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
                 toggleModal={handelModal}
                 setDropdownOpen={setDropdownOpen}
               />
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         </header>
       )}
