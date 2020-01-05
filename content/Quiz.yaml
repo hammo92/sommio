@@ -4,9 +4,11 @@
     Did you know that on average it should take about 20 - 30 minutes to fall
     asleep.
   Options:
-    - I fall asleep straight away
-    - It takes 15 – 20 mins
-    - It takes more than 20 mins
+    - [I fall asleep straight away, 1, 0]
+    - [It takes 15 – 20 mins, 2, 0]
+    - [It takes more than 20 mins, 3, 0]
+  Key: 1
+  Answer: false
 - 2:
   Question: Do you have a bedtime routine?
   Info: |-
@@ -15,16 +17,20 @@
     and unwinding, particularly turning off technology and maybe 
     reading a book instead. A warm caffeine free drink or warm bath can also help.
   Options:
-    - Yes
-    - No
+    - [Yes,1,0]
+    - [No,1,0]
+  Key: 2
+  Answer: false
 - 3:
   Question: How do you feel when you wake up in the morning?
   Info: |-
     Even if you think you’re getting enough sleep, you may find you’re not getting the quality of sleep your body needs.  This could be psychological e.g. stress, depression, anxiety or your lifestyle e.g. alcohol, lack of exercise, caffeine or physical e.g. anaemia, sleep apnoea, thyroid.
   Options:
-    - I feel great, full of beans and ready to face the day
-    - I feel ok
-    - I feel tired and lethargic
+    - [I feel great, full of beans and ready to face the day,1,0]
+    - [I feel ok,2,0]
+    - [I feel tired and lethargic,3,0]
+  Key: 3
+  Answer: false
 - 4:
   Question: Do you feel like you need a nap in the day?
   Info: |-
@@ -32,9 +38,11 @@
     cultures an afternoon siesta is considered normal. However, you should 
     limit yourself to roughly 20 minutes.
   Options:
-    - Never
-    - Sometimes
-    - Always
+    - [Never,1,0]
+    - [Sometimes,2,0]
+    - [Always,3,0]
+  Key: 4
+  Answer: false
 - 5:
   Question: Do you have trouble controlling your temperature at night?
   Info: |-
@@ -44,9 +52,11 @@
     The ideal temperature for the bedroom is about 16 – 18 °C. 
     It’s also a good idea to have an open window so that the air can circulate.
   Options:
-    - Yes, all the time
-    - Sometimes
-    - Never
+    - [Yes all the time,1,0]
+    - [Sometimes,2,0]
+    - [Never,3,0]
+  Key: 5
+  Answer: false
 - 6:
   Question: How do you feel in the day?
   Info: |-
@@ -56,9 +66,11 @@
     constant waking interrupts these processes, reducing your 
     concentration and performance the next day.
   Options:
-    - Generally pretty good
-    - Ok, but I can get annoyed easily
-    - Mostly grumpy and irritable
+    - [Generally pretty good,1,0]
+    - [Ok, but I can get annoyed easily,2,0]
+    - [Mostly grumpy and irritable,3,0]
+  Key: 6
+  Answer: false
 - 7:
   Question: How many times do you wake in the night?
   Info: |-
@@ -70,9 +82,11 @@
     impacting your daytime functions, you should discuss this 
     with a doctor or other health care provider.
   Options:
-    - Never
-    - Sometimes
-    - All the time
+    - [Never,1,0]
+    - [Sometimes,2,0]
+    - [All the time,3,0]
+  Key: 7
+  Answer: false
 - 8:
   Question: Do you travel a lot and suffer jet lag or are you a shift worker?
   Info: |-
@@ -84,26 +98,34 @@
     same times when your circadian rhythm is disrupted it can make 
     you feel out of sorts and can make it harder to pay attention. 
   Options:
-    - Never
-    - Sometimes
-    - All the time
-- 10:
+    - [Never,1,0]
+    - [Sometimes,2,0]
+    - [All the time,3,0]
+  Key: 8
+  Answer: false
+- 9:
   Question: Do you find you’re always tense and find it hard to relax?
   Info:
   Options:
-    - No, I’m pretty chilled most of the time
-    - Yes, sometimes I find things stressful
-    - Yes, I’m always on edge
-- 11:
+    - [No I’m pretty chilled most of the time,0,1]
+    - [Yes sometimes I find things stressful,0,2]
+    - [Yes I’m always on edge,0,3]
+  Key: 9
+  Answer: false
+- 10:
   Question: Do you have trouble coping with your emotions?
   Info:
   Options:
-    - No, I’m emotionally stable
-    - Yes, my emotions are all over the place
-- 12:
+    - [No I’m emotionally stable,0,1]
+    - [Yes my emotions are all over the place,0,2]
+  Key: 10
+  Answer: false
+- 11:
   Question: Do you work shifts?
   Info:
   Options:
-    - No
-    - Yes
+    - [No,0,1]
+    - [Yes,0,2]
+  Key: 11
+  Answer: false
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AnswerCard from './AnswerCard'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useStateValue } from '../../context/SiteContext';
 import YAMLData from '../../../content/Quiz.yaml' 
 
@@ -23,6 +23,7 @@ const QuizSlide = () => {
           >
             <FaArrowLeft />
           </div>) : null}
+          <div className="QuizCard">
           <Col className="QuestionContain" >
             <h4>{CurrentQuestion.Question}</h4>
             <p>{CurrentQuestion.Info}</p>
@@ -32,6 +33,17 @@ const QuizSlide = () => {
               <AnswerCard ans={ans} key={i} />
             ))}
           </Col>
+          </div>
+          {quiz.currentQuestion.answered !== false ? (<div 
+            className="next"
+            onClick={() => dispatch({
+              type: 'changeQuestion',
+              nextQuestion: {currentQuestion: quiz.currentQuestion + 1}
+            })}
+            >
+              <FaArrowRight />
+            </div>) : null}
+          
         </Row>
     )
 }

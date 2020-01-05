@@ -7,7 +7,15 @@
   transition:all 0.3s;
   cursor:pointer;
   transition:all 0.3s;
+  &.active{
+    background:$madang;
+    color:$violet;
 
+    &:hover{
+      background:$madang;
+      color:$violet;
+    }
+  }
 
   &:hover{
     background:#010813;

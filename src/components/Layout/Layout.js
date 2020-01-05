@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify'
 import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import { StateProvider } from '../../context/SiteContext';
-
+import YAMLData from '../../../content/Quiz.yaml' 
 import Header from './Header'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css'
@@ -21,7 +21,13 @@ const toastOptions = {
 }
 const initialState = {
   theme: { primary: 'green' },
-  quiz:{currentQuestion: 0},
+  quiz:{
+    questions: YAMLData,
+    currentQuestion: 0,
+    complete:false,
+    sleepScore:0,
+    stressScore:0
+  },
 };
 
 const reducer = (state, action) => {
@@ -35,8 +41,38 @@ const reducer = (state, action) => {
     case 'changeQuestion':
       return{
         ...state,
-        quiz: action.nextQuestion
-      }
+        quiz: {
+        ...state.quiz,
+        currentQuestion: action.nextQuestion
+      }};
+    case 'selectAnswer':
+      console.log(action.number)
+      return{
+      ...state,
+      quiz:{
+        ...state.quiz,
+        questions:{
+          ...state.quiz.questions,
+          [action.question]:{
+            ...state.quiz.questions[action.question],
+            Answer: action.answer,
+            sleepScore: action.sleep,
+            stressScore: action.stress
+          }
+          
+        }
+        
+      }};
+      case 'setCompleted':
+      return {
+        ...state,
+        quiz:{
+          ...state.quiz,
+          complete:true,
+
+        }
+      };
+      
       
       
     default:
