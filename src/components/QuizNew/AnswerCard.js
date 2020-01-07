@@ -2,23 +2,23 @@ import React, { useState } from 'react'
 import { useStateValue } from '../../context/SiteContext'
 
 
-const AnswerCard = ({ans, i, question, sleepValue, stressValue}) => {
+const AnswerCard = ({i}) => {
     const [{ quiz }, dispatch] = useStateValue();
-    const answer = quiz.questions[question].Answer;
+    const Question = quiz.questions[quiz.currentQuestion]
 
     return (
         <div 
-        className={answer === i ? "AnswerBlock active" : "AnswerBlock"}
+        className={Question.Answer === i ? "AnswerBlock active" : "AnswerBlock"}
         key={i}
         onClick={() => dispatch({
           type: 'selectAnswer',
-          question:question,
+          question: quiz.currentQuestion,
           answer: i,
-          sleep: sleepValue,
-          stress: stressValue
+          sleep: Question.Options[i][1],
+          stress: Question.Options[i][2]
         })}
          >
-          <p>{ans}</p>
+         <p>{Question.Options[i][0]}</p>
         </div>
     )
 

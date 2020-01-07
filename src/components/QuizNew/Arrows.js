@@ -24,9 +24,10 @@ export const ArrowLeft = () => {
 export const ArrowRight = ({answered}) => {
     const [{ quiz }, dispatch] = useStateValue()
     var questions = Object.values(quiz.questions)
-    let sleep = 0 
+    let sleep, stress = 0 
     for (const question of questions){
         sleep = sleep + question.sleepScore
+        stress = stress + question.stressScore
     }
     const transitions = useTransition(answered, null, {
         from: { position: 'absolute', opacity: 0 },

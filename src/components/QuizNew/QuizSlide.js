@@ -6,20 +6,25 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import {ArrowLeft, ArrowRight} from './Arrows'
 import { useStateValue } from '../../context/SiteContext';
 import YAMLData from '../../../content/Quiz.yaml' 
-import {useTransition, animated} from 'react-spring'
+import {useTransition, useTrail, animated} from 'react-spring'
 
 const Questions = YAMLData
+const AnimatedAnswer = animated(AnswerCard)
 
 const QuizSlide = () => {
   const [{ quiz }, dispatch] = useStateValue();
   const CurrentQuestion = Questions[quiz.currentQuestion]
-  console.log(quiz)
   const answered = quiz.questions[quiz.currentQuestion].Answer
+  const config = { mass: 5, tension: 2000, friction: 200 }
   const transitions = useTransition(Questions[quiz.currentQuestion], item => item.Key, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
   } )
+  const trail = useTrail(CurrentQuestion.Options.length, {
+    config,
+    opacity: 1
+  })
   return(
       <Row>
         <ArrowLeft />
@@ -30,9 +35,12 @@ const QuizSlide = () => {
               <p>{item.Info}</p>
             </Col>
             <Col className="AnswerContain">
-              {CurrentQuestion.Options.map((ans, i, step) => (
-                <AnswerCard ans={ans[0]} sleepValue={ans[1]} stressValue={ans[2]} i={i} question={quiz.currentQuestion} />
-              ))}
+
+            {CurrentQuestion.Options.map((option, index) => (
+              <AnswerCard i={index} />
+            ))}
+
+
             </Col>
           </animated.div>
         ))}        
@@ -43,3 +51,7 @@ const QuizSlide = () => {
 }
 
 export default QuizSlide
+/*
+{CurrentQuestion.Options.map((ans, i, step) => (
+  <AnswerCard ans={ans[0]} sleepValue={ans[1]} stressValue={ans[2]} i={i} question={quiz.currentQuestion} />
+))}*/

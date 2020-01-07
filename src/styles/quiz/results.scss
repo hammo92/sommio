@@ -1,3 +1,18 @@
 .resultWrapper{
+    &.row{
+        margin:0;
+    }
+    .col{
+        border-left: solid 2px rgba(255, 255, 255, 0.3);
+        height:100%;
+        padding:15px;
     
+        h2{
+            font-weight:700;
+            margin-bottom:20px;
+        }
+    }
+}
+.progress-ring{
+
 }
