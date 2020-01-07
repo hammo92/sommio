@@ -23,7 +23,11 @@ export const ArrowLeft = () => {
 
 export const ArrowRight = ({answered}) => {
     const [{ quiz }, dispatch] = useStateValue()
-    const questionCount = quiz['questions'].length - 1
+    var questions = Object.values(quiz.questions)
+    let sleep = 0 
+    for (const question of questions){
+        sleep = sleep + question.sleepScore
+    }
     const transitions = useTransition(answered, null, {
         from: { position: 'absolute', opacity: 0 },
         enter: { opacity: 1 },
@@ -33,7 +37,7 @@ export const ArrowRight = ({answered}) => {
         <div 
           className={answered === false ? "arrow next disabled" : "arrow next"}
           onClick={
-            answered !== false && quiz.currentQuestion < questionCount ?
+            answered !== false && quiz.currentQuestion < 10 ?
             () => dispatch({
                 type: 'changeQuestion',
                 nextQuestion: quiz.currentQuestion + 1
@@ -41,6 +45,7 @@ export const ArrowRight = ({answered}) => {
             answered !== false ? 
             () => dispatch({
                 type: 'setCompleted',
+                score: sleep
             }): console.log(' ')
         }
           >

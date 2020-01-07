@@ -4,12 +4,8 @@ import Row from 'react-bootstrap/Row'
 
 const Results = () => {
     const [{ quiz }, dispatch] = useStateValue();
-    
-    var questions = quiz.questions
 
-    questions = Object.entries(questions)
-    console.log(questions)
-
+    console.log(quiz)
 
     return (
         <Row>

@@ -26,7 +26,7 @@
   Info: |-
     Even if you think you’re getting enough sleep, you may find you’re not getting the quality of sleep your body needs.  This could be psychological e.g. stress, depression, anxiety or your lifestyle e.g. alcohol, lack of exercise, caffeine or physical e.g. anaemia, sleep apnoea, thyroid.
   Options:
-    - [I feel great, full of beans and ready to face the day,1,0]
+    - [I feel great full of beans and ready to face the day,1,0]
     - [I feel ok,2,0]
     - [I feel tired and lethargic,3,0]
   Key: 3
@@ -67,7 +67,7 @@
     concentration and performance the next day.
   Options:
     - [Generally pretty good,1,0]
-    - [Ok, but I can get annoyed easily,2,0]
+    - [Ok but I can get annoyed easily,2,0]
     - [Mostly grumpy and irritable,3,0]
   Key: 6
   Answer: false

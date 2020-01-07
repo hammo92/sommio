@@ -15,7 +15,7 @@ const Quiz = () => {
         Take our short quiz to discover whether a sommio weighted blanket could
         help you sleep better and enjoy lower stress
       </p>
-      <AniLink paintDrip to="/quizPage" hex="#ACF0B5"  className="btn btn-info ml-auto">
+      <AniLink paintDrip to="/QuizNew" hex="#D8A8FF"  className="btn btn-info ml-auto">
         {quiz.currentQuestion !== 0 ? "Resume" : "Start" }
         <img src={PlayIcon} />
       </AniLink >

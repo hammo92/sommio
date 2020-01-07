@@ -45,8 +45,8 @@ const reducer = (state, action) => {
         ...state.quiz,
         currentQuestion: action.nextQuestion
       }};
+
     case 'selectAnswer':
-      console.log(action.number)
       return{
       ...state,
       quiz:{
@@ -57,22 +57,32 @@ const reducer = (state, action) => {
             ...state.quiz.questions[action.question],
             Answer: action.answer,
             sleepScore: action.sleep,
-            stressScore: action.stress
+            stressScore: action.stress,
           }
           
         }
         
       }};
+      case 'setScore':
+      return {
+        ...state,
+        quiz:{
+          ...state.quiz,
+          sleepScore: action.sleepScore,
+
+        }
+      };
+      
       case 'setCompleted':
       return {
         ...state,
         quiz:{
           ...state.quiz,
           complete:true,
+          sleepScore: action.score
 
         }
       };
-      
       
       
     default:
