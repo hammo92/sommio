@@ -13,8 +13,9 @@
     }
 
     &.btn-primary {
-        background: $perano;
-        color: $violet;
+        background: $madang;
+        font-size: $FontSize30;
+        color: $midnight;
 
         &:hover {
             background: $violet;
@@ -54,7 +55,7 @@
 
     &.btn-link {
         font-size: $FontSize17;
-        color: $madang;
+        color: $midnight;
         font-weight: 500;
         padding: 0;
         text-decoration: underline;

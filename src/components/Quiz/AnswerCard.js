@@ -9,10 +9,6 @@ const AnswerCard = ({ans, i}) => {
         <div 
         className="AnswerBlock" 
         key={i}
-        onClick={() => dispatch({
-          type: 'changeQuestion',
-          nextQuestion: {currentQuestion: quiz.currentQuestion + 1}
-        })}
          >
           <p>{ans}</p>
         </div>

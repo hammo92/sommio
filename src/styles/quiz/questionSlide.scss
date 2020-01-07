@@ -1,3 +1,14 @@
+$arrowWidth: 60px;
+$arrowMargin: 30px;
+.QuizCard{
+  display:flex;
+  flex:1;
+  position:absolute;
+  width:calc(100% - (#{$arrowWidth} * 2) - (#{$arrowMargin} * 2));
+  left: $arrowWidth + $arrowMargin;
+  height:100%;
+}
+
 .QuestionContain{
   display:flex;
   align-items:left;
@@ -8,6 +19,7 @@
   transition:opacity 0.3s;
   border-right: 2px solid rgba(255, 255, 255, 0.3);
   border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  position:relative;
     
   h4{
     font-size:5em;
@@ -21,24 +33,34 @@
   }
 
 }
-.back{
+.arrow{
   display:flex;
   align-items: center;
+  position:absolute;
+  width:60px;
+  height:100%;
+  justify-content: center;;
   border-right: 2px solid
   rgba(255,255,255,0.3);
-  margin-left: 15px;
-  padding: 10px;
   border-left: 2px solid
   rgba(255,255,255,0.3);
   border-bottom: 2px solid rgba(255, 255, 255, 0.3);
   cursor:pointer;
+  &.back{left:$arrowMargin}
+  &.next{right:$arrowMargin}
+  &.disabled{
+    cursor:disabled;
+    svg{
+      opacity:0.3;
+    }
+    
+  }
 }
 .AnswerContain{
   display:flex;
   flex-direction:column;
   padding-left:0;
   padding-right:0;
-  margin-right:15px;
   transition:opacity 0.3s;
   opacity:1;
 }
