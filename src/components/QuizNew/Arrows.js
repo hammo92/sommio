@@ -24,7 +24,8 @@ export const ArrowLeft = () => {
 export const ArrowRight = ({answered}) => {
     const [{ quiz }, dispatch] = useStateValue()
     var questions = Object.values(quiz.questions)
-    let sleep, stress = 0 
+    let sleep = 0
+    let stress = 0 
     for (const question of questions){
         sleep = sleep + question.sleepScore
         stress = stress + question.stressScore
@@ -46,7 +47,8 @@ export const ArrowRight = ({answered}) => {
             answered !== false ? 
             () => dispatch({
                 type: 'setCompleted',
-                score: sleep
+                score: sleep,
+                stress: stress,
             }): console.log(' ')
         }
           >

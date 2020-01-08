@@ -13,7 +13,7 @@ const QuizPage = () => {
   
   return (
 
-      <Container className="QuizContain"  fluid>
+      <Container className={quiz.complete ? "QuizContain" : "QuizContain setHeight" } fluid>
           {quiz.complete ?
             <Results /> :
             <QuizSlide /> 

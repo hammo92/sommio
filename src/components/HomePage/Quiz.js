@@ -16,7 +16,7 @@ const Quiz = () => {
         help you sleep better and enjoy lower stress
       </p>
       <AniLink paintDrip to="/QuizNew" hex="#D8A8FF"  className="btn btn-info ml-auto">
-        {quiz.currentQuestion !== 0 ? "Resume" : "Start" }
+        {quiz.currentQuestion !== 0 && quiz.complete ? "Your Results" : quiz.currentQuestion !== 0 ? "Resume" : "Start" }
         <img src={PlayIcon} />
       </AniLink >
     </div>

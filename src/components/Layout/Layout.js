@@ -79,7 +79,8 @@ const reducer = (state, action) => {
         quiz:{
           ...state.quiz,
           complete:true,
-          sleepScore: action.score
+          sleepScore: action.score,
+          stressScore:action.stress
 
         }
       };

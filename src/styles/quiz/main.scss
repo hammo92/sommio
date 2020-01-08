@@ -1,7 +1,10 @@
 
 .QuizContain{
-height:80vh;
+
 color:#ffffff;
+  &.setHeight{
+    height:80vh;
+  }
 
 
 .row{

@@ -1,0 +1,61 @@
+Sleep:
+  Good: 
+    Title: Sleep Problems unlikely - Congratulations! 
+    Desc: >
+      Your score illustrates that you are unlikely to have longstanding or serious
+      issues with you sleep. While it's possible you might occasionally suffer some symptoms
+      as associated with this sleep, it’s unlikely that you have serious or ongoing sleep problems.
+  Okay: 
+    title: Sleep Problems Possible
+    desc: > 
+      Your score illustrates that you could occasionally have a problem getting enough
+      high-quality sleep on a regular basis.  This level of sleep symptoms could lead 
+      to you having trouble staying awake for normal, daily activities. This could 
+      impact your everyday life, making normal activities such as work or school 
+      difficult. Keeping focus and concentration can be a real challenge for people with this score.
+  Low:
+    title: Sleep Problems Likely
+    desc: >
+      Your score illustrates that you often have a sometimes-serious problem with your sleep. 
+      Sleep symptoms of this severity could lead to you having trouble staying awake for normal, 
+      daily activities. This could impact your everyday life, making normal activities such as work 
+      or school difficult. Keeping focus and concentration can be a real challenge for people with 
+      this score.
+      
+      It’s been proven that a weighted cover can lower cortisol levels (the stress hormone) 
+      due to the applied low pressure, creating a feeling of relaxation and well-being. It also promotes 
+      production of the happiness hormone - serotonin and the sleep hormone - melatonin. The reduction in 
+      cortisol and increase in serotonin and melatonin combine to make your muscles and nervous system relax 
+      making you feel comforted and cosseted which can help send you to sleep and keep you asleep.
+Stress:
+  Good: 
+    title : Wellness Problems Unlikely 
+    desc : >
+      Your score suggests that you look after your mental wellness and are not likely to be currently 
+      suffering from any anxiety disorder. 
+  Okay: 
+    title: Wellness problems possible
+    desc: > 
+      Your score suggests you are not looking after your mental wellness 
+      and may be suffering from moderate anxiety. Sometimes people who feel such 
+      anxiety symptoms don't realise that their body may be trying to tell them 
+      something. If you answered sometimes or never to the last 5 questions, it 
+      may help your anxiety by working on these topics.
+  Low:
+    title: Wellness problems likely
+    desc: >
+      Your score suggests you are not looking after your mental wellness are most likely suffering 
+      from an anxiety disorder. You should not take this as a diagnosis of any sort, or a recommendation 
+      for treatment. However, it would be advisable and likely beneficial for you to seek further diagnosis 
+      from a trained mental health professional soon to rule out a possible anxiety disorder. 
+      
+      The deep pressure provided by a weighted cover can help reduce the physiological arousal associated 
+      with anxiety by triggering a switch from “fight or flight” to “rest and digest” helping you to 
+      control the situation, feel calmer and more in control.
+      
+      A weighted blanket can boost serotonin and melatonin levels and reduce cortisol, helping you cope better with your emotions and feel more relaxed.
+      
+      This is not a diagnostic quiz or professional assessment, however, so please don’t take these 
+      quiz results as a recommendation for treatment. However, you may find it beneficial to talk 
+      about your symptoms with your doctor or a mental health professional (such as a psychologist). 
+      Only a properly trained physician or professional can diagnose a sleep or anxiety concern.

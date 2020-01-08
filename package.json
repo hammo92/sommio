@@ -38,6 +38,7 @@
     "react-anime": "^2.2.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-circular-progressbar": "^2.0.3",
+    "react-custom-scroll": "^4.1.5",
     "react-dom": "16.9.0",
     "react-final-form": "4.1.0",
     "react-helmet": "^5.2.1",
