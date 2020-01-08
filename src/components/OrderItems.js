@@ -10,33 +10,33 @@ const OrderItems = props => {
     subTotalBuilton,
     price
   } = useContext(CartContext)
-  const { orderPrice } = useContext(CheckoutContext)
+  const { orderPrice, totalProductQuantity } = useContext(CheckoutContext)
+  const orderDetails = JSON.parse(sessionStorage.getItem('cartDetails'))[0]
 
   return (
     <div>
       <div>
         {orderCartItems &&
           orderCartItems.map(item => (
-            <div>
-              <CartItem
-                key={item.id}
-                removeFromCart={removeFromCart}
-                {...item}
-                {...props}
-              />
-              <div className="border-grey-light pt-2 md:pt-4 lg:pt-6 w-full ">
-                <div className="total-page">
-                  <h4 className="text-grey">Quanity </h4>
-                  <h4>{item.quantityBuilton}</h4>
-                </div>
-              </div>
-            </div>
+            <CartItem
+              key={item.id}
+              removeFromCart={removeFromCart}
+              {...item}
+              {...props}
+            />
           ))}
+        <div className="border-grey-light pt-2 md:pt-4 lg:pt-6 w-full ">
+          <div className="total-page">
+            <h4 className="text-grey">Quanity </h4>
+            <h4>{orderDetails && orderDetails.quantityBuilton}</h4>
+          </div>
+        </div>
       </div>
       <div className="border-grey-light pt-2 md:pt-4 lg:pt-6 w-full text-right">
         <div className="total-page">
           <h4 className="text-grey">Subtotal</h4>
-          <div>£ {isAddToCart === true ? subTotalBuilton : price} </div>
+          {/* <div>£ {isAddToCart === true ? subTotalBuilton : price} </div> */}
+          <div>£ {orderDetails && orderDetails.final_price}</div>
         </div>
         <div className="total-page">
           <h4 className="text-grey">Shipping Cost</h4>

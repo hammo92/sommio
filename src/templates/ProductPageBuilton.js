@@ -88,6 +88,9 @@ const ProductPageBuilton = ({ data: { product, contentfulProduct } }) => {
   Headings = Headings.join(" ")
   //console.log(FeatureSlides);
 
+const ProductPageBuilton = ({ data: { product } }) => {
+  console.log('product ProductPageBuilton => ', product)
+
   return (
     <div>
       <SEO

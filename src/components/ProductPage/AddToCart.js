@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react'
-import classnames from 'classnames'
 import { CartContext } from '../../context/CartContext'
 import PlushImages from '../../images/plush.png'
 import SommioModal from '../modal.js'
@@ -24,6 +23,7 @@ const AddToCart = ({ productId, tags }) => {
           tags
           short_description
           price
+          final_price
           name
           currency
           parent {
@@ -49,23 +49,21 @@ const AddToCart = ({ productId, tags }) => {
     setSubProductPrice,
     setVariation,
     Weight,
-    Size,
     Cover,
     setToggle,
     toggle,
     weightPrice,
     coverPrice,
-    setCartData,
-    countBuilton,
-    quantityBuilton
+    setCartData
   } = useContext(CartContext)
+  console.log('allBuiltonProduct ,=> ', allBuiltonProduct)
 
   let weightSubProduct = []
   let coverSubProduct = []
-  let shippingSubProduct = []
   let childData = []
   let parentData = []
-  console.log('coverPrice, weightPrice =>', coverPrice, weightPrice)
+  let shipmentProduct = []
+  let mainProduct = []
 
   allBuiltonProduct.nodes.map(data => {
     if (productId !== data.id && data.main_product === false) {
@@ -74,13 +72,20 @@ const AddToCart = ({ productId, tags }) => {
       parentData.push(data)
     }
   })
+
+  parentData.filter(product => {
+    if (product.name === 'Shipping cost') {
+      shipmentProduct.push(product)
+    } else {
+      mainProduct.push(product)
+    }
+  })
+
   childData.map(sub => {
     if (sub.tags[0] === 'Weight') {
       weightSubProduct.push(sub)
     } else if (sub.tags[0] === 'Cover') {
       coverSubProduct.push(sub)
-    } else {
-      shippingSubProduct.push(sub)
     }
   })
 
@@ -92,10 +97,8 @@ const AddToCart = ({ productId, tags }) => {
     return sub.name === Weight
   })
   useEffect(() => {
-    setSubProductPrice(selectedWeight, selectedCover, shippingSubProduct)
+    setSubProductPrice(selectedWeight, selectedCover)
   }, [Weight, Cover])
-
-  const [quantity, setQuantity] = useState(1)
 
   const [blancketCover, setBlancketCover] = useState('Plush')
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -116,36 +119,38 @@ const AddToCart = ({ productId, tags }) => {
   }
 
   let selectedProduct
-  parentData.filter(i => {
+  mainProduct.filter(i => {
     if (productId === i.id) {
       selectedProduct = i
     }
   })
-  console.log(
-    'selectedProducts ,productId,parentData,selectedWeight => ',
-    selectedProduct,
-    productId,
-    parentData,
-    selectedWeight
-  )
+
+  let finalProductPrice =
+    selectedProduct &&
+    selectedProduct.price + selectedCover[0].price + selectedWeight[0].price
 
   const handleAddToCart = () => {
     let cartItemsBuilton = [
       {
+        type: 'cart_item_builton',
         main_product_id: selectedProduct._id._oid,
         id: selectedProduct.id,
         name: selectedProduct.name,
         quantityBuilton: 1,
         human_id: selectedProduct.human_id,
-        type: 'cart_item_builton',
         description: selectedProduct.description,
         price: selectedProduct.price,
+        final_price: finalProductPrice,
         main_product: selectedProduct.main_product,
         image_url: selectedProduct.image_url,
         media: selectedProduct.media,
+        coverPrice: coverPrice,
+        weightPrice: weightPrice,
         subProduct: { selectedWeight, selectedCover },
         isAddToCart: true,
-        currency: selectedProduct.currency
+        currency: selectedProduct.currency,
+        // shippingPrice: shipmentProduct[0].price,
+        shippingProductId: shipmentProduct[0]._id._oid
       }
     ]
 
@@ -157,6 +162,8 @@ const AddToCart = ({ productId, tags }) => {
     } else {
       element.classList.remove('cartopen')
     }
+
+    sessionStorage.setItem('cartDetails', JSON.stringify(cartItemsBuilton))
   }
 
 
@@ -218,7 +225,7 @@ const AddToCart = ({ productId, tags }) => {
           toggle={toggleHandle}
         >
           <DropdownToggle caret>
-            <img src={PlushImages} />
+            <img src={PlushImages} alt="plushImages" />
             <div className="content ml-auto">
               <h3>{blancketCover}</h3>
               <p>A luxuriously soft faux fur cover</p>
@@ -235,7 +242,7 @@ const AddToCart = ({ productId, tags }) => {
                   defaultValue={cover.name}
                   onClick={() => setBlancketCover(cover.name)}
                 >
-                  <img src={PlushImages} />
+                  <img src={PlushImages} alt="plushImages" />
                   <div className="content ml-auto">
                     <h3>{cover.name}</h3>
                     <p>A luxuriously soft faux fur cover</p>
