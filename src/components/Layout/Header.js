@@ -1,15 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'gatsby'
-import {
-  CartContext,
-  CheckoutContext,
-  UserContext,
-  FirebaseContext
-} from '../../context'
-import CartItemList from '../CartItemList'
+import { navigate } from 'gatsby'
+import Builton from '@builton/core-sdk'
+
+import { CartContext, CheckoutContext, FirebaseContext } from '../../context'
+
 import Logo from '../../images/logo.png'
 import logoCheckout from '../../images/logo-checkout.png'
-import CartIcon from '../../images/shopping-basket-duotone.svg'
 import CartButton from '../CartButton'
 import RegisterOrLogin from '../../components/Checkout/RegisterOrLogin'
 import DropdownButton from 'react-bootstrap/DropdownButton'
@@ -20,14 +17,24 @@ import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 
 const Header = ({ siteTitle, collections, slug, human_id }, props) => {
-  const { userDetail } = useContext(UserContext)
   const { orderId } = useContext(CheckoutContext)
+  const { setCartData, setUserBuilton } = useContext(CartContext)
   const { setFirebase, firebase } = useContext(FirebaseContext)
   const [refresh, setRefresh] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [modal, setModal] = useState(false)
   const toggleModal = () => setModal(!modal)
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen)
+
+  //-----------------React-bootstrap modal-----------------------------
+  // const [show, setShow] = useState(false)
+  // const handelModal = e => setShow(!show)
+
+  // const handleClose = () => setShow(false)
+  // const handleShow = () => setShow(true)
+  //-----------------------------------------------
+  let token = localStorage.getItem('firebaseToken')
+  let details = JSON.parse(localStorage.getItem('details'))
 
   useEffect(() => {
     const lazyApp = import('firebase')
@@ -42,11 +49,20 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
         ? setTimeout(() => setRefresh(true), 1000)
         : setRefresh(false)
     })
+
+    let dataFromStorage = sessionStorage.getItem('cartDetails')
+    let cartData = JSON.parse(dataFromStorage)
+
+    if (cartData) {
+      setCartData(cartData)
+    }
+
+    var builton = new Builton({
+      apiKey: process.env.GATSBY_BUILTON_API_KEY,
+      bearerToken: token
+    })
+    setUserBuilton(details && details.email, builton)
   }, [])
-  console.log(
-    'refresh && firebase && firebase.auth().currentUser => ',
-    refresh && firebase && firebase.auth().currentUser
-  )
 
   const handleLogout = () => {
     firebase &&
@@ -54,13 +70,15 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
         .auth()
         .signOut()
         .then(res => {
-          // setCurrentUser(false)
-          // toggleDropDown()
+          navigate(`/`)
+          localStorage.removeItem('firebaseToken')
+          localStorage.removeItem('details')
         })
         .catch(err => {
           console.log('sis err Logout => ', err)
         })
   }
+
   return (
     <div>
       {window.location.pathname === '/checkout' ? (

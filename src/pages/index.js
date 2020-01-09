@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react'
-import { graphql } from 'gatsby'
-import { Router, Link } from '@reach/router'
+import React from 'react'
 import Goodbye from '../components/HomePage/Goodbye'
 import Quiz from '../components/HomePage/Quiz'
 import HomeService from '../components/HomePage/HomeService'
@@ -10,8 +8,9 @@ import BlanketImages from '../components/HomePage/BlanketImages'
 import MagicWeightex from '../components/HomePage/MagicWeightex'
 import BlanketDifference from '../components/HomePage/BlanketDifference'
 import CustomerReview from '../components/HomePage/CustomerReview'
+import HelpsWith from '../components/ProductPage/HelpsWith'
 
-function IndexPage() {
+const IndexPage = () => {
   return (
     <div className="homepage-bg">
       <div className="goodquiz-bg">
@@ -34,19 +33,12 @@ function IndexPage() {
           </div>
         </div>
 
-        <div className="container-fluid">
-          <div className="row">
-            <div
-              className="col-12 col-lg-5"
 
-            >
-              <SecretIngredient />
-            </div>
-          </div>
-        </div>
+        <SecretIngredient />
+
       </div>
 
-      <HelpSlider />
+      <HelpsWith />
 
       <div className="container-fluid">
         <div className="row">

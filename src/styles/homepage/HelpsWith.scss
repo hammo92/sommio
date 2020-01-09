@@ -1,0 +1,94 @@
+.helpsWith {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 80px;
+    margin-top: -94px;
+
+    .helpHeading{
+        display:flex;
+        align-items:center;
+        margin: 0 0 40px 0;
+        border-bottom: solid 2px rgba(255, 255, 255, 0.3);
+        padding-bottom: 20px;
+
+        svg{
+            height:50px;
+            width:50px;
+            color:white;
+        }
+        h3 {
+            display: block;
+            font-size: 60px;
+            color: $white;
+            font-weight: 700;
+            padding-right:30px
+    
+        }
+    }
+
+    .cardWrap{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+
+    
+
+    .gradient-overlay{
+        position: absolute;
+        height: 100%;
+        bottom: 0px;
+        width:100%;
+        background: linear-gradient(0deg,
+        rgba(1, 18, 43, 0.7) 0%, rgba(0,41,50,0) 70%);
+    }
+
+    .help-boxs {
+        position: relative;
+        padding: 0px;
+        margin: 0 10px;
+        overflow:hidden;
+        border-radius:5px;
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        .help-content {
+            position: absolute;
+            left: 30px;
+            right: 30px;
+            bottom: 20px;
+
+            h2 {
+                font-size: 80px;
+                color: $white;
+                display: block;
+                line-height: 1;
+                margin: 0;
+                font-weight: 900;
+
+                @media (max-width:$desktop18) {
+                    font-size: 90px
+                }
+
+            }
+
+            a.btn-link {
+                color: $white;
+                font-size: 34px;
+                font-weight: 300;
+                line-height: 1;
+                text-decoration: none;
+
+                @media (max-width:$desktop18) {
+                    font-size: $FontSize28;
+                }
+            }
+
+        }
+
+    }
+
+}

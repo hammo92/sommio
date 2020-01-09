@@ -95,7 +95,7 @@ const Layout = ({ children }) => {
   const { site, allBuitlon } = useStaticQuery(categoriesQuery)
 
   const builtonProduct = allBuitlon.nodes.find(ele => {
-    return ele.main_product === true
+    return ele.main_product === true && ele.tags.length > 0
   })
 
   return (
@@ -141,6 +141,7 @@ const categoriesQuery = graphql`
         id
         name
         human_id
+        tags
         parents {
           _oid
         }
