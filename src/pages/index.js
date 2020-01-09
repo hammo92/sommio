@@ -8,6 +8,7 @@ import BlanketImages from '../components/HomePage/BlanketImages'
 import MagicWeightex from '../components/HomePage/MagicWeightex'
 import BlanketDifference from '../components/HomePage/BlanketDifference'
 import CustomerReview from '../components/HomePage/CustomerReview'
+import HelpsWith from '../components/ProductPage/HelpsWith'
 
 const IndexPage = () => {
   return (
@@ -32,19 +33,12 @@ const IndexPage = () => {
           </div>
         </div>
 
-        <div className="container-fluid">
-          <div className="row">
-            <div
-              className="col-12 col-lg-5"
 
-            >
-              <SecretIngredient />
-            </div>
-          </div>
-        </div>
+        <SecretIngredient />
+
       </div>
 
-      <HelpSlider />
+      <HelpsWith />
 
       <div className="container-fluid">
         <div className="row">
