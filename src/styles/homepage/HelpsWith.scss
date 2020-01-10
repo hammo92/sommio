@@ -27,8 +27,7 @@
     }
 
     .cardWrap{
-        display:grid;
-        grid-template-columns: 1fr 1fr 1fr;
+
     }
 
 
@@ -49,6 +48,11 @@
         margin: 0 10px;
         overflow:hidden;
         border-radius:5px;
+
+        &:first-child{
+            
+        }
+        
 
         img {
             width: 100%;
