@@ -4,24 +4,16 @@ import { useStaticQuery } from 'gatsby'
 import { Link } from 'gatsby'
 import HelpImg from '../../images/help-img.png'
 import HelpImg2 from '../../images/help-img2.png'
-import { useTrail, animated, useTransition } from 'react-spring'
+import { useTrail, animated, useTransition, config } from 'react-spring'
 import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa'; 
 import useMedia from '../../hooks/useMedia'
 import useMeasure from '../../hooks/useMeasure'
 
 
-const config = { mass: 1, tension: 500, friction: 100 }
 
 
 const HelpsWith = () => {
-  const columns = useMedia(['(min-width: 1500px)', '(min-width: 1000px)', '(min-width: 600px)'], [3, 2, 1], 2)
-  const [bind, { width }] = useMeasure()
-  const cardSize = (width / columns - 30 )
-  console.log(cardSize)
-  const cardPos = [0, cardSize + 15, cardSize * 2 + 30]
-  
-
-    const { allContentfulCondition } = useStaticQuery(graphql`
+const { allContentfulCondition } = useStaticQuery(graphql`
     query {
       allContentfulCondition {
         nodes {
@@ -36,31 +28,35 @@ const HelpsWith = () => {
         }
       }
     }
-  `)  
-  
-  const [page, setPage] = useState([0,3])
-  const [toggle, set] = useState(true)
-  const paged = 3
-  console.log(allContentfulCondition)
-  const show = allContentfulCondition.nodes.slice(page[0], page[1])
+  `)   
+
+
+  const columns = useMedia(['(min-width: 1500px)', '(min-width: 1000px)', '(min-width: 600px)'], [3, 2, 1], 2)
+  const [bind, { width }] = useMeasure()
+
+  const [page, setPage] = useState(0)
+  const show = allContentfulCondition.nodes.slice(page, columns + page + 1)
+
   console.log(show)
-  const transition = useTransition(show, item => item.id, {
-    trail: 400 / show.length,
-    from: {
-      opacity: 0,
-      width:0,
-      height:400
-    },
-    enter: {
-      opacity: 1,
-      width:cardSize,
-      height:400
-    },
-    leave: {
-      opacity: 0,
-      width:0,
-      height:400
-    }
+  let cards = show.map((child,i) => {
+    const column = i
+    const xy = [(width / columns) * column, 0]
+    return {...child, xy, width: width / columns - 30}
+  })
+
+  console.log(cards)
+
+  const cardSize = ((width / columns) - 100 )
+  const cardPos = [0, cardSize + 15, cardSize * 2 + 30]
+
+
+  const transition = useTransition(cards, item => item.id, {
+    trail: 300 / columns,
+    from: ({ xy, width }) => ({ xy, width, opacity:0 }),
+    enter: ({ xy, width }) => ({ xy, width, opacity:1 }),
+    update: ({ xy, width }) => ({ xy, width }),
+    leave: {opacity: 0 },
+    config: config.wobble
   })
 
   return (
@@ -68,12 +64,12 @@ const HelpsWith = () => {
       <div className="container-fluid">
         <div className="helpHeading" >
             <h3>Helps you with</h3>
-            <FaChevronCircleLeft onClick={() => setPage([page[0] - 3, page[1] - 3])}/>
-            <FaChevronCircleRight onClick={() => setPage([page[0] + 3, page[1] + 3])} />
+            <FaChevronCircleLeft onClick={() => setPage(page - 1)}/>
+            <FaChevronCircleRight onClick={() => setPage(page + 1)} />
         </div>
         <div className="cardWrap" >
-        {transition.map(({item, props, key}) => (
-            <animated.div style={props}  className="help-boxs" key={key}>
+        {transition.map(({item, props: { xy, ...rest }, key}) => (
+            <animated.div style={{ transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`), ...rest }}  className="help-boxs" key={key}>
                 <img
                   src={item.cardImage.file.url}
                   alt={item.cardImage.file.fileName}

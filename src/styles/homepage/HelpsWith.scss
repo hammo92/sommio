@@ -1,7 +1,7 @@
 .helpsWith {
     position: relative;
     overflow: hidden;
-    padding-bottom: 80px;
+    padding-bottom: 40px;
     margin-top: -94px;
 
     .helpHeading{
@@ -14,7 +14,13 @@
         svg{
             height:50px;
             width:50px;
-            color:white;
+            color:$madang;
+            cursor:pointer;
+            &:nth-child(2){
+                margin-right:15px
+            }
+
+            
         }
         h3 {
             display: block;
@@ -27,7 +33,8 @@
     }
 
     .cardWrap{
-
+        position:relative;
+        height:400px
     }
 
 
@@ -45,9 +52,11 @@
     .help-boxs {
         position: relative;
         padding: 0px;
-        margin: 0 10px;
         overflow:hidden;
         border-radius:5px;
+        position: absolute;
+        will-change: transform, width, opacity;
+        height:400px;
 
         &:first-child{
             
