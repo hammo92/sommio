@@ -39,6 +39,13 @@ const IndexPage = () => {
       </div>
 
       <HelpsWith />
+      <div
+            className="col-12 col-lg-8 mx-auto"
+            data-scroll
+            data-scroll-speed="2"
+          >
+            <MagicWeightex />
+          </div>
 
       <div className="container-fluid">
         <div className="row">
@@ -46,13 +53,7 @@ const IndexPage = () => {
             <BlanketImages />
           </div>
 
-          <div
-            className="col-12 col-lg-8 mx-auto"
-            data-scroll
-            data-scroll-speed="2"
-          >
-            <MagicWeightex />
-          </div>
+          
 
           <div className="col-12" >
             <BlanketDifference />
