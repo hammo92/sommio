@@ -4,7 +4,7 @@ import { animated, useSpring, config } from 'react-spring'
 
 
 
-function ScrollText() {
+function ScrollText({text}) {
     const [scrollPosition, setScrollPosition] = useState(60)
     useScrollPosition(({ prevPos, currPos }) => {
         setScrollPosition(100 + currPos.y/3)
@@ -22,7 +22,7 @@ function ScrollText() {
     return (
 
         <div className="scrollText">
-            <animated.h2 style={style1}>Discover calm • Discover calm • </animated.h2>
+            <animated.h2 style={style1}>{text}</animated.h2>
             
         </div>
     )

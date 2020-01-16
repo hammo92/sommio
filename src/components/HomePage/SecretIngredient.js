@@ -4,7 +4,7 @@ import ScrollText from './scrollText'
 const SecretIngredient = () => {
   return (
     <div className="container-fluid secretContain">
-       <ScrollText></ScrollText>
+       <ScrollText text={"Discover Calm • Discover Calm"}/>
       <div className="row">
         
         <div className="col-12 col-lg-5">

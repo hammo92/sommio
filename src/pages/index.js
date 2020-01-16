@@ -40,13 +40,7 @@ const IndexPage = () => {
 
       <HelpsWith />
 
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-12" data-scroll>
-            <BlanketImages />
-          </div>
-
-          <div
+      <div
             className="col-12 col-lg-8 mx-auto"
             data-scroll
             data-scroll-speed="2"
@@ -57,6 +51,14 @@ const IndexPage = () => {
           <div className="col-12" >
             <BlanketDifference />
           </div>
+
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12" data-scroll>
+            <BlanketImages />
+          </div>
+
+          
 
           <div className="col-12" >
             <CustomerReview />
