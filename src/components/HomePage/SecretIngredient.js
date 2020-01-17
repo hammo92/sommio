@@ -3,7 +3,7 @@ import ScrollText from './scrollText'
 import ReactPlayer from 'react-player'
 import Spin from "../../video/spin2.mp4"
 import VisibilitySensor from "react-visibility-sensor"
-
+import Meditate from './Meditate/Meditate'
 
 const SecretIngredient = () => {
   const [Frame, setFrame] = useState(0)
@@ -26,7 +26,7 @@ const SecretIngredient = () => {
           </div>
         </div>
         <div className="col-12 col-lg-7">
-        <VisibilitySensor partialVisibility={true} offset={{top:-100}}>
+        {/*<VisibilitySensor partialVisibility={true} offset={{top:-100}}>
         {({isVisible}) =>
           <ReactPlayer url={Spin}
           ref = {vid}
@@ -39,7 +39,8 @@ const SecretIngredient = () => {
           />
         }
 
-        </VisibilitySensor>
+      </VisibilitySensor>*/}
+        <Meditate />
         </div>
       </div>
     </div>
