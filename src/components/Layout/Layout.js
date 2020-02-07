@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 import { StateProvider } from '../../context/SiteContext';
 import YAMLData from '../../../content/Quiz.yaml' 
 import Header from './Header'
+import Footer from './Footer'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css'
 import '../../styles/main.scss'
@@ -91,9 +92,9 @@ const reducer = (state, action) => {
   }
 };
 
-const Layout = ({ children }) => {
+const Layout = ({ children, transitionStatus }) => {
   const { site, allBuitlon } = useStaticQuery(categoriesQuery)
-
+  console.log("status is => ",transitionStatus)
   const builtonProduct = allBuitlon.nodes.find(ele => {
     return ele.main_product === true && ele.tags.length > 0
   })
@@ -125,6 +126,8 @@ const Layout = ({ children }) => {
 
       <main>{children}</main>
       <ToastContainer {...toastOptions} />
+      
+      
     </StateProvider>
   )
 }

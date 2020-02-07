@@ -6,9 +6,10 @@ import SecretIngredient from '../components/HomePage/SecretIngredient'
 import HelpSlider from '../components/ProductPage/HelpSlider'
 import BlanketImages from '../components/HomePage/BlanketImages'
 import MagicWeightex from '../components/HomePage/MagicWeightex'
-import BlanketDifference from '../components/HomePage/BlanketDifference'
+import Compare from '../components/HomePage/Compare/Compare'
 import CustomerReview from '../components/HomePage/CustomerReview'
-import HelpsWith from '../components/ProductPage/HelpsWith'
+
+import Carousel from '../components/Carousel/Carousel'
 
 const IndexPage = () => {
   return (
@@ -38,7 +39,7 @@ const IndexPage = () => {
 
       </div>
 
-      <HelpsWith />
+      <Carousel />
       <div
             className="col-12 col-lg-8 mx-auto"
             data-scroll
@@ -55,9 +56,7 @@ const IndexPage = () => {
 
           
 
-          <div className="col-12" >
-            <BlanketDifference />
-          </div>
+            <Compare />
 
           <div className="col-12" >
             <CustomerReview />
