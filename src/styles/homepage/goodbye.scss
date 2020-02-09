@@ -8,16 +8,7 @@
     background: transparent linear-gradient(180deg, #01122C 0%, #1B0E41 46%, #01122C 100%) 0% 0% no-repeat padding-box;
     position: relative;
 
-    &::before {
-        content: '';
-        position: absolute;
-        left: 10%;
-        right: 1%;
-        bottom: 0;
-        top: 0;
-        background: url(/marginalia-come-back-later.png) right bottom -10px no-repeat;
-        background-size: 100% auto;
-    }
+    
 
     .goodquiz-boxs {
         display: block;

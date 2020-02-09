@@ -5,6 +5,13 @@ import SommioImg3 from '../../images/sommio-img3.png'
 import BeadImg1 from '../../images/bead-img1.png'
 import BeadImg2 from '../../images/bead-img2.png'
 import BeadImg3 from '../../images/bead-img3.png'
+import BeadOpen from "../../video/windowTurn.mp4"
+import BeadSmoke from "../../video/explodeSmoke3.mp4"
+import WeightexTurn from "../../video/weightexTurn.mp4"
+import WeightexExplode from "../../video/weightexExploCold.mp4"
+import Leak from "../../video/leakSquare.mp4"
+import ReactPlayer from 'react-player'
+import VisibilitySensor from "react-visibility-sensor"
 
 const BlanketDifference = () => {
   return (
@@ -13,7 +20,19 @@ const BlanketDifference = () => {
         <div className="col-12 col-lg-6 bor-right">
           <h2>Sommio Weightex™ </h2>
           <div className="sommio-box">
-            <img alt="perfect-weight" src={SommioImg1} />
+            <VisibilitySensor partialVisibility={true} >
+            {({isVisible}) =>
+              <ReactPlayer url={WeightexTurn}
+              playing={isVisible ? true : false}
+              muted
+              width={'100%'}
+              height={'100%'}
+              loop={false}
+              />
+      
+            }
+      
+            </VisibilitySensor>
             <h4>Perfect Weight Distribution</h4>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -22,7 +41,19 @@ const BlanketDifference = () => {
             </p>
           </div>
           <div className="sommio-box">
-            <img alt="advanced-colling" src={SommioImg2} />
+            <VisibilitySensor partialVisibility={true}>
+            {({isVisible}) =>
+              <ReactPlayer url={WeightexExplode}
+              playing={isVisible ? true : false}
+              muted
+              width={'100%'}
+              height={'100%'}
+              loop={false}
+              />
+      
+            }
+      
+            </VisibilitySensor>
             <h4>Advanced Colling</h4>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -43,30 +74,60 @@ const BlanketDifference = () => {
         <div className="col-12 col-lg-6">
           <h2>Bead-filled Pockets</h2>
           <div className="sommio-box">
-            <img alt="weight-moving" src={BeadImg1} />
+          <VisibilitySensor partialVisibility={true} >
+          {({isVisible}) =>
+            <ReactPlayer url={BeadOpen}
+            playing={isVisible ? true : false}
+            muted
+            width={'100%'}
+            height={'100%'}
+            loop={false}
+             />
+    
+          }
+    
+          </VisibilitySensor>
             <h4>Weight moving and bunching</h4>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the
+              Loose beads are free to move around the pocket and build up at the lowest point, concentrating the weight in one spot.
             </p>
           </div>
           <div className="sommio-box">
-            <img alt="quickly-overheats" src={BeadImg2} />
+            <VisibilitySensor partialVisibility={true}>
+            {({isVisible}) =>
+              <ReactPlayer url={BeadSmoke}
+              playing={isVisible ? true : false}
+              muted
+              width={'100%'}
+              height={'100%'}
+              loop={false}
+              />
+      
+            }
+      
+            </VisibilitySensor>
             <h4>Quickly Overheats</h4>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the
+              To disguise the bunching and reduce the noise of beads moving manufacturers add thick wadding, which traps heat and can feel suffocating.
             </p>
           </div>
           <div className="sommio-box">
-            <img alt="leak-over" src={BeadImg3} />
+            <VisibilitySensor partialVisibility={true} >
+            {({isVisible}) =>
+              <ReactPlayer url={Leak}
+              playing={isVisible ? true : false}
+              muted
+              width={'100%'}
+              height={'100%'}
+              loop={false}
+              />
+      
+            }
+      
+            </VisibilitySensor>
             <h4>Leak over time</h4>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the
+              As the blanket is used the stitching loosens allowing beads to escape, turning your bed into a sandpit.
             </p>
           </div>
         </div>

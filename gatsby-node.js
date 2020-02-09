@@ -17,6 +17,21 @@ exports.createPages = async ({ page, graphql, actions: { createPage } }) => {
           node {
             slug
             id
+            conditionName
+            cardImage {  
+              fluid {
+                src
+                tracedSVG
+              }          
+              file {
+                url
+              }
+            }
+            content {
+              childMarkdownRemark {
+              html
+              }
+            }
           }
         }
       }
@@ -32,12 +47,18 @@ exports.createPages = async ({ page, graphql, actions: { createPage } }) => {
       }
     })
   })
-  pages.data.contentfulCondition.edges.forEach(({ node: { id, slug } }) => {
+  pages.data.contentfulCondition.edges.forEach(({node}, index) => {
+    const next = index !== pages.data.contentfulCondition.edges.length - 1
+    ? pages.data.contentfulCondition.edges[index + 1].node
+    : pages.data.contentfulCondition.edges[0].node
     createPage({
-      path: `/readMore/${slug}`,
+      path: `/readMore/${node.slug}`,
       component: path.resolve('./src/templates/ReadMorePage.js'),
-      context: {
-        slug: slug
+      context: { 
+        condition:node,   
+        slug: node.slug,
+        nextSlug: next.slug,
+        next: next
       }
     })
   })

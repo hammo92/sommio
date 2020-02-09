@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react"
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import { Canvas, extend, useLoader, useFrame, useThree, useRender } from "react-three-fiber"
 import { useSpring, a } from "react-spring/three"
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
 extend({ OrbitControls })
 const Controls = props => {
@@ -18,22 +18,26 @@ function Model ({ url }) {
     const [gltf, set] = React.useState()
     
     React.useMemo(() => new GLTFLoader().load(url, set), [url])
-  
-    return gltf ? <primitive object={gltf.scene} /> : null
+    
+
+    console.log(gltf)
+    return (
+      gltf ? 
+      <primitive object={gltf.scene} />
+      : null
+    )
 }
 
 
   
   
-export default () => {
-  const isBrowser = typeof window !== "undefined"
-  
+function Meditate ({}) { 
 
   return (
     <>
         <Canvas camera={{ position: [0, 0, 20], fov: 25 }} shadowMap>
-        <ambientLight intensity={0.4} />
-        <pointLight intensity={1} position={[-10, -25, -10]} />
+        <ambientLight intensity={0.8} />
+        <pointLight intensity={0.51} position={[-10, -25, -10]} />
         <spotLight
           castShadow
           intensity={1.25}
@@ -42,7 +46,7 @@ export default () => {
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
         />
-        <Model url="/characterScene.gltf" />
+        <Model url="/scene2.glb" />
         <Controls
           autoRotate
           enablePan={false}
@@ -58,3 +62,5 @@ export default () => {
     </>
   )
 }
+
+export default Meditate
