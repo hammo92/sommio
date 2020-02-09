@@ -1,6 +1,4 @@
 [build]
-  base = "/"
+  command = "npm run build"
+  functions = "src/lambda"
   publish = "public/"
-  command = "yarn build"
-
-[template.environment]

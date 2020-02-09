@@ -5,7 +5,8 @@ function ShippingSelectOption() {
     shippingRatesArray,
     shippingCost,
     shipping_address,
-    shippingRate
+    shippingRate,
+    countryCode
   } = useContext(CartContext)
 
   const updateValue = async ({ target: { value } }) => {
@@ -20,13 +21,12 @@ function ShippingSelectOption() {
     )
 
     shippingCost(convertedRates, shipping_provider)
-    console.log(
-      'convertedRates,shippingRate ,shipperData => ',
-      convertedRates,
-      shippingRate,
-      shipperData
-    )
   }
+  console.log(
+    'shipping_address.country,countryCode ==============>',
+    shipping_address.country,
+    countryCode
+  )
 
   return (
     <div className="cost_option">
@@ -36,16 +36,14 @@ function ShippingSelectOption() {
         }
         onChange={e => updateValue(e)}
       >
-        {shipping_address &&
-        shipping_address.country &&
-        shipping_address.country === 'GBR' ? (
+        {countryCode && countryCode === 'GB' ? (
           <option value={0}>Free</option>
         ) : (
           <option value={0}>Select Shipping Method</option>
         )}
         {shipping_address &&
-          shipping_address.country &&
-          shipping_address.country !== 'GBR' &&
+          countryCode &&
+          countryCode !== 'GB' &&
           shippingRatesArray &&
           shippingRatesArray.map((shippingRatesType, i) => (
             <option value={JSON.stringify(shippingRatesType)} key={i}>

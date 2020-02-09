@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 
 import { CartContext, UserContext, FirebaseContext } from '../../context'
 import Builton from '@builton/core-sdk'
-
+import { newFirebaseToken } from '../../utils/newFirebaseToken'
 const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
   const {
     shipping_address,
@@ -25,38 +25,6 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
   })
 
   const [errorMessage, setErrorMessage] = useState('')
-
-  // const handleRegister = async () => {
-  //   setErrorMessage('')
-  //   setRegisterError({})
-  //   if (checkValidation().status) {
-  //     firebase &&
-  //       firebase
-  //         .auth()
-  //         .createUserWithEmailAndPassword(email.trim(), password)
-  //         .then(resp => {
-  //           let accessToken = JSON.parse(JSON.stringify(resp.user))
-  //             .stsTokenManager.accessToken
-  //           localStorage.setItem('firebaseToken', accessToken)
-  //           localStorage.setItem('details', JSON.stringify(resp.user))
-
-  //           const builton = new Builton({
-  //             apiKey: process.env.GATSBY_BUILTON_API_KEY,
-  //             bearerToken: accessToken
-  //           })
-
-  //           SetCurrentUser(resp.user)
-  //           setUserBuilton({ email }, builton)
-  //           toggleModal()
-  //         })
-  //         .catch(error => {
-  //           setErrorMessage(error.message)
-  //           SetCurrentUser(false)
-  //         })
-  //   } else {
-  //     setRegisterError(checkValidation().msg)
-  //   }
-  // }
 
   const handleLogin = async () => {
     if (checkValidation().status) {
@@ -102,7 +70,6 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
               // set all thing in localstorage
               localStorage.setItem('firebaseToken', accessToken)
               localStorage.setItem('details', JSON.stringify(res.user))
-
               const builton = new Builton({
                 apiKey: process.env.GATSBY_BUILTON_API_KEY,
                 bearerToken: accessToken
@@ -210,9 +177,6 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
             <span>{errorMessage}</span>
           </div>
 
-          {/* <button onClick={handleRegister} type="button">
-            Register
-          </button> */}
           <button type="button" onClick={handleLogin}>
             Login
           </button>

@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'gatsby'
+import axios from 'axios'
 import { navigate } from 'gatsby'
 import Builton from '@builton/core-sdk'
-
 import { CartContext, CheckoutContext, FirebaseContext } from '../../context'
 
 import Logo from '../../images/logo.png'
@@ -23,16 +23,11 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
   const [refresh, setRefresh] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [modal, setModal] = useState(false)
+  const [isLoading, setLoading] = useState(false)
+
   const toggleModal = () => setModal(!modal)
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen)
 
-  //-----------------React-bootstrap modal-----------------------------
-  // const [show, setShow] = useState(false)
-  // const handelModal = e => setShow(!show)
-
-  // const handleClose = () => setShow(false)
-  // const handleShow = () => setShow(true)
-  //-----------------------------------------------
   let token = localStorage.getItem('firebaseToken')
   let details = JSON.parse(localStorage.getItem('details'))
 
@@ -63,6 +58,7 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
     })
     setUserBuilton(details && details.email, builton)
   }, [])
+  console.log('SSI firebase ,isLoading => ', firebase, isLoading)
 
   const handleLogout = () => {
     firebase &&
@@ -155,7 +151,7 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
                     <Link to="/about">Learn</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/about">Contact us</Link>
+                    <Link to="/contact">Contact us</Link>
                   </li>
                   <li className="nav-item nav-account">
                     {refresh && firebase && firebase.auth().currentUser ? (

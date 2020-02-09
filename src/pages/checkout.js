@@ -4,8 +4,7 @@ import ShippingAddress from '../components/Checkout/shippingAddress'
 import PaymentPage from '../components/Checkout/paymentPage'
 import ReviewOrder from '../components/Checkout/ReviewOrder'
 import OrderConfirmation from '../components/Checkout/OrderConfirmation'
-import { Modal, ModalHeader, ModalBody } from 'reactstrap'
-import RegiserOrLogin from '../components/Checkout/RegisterOrLogin'
+
 const CheckoutPage = () => {
   const { isEmpty } = useContext(CartContext)
 
@@ -13,18 +12,24 @@ const CheckoutPage = () => {
   const { firebase } = useContext(FirebaseContext)
   const [formEnable, setFormEnable] = useState(false)
   const [isEditable, setIsEditable] = useState(false)
+  const [gmapsLoaded, setGmapsLoaded] = useState(false)
 
   const isMounted = useRef(true)
-
+  const initMap = () => {
+    setGmapsLoaded(true)
+  }
   useEffect(() => {
     let element = document.getElementsByTagName('body')[0]
     if (isMounted) {
       element.classList.add('so-checkout-page')
       isMounted.current = false
-      // if (firebase && !firebase.auth().currentUser) {
-      //   toggleModal()
-      // }
     }
+    window.initMap = initMap
+    const gmapScriptEl = document.createElement(`script`)
+    gmapScriptEl.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCLzic4qigzdlIc_OV71Czc6a-5uc8SyKA&libraries=places&callback=initMap`
+    document
+      .querySelector(`body`)
+      .insertAdjacentElement(`beforeend`, gmapScriptEl)
     return () => {
       element.classList.remove('so-checkout-page')
       checkoutClear()
@@ -45,6 +50,7 @@ const CheckoutPage = () => {
         <div className="custom_cart">
           <div className={'cart_first' + (!isEditable ? ' purple' : ' ')}>
             <ShippingAddress
+              gmapsLoaded={gmapsLoaded}
               isCompleted={isEditable}
               toggleEditable={status => setIsEditable(status)}
             />

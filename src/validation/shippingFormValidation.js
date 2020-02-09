@@ -1,6 +1,5 @@
 const shippingFormValidation = (values, currentUser) => {
-  console.log('shippingFormValidation values => ', values)
-  console.log('shippingFormValidation currentUser => ', currentUser)
+  let details = JSON.parse(localStorage.getItem('details'))
 
   const errors = {}
 
@@ -40,7 +39,8 @@ const shippingFormValidation = (values, currentUser) => {
   ) {
     errors.email = 'Invalid Email'
   }
-  if (!currentUser) {
+
+  if (details && !details.email && !currentUser) {
     if (!values.password) {
       errors.password = 'Required'
     }
@@ -51,8 +51,6 @@ const shippingFormValidation = (values, currentUser) => {
       errors.confirm_password = 'Both password should match'
     }
   }
-
-  console.log('shippingFormValidation errors => ', errors)
 
   return errors
 }

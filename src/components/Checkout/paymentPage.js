@@ -7,17 +7,11 @@ import stripeValidation from '../../validation/stripe'
 import axios from 'axios'
 const PaymentPage = ({ changeFormEnable, isEditable }) => {
   const {
-    paymentButton,
     shipping_address,
-    customerDetails,
     shippingProvider,
     shippingRate,
     shippingRatesArray,
-    cartItemsBuilton,
     builton,
-    quantityBuilton,
-    selectedWeight,
-    selectedCover,
     shippingCost,
     shipmentProductId
   } = useContext(CartContext)
@@ -35,7 +29,6 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
 
   const handlePayment = async values => {
     shippingCost(shippingRate, shippingProvider)
-    console.log(' builton payment => ', builton)
 
     //user authenticate
     await builton.users.authenticate({
@@ -59,7 +52,6 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
           }
         }
       )
-      console.log('response ==>', response)
     } catch (error) {
       console.error(error)
     }

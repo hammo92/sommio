@@ -8,6 +8,7 @@
     "body-scroll-lock": "^2.6.4",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
+    "core-js": "^3.6.4",
     "final-form": "4.18.5",
     "firebase": "^7.6.1",
     "firebase-admin": "^8.8.0",
@@ -76,7 +77,8 @@
   "scripts": {
     "build": "rimraf .cache && rimraf public && gatsby build",
     "dev": "rimraf .cache && rimraf public && gatsby develop",
-    "prod": "rimraf .cache && rimraf public && gatsby build",
+    "prod": "gatsby build",
+    "postinstall": "sh postdeploy.sh",
     "deploy": "sudo gatsby build -H 0.0.0.0 -p 8888",
     "format": "prettier --write \"src/**/*.js\""
   },
