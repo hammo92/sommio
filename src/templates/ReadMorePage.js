@@ -34,7 +34,8 @@ const Next = ({data, mount, truncate}) => {
   const [scroll, setScroll] = useState(0)
   const [offset, setOffset] = useState(0)
   useEffect(() => {
-    setOffset(ref.current.offsetTop)
+    
+    setOffset(ref.current.offsetTop - document.querySelector('header').getBoundingClientRect().height)   
   },[offset])
   useScrollPosition(({ prevPos, currPos }) => {
     setScroll(offset + currPos.y)
@@ -117,7 +118,7 @@ const ReadInner = ({transitionStatus, data, pageContext}) => {
   
 
   return(
-    <Fragment>
+    <Layout>
       <animated.div style={props}>
       <Header data={data} mount={mount}/>
       <Content data={data} />
@@ -134,7 +135,7 @@ const ReadInner = ({transitionStatus, data, pageContext}) => {
       <Next data={data} mount={mount} />
       </TransitionLink>
       
-    </Fragment>   
+    </Layout>   
          
   )
 }

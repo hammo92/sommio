@@ -36,9 +36,7 @@ module.exports = {
     'gatsby-plugin-postcss',
     {
        resolve: "gatsby-plugin-transition-link",    
-       options: {
-            layout: require.resolve(`./src/components/Layout/Layout.js`)
-          }
+       
     },
     {
       resolve: 'gatsby-plugin-purgecss',

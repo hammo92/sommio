@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import ScrollText from './scrollText'
 import ReactPlayer from 'react-player'
 import Spin from "../../video/spin3.mp4"

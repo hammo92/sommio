@@ -11,7 +11,7 @@ import HelpSlider from '../components/ProductPage/HelpSlider'
 import FreeDelivery from '../components/ProductPage/FreeDelivery'
 import ProductImage from '../components/ProductPage/ProductImage'
 import ProductVideo from '../components/ProductPage/Video'
-
+import Layout from "../components/Layout/Layout";
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Tab from 'react-bootstrap/Tab'
@@ -94,6 +94,7 @@ const ProductPageBuilton = ({ data: { product, contentfulProduct } }) => {
     setSelectedVariationId(id)
   }
   return (
+    <Layout>
     <div>
       <SEO
         type="product"
@@ -215,10 +216,11 @@ const ProductPageBuilton = ({ data: { product, contentfulProduct } }) => {
 
       <FreeDelivery />
     </div>
+    </Layout>
   )
 }
 export const query = graphql`
-  query($id: String!) {
+  query($id: String!, $human: String!) {
     product: builtonProduct(id: { eq: $id }) {
       _id {
          _oid
@@ -236,7 +238,7 @@ export const query = graphql`
         url
       }
     }
-    contentfulProduct: contentfulProduct(builtonId: { eq: $id }){
+    contentfulProduct: contentfulProduct(builtonId: { eq: $human }){
 
           name
           builtonId

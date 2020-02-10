@@ -8,11 +8,13 @@ import BlanketImages from '../components/HomePage/BlanketImages'
 import MagicWeightex from '../components/HomePage/MagicWeightex'
 import Compare from '../components/HomePage/Compare/Compare'
 import CustomerReview from '../components/HomePage/CustomerReview'
-
+import BlanketDifference from '../components/HomePage/BlanketDifference'
 import Carousel from '../components/Carousel/Carousel'
+import Layout from "../components/Layout/Layout";
 
 const IndexPage = () => {
   return (
+    <Layout>
     <div className="homepage-bg">
       <div className="goodquiz-bg">
         <div className="container-fluid">
@@ -68,6 +70,7 @@ const IndexPage = () => {
         </div>
       </div>
     </div>
+    </Layout>
   )
 }
 
