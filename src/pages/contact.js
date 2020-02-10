@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Field, Form } from 'react-final-form'
 import axios from 'axios'
 import { navigate } from 'gatsby'
+import Layout from "../components/Layout/Layout";
 
 const Contact = () => {
   const [values, setValues] = useState('')
@@ -32,6 +33,7 @@ const Contact = () => {
   console.log('contact values =============> ', values)
 
   return (
+    <Layout>
     <Form onSubmit={handleForm}>
       {({ handleSubmit, form, submitting, pristine, values }) => {
         return (
@@ -128,6 +130,7 @@ const Contact = () => {
         )
       }}
     </Form>
+    </Layout>
   )
 }
 export default Contact

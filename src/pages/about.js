@@ -1,10 +1,10 @@
 import React from 'react'
-
+import Layout from "../components/Layout/Layout";
 import SEO from '../components/SEO'
 import PageTitle from '../components/PageTitle'
 
 const AboutPage = () => (
-  <>
+  <Layout>
     <SEO title="Sommio" />
     <PageTitle>About this demo</PageTitle>
 
@@ -16,7 +16,7 @@ const AboutPage = () => (
         cart/checkout logic is performed client-side with React.
       </p>
     </div>
-  </>
+  </Layout>
 )
 
 export default AboutPage

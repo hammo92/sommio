@@ -4,7 +4,7 @@ import axios from 'axios'
 import { navigate } from 'gatsby'
 import Builton from '@builton/core-sdk'
 import { CartContext, CheckoutContext, FirebaseContext } from '../../context'
-
+import {useSpring, animated, config} from 'react-spring'
 import Logo from '../../images/logo.png'
 import logoCheckout from '../../images/logo-checkout.png'
 import CartButton from '../CartButton'
@@ -16,7 +16,7 @@ import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 
-const Header = ({ siteTitle, collections, slug, human_id }, props) => {
+const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, props) => {
   const { orderId } = useContext(CheckoutContext)
   const { setCartData, setUserBuilton } = useContext(CartContext)
   const { setFirebase, firebase } = useContext(FirebaseContext)
@@ -24,12 +24,20 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [modal, setModal] = useState(false)
   const [isLoading, setLoading] = useState(false)
-
+  
   const toggleModal = () => setModal(!modal)
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen)
 
   let token = localStorage.getItem('firebaseToken')
   let details = JSON.parse(localStorage.getItem('details'))
+  let mount = ['entering', 'entered'].includes(transitionStatus)
+  const slide = useSpring({
+    to: {
+      opacity: mount ? 1 : 0,
+      transform: mount ? "translateY(0px)" : `translateY(-100%)`,
+    }
+    
+  })
 
   useEffect(() => {
     const lazyApp = import('firebase')
@@ -58,7 +66,6 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
     })
     setUserBuilton(details && details.email, builton)
   }, [])
-  console.log('SSI firebase ,isLoading => ', firebase, isLoading)
 
   const handleLogout = () => {
     firebase &&
@@ -76,7 +83,7 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
   }
 
   return (
-    <div>
+    <animated.div style={slide}>
       {window.location.pathname === '/checkout' ? (
         <header className="header-checkout">
           {!orderId ? (
@@ -191,7 +198,7 @@ const Header = ({ siteTitle, collections, slug, human_id }, props) => {
           </Modal>
         </header>
       )}
-    </div>
+    </animated.div>
   )
 }
 

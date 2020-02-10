@@ -11,66 +11,103 @@ import CustomerReview from '../components/HomePage/CustomerReview'
 import BlanketDifference from '../components/HomePage/BlanketDifference'
 import Carousel from '../components/Carousel/Carousel'
 import Layout from "../components/Layout/Layout";
+import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import { useStateValue } from '../context/SiteContext'
+
+const TRANSITION_LENGTH = 1
+
+const exitTransition = {
+  length: TRANSITION_LENGTH, // Take 1.5 seconds to leave
+  trigger: () => {
+    if (document) {
+      // Preventing overflow here make the animation smoother IMO
+      
+    }
+  },
+}
+
+const entryTransition = {
+  delay: TRANSITION_LENGTH, // Wait 1.5 seconds before entering
+  trigger: () => {
+    if (document && window) {
+      // Ensuring we're at the top of the page when the page loads
+      // prevents any additional JANK when the transition ends.
+      window.scrollTo(0, 0)
+    }
+  },
+}
+
+export const IndexInner = () => {
+  const [{ quiz }, dispatch] = useStateValue();
+  return (
+    <div className="homepage-bg">
+          <div className="goodquiz-bg">
+            <div className="container-fluid">
+              <div className="row no-gutters">
+                <div
+                  className="col-12 col-lg-7"
+                >
+                  <Goodbye />
+                </div>
+                <div className="col-12 col-lg-5">
+                    <Quiz />
+                </div>
+              </div>
+            </div>
+
+            <div className="row no-gutters" id="service">
+              <div className="ml-auto col-12 col-lg-10">
+                <HomeService />
+              </div>
+            </div>
+
+
+            <SecretIngredient />
+
+          </div>
+
+          <Carousel />
+          <div
+                className="col-12 col-lg-8 mx-auto"
+                data-scroll
+                data-scroll-speed="2"
+              >
+                <MagicWeightex />
+              </div>
+
+              <div className="col-12" >
+                <BlanketDifference />
+              </div>
+
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-12" data-scroll>
+                <BlanketImages />
+              </div>
+
+              
+
+                <Compare />
+
+              <div className="col-12" >
+                <CustomerReview />
+              </div>
+            </div>
+          </div>
+        </div>
+  )
+}
+
 
 const IndexPage = () => {
   return (
-    <Layout>
-    <div className="homepage-bg">
-      <div className="goodquiz-bg">
-        <div className="container-fluid">
-          <div className="row no-gutters">
-            <div
-              className="col-12 col-lg-7"
-            >
-              <Goodbye />
-            </div>
-            <div className="col-12 col-lg-5">
-              <Quiz />
-            </div>
-          </div>
-        </div>
-
-        <div className="row no-gutters" id="service">
-          <div className="ml-auto col-12 col-lg-10">
-            <HomeService />
-          </div>
-        </div>
-
-
-        <SecretIngredient />
-
-      </div>
-
-      <Carousel />
-      <div
-            className="col-12 col-lg-8 mx-auto"
-            data-scroll
-            data-scroll-speed="2"
-          >
-            <MagicWeightex />
-          </div>
-
-          <div className="col-12" >
-            <BlanketDifference />
-          </div>
-
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-12" data-scroll>
-            <BlanketImages />
-          </div>
-
-          
-
-            <Compare />
-
-          <div className="col-12" >
-            <CustomerReview />
-          </div>
-        </div>
-      </div>
-    </div>
-    </Layout>
+    <TransitionState>
+      {({transitionStatus}) => (
+        <Layout transitionStatus={transitionStatus}>
+          <IndexInner />
+        </Layout>
+      )}
+    </TransitionState>
   )
 }
 

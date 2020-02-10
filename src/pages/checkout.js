@@ -4,6 +4,7 @@ import ShippingAddress from '../components/Checkout/shippingAddress'
 import PaymentPage from '../components/Checkout/paymentPage'
 import ReviewOrder from '../components/Checkout/ReviewOrder'
 import OrderConfirmation from '../components/Checkout/OrderConfirmation'
+import Layout from "../components/Layout/Layout";
 
 const CheckoutPage = () => {
   const { isEmpty } = useContext(CartContext)
@@ -45,7 +46,7 @@ const CheckoutPage = () => {
     return <p className="text-center">Your cart is empty</p>
 
   return (
-    <React.Fragment>
+    <Layout>
       <div className="flex flex-wrap lg:-mx-4">
         <div className="custom_cart">
           <div className={'cart_first' + (!isEditable ? ' purple' : ' ')}>
@@ -74,7 +75,7 @@ const CheckoutPage = () => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </Layout>
   )
 }
 export default CheckoutPage

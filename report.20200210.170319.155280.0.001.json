@@ -1,0 +1,1184 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20200210.170319.155280.0.001.json",
+    "dumpEventTime": "2020-02-10T17:03:19Z",
+    "dumpEventTimeStamp": "1581354199366",
+    "processId": 155280,
+    "cwd": "C:\\Users\\james\\builton",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\james\\builton\\node_modules\\.bin\\\\..\\gatsby\\dist\\bin\\gatsby.js",
+      "develop"
+    ],
+    "nodejsVersion": "v12.11.1",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.11.1",
+      "v8": "7.7.299.11-node.12",
+      "uv": "1.32.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.2",
+      "napi": "5",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1c",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.11.1/node-v12.11.1-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.11.1/node-v12.11.1.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.11.1/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.17763",
+    "osVersion": "Windows 10 Pro",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 58199281,
+        "nice": 0,
+        "sys": 58637718,
+        "idle": 348488437,
+        "irq": 396859
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 53664000,
+        "nice": 0,
+        "sys": 5708421,
+        "idle": 405953015,
+        "irq": 259562
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 58373140,
+        "nice": 0,
+        "sys": 5045015,
+        "idle": 401907281,
+        "irq": 371250
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57080593,
+        "nice": 0,
+        "sys": 3647562,
+        "idle": 404597078,
+        "irq": 277281
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 59112421,
+        "nice": 0,
+        "sys": 6897031,
+        "idle": 399315781,
+        "irq": 378250
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 55574390,
+        "nice": 0,
+        "sys": 2899265,
+        "idle": 406851578,
+        "irq": 281250
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 62307093,
+        "nice": 0,
+        "sys": 7529484,
+        "idle": 395488656,
+        "irq": 420218
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57163437,
+        "nice": 0,
+        "sys": 2122531,
+        "idle": 406039265,
+        "irq": 267109
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 85985500,
+        "nice": 0,
+        "sys": 18552421,
+        "idle": 360787312,
+        "irq": 360843
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 56659265,
+        "nice": 0,
+        "sys": 2680984,
+        "idle": 405984984,
+        "irq": 254546
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 62990687,
+        "nice": 0,
+        "sys": 6382250,
+        "idle": 395952296,
+        "irq": 353546
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 59111578,
+        "nice": 0,
+        "sys": 2453718,
+        "idle": 403759937,
+        "irq": 249343
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 69521484,
+        "nice": 0,
+        "sys": 5972062,
+        "idle": 389831687,
+        "irq": 371984
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57320796,
+        "nice": 0,
+        "sys": 2733718,
+        "idle": 405270718,
+        "irq": 258671
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 63106562,
+        "nice": 0,
+        "sys": 6416796,
+        "idle": 395801875,
+        "irq": 366500
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 56827937,
+        "nice": 0,
+        "sys": 11672718,
+        "idle": 396824578,
+        "irq": 259515
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 66476890,
+        "nice": 0,
+        "sys": 7957218,
+        "idle": 390891125,
+        "irq": 408468
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 56390656,
+        "nice": 0,
+        "sys": 2677812,
+        "idle": 406256765,
+        "irq": 231671
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 61888359,
+        "nice": 0,
+        "sys": 5783171,
+        "idle": 397653703,
+        "irq": 348125
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 61390406,
+        "nice": 0,
+        "sys": 2650703,
+        "idle": 401284109,
+        "irq": 253312
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 62448250,
+        "nice": 0,
+        "sys": 7676484,
+        "idle": 395200484,
+        "irq": 430203
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 67145718,
+        "nice": 0,
+        "sys": 3048078,
+        "idle": 395131421,
+        "irq": 231625
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 63587640,
+        "nice": 0,
+        "sys": 5475421,
+        "idle": 396262156,
+        "irq": 330968
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 56954328,
+        "nice": 0,
+        "sys": 2727781,
+        "idle": 405643109,
+        "irq": 272265
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 62216984,
+        "nice": 0,
+        "sys": 10332859,
+        "idle": 392775375,
+        "irq": 452578
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 56162750,
+        "nice": 0,
+        "sys": 3000546,
+        "idle": 406161921,
+        "irq": 234703
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 60971531,
+        "nice": 0,
+        "sys": 6107062,
+        "idle": 398246625,
+        "irq": 354296
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57677531,
+        "nice": 0,
+        "sys": 20729906,
+        "idle": 386917781,
+        "irq": 264968
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 59528671,
+        "nice": 0,
+        "sys": 14721484,
+        "idle": 391075062,
+        "irq": 1703546
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 60483875,
+        "nice": 0,
+        "sys": 4047953,
+        "idle": 400793390,
+        "irq": 415500
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 60213531,
+        "nice": 0,
+        "sys": 6022781,
+        "idle": 399088906,
+        "irq": 582562
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 64748109,
+        "nice": 0,
+        "sys": 4968671,
+        "idle": 395608437,
+        "irq": 1420375
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 60224625,
+        "nice": 0,
+        "sys": 12703187,
+        "idle": 392397406,
+        "irq": 2017375
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 56495578,
+        "nice": 0,
+        "sys": 2592375,
+        "idle": 406237265,
+        "irq": 391593
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 61595187,
+        "nice": 0,
+        "sys": 8808093,
+        "idle": 394921937,
+        "irq": 581984
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57006000,
+        "nice": 0,
+        "sys": 7497125,
+        "idle": 400822078,
+        "irq": 1312671
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 58856187,
+        "nice": 0,
+        "sys": 8075078,
+        "idle": 398393937,
+        "irq": 331359
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 58920328,
+        "nice": 0,
+        "sys": 9866218,
+        "idle": 396538656,
+        "irq": 228375
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 60158437,
+        "nice": 0,
+        "sys": 18166656,
+        "idle": 387000109,
+        "irq": 315187
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57775484,
+        "nice": 0,
+        "sys": 2409937,
+        "idle": 405139781,
+        "irq": 212562
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 59965671,
+        "nice": 0,
+        "sys": 8921609,
+        "idle": 396437921,
+        "irq": 334453
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57400828,
+        "nice": 0,
+        "sys": 6317750,
+        "idle": 401606625,
+        "irq": 220390
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 59334093,
+        "nice": 0,
+        "sys": 5566750,
+        "idle": 400424359,
+        "irq": 300671
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57379687,
+        "nice": 0,
+        "sys": 5709265,
+        "idle": 402236250,
+        "irq": 215234
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 60389156,
+        "nice": 0,
+        "sys": 6436062,
+        "idle": 398499984,
+        "irq": 313921
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 56584609,
+        "nice": 0,
+        "sys": 2612375,
+        "idle": 406128218,
+        "irq": 213109
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 64879484,
+        "nice": 0,
+        "sys": 11906562,
+        "idle": 388539156,
+        "irq": 293359
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 58144796,
+        "nice": 0,
+        "sys": 2870328,
+        "idle": 404310078,
+        "irq": 224703
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 62029171,
+        "nice": 0,
+        "sys": 9465984,
+        "idle": 393830046,
+        "irq": 355562
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 59537937,
+        "nice": 0,
+        "sys": 2896718,
+        "idle": 402890546,
+        "irq": 262546
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 59812031,
+        "nice": 0,
+        "sys": 5224156,
+        "idle": 400289000,
+        "irq": 331093
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 58117468,
+        "nice": 0,
+        "sys": 2086750,
+        "idle": 405120968,
+        "irq": 244343
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 58351828,
+        "nice": 0,
+        "sys": 6282625,
+        "idle": 400690734,
+        "irq": 377828
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57228328,
+        "nice": 0,
+        "sys": 2327140,
+        "idle": 405769718,
+        "irq": 247015
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 59760687,
+        "nice": 0,
+        "sys": 4183812,
+        "idle": 401380687,
+        "irq": 327875
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 58438046,
+        "nice": 0,
+        "sys": 8331828,
+        "idle": 398555312,
+        "irq": 286453
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 58088031,
+        "nice": 0,
+        "sys": 6702953,
+        "idle": 400534203,
+        "irq": 371078
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57360078,
+        "nice": 0,
+        "sys": 6462046,
+        "idle": 401503062,
+        "irq": 254843
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 59541031,
+        "nice": 0,
+        "sys": 8425890,
+        "idle": 397358265,
+        "irq": 338609
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57144281,
+        "nice": 0,
+        "sys": 7011687,
+        "idle": 401169218,
+        "irq": 243531
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 63005500,
+        "nice": 0,
+        "sys": 11378968,
+        "idle": 390940718,
+        "irq": 433343
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57722453,
+        "nice": 0,
+        "sys": 3274484,
+        "idle": 404328250,
+        "irq": 245375
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 62574968,
+        "nice": 0,
+        "sys": 4088859,
+        "idle": 398661359,
+        "irq": 340296
+      },
+      {
+        "model": "AMD Ryzen Threadripper 3970X 32-Core Processor ",
+        "speed": 4050,
+        "user": 57158765,
+        "nice": 0,
+        "sys": 12431765,
+        "idle": 395734656,
+        "irq": 288796
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Ethernet 5",
+        "internal": false,
+        "mac": "34:97:f6:31:97:87",
+        "address": "2a00:23a8:4281:2c00:4d56:ad2b:bc0d:af6",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet 5",
+        "internal": false,
+        "mac": "34:97:f6:31:97:87",
+        "address": "fdaa:bbcc:ddee:0:4d56:ad2b:bc0d:af6",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet 5",
+        "internal": false,
+        "mac": "34:97:f6:31:97:87",
+        "address": "2a00:23a8:4281:2c00:bc7c:ce:b54b:e0cd",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet 5",
+        "internal": false,
+        "mac": "34:97:f6:31:97:87",
+        "address": "fdaa:bbcc:ddee:0:bc7c:ce:b54b:e0cd",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet 5",
+        "internal": false,
+        "mac": "34:97:f6:31:97:87",
+        "address": "fe80::4d56:ad2b:bc0d:af6",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 18
+      },
+      {
+        "name": "Ethernet 5",
+        "internal": false,
+        "mac": "34:97:f6:31:97:87",
+        "address": "192.168.1.243",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "VMware Network Adapter VMnet1",
+        "internal": false,
+        "mac": "00:50:56:c0:00:01",
+        "address": "fe80::e18b:57c4:321a:b9fe",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 19
+      },
+      {
+        "name": "VMware Network Adapter VMnet1",
+        "internal": false,
+        "mac": "00:50:56:c0:00:01",
+        "address": "192.168.52.1",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "VMware Network Adapter VMnet8",
+        "internal": false,
+        "mac": "00:50:56:c0:00:08",
+        "address": "fe80::d9f1:fae3:46fa:258f",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 15
+      },
+      {
+        "name": "VMware Network Adapter VMnet8",
+        "internal": false,
+        "mac": "00:50:56:c0:00:08",
+        "address": "192.168.232.1",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "DESKTOP-VSR9NFN"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff6a3157539",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10873"
+    },
+    {
+      "pc": "0x00007ff6a315b8cc",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+28172"
+    },
+    {
+      "pc": "0x00007ff6a315a878",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+23992"
+    },
+    {
+      "pc": "0x00007ff6a3248c4b",
+      "symbol": "v8::base::CPU::has_sse+37563"
+    },
+    {
+      "pc": "0x00007ff6a3a4a25e",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff6a3a322a1",
+      "symbol": "v8::SharedArrayBuffer::Externalize+833"
+    },
+    {
+      "pc": "0x00007ff6a38ffc2c",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff6a390afd0",
+      "symbol": "v8::internal::Heap::ProtectUnprotectedMemoryChunks+1312"
+    },
+    {
+      "pc": "0x00007ff6a3907b04",
+      "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3204"
+    },
+    {
+      "pc": "0x00007ff6a38fd393",
+      "symbol": "v8::internal::Heap::CollectGarbage+1283"
+    },
+    {
+      "pc": "0x00007ff6a38fbb64",
+      "symbol": "v8::internal::Heap::AddRetainedMap+2356"
+    },
+    {
+      "pc": "0x00007ff6a391ce35",
+      "symbol": "v8::internal::Factory::NewFillerObject+53"
+    },
+    {
+      "pc": "0x00007ff6a3689609",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+4057"
+    },
+    {
+      "pc": "0x00007ff6a3e75f7d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+567949"
+    },
+    {
+      "pc": "0x00007ff6a3e92f7e",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+686734"
+    },
+    {
+      "pc": "0x00007ff6a3df5b0c",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42524"
+    },
+    {
+      "pc": "0x0000011bf0459a29",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2167357440,
+    "totalCommittedMemory": 2167357440,
+    "usedMemory": 2114821344,
+    "availableMemory": 44792632,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261872,
+        "used": 32296,
+        "available": 229576
+      },
+      "new_space": {
+        "memorySize": 15728640,
+        "committedMemory": 15728640,
+        "capacity": 7856160,
+        "used": 1699664,
+        "available": 6156496
+      },
+      "old_space": {
+        "memorySize": 284536832,
+        "committedMemory": 284536832,
+        "capacity": 261553976,
+        "used": 261461432,
+        "available": 92544
+      },
+      "code_space": {
+        "memorySize": 4882432,
+        "committedMemory": 4882432,
+        "capacity": 3936800,
+        "used": 3936800,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 19927040,
+        "committedMemory": 19927040,
+        "capacity": 6172160,
+        "used": 6172160,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 1841065984,
+        "committedMemory": 1841065984,
+        "capacity": 1840651472,
+        "used": 1840651472,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 954368,
+        "committedMemory": 954368,
+        "capacity": 867520,
+        "used": 867520,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 7856160,
+        "used": 0,
+        "available": 7856160
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 1378.48,
+    "kernelCpuSeconds": 258.437,
+    "cpuConsumptionPercent": 10.6121,
+    "maxRss": 1481822208,
+    "pageFaults": {
+      "IORequired": 27832268,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 66846,
+      "writes": 1521
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "": "C:=C:\\Users\\james\\builton",
+    "ADSK_CLM_WPAD_PROXY_CHECK": "FALSE",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\james\\AppData\\Roaming",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "132146598282167677",
+    "COLORTERM": "truecolor",
+    "COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-VSR9NFN",
+    "COMSPEC": "C:\\WINDOWS\\system32\\cmd.exe",
+    "CONTENTFUL_ACCESS_TOKEN": "0S3A2vF4gRku5j8aBbPLmVQupSDbsBh0PfWDQpjAKm8",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "EXEPATH": "C:\\Program Files\\Git\\bin",
+    "FIREBASE_API_KEY": "AIzaSyDgGT5hFomtsStWFZdYblv6k8d9Bx-5xC0",
+    "FIREBASE_AUTH_DOMAIN": "builton-61902.firebaseapp.com",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "GameFirst": "C:\\Program Files (x86)\\ASUS\\GameFirst\\",
+    "GameFirstUserPath": "C:\\Users\\james\\AppData\\Local\\ASUS\\GameFirst",
+    "GATSBY_BUILD_STAGE": "develop",
+    "GATSBY_BUILTON_API_KEY": "PoxBoe7dB3h8cKr_ZC1s0R3Xu-vaIRH8hJH25SOJ2ZwVUgxYJbpkoK5V-H_sWop-FMJmziI2GPy_aeYFAkAa0w==",
+    "GATSBY_BUILTON_STRIPE_KEY": "pk_test_OMZZBUdSNLooBVYfSXLuBKcc00tOVakJkI",
+    "gatsby_executing_command": "develop",
+    "GATSBY_LOGGER": "ink",
+    "gatsby_log_level": "normal",
+    "GATSBY_MOLTIN_CLIENT_ID": "nx5BbsIiFJCnbltx8ngE40eBFYA561ofTuHMGFFrEV",
+    "GATSBY_MOLTIN_CLIENT_SECRET": "OcawnnNTpVELbFMbXviWzcF6RW0yW5TZ7q6xXhlagB",
+    "GATSBY_POSTMEN_API_KEY": "82a1f968-2408-4a09-bfd5-261b8c76e2bf",
+    "GATSBY_STRIPE_PUBLISHABLE_KEY": "pk_test_g8TgQZ43j3skrYkUhZXI8pcZ",
+    "HOME": "C:\\Users\\james",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\james",
+    "INIT_CWD": "C:\\Users\\james\\builton",
+    "INTEL_DEV_REDIST": "C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\",
+    "LANG": "en_GB.UTF-8",
+    "LOCALAPPDATA": "C:\\Users\\james\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-VSR9NFN",
+    "MIC_LD_LIBRARY_PATH": "C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\compiler\\lib\\mic",
+    "MSYSTEM": "MINGW64",
+    "NODE": "C:\\Program Files\\nodejs\\node.exe",
+    "NODE_ENV": "development",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"dev\"],\"original\":[\"dev\"]}",
+    "npm_config_bin_links": "true",
+    "npm_config_ignore_optional": "",
+    "npm_config_ignore_scripts": "",
+    "npm_config_init_license": "MIT",
+    "npm_config_init_version": "1.0.0",
+    "npm_config_msvs_version": "2017",
+    "npm_config_python": "python2.7",
+    "npm_config_registry": "https://registry.yarnpkg.com",
+    "npm_config_save_prefix": "^",
+    "npm_config_strict_ssl": "true",
+    "npm_config_unsafe_disable_integrity_migration": "",
+    "npm_config_user_agent": "yarn/1.22.0 npm/? node/v12.11.1 win32 x64",
+    "npm_config_version_commit_hooks": "true",
+    "npm_config_version_git_message": "v%s",
+    "npm_config_version_git_sign": "",
+    "npm_config_version_git_tag": "true",
+    "npm_config_version_tag_prefix": "v",
+    "npm_config__fortawesome_registry": "https://npm.fontawesome.com/",
+    "npm_execpath": "C:\\Program Files (x86)\\Yarn\\bin\\yarn.js",
+    "npm_lifecycle_event": "dev",
+    "npm_lifecycle_script": "rimraf .cache && rimraf public && gatsby develop",
+    "npm_node_execpath": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_package_dependencies_axios": "^0.19.0",
+    "npm_package_dependencies_body_scroll_lock": "^2.6.4",
+    "npm_package_dependencies_bootstrap": "^4.3.1",
+    "npm_package_dependencies_classnames": "^2.2.6",
+    "npm_package_dependencies_core_js": "^3.6.4",
+    "npm_package_dependencies_final_form": "4.18.5",
+    "npm_package_dependencies_firebase": "^7.6.1",
+    "npm_package_dependencies_firebase_admin": "^8.8.0",
+    "npm_package_dependencies_form_data": "^3.0.0",
+    "npm_package_dependencies_gatsby": "^2.19.12",
+    "npm_package_dependencies_gatsby_image": "^2.2.27",
+    "npm_package_dependencies_gatsby_link": "^2.2.29",
+    "npm_package_dependencies_gatsby_plugin_firebase": "^0.1.7",
+    "npm_package_dependencies_gatsby_plugin_google_analytics": "^2.1.35",
+    "npm_package_dependencies_gatsby_plugin_manifest": "^2.2.34",
+    "npm_package_dependencies_gatsby_plugin_netlify": "^2.1.32",
+    "npm_package_dependencies_gatsby_plugin_offline": "^3.0.34",
+    "npm_package_dependencies_gatsby_plugin_postcss": "^2.1.1",
+    "npm_package_dependencies_gatsby_plugin_purgecss": "^4.0.1",
+    "npm_package_dependencies_gatsby_plugin_react_helmet": "^3.1.3",
+    "npm_package_dependencies_gatsby_plugin_react_svg": "^3.0.0",
+    "npm_package_dependencies_gatsby_plugin_sass": "^2.1.28",
+    "npm_package_dependencies_gatsby_plugin_sharp": "^2.3.10",
+    "npm_package_dependencies_gatsby_plugin_stripe": "^1.2.2",
+    "npm_package_dependencies_gatsby_plugin_transition_link": "^1.17.7",
+    "npm_package_dependencies_gatsby_react_router_scroll": "^2.1.21",
+    "npm_package_dependencies_gatsby_remark_component": "^1.1.3",
+    "npm_package_dependencies_gatsby_source_contentful": "^2.1.47",
+    "npm_package_dependencies_gatsby_source_filesystem": "^2.1.4",
+    "npm_package_dependencies_gatsby_transformer_remark": "^2.6.45",
+    "npm_package_dependencies_gatsby_transformer_sharp": "^2.3.9",
+    "npm_package_dependencies_gatsby_transformer_sqip": "^2.1.55",
+    "npm_package_dependencies_gsap": "^3.0.4",
+    "npm_package_dependencies_jsonwebtoken": "^8.5.1",
+    "npm_package_dependencies_lerp": "^1.0.3",
+    "npm_package_dependencies_modularscroll": "^1.0.7",
+    "npm_package_dependencies_node_sass": "^4.13.0",
+    "npm_package_dependencies_react": "^16.12.0",
+    "npm_package_dependencies_reactstrap": "^8.0.1",
+    "npm_package_dependencies_react_anime": "^3.0.3",
+    "npm_package_dependencies_react_bootstrap": "^1.0.0-beta.16",
+    "npm_package_dependencies_react_circular_progressbar": "^2.0.3",
+    "npm_package_dependencies_react_custom_scroll": "^4.1.5",
+    "npm_package_dependencies_react_dom": "^16.12.0",
+    "npm_package_dependencies_react_final_form": "^6.3.5",
+    "npm_package_dependencies_react_helmet": "^5.2.1",
+    "npm_package_dependencies_react_icons": "^3.8.0",
+    "npm_package_dependencies_react_load_script": "^0.0.6",
+    "npm_package_dependencies_react_modal": "^3.11.1",
+    "npm_package_dependencies_react_native_animated_emoji": "^0.1.4",
+    "npm_package_dependencies_react_places_autocomplete": "^7.2.1",
+    "npm_package_dependencies_react_player": "^1.14.2",
+    "npm_package_dependencies_react_pose": "^4.0.8",
+    "npm_package_dependencies_react_reveal": "^1.2.2",
+    "npm_package_dependencies_react_slick": "^0.25.2",
+    "npm_package_dependencies_react_spring": "^8.0.27",
+    "npm_package_dependencies_react_stripe_elements": "^6.0.1",
+    "npm_package_dependencies_react_text_fun": "^1.0.0",
+    "npm_package_dependencies_react_three_fiber": "^4.0.14",
+    "npm_package_dependencies_react_toastify": "^5.3.2",
+    "npm_package_dependencies_react_use_measure": "^2.0.0",
+    "npm_package_dependencies_react_visibility_sensor": "^5.1.1",
+    "npm_package_dependencies_resize_observer_polyfill": "^1.5.1",
+    "npm_package_dependencies_sharp": "^0.24.0",
+    "npm_package_dependencies_slick_carousel": "^1.8.1",
+    "npm_package_dependencies_styled_components": "^5.0.1",
+    "npm_package_dependencies_tailwindcss": "^1.2.0",
+    "npm_package_dependencies_three": "^0.113.2",
+    "npm_package_dependencies_threejs_meshline": "^2.0.9",
+    "npm_package_dependencies_validator": "^12.2.0",
+    "npm_package_dependencies__builton_core_sdk": "^4.1.5",
+    "npm_package_dependencies__n8tb1t_use_scroll_position": "^1.0.43",
+    "npm_package_dependencies__reach_router": "^1.2.1",
+    "npm_package_description": "> 🛍 Moltin powered Gatsby demo store",
+    "npm_package_devDependencies_autoprefixer": "9.6.1",
+    "npm_package_devDependencies_prettier": "1.18.2",
+    "npm_package_devDependencies_rimraf": "3.0.0",
+    "npm_package_license": "MIT",
+    "npm_package_name": "",
+    "npm_package_private": "true",
+    "npm_package_readmeFilename": "README.md",
+    "npm_package_scripts_build": "rimraf .cache && rimraf public && gatsby build",
+    "npm_package_scripts_deploy": "sudo gatsby build -H 0.0.0.0 -p 8888",
+    "npm_package_scripts_dev": "rimraf .cache && rimraf public && gatsby develop",
+    "npm_package_scripts_format": "prettier --write \"src/**/*.js\"",
+    "npm_package_scripts_postinstall": "sh postdeploy.sh",
+    "npm_package_scripts_prod": "gatsby build",
+    "npm_package_version": "",
+    "NUMBER_OF_PROCESSORS": "64",
+    "NVM_HOME": "C:\\Users\\james\\AppData\\Roaming\\nvm",
+    "NVM_SYMLINK": "C:\\Program Files\\nodejs",
+    "OneDrive": "C:\\Users\\james\\OneDrive",
+    "OneDriveConsumer": "C:\\Users\\james\\OneDrive",
+    "OPENSSL_CONF": "C:\\Program Files\\Cappasity Easy 3D Scan\\OpenSSL\\bin\\openssl.cfg",
+    "OS": "Windows_NT",
+    "PATH": "C:\\Users\\james\\AppData\\Local\\Temp\\yarn--1581338774393-0.8595773796930875;C:\\Users\\james\\builton\\node_modules\\.bin;C:\\Users\\james\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\james\\bin;C:\\FFMPEG\\bin;C:\\Program Files\\ImageMagick-7.0.8-Q16;C:\\Users\\james\\Downloads\\ffmpeg-20190411-ce92ee4-win64-static\\ffmpeg-20190411-ce92ee4-win64-static\\bin;C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\redist\\intel64\\compiler;C:\\ProgramData\\Boxstarter;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Windows\\System32\\OpenSSH;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\PuTTY;C:\\Users\\james\\AppData\\Roaming\\nvm;C:\\Program Files\\nodejs;C:\\Program Files\\Theme Kit;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\WINDOWS\\System32\\OpenSSH;C:\\Users\\james\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\james\\AppData\\Local\\atom\\bin;C:\\Users\\james\\AppData\\Roaming\\npm;C:\\Users\\james\\AppData\\Local\\Yarn\\bin;C:\\Users\\james\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Com;C:\\Program Files (x86)\\Plantronics\\Spokes3G;C:\\Program Files\\nodejs;C:\\Program Files\\dotnet;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn;C:\\Program Files (x86)\\Yarn\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\james\\.windows-build-tools\\python27;C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin;C:\\Users\\james\\AppData\\Local\\atom\\bin;C:\\Users\\james\\AppData\\Local\\Google\\Cloud SDK\\google-cloud-sdk\\bin;C:\\Users\\james\\AppData\\Roaming\\npm;C:\\Users\\james\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\james\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\james\\AppData\\Local\\Yarn\\bin",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC",
+    "PLINK_PROTOCOL": "ssh",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "AMD64 Family 23 Model 49 Stepping 0, AuthenticAMD",
+    "PROCESSOR_LEVEL": "23",
+    "PROCESSOR_REVISION": "3100",
+    "ProgramData": "C:\\ProgramData",
+    "PROGRAMFILES": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\Users\\james\\Documents\\WindowsPowerShell\\Modules;C:\\Users\\james\\AppData\\Local\\Google\\Cloud SDK\\google-cloud-sdk\\platform\\PowerShell",
+    "PUBLIC": "C:\\Users\\Public",
+    "PWD": "/c/Users/james/builton",
+    "SCITE_USERHOME": "C:\\Users\\james\\AppData\\Local\\AutoIt v3\\SciTE",
+    "SESSIONNAME": "Console",
+    "SHLVL": "2",
+    "SYSTEMDRIVE": "C:",
+    "SYSTEMROOT": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\james\\AppData\\Local\\Temp",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.41.1",
+    "TMP": "C:\\Users\\james\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-VSR9NFN",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-VSR9NFN",
+    "USERNAME": "james",
+    "USERPROFILE": "C:\\Users\\james",
+    "VIPSHOME": "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release",
+    "WINDIR": "C:\\WINDOWS",
+    "YARN_WRAP_OUTPUT": "false",
+    "_": "/usr/bin/winpty"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\winmmbase.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\sharp.node",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libglib-2.0-0.dll",
+    "C:\\WINDOWS\\System32\\ole32.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libvips-cpp.dll",
+    "C:\\WINDOWS\\System32\\SHELL32.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libvips-42.dll",
+    "C:\\WINDOWS\\System32\\shcore.dll",
+    "C:\\WINDOWS\\System32\\windows.storage.dll",
+    "C:\\WINDOWS\\System32\\shlwapi.dll",
+    "C:\\WINDOWS\\System32\\cryptsp.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libcairo-2.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libexif-12.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libexpat-1.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libfontconfig-1.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libgif-7.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libgsf-1-114.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libgmodule-2.0-0.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libgobject-2.0-0.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libjpeg-62.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\liblcms2-2.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\liborc-0.4-0.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libpango-1.0-0.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libpangoft2-1.0-0.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libpng16-16.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\librsvg-2-2.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libtiff-5.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libwebp-7.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libwebpdemux-2.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libwebpmux-3.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libz1.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libintl.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libfreetype-6.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libpixman-1-0.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libgcc_s_seh-1.dll",
+    "C:\\WINDOWS\\SYSTEM32\\MSIMG32.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libgio-2.0-0.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libxml2-2.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libffi-6.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libfribidi-0.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libharfbuzz.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libcroco-0.6-3.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libgdk_pixbuf-2.0-0.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libpangocairo-1.0-0.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libiconv-2.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-sharp\\node_modules\\sharp\\build\\Release\\libpangowin32-1.0-0.dll",
+    "C:\\WINDOWS\\SYSTEM32\\USP10.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-transformer-sharp\\node_modules\\sharp\\build\\Release\\sharp.node",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\gatsby-plugin-manifest\\node_modules\\sharp\\build\\Release\\sharp.node",
+    "C:\\WINDOWS\\SYSTEM32\\ntmarta.dll",
+    "\\\\?\\C:\\Users\\james\\builton\\node_modules\\node-sass\\vendor\\win32-x64-72\\binding.node",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll"
+  ]
+}

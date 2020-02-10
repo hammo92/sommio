@@ -6,30 +6,29 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 import Layout from "../components/Layout/Layout";
 
-const TRANSITION_LENGTH = 1.5
+const TRANSITION_LENGTH = 1
 
 const exitTransition = {
-  length: TRANSITION_LENGTH, // Take 1.5 seconds to leave
+  length: TRANSITION_LENGTH, // Take 1 seconds to leave
   trigger: () => {
     if (document) {
       // Preventing overflow here make the animation smoother IMO
-      document.body.style.overflow = 'hidden'
+      
     }
   },
 }
 
 const entryTransition = {
-  delay: TRANSITION_LENGTH, // Wait 1.5 seconds before entering
+  delay: TRANSITION_LENGTH, // Wait 1 seconds before entering
   trigger: () => {
     if (document && window) {
       // Ensuring we're at the top of the page when the page loads
       // prevents any additional JANK when the transition ends.
       window.scrollTo(0, 0)
-      document.body.style.overflow = 'visible'
     }
   },
 }
-const Next = ({data, mount, truncate}) => {
+const Next = ({data, mount}) => {
   
   const [scroll, setScroll] = useState(0)
   const [offset, setOffset] = useState(0)
@@ -43,8 +42,9 @@ const Next = ({data, mount, truncate}) => {
   const ref = useRef(null)
   console.log("offset is => ", scroll)
   const props = useSpring({
-    transform: mount ? "translateY(0px)" : `translateY(-${scroll}px)`,
-
+    to: {
+      opacity:1,
+      transform: mount ? "translateY(0px)" : `translateY(-${scroll}px)`,}
   })
   return(
     <animated.div ref={ref} style={props} className={mount ? "nextCond container-fluid" : "container-fluid"}>
@@ -110,7 +110,9 @@ const Content = ({data}) => {
 
 const ReadInner = ({transitionStatus, data, pageContext}) => {
   const mount = ['entering', 'entered'].includes(transitionStatus)
-   
+  const fade = useSpring({
+    to: {opacity: mount ? 1 : 0}
+  })
   const props = useSpring({
     from: {opacity: 1},
     to: {opacity: mount ? 1 : 0}
@@ -118,10 +120,12 @@ const ReadInner = ({transitionStatus, data, pageContext}) => {
   
 
   return(
-    <Layout>
+    <Fragment>
       <animated.div style={props}>
       <Header data={data} mount={mount}/>
-      <Content data={data} />
+      </animated.div>
+      <animated.div style={fade}>
+        <Content data={data} />
       </animated.div>
       <TransitionLink 
       style={{
@@ -134,8 +138,7 @@ const ReadInner = ({transitionStatus, data, pageContext}) => {
       > 
       <Next data={data} mount={mount} />
       </TransitionLink>
-      
-    </Layout>   
+    </Fragment>    
          
   )
 }
@@ -145,9 +148,13 @@ const ReadMorePage = ({ data, pageContext }) => {
   console.log('query , data => ', pageContext)
   return (
   <TransitionState>
+    
     {({transitionStatus}) => (
-      <ReadInner transitionStatus={transitionStatus} data={data} pageContext={pageContext} />
+      <Layout transitionStatus={transitionStatus}>
+        <ReadInner transitionStatus={transitionStatus} data={data} pageContext={pageContext} />
+      </Layout>
     )}
+    
   </TransitionState>
   )
 }

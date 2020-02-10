@@ -74,7 +74,11 @@
             font-size: 60px;
             color: $white;
             font-weight: 700;
-            padding-right:30px
+            padding-right:30px;
+            span{
+                padding-right:15px;
+                display:inline-block;
+            }
     
         }
     }

@@ -13,6 +13,7 @@ const AnimatedAnswer = animated(AnswerCard)
 
 const QuizSlide = () => {
   const [{ quiz }, dispatch] = useStateValue();
+  
   const CurrentQuestion = Questions[quiz.currentQuestion]
   const answered = quiz.questions[quiz.currentQuestion].Answer
   const config = { mass: 5, tension: 2000, friction: 200 }

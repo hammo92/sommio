@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import { CheckoutContext } from '../context/index'
 import Loader from '../components/Loader'
 import { newFirebaseToken } from '../utils/newFirebaseToken'
-
+import Layout from "../components/Layout/Layout";
 const UserOrdersList = () => {
   const { userOrderData, userOrder } = useContext(CheckoutContext)
   const [isLoading, setLoading] = useState(false)
@@ -32,7 +32,7 @@ const UserOrdersList = () => {
   }, [])
 
   return (
-    <>
+    <Layout>
       {isLoading === true ? (
         <Loader />
       ) : (
@@ -64,7 +64,7 @@ const UserOrdersList = () => {
           </table>
         </div>
       )}
-    </>
+    </Layout>
   )
 }
 

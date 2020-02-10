@@ -7,6 +7,7 @@ import useMedia from '../../hooks/useMedia'
 import useMeasure from 'react-use-measure'
 import Card from './Card'
 import AnimatedOver from './Animated'
+import Head from '../AnimatedText/Head'
 
 
 const HelpsWith = () => {
@@ -39,7 +40,7 @@ const { allContentfulCondition } = useStaticQuery(graphql`
     width:0
   })
 
-  console.log(expanded)
+
   //number of columns
   const columns = useMedia(['(min-width: 1500px)', '(min-width: 1000px)', '(min-width: 600px)'], [3, 2, 1], 2)
 
@@ -54,12 +55,8 @@ const { allContentfulCondition } = useStaticQuery(graphql`
   //array of visible cards
   const show = allContentfulCondition.nodes.slice(page, columns + page + 1 )
 
-  const springRef = useRef()
-  const spring = useSpring({
-    ref:springRef,
-    from: {width: width / columns},
-    to: {width: '100%'}
-  })
+
+ 
 
 
   //map cards array and set position variables
@@ -85,7 +82,7 @@ const { allContentfulCondition } = useStaticQuery(graphql`
     <div ref={bind} className="helpsWith">
       <div className="container-fluid">
         <div className="helpHeading" >
-            <h3>Helps you with</h3>
+            <Head size="h3">Helps you with</Head>
             <FaChevronCircleLeft className={page == 0 ? "disabled" : ""} onClick={() => setPage(page - 1)}/>
             <FaChevronCircleRight className={page >= condCount - columns ? "disabled" : ""} onClick={() => setPage(page + 1)} />
         </div>
@@ -100,7 +97,7 @@ const { allContentfulCondition } = useStaticQuery(graphql`
                 xy:item.xy,
                 width:item.width
                 })
-              console.log(item)
+              
             }}
             >
                 <Card item={item} />

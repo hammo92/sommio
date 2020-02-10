@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { ToastContainer } from 'react-toastify'
 import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import { StateProvider } from '../../context/SiteContext';
-import YAMLData from '../../../content/Quiz.yaml' 
+
+
 import Header from './Header'
 import Footer from './Footer'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,87 +20,16 @@ const toastOptions = {
   progressClassName: 'bg-white opacity-25',
   closeButton: false
 }
-const initialState = {
-  theme: { primary: 'green' },
-  quiz:{
-    questions: YAMLData,
-    currentQuestion: 0,
-    complete:false,
-    sleepScore:0,
-    stressScore:0
-  },
-};
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'changeTheme':
-      return {
-        ...state,
-        theme: action.newTheme
-      };
-    
-    case 'changeQuestion':
-      return{
-        ...state,
-        quiz: {
-        ...state.quiz,
-        currentQuestion: action.nextQuestion
-      }};
-
-    case 'selectAnswer':
-      return{
-      ...state,
-      quiz:{
-        ...state.quiz,
-        questions:{
-          ...state.quiz.questions,
-          [action.question]:{
-            ...state.quiz.questions[action.question],
-            Answer: action.answer,
-            sleepScore: action.sleep,
-            stressScore: action.stress,
-          }
-          
-        }
-        
-      }};
-      case 'setScore':
-      return {
-        ...state,
-        quiz:{
-          ...state.quiz,
-          sleepScore: action.sleepScore,
-
-        }
-      };
-      
-      case 'setCompleted':
-      return {
-        ...state,
-        quiz:{
-          ...state.quiz,
-          complete:true,
-          sleepScore: action.score,
-          stressScore:action.stress
-
-        }
-      };
-      
-      
-    default:
-      return state;
-  }
-};
 
 const Layout = ({ children, transitionStatus }) => {
   const { site, allBuitlon } = useStaticQuery(categoriesQuery)
-  console.log("status is => ",transitionStatus)
   const builtonProduct = allBuitlon.nodes.find(ele => {
     return ele.main_product === true && ele.tags.length > 0
   })
 
   return (
-    <StateProvider initialState={initialState} reducer={reducer}>
+    <Fragment>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Sommio Gatsby</title>
@@ -120,13 +49,14 @@ const Layout = ({ children, transitionStatus }) => {
       <Header
         siteTitle={site.siteMetadata.title}
         human_id={builtonProduct.human_id}
+        transitionStatus = {transitionStatus}
       />
 
       <main>{children}</main>
       <ToastContainer {...toastOptions} />
+    </Fragment>  
       
-      
-    </StateProvider>
+    
   )
 }
 

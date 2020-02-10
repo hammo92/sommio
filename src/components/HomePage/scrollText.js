@@ -12,10 +12,12 @@ function ScrollText({text}) {
     
     const style1 = useSpring({
         from: {
-          transform: `translate3d(60px,0,0)`
+          transform: `translate3d(60px,0,0)`,
+          opacity: 0
         },
         to: {
-          transform: `translate3d(${scrollPosition}px,0,0)`
+          transform: `translate3d(${scrollPosition}px,0,0)`,
+          opacity:1,
         },
         config: config.wobbly
     });

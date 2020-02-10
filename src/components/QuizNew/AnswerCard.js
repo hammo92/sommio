@@ -5,6 +5,7 @@ import { useStateValue } from '../../context/SiteContext'
 const AnswerCard = ({i}) => {
     const [{ quiz }, dispatch] = useStateValue();
     const Question = quiz.questions[quiz.currentQuestion]
+    console.log("quiz slide context =>", quiz)
 
     return (
         <div 

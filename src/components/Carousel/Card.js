@@ -2,8 +2,6 @@ import React from 'react'
 import { Link } from 'gatsby'
 import TransitionLink from 'gatsby-plugin-transition-link'
 
-const TRANSITION_DELAY = 1.2;
-const TRANSITION_LEN = 1.2;
 
 export default function Card({item}) {
     return (
@@ -18,7 +16,6 @@ export default function Card({item}) {
                   <TransitionLink
                     to={`/readMore/${item.slug}`}
                     className="btn btn-link"
-                    
                   >
                     Read More
                   </TransitionLink >

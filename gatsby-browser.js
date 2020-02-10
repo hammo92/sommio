@@ -4,12 +4,17 @@ import { Elements } from 'react-stripe-elements'
 import { BuiltonProvider } from './src/context'
 import { StripeProvider } from 'react-stripe-elements'
 import Layout from './src/components/Layout'
+import { SiteProvider } from './src/context/SiteProvider'
 
 export const wrapRootElement = ({ element }) => {
   return (
     <StripeProvider apiKey={process.env.GATSBY_BUILTON_STRIPE_KEY}>
       <BuiltonProvider>
-        <Elements>{element}</Elements>
+        <Elements>
+          <SiteProvider>
+            {element}
+          </SiteProvider>
+        </Elements>
       </BuiltonProvider>
     </StripeProvider>
   )
