@@ -16,6 +16,7 @@ import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 
+
 const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, props) => {
   const { orderId } = useContext(CheckoutContext)
   const { setCartData, setUserBuilton } = useContext(CartContext)

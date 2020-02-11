@@ -7,7 +7,7 @@ import { animated, useSpring, config } from 'react-spring'
 function ScrollText({text}) {
     const [scrollPosition, setScrollPosition] = useState(60)
     useScrollPosition(({ prevPos, currPos }) => {
-        setScrollPosition(100 + currPos.y/3)
+        setScrollPosition(100 + currPos.y/2)
     })
     
     const style1 = useSpring({

@@ -18,7 +18,7 @@ const Head = ({children, head}) => {
         }
     }, [isVisible]);
 
-    console.log("entered =>",entered)
+  
 
 
     const words = children.split(" ")
@@ -36,7 +36,7 @@ const Head = ({children, head}) => {
         <h3>
         {trail.map(({ opacity, transform }, index) => (
             <animated.span
-                key={words[index]}
+                key={words[index] + Math.random()}
                 style={{opacity, transform}}
             >
                 {words[index]}

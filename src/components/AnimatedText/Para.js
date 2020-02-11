@@ -18,7 +18,6 @@ const Para = ({children, head}) => {
         }
     }, [isVisible]);
 
-    console.log("entered =>",entered)
 
     const config = { mass: 0.1, tension: 900, friction: 40 }
     const words = children.split(" ")
@@ -35,7 +34,7 @@ const Para = ({children, head}) => {
         <p>
         {trail.map(({ opacity, transform }, index) => (
             <animated.span
-                key={words[index]}
+                key={words[index] + Math.random()}
                 style={{opacity, transform}}
             >
                 {words[index]}

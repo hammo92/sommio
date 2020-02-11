@@ -13,6 +13,7 @@ import Carousel from '../components/Carousel/Carousel'
 import Layout from "../components/Layout/Layout";
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 import { useStateValue } from '../context/SiteContext'
+import {animated, useSpring } from 'react-spring'
 
 const TRANSITION_LENGTH = 1
 
@@ -37,10 +38,15 @@ const entryTransition = {
   },
 }
 
-export const IndexInner = () => {
+export const IndexInner = ({transitionStatus}) => {
   const [{ quiz }, dispatch] = useStateValue();
+  const mount = ['entering', 'entered'].includes(transitionStatus)
+
+  const fadeUp = useSpring({
+    opacity: mount ? 1 : 0
+  })
   return (
-    <div className="homepage-bg">
+    <animated.div style={fadeUp} className="homepage-bg">
           <div className="goodquiz-bg">
             <div className="container-fluid">
               <div className="row no-gutters">
@@ -75,10 +81,6 @@ export const IndexInner = () => {
                 <MagicWeightex />
               </div>
 
-              <div className="col-12" >
-                <BlanketDifference />
-              </div>
-
           <div className="container-fluid">
             <div className="row">
               <div className="col-12" data-scroll>
@@ -94,7 +96,7 @@ export const IndexInner = () => {
               </div>
             </div>
           </div>
-        </div>
+        </animated.div>
   )
 }
 
@@ -104,7 +106,7 @@ const IndexPage = () => {
     <TransitionState>
       {({transitionStatus}) => (
         <Layout transitionStatus={transitionStatus}>
-          <IndexInner />
+          <IndexInner transitionStatus={transitionStatus}/>
         </Layout>
       )}
     </TransitionState>

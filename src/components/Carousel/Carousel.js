@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react'
 import { useStaticQuery } from 'gatsby'
 import { Link } from 'gatsby'
-import { useTrail, animated, useTransition, config, useSpring } from 'react-spring'
+import { useTrail, animated, useTransition, useSpring } from 'react-spring'
 import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa'; 
 import useMedia from '../../hooks/useMedia'
 import useMeasure from 'react-use-measure'
@@ -54,7 +54,7 @@ const { allContentfulCondition } = useStaticQuery(graphql`
   const condCount = allContentfulCondition.nodes.length
   //array of visible cards
   const show = allContentfulCondition.nodes.slice(page, columns + page + 1 )
-
+  const config = { mass: 1.5, tension: 170, friction: 25 }
 
  
 
@@ -75,7 +75,7 @@ const { allContentfulCondition } = useStaticQuery(graphql`
     enter: ({ xy, width }) => ({ xy, width, opacity:1 }),
     update: ({ xy, width }) => ({ xy, width }),
     leave: {opacity: 0 },
-    config: config.wobble
+    config
   })
 
   return (

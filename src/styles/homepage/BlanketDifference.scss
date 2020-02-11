@@ -13,6 +13,10 @@
         color: $white;
         font-weight: 700;
         margin: 35px 0 45px;
+        span{
+            display:inline-block;
+            padding-right:5px;
+        }
     }
 
     .sommio-box {
@@ -33,13 +37,17 @@
             }
         }
 
-        h4 {
+        h3 {
             text-align: center;
             width: 100%;
             font-size: 35px;
             color: $madang;
             font-weight: 700;
             margin: 30px 0 40px 0;
+            span{
+                display:inline-block;
+                padding-right:5px;
+            }
         }
 
         p {
@@ -48,6 +56,10 @@
             color: $white;
             margin: 0;
             text-align: center;
+            span{
+                display:inline-block;
+                padding-right:5px;
+            }
         }
     }
 

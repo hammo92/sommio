@@ -20,6 +20,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import {animated, useSpring } from 'react-spring'
+
 
 
 
@@ -76,9 +78,12 @@ const ImageGrid = styled.div`
 
 
 
+const ProductPageInner = ({transitionStatus, data : { product, contentfulProduct } }) => {
+  const mount = ['entering', 'entered'].includes(transitionStatus)
 
-  
-const ProductPageBuilton = ({ data: { product, contentfulProduct } }) => {
+  const fadeUp = useSpring({
+    opacity: mount ? 1 : 0
+  })
   const Titles = ["Overview", "Materials","Learn","Usage","FAQ"]
   const Overview = contentfulProduct.overview
   const Faq = contentfulProduct.faqQuestions
@@ -94,139 +99,149 @@ const ProductPageBuilton = ({ data: { product, contentfulProduct } }) => {
     console.log('onChangeSelectedProduct id => ', id)
     setSelectedVariationId(id)
   }
-  return (
-    <TransitionState>
-    
-    {({transitionStatus}) => (
-      <Layout transitionStatus={transitionStatus}>
-      <div>
-        <SEO
-          type="product"
-          title={product.short_description || product.name}
-          description={product.meta_description || product.description}
-          image={withPrefix(
-            product && product.image_url ? product.image_url : Noimage
-          )}
-        />
-        <div className="container-fluid">
-          <div className="row no-gutters">
-            <div className="col-12 col-lg-8">
-              <ProductService />
-              <ProductTitle title={product.name} />
-            </div>
-            <div className="col-12 col-lg-4">
-              <ProductReview />
-            </div>
+  return(
+    <animated.div style={fadeUp}>
+      <SEO
+        type="product"
+        title={product.short_description || product.name}
+        description={product.meta_description || product.description}
+        image={withPrefix(
+          product && product.image_url ? product.image_url : Noimage
+        )}
+      />
+      <div className="container-fluid">
+        <div className="row no-gutters">
+          <div className="col-12 col-lg-8">
+            <ProductService />
+            <ProductTitle title={product.name} />
+          </div>
+          <div className="col-12 col-lg-4">
+            <ProductReview />
+          </div>
 
-            <div className="col-12">
-              <div className="blanket-bg">
-                <div className="row">
-                  <div className="col-12 col-lg-4">
-                    <AddToCart
-                      onChangeSelectedProduct={onChangeSelectedProduct}
-                      productId={product.id}
-                      tags={product.tags}
-                    />
-                  </div>
-                  <div className="col-12 col-lg-8">
-                    <ProductImage
-                      selectedVariationId={selectedVariationId}
-                      productId={product.id}
-                    />
-                  </div>
+          <div className="col-12">
+            <div className="blanket-bg">
+              <div className="row">
+                <div className="col-12 col-lg-4">
+                  <AddToCart
+                    onChangeSelectedProduct={onChangeSelectedProduct}
+                    productId={product.id}
+                    tags={product.tags}
+                  />
                 </div>
+                
+                  <ProductImage
+                    selectedVariationId={selectedVariationId}
+                    productId={product.id}
+                  />
+                
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <section>
+      <div className="product-tabs">
+        <div className="container-fluid">
+        <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example">
+          <Tab eventKey="overview" title="Overview">
+          <Container fluid>
+            <Row>
+              <TitleContain><h2 >{Headings}</h2><h2>{LastWord}</h2></TitleContain>
+
+            </Row>
+            <ProductVideo />
+            <DarkRow>
+              <Col md={12}>
+              <h3>What is it?</h3>
+              </Col>
+              <Col md={9}>
+                {<div dangerouslySetInnerHTML={{
+                      __html: Overview.childMarkdownRemark.html,
+                    }}
+                  />}
+              </Col>
+              <Col md={3} className="justify-content-md-center d-flex">
+                <ul>
+                {Features.map((element, index) => (
+                  <li >{element.title}</li>
+                ))}
+                </ul>
+              </Col>
+            </DarkRow>
+
+            </Container>
+            <ImageGrid>
+            <div><img src="https://cdn.shopify.com/s/files/1/0064/3262/0633/t/35/assets/sleepings.png?128218" /></div>
+            <div><img src="https://cdn.shopify.com/s/files/1/0064/3262/0633/t/35/assets/sleeping-sheets-2.png?128218" /></div>
+            <div><img src="https://cdn.shopify.com/s/files/1/0064/3262/0633/t/35/assets/pillow.png?128218" /></div>
+            </ImageGrid>
+
+
+
+          </Tab>
+          
+          <Tab eventKey="learn" title="Learn" >
+
+              <HelpSlider />
+
+          </Tab>
+          <Tab eventKey="usage" title="Usage" >
+            <HelpSlider />
+          </Tab>
+          <Tab eventKey="faq" title="Quick Help" >
+            <h3>Quick Help</h3>
+            <Accordion defaultActiveKey="0">
+              {Faq.map((element, index) => (
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey={index}>
+                    {element.question}
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey={index}>
+                    <Card.Body dangerouslySetInnerHTML={{
+                          __html: element.answer.childMarkdownRemark.html,
+                        }}
+                    />
+                  </Accordion.Collapse>
+                </Card>
+                      ))}
+            </Accordion>
+          </Tab>
+        </Tabs>
           </div>
         </div>
 
 
 
-        <section>
-        <div className="product-tabs">
-          <div className="container-fluid">
-          <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example">
-            <Tab eventKey="overview" title="Overview">
-            <Container fluid>
-              <Row>
-                <TitleContain><h2 >{Headings}</h2><h2>{LastWord}</h2></TitleContain>
 
-              </Row>
-              <ProductVideo />
-              <DarkRow>
-                <Col md={12}>
-                <h3>What is it?</h3>
-                </Col>
-                <Col md={9}>
-                  {<div dangerouslySetInnerHTML={{
-                        __html: Overview.childMarkdownRemark.html,
-                      }}
-                    />}
-                </Col>
-                <Col md={3} className="justify-content-md-center d-flex">
-                  <ul>
-                  {Features.map((element, index) => (
-                    <li >{element.title}</li>
-                  ))}
-                  </ul>
-                </Col>
-              </DarkRow>
+      </section>
 
-              </Container>
-              <ImageGrid>
-              <div><img src="https://cdn.shopify.com/s/files/1/0064/3262/0633/t/35/assets/sleepings.png?128218" /></div>
-              <div><img src="https://cdn.shopify.com/s/files/1/0064/3262/0633/t/35/assets/sleeping-sheets-2.png?128218" /></div>
-              <div><img src="https://cdn.shopify.com/s/files/1/0064/3262/0633/t/35/assets/pillow.png?128218" /></div>
-              </ImageGrid>
+      <FreeDelivery />
+    </animated.div>
+  )
+}
 
-
-
-            </Tab>
-            
-            <Tab eventKey="learn" title="Learn" >
-
-                <HelpSlider />
-
-            </Tab>
-            <Tab eventKey="usage" title="Usage" >
-              <HelpSlider />
-            </Tab>
-            <Tab eventKey="faq" title="Quick Help" >
-              <h3>Quick Help</h3>
-              <Accordion defaultActiveKey="0">
-                {Faq.map((element, index) => (
-                  <Card>
-                    <Accordion.Toggle as={Card.Header} eventKey={index}>
-                      {element.question}
-                    </Accordion.Toggle>
-                    <Accordion.Collapse eventKey={index}>
-                      <Card.Body dangerouslySetInnerHTML={{
-                            __html: element.answer.childMarkdownRemark.html,
-                          }}
-                      />
-                    </Accordion.Collapse>
-                  </Card>
-                        ))}
-              </Accordion>
-            </Tab>
-          </Tabs>
-            </div>
-          </div>
-
-
-
-
-        </section>
-
-        <FreeDelivery />
-      </div>
-      
-    </Layout>
+  
+const ProductPageBuilton = ({ data }) => {
+  
+  return (
+    <TransitionState>
+    
+    {({transitionStatus}) => (
+      <Layout transitionStatus={transitionStatus}>
+        <ProductPageInner transitionStatus={transitionStatus} data={data}  />
+      </Layout>
     )}
     
   </TransitionState>
   )
 }
+
+
+
 export const query = graphql`
   query($id: String!, $human: String!) {
     product: builtonProduct(id: { eq: $id }) {

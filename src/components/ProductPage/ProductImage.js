@@ -1,8 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef, useState, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Slider from 'react-slick'
 import { CartContext } from '../../context/CartContext'
+import { useSprings, useSpring, animated } from 'react-spring'
+import { useGesture } from 'react-use-gesture'
+import clamp from 'lodash-es/clamp'
+
+function Viewpager({pages, width}) {
+  const index = useRef(0)
+  const [props, set] = useSprings(pages.length, i => ({ x: i * width, sc: 1, display: 'block' }))
+
+
+  const bind = useGesture(
+    useGesture({ onDrag: ({ local: [x] }) => set({ y: x * -1.5 }) })
+  )
+  
+  return props.map(({ x, display, sc }, i) => (
+    
+    <animated.div className="springSlide" {...bind()} key={i} style={{ display, transform: x.interpolate(x => `translate3d(${x}px,0,0)`) }}>
+      <animated.div style={{ transform: sc.interpolate(s => `scale(${s})`), backgroundImage: `url(${pages[i].url})` }} />
+    </animated.div>
+  ))
+}
+
+
 function ProductImage({ productId, selectedVariationId }) {
+  const [sliderWidth, setSliderWidth] = useState(0)
+  const sliderRef = useRef(null)
+  useEffect(() => {  
+    setSliderWidth(sliderRef.current.clientWidth)   
+  },[])
   const { allBuiltonProduct } = useStaticQuery(
     graphql`
       query {
@@ -33,28 +60,14 @@ function ProductImage({ productId, selectedVariationId }) {
   const mainProduct = allBuiltonProduct.nodes.filter(product => {
     return product.id === productId
   })
+  const images = allBuiltonProduct.nodes.find(({_id: {_oid}}) => _oid === selectedVariationId).media
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  }
-
-  return (
-    <div className="product-gallery">
-      <Slider {...settings}>
-        {allBuiltonProduct &&
-          allBuiltonProduct.nodes.map(product => {
-            if (product._id._oid === selectedVariationId) {
-              return product.media.map(i => {
-                return <img src={i.url} alt="product-image" />
-              })
-            }
-          })}
-      </Slider>
+  console.log("images =>", images.length)
+  return(
+    <div className="col-12 col-lg-8 " ref={sliderRef}>
+      <Viewpager pages={images} width={sliderWidth} />
     </div>
   )
+ 
 }
 export default ProductImage

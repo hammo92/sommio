@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import TransitionLink from 'gatsby-plugin-transition-link'
 
 
+
 export default function Card({item}) {
     return (
         <>
@@ -16,6 +17,7 @@ export default function Card({item}) {
                   <TransitionLink
                     to={`/readMore/${item.slug}`}
                     className="btn btn-link"
+                    
                   >
                     Read More
                   </TransitionLink >
