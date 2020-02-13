@@ -1,6 +1,8 @@
 body {
     background: $midnight;
     font-family: $tksofiapro;
+    user-select: none;
+    cursor:url('/cursor.svg'),auto;
     
 
     &.so-checkout-page {
@@ -15,7 +17,9 @@ body {
         padding-right: 30px;
     }
 }
-
+a, button{
+  cursor:url('/point.svg'),auto !important;
+}
 h1,
 h2,
 h3,
@@ -92,7 +96,7 @@ p {
     &:not(:placeholder-shown) + label {
       top: 0px;
       left: 2px;
-      cursor: pointer;
+      cursor:url('/point.svg'),auto;
       position: absolute;
       font-size: 12px;
     }

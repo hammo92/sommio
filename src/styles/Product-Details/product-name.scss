@@ -6,14 +6,19 @@
     position: relative;
     z-index: 2;
 
-    h1 {
+    h3 {
         margin: 0px;
         font-size: 130px;
         color: $lightBlue;
         font-weight: 900;
-        width: 58%;
+        width: 80%;
         line-height: 1;
         margin-bottom:0.2em;
+        span {
+                
+            display:inline-block;
+            padding-right:15px;
+        }
     }
 
     p {

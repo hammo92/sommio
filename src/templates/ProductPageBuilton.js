@@ -121,7 +121,7 @@ const ProductPageInner = ({transitionStatus, data : { product, contentfulProduct
 
           <div className="col-12">
             <div className="blanket-bg">
-              <div className="row">
+              <div className="row productMain">
                 <div className="col-12 col-lg-4">
                   <AddToCart
                     onChangeSelectedProduct={onChangeSelectedProduct}

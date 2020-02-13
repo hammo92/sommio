@@ -3,9 +3,10 @@ import FlagIcon from '../../images/flag-of-europe.png'
 import Head from '../AnimatedText/Head'
 
 const ProductTitle = ({ title }) => {
+  console.log("title => ",title)
   return (
     <div className="product-name">
-      <h1> {title}</h1>
+      <Head head={title}></Head>
       <p className="ml-auto">
         Made in Europe
         <img src={FlagIcon} />
