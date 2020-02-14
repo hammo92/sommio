@@ -6,82 +6,71 @@ import { useSprings, useTransition, useSpring, animated, useTrail } from 'react-
 import {  useDrag } from 'react-use-gesture'
 import clamp from 'lodash-es/clamp'
 import useMeasure from 'react-use-measure'
+import { fieldSubscriptionItems } from 'final-form'
 
 function Viewpager({pages, width}) {
   const index = useRef(0)
+  const [cards, setCards] = useState(pages.map((card, i) => {
+    return{...card, xy: [0, 0], scale:1, order:i, width:0}
+  }))
   const [currentSlide, setCurrent] = useState(0)
   const config = { mass: 1 , tension: 180, friction: 30 }
 
-  const [props, set] = useSprings(pages.length, i => ({
-    x: i * width,
-    scale: 1,
-    display: 'block',
-    zIndex: i === 0 ? '2' : '1',
-    config 
-  }))
- 
-  
+  //update card details after width calculated
+  useEffect(() => 
+    setCards(pages.map((card, i) => {
+      return{...card, xy: [currentSlide === i ? 0 : width * i, 0], scale:1, order:i, width:width}
+    })), [width, pages]
+  )
+    
   let indicators = pages.map((indicator,i) => {
-    const indicatorWidth = width / pages.length - 10
-    const xy = [((width/pages.length) - 10) * i, 0]
+    const indicatorWidth = width / pages.length - 20
+    const xy = [(width/pages.length) * i, 0]
     return{...indicator, position: i, width:indicatorWidth, xy}
   })
-
-  //update card details after width calculated / image change
-
-
+  
   const transition = useTransition(indicators, item => item.human_id, {
     from:({ xy, width }) => ({ xy, width, opacity:0 }),
-    enter:({ xy, width, position }) => ({ xy, width, opacity: position === currentSlide  ? 1 : 0.5 }),
-    update: ({ xy, width, position }) => ({ xy, width, opacity: position === currentSlide  ? 1 : 0.5 }),
+    enter:({ xy, width, position }) => ({ xy, width, opacity: position === currentSlide  ? 1 : 0.2 }),
+    update: ({ xy, width, position }) => ({ xy, width, opacity: position === currentSlide  ? 1 : 0.2 }),
     leave:{opacity:0}
   })
-  /*const nextSlide = () => {
-    setCurrent(currentSlide + 1)
-    index.current = currentSlide + 1
-    set(i => {
-      const x = (i - currentSlide) * width
-      const scale = 1
-      return { x, scale, display: 'block', zIndex: i === index.current ? '0' : '10'}
-    })
-  }
-  const prevSlide = () => {
-    setCurrent(currentSlide - 1)
-    index.current = currentSlide - 1
-    set(i => {
-      const x = (i - currentSlide) * width
-      const scale = 1
-      return { x, scale, display: 'block', zIndex: i === index.current ? '0' : '10'}
-    })
-  }*/
-  
+
+  const cardTransition = useTransition(cards, item => item.human_id, {
+    trail: 300 / cards.length,
+    from:({ xy, width, scale }) => ({ xy, width, opacity:0, scale }),
+    enter:({ xy, width, scale }) => ({ xy, width, opacity: 1, scale }),
+    update: ({ xy, scale }) => ({ xy, scale, opacity: 1 }),
+    leave:{opacity:0},
+    config
+  })
+
+  /*const [props, set] = useSprings(pages.length, i => ({
+      x: i * width,
+      scale: 1,
+      display: 'block',
+      zIndex: '1',
+      config 
+    }))
+  */
   const bind = useDrag(({
     down,
+    delta: [xDelta],
     movement: [mx],
     direction: [xDir],
     distance,
     cancel 
    }) => {
-   if (down && distance > width / 2) cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, pages.length - 1)))
+   if (down && distance > width / 2) 
+    cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, cards.length - 1)))
    setCurrent(index.current)
-   set(i => {
-     const x = (i - index.current) * width + (down ? mx : 0)
-     const scale =  down ? 1 - distance / width / 2 : 1
-     return { x, scale, display: 'block', zIndex: i === index.current ? '0' : '10'}
-   })
+   setCards(pages.map((card, i) => {
+    const x = (i - index.current) * width + (down ? xDelta : 0)
+    return{...card, xy: [x, 0], scale:1, order:i, width:width}
+    }))
  })
  return  (
    <Fragment>
-    
-    {
-      props.map(({ x, display, scale, zIndex }, i) => (
-      <animated.div className="springSlide" {...bind()} key={i} style={{zIndex, display, transform: x.interpolate(x => `translate3d(${x}px,0,0)`) }}>
-        <animated.div style={{ transform: scale.interpolate(scale => `scale(${scale})`), backgroundImage: `url(${pages[i].url})`,  }} />
-      </animated.div>
-    ))
-    }
-    <div className="slideChange back" /*onClick={prevSlide}*//>
-    <div className="slideChange next" /*onClick={nextSlide}*/ />
     <div className="indicatorWrap">
       {transition.map(({item, props:{xy, ...rest}, key}) => (
         <animated.div 
@@ -91,6 +80,19 @@ function Viewpager({pages, width}) {
 
       ))}
     </div>
+    {cardTransition.map(({item, props:{xy, scale, ...rest}, key}) => (
+      <animated.div className="springSlide" {...bind()} key={key} style={{transform: xy.interpolate((x,y) => `translate3d(${x}px,0,0)`) }}>
+        <animated.div style={{ transform: scale.interpolate(scale => `scale(${scale})`), backgroundImage: `url(${item.url})`,  }} />
+      </animated.div>
+
+    ))}
+    {/*
+      props.map(({ x, display, scale, zIndex }, i) => (
+      <animated.div className="springSlide" {...bind()} key={i} style={{zIndex, display, transform: x.interpolate(x => `translate3d(${x}px,0,0)`) }}>
+        <animated.div style={{ transform: scale.interpolate(scale => `scale(${scale})`), backgroundImage: `url(${pages[i].url})`,  }} />
+      </animated.div>
+    ))
+      */}
   </Fragment>
  )
 }

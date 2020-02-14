@@ -110,11 +110,26 @@
 }
 .productMain{
     margin:20px 0;
+    .slideChange{
+        &.back{
+            left:0;
+        }
+        &.next {
+            right:0
+        }
+        position:absolute;
+        width:20%;
+        height:100%;
+        z-index:99999;
+        
+    }
 
     .indicatorWrap{
         width:100%;
-        height:20px;
-        position:relative;
+        height:10px;
+        position:absolute;
+        bottom:0px;
+        z-index:999;
         .photoIndicator{
             background:$madang;
             position:absolute;
