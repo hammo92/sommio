@@ -4,7 +4,7 @@ import PlushImages from '../../images/plush.png'
 import SommioModal from '../modal.js'
 
 
-import Select from '../Select'
+
 import {
   Dropdown,
   DropdownToggle,
