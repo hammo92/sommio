@@ -94,9 +94,10 @@ const ProductPageInner = ({transitionStatus, data : { product, contentfulProduct
   Headings = Headings.join(" ")
   //console.log(FeatureSlides);
 
-  const [selectedVariationId, setSelectedVariationId] = useState(product._id._oid)
+  const [selectedVariationId, setSelectedVariationId] = useState(
+    product._id._oid
+  )
   const onChangeSelectedProduct = id => {
-    console.log('onChangeSelectedProduct id => ', id)
     setSelectedVariationId(id)
   }
   return(
@@ -125,7 +126,7 @@ const ProductPageInner = ({transitionStatus, data : { product, contentfulProduct
                 <div className="col-12 col-lg-4">
                   <AddToCart
                     onChangeSelectedProduct={onChangeSelectedProduct}
-                    productId={product.id}
+                    productId={product._id._oid}
                     tags={product.tags}
                   />
                 </div>
@@ -246,7 +247,7 @@ export const query = graphql`
   query($id: String!, $human: String!) {
     product: builtonProduct(id: { eq: $id }) {
       _id {
-         _oid
+        _oid
       }
       id
       name

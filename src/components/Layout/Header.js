@@ -3,8 +3,11 @@ import { Link } from 'gatsby'
 import axios from 'axios'
 import { navigate } from 'gatsby'
 import Builton from '@builton/core-sdk'
-import { CartContext, CheckoutContext, FirebaseContext } from '../../context'
+import { CartContext, CheckoutContext, FirebaseContext, TestCartContext } from '../../context'
 import {useSpring, animated, config} from 'react-spring'
+// import base64 from 'base-64'
+
+
 import Logo from '../../images/logo.png'
 import logoCheckout from '../../images/logo-checkout.png'
 import CartButton from '../CartButton'
@@ -20,6 +23,7 @@ import { getFirebase } from '../../firebase/index'
 const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, props) => {
   const { orderId } = useContext(CheckoutContext)
   const { setCartData, setUserBuilton } = useContext(CartContext)
+  const { set_cart, fetchCartDataFromStorage } = useContext(TestCartContext)
   const { setFirebase, firebase } = useContext(FirebaseContext)
   const [refresh, setRefresh] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -58,9 +62,8 @@ const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, pr
     let cartData = JSON.parse(dataFromStorage)
 
     if (cartData) {
-      setCartData(cartData)
+      fetchCartDataFromStorage(cartData)
     }
-
     var builton = new Builton({
       apiKey: process.env.GATSBY_BUILTON_API_KEY,
       bearerToken: token
@@ -153,7 +156,7 @@ const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, pr
               >
                 <ul className="navbar-nav ml-auto menu-list">
                   <li className="nav-item">
-                    <Link to={`/products/${human_id}`}>Shop</Link>
+                    <Link to="/products">Shop</Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/about">Learn</Link>
