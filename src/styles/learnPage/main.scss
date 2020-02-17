@@ -1,0 +1,23 @@
+.learnPage{
+    color:$white;
+    h1 {
+        font-size: 130px;
+        color: $white;
+        font-weight: 900;
+        line-height: 1.2;
+        margin: 0 0 15px 0;
+
+        @media (max-width:$desktop18) {
+            font-size: 100px;
+        }
+
+        span {
+            
+            display:inline-block;
+            padding-right:15px;
+
+            
+        }
+
+    }
+}

@@ -4,23 +4,16 @@ import {animated, useTrail } from 'react-spring'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 
-const Head = ({children, head}) => {
+const Head = ({children, head, type}) => {
     const [isVisible, setVisibility] = useState(true)
-    const [entered, setEntered] = useState(false);
     const onChange = visiblity => {
         setVisibility(visiblity);
     };
+    const CustomTag = type ? `h${type}` : `h3`
       
     
-    useEffect(() => {
-        if (isVisible) {
-          setEntered(true);
-        }
-    }, [isVisible]);
 
-  
-    console.log("heading => ", children)
-
+    
     const words = children ? children.split(" ") : head.split(" ")
     const config = { mass: 0.1, tension: 900, friction: 40 }
     const trail = useTrail(words.length, {
@@ -39,8 +32,9 @@ const Head = ({children, head}) => {
         <VisibilitySensor
         onChange={onChange}
         partialVisibility
+        scrollCheck={true}
         >
-        <h3>
+        <CustomTag>
         {trail.map(({ opacity, transform }, index) => (
             <animated.span
                 key={words[index] + Math.random()}
@@ -49,7 +43,7 @@ const Head = ({children, head}) => {
                 {words[index]}
             </animated.span>
           ))}
-        </h3>
+        </CustomTag>
 
         </VisibilitySensor>
     )

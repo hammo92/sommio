@@ -72,7 +72,7 @@ export const IndexInner = ({transitionStatus}) => {
 
           </div>
 
-          <Carousel />
+          <Carousel shifted={true} />
           <div
                 className="col-12 col-lg-8 mx-auto"
                 data-scroll

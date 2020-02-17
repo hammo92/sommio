@@ -10,7 +10,7 @@ import AnimatedOver from './Animated'
 import Head from '../AnimatedText/Head'
 
 
-const HelpsWith = () => {
+const HelpsWith = ({shifted}) => {
 const { allContentfulCondition } = useStaticQuery(graphql`
     query {
       allContentfulCondition {
@@ -79,13 +79,15 @@ const { allContentfulCondition } = useStaticQuery(graphql`
   })
 
   return (
-    <div ref={bind} className="helpsWith">
+    <div ref={bind} className={shifted ? "helpsWith shiftUp": "helpsWith noShift"}>
       <div className="container-fluid">
         <div className="helpHeading" >
             <Head size="h3">Helps you with</Head>
-            <FaChevronCircleLeft className={page == 0 ? "disabled" : ""} onClick={() => setPage(page - 1)}/>
-            <FaChevronCircleRight className={page >= condCount - columns ? "disabled" : ""} onClick={() => setPage(page + 1)} />
-        </div>
+            <div className="navIcons">
+              <FaChevronCircleLeft className={page == 0 ? "disabled" : ""} onClick={() => setPage(page - 1)}/>
+              <FaChevronCircleRight className={page >= condCount - columns ? "disabled" : ""} onClick={() => setPage(page + 1)} />
+            </div>
+            </div>
         <div className="cardWrap" >
         {transition.map(({item, props: { xy, column, ...rest }, key}) => (
             <animated.div 

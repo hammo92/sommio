@@ -6,7 +6,7 @@ const Goodbye = () => {
   return (
  
     <div className="goodquiz-boxs">
-      <Head>
+      <Head type={1}>
       Goodbye stress, hello rest.
       </Head>
       <Para>

@@ -44,31 +44,58 @@
     position: relative;
     overflow: hidden;
     padding-bottom: 40px;
-    margin-top: -94px;
+    
+
+    &.shiftUp{
+        margin-top: -94px;
+        .helpHeading{
+            border-bottom: solid 2px rgba(255, 255, 255, 0.3);
+            margin: 0 0 40px 0;
+            padding-bottom: 20px;
+        }
+    
+    }
+    &.noShift{
+        .helpHeading{
+            display:flex;
+            margin: 10px 0 20px 0;
+            position:relative;
+            padding:20px 0;
+            align-items: center;
+            justify-content: space-between;
+            .navIcons{
+                
+            }
+        
+        }
+    
+    }
 
     .helpHeading{
         display:flex;
-        align-items:center;
-        margin: 0 0 40px 0;
-        border-bottom: solid 2px rgba(255, 255, 255, 0.3);
-        padding-bottom: 20px;
-
-        svg{
-            height:50px;
-            width:50px;
-            color:$madang;
-            cursor:pointer;
-            transition:opacity 0.3s;
-            &:nth-child(2){
-                margin-right:15px
+        align-items:center;   
+        
+        .navIcons{
+            svg{
+                height:50px;
+                width:50px;
+                color:$madang;
+                cursor:pointer;
+                transition:opacity 0.3s;
+                &:nth-child(1){
+                    margin-right:15px
+                }
+                &.disabled{
+                    pointer-events: none;
+                    opacity: 0.3;
+                }
+    
+                
             }
-            &.disabled{
-                pointer-events: none;
-                opacity: 0.3;
-            }
-
-            
         }
+        
+
+        
         h3 {
             display: block;
             font-size: 60px;

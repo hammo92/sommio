@@ -1,25 +1,44 @@
 .quiz-boxs {
     display: flex;
     flex-wrap: wrap;
-    border-left: solid 2px rgba($white, 0.3);
-    padding: 92px 0 105px 65px;
-    //background: url(/blackboard.png) center center no-repeat;
-    background-size: cover;
-    height:100%;
-    z-index: 9;
-
-    &::before {
-        content: '';
-        position: absolute;
-        left: 0%;
-        right: 0%;
-        bottom: 0;
-        top: 0;
-        background: url(/blackboard.png)  center center no-repeat;
-        background-size: 130% auto;
-        opacity:0.1;
-        z-index: 0;
+    .quizText{
+        display: flex;
+        flex-wrap: wrap;
+        z-index: 9;
     }
+
+    &.wide{
+        flex-direction: row;
+        background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);
+        .quizText{
+            align-content:center;
+            padding:30px
+        }
+        .image{
+            img{width:100%}
+        }
+    }
+
+    &.thin{
+        
+        border-left: solid 2px rgba($white, 0.3);
+        padding: 92px 0 105px 65px;
+        height: 100%;
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0%;
+            right: 0%;
+            bottom: 0;
+            top: 0;
+            background: url(/blackboard.png)  center center no-repeat;
+            background-size: 130% auto;
+            opacity:0.1;
+            z-index: 0;
+        }
+    }
+
+    
 
     h3 {
         font-size: 60px;

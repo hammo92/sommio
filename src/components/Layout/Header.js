@@ -159,7 +159,7 @@ const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, pr
                     <Link to="/products">Shop</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/about">Learn</Link>
+                    <Link to="/learn">Learn</Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/contact">Contact us</Link>

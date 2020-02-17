@@ -3,8 +3,11 @@ import { Field, Form } from 'react-final-form'
 import axios from 'axios'
 import { navigate } from 'gatsby'
 import Layout from "../components/Layout/Layout";
+import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import Para from '../components/AnimatedText/Para'
+import Head from '../components/AnimatedText/Head'
 
-const Contact = () => {
+const ContactInner = () => {
   const [values, setValues] = useState('')
 
   const url = 'https://sommio.netlify.com/.netlify/functions/contact_form'
@@ -32,7 +35,10 @@ const Contact = () => {
   }
 
   return (
-    <Layout>
+    <div className="container-fluid contactForm">
+    <Head type={1}>
+      Get in touch
+    </Head>
     <Form onSubmit={handleForm}>
       {({ handleSubmit, form, submitting, pristine, values }) => {
         return (
@@ -109,6 +115,7 @@ const Contact = () => {
                       {...input}
                       type="text"
                       placeholder="Message"
+                      component="textarea"
                       id="message"
                       onChange={e => {
                         input.onChange(e)
@@ -123,13 +130,26 @@ const Contact = () => {
               </Field>
             </div>
             <div>
-              <button type="submit">Submit</button>
+              <button className="btn btn-info ml-auto" type="submit">Submit</button>
             </div>
           </form>
         )
       }}
     </Form>
-    </Layout>
+    </div>
+
   )
 }
-export default Contact
+
+const ContactPage = () => {
+  return (
+    <TransitionState>
+      {({transitionStatus}) => (
+        <Layout transitionStatus={transitionStatus}>
+          <ContactInner transitionStatus={transitionStatus}/>
+        </Layout>
+      )}
+    </TransitionState>
+  )
+}
+export default ContactPage

@@ -17,18 +17,26 @@ export const QuizButton = () => {
 }
 
 
-const Quiz = () => {
+const Quiz = ({display}) => {
   
   return (
-    <div className="quiz-boxs" id="start">
-      <Head>
-      Is a weighted blanket, a good fit for you.
-      </Head>
-      <Para>
-      Take our short quiz to discover whether a sommio weighted 
-      blanket could help you sleep better and enjoy lower stress
-      </Para>
-      <QuizButton />
+    <div className={display === "wide" ? "quiz-boxs wide": "quiz-boxs thin"} id="start">
+      {display === "wide" && 
+      <div className="col-4 image">
+        <img src="/blackboard.png" />
+      </div>
+      }
+      <div className={display === "wide" ? "col-8 quizText" : "quizText"}>
+      
+        <Head>
+        Is a weighted blanket, a good fit for you.
+        </Head>
+        <Para>
+        Take our short quiz to discover whether a sommio weighted 
+        blanket could help you sleep better and enjoy lower stress
+        </Para>
+        <QuizButton />
+      </div>
     </div>
   )
 }
