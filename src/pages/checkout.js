@@ -10,8 +10,9 @@ import PaymentPage from '../components/Checkout/paymentPage'
 import ReviewOrder from '../components/Checkout/ReviewOrder'
 import OrderConfirmation from '../components/Checkout/OrderConfirmation'
 import Layout from "../components/Layout/Layout";
+import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 
-const CheckoutPage = () => {
+const CheckoutInner = () => {
   const { isEmpty } = useContext(CartContext)
   const { testIsEmpty } = useContext(TestCartContext)
 
@@ -52,7 +53,6 @@ const CheckoutPage = () => {
     return <p className="text-center">Your cart is empty</p>
 
   return (
-    <Layout>
       <div className="flex flex-wrap lg:-mx-4">
         <div className="custom_cart">
           <div className={'cart_first' + (!isEditable ? ' purple' : ' ')}>
@@ -81,7 +81,17 @@ const CheckoutPage = () => {
           </div>
         </div>
       </div>
-    </Layout>
+  )
+}
+const CheckoutPage = () => {
+  return (
+    <TransitionState>
+      {({transitionStatus}) => (
+        <Layout transitionStatus={transitionStatus}>
+          <CheckoutInner transitionStatus={transitionStatus}/>
+        </Layout>
+      )}
+    </TransitionState>
   )
 }
 export default CheckoutPage

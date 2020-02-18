@@ -168,7 +168,7 @@ const ProductPageInner = ({transitionStatus, data : { product, contentfulProduct
               <Col md={3} className="justify-content-md-center d-flex">
                 <ul>
                 {Features.map((element, index) => (
-                  <li >{element.title}</li>
+                  <li key={index * Math.random()}>{element.title}</li>
                 ))}
                 </ul>
               </Col>

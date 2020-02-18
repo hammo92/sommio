@@ -47,6 +47,15 @@ p {
   flex-wrap: wrap;
   width: 100%;
   position: relative;
+  margin-bottom:0px;
+
+
+  span{
+    position:absolute;
+    top:2px;
+    right:15px;
+    color:red;
+  }
 
   input {
     + label {
@@ -89,13 +98,13 @@ p {
       text-overflow: ellipsis;
       position: absolute;
       top: 20px;
-      left: 2px;
+      left: 5px;
     }
 
     &:focus + label,
     &:not(:placeholder-shown) + label {
       top: 0px;
-      left: 2px;
+      left: 5px;
       cursor:url('/point.svg'),auto;
       position: absolute;
       font-size: 12px;

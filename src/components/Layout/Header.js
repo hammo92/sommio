@@ -5,6 +5,8 @@ import { navigate } from 'gatsby'
 import Builton from '@builton/core-sdk'
 import { CartContext, CheckoutContext, FirebaseContext, TestCartContext } from '../../context'
 import {useSpring, animated, config} from 'react-spring'
+import { useStateValue } from '../../context/SiteContext'
+import CartIcon from '../../images/shopping-basket-duotone.svg'
 // import base64 from 'base-64'
 
 
@@ -20,7 +22,9 @@ import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 
 
+
 const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, props) => {
+  const [{ cart }, dispatch] = useStateValue();
   const { orderId } = useContext(CheckoutContext)
   const { setCartData, setUserBuilton } = useContext(CartContext)
   const { set_cart, fetchCartDataFromStorage } = useContext(TestCartContext)
@@ -29,7 +33,7 @@ const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, pr
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [modal, setModal] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  
+  const { testIsEmpty, testCount } = useContext(TestCartContext)
   const toggleModal = () => setModal(!modal)
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen)
 
@@ -43,6 +47,14 @@ const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, pr
     }
     
   })
+  const handleCart = () => {
+    console.log("clicked")
+    console.log("cart state => ", cart)
+    dispatch({
+    type: 'setCart',
+    setCart: {drawer: true}
+    })
+  }
 
   useEffect(() => {
     const lazyApp = import('firebase')
@@ -184,7 +196,12 @@ const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, pr
                 </ul>
                 <ul className="navbar-nav cart-boxs">
                   <li className="nav-item">
-                    <CartButton />
+                    <button onClick={handleCart}>
+                    <img src={CartIcon} />
+                    <span className="count-number">
+                      {testIsEmpty && testCount === 0 ? 0 : testCount}
+                    </span>
+                  </button>
                   </li>
                 </ul>
               </div>

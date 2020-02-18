@@ -1,28 +1,43 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import { graphql } from 'gatsby'
 
 import SEO from '../components/SEO'
 import PageTitle from '../components/PageTitle'
 import ProductGrid from '../components/ProductGrid'
+import Layout from "../components/Layout/Layout";
+import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 
-const IndexPage = ({ data: { allBuiltonProduct } }) => {
-  console.log('Index allBuiltonProduct =======>', allBuiltonProduct)
+const ProductsInner = ({products}) => {
+  console.log('Index allBuiltonProduct =======>', products)
 
   const baseProductList =
-    allBuiltonProduct &&
-    allBuiltonProduct.nodes.filter(mainProduct => {
+    products &&
+      products.nodes.filter(mainProduct => {
       return (
         mainProduct.parents.length < 1 && mainProduct.name !== 'Shipping cost'
       )
     })
 
   return (
-    <>
+    <Fragment>
       <SEO title="All Products" />
       <PageTitle>All Products</PageTitle>
-
       <ProductGrid products={baseProductList} />
-    </>
+      
+    </Fragment>
+  )
+}
+
+const ProductsPage = ({ data: {allBuiltonProduct} }) => {
+  console.log("data is =>", allBuiltonProduct)
+  return (
+    <TransitionState>
+      {({transitionStatus}) => (
+        <Layout transitionStatus={transitionStatus}>
+          <ProductsInner products={allBuiltonProduct} transitionStatus={transitionStatus}/>
+        </Layout>
+      )}
+    </TransitionState>
   )
 }
 
@@ -53,4 +68,4 @@ export const query = graphql`
   }
 `
 
-export default IndexPage
+export default ProductsPage

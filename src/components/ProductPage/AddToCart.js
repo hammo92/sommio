@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { CartContext } from '../../context/CartContext'
 import PlushImages from '../../images/plush.png'
 import SommioModal from '../modal.js'
-
+import { useStateValue } from '../../context/SiteContext'
 
 
 import {
@@ -57,6 +57,7 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     coverPrice
   } = useContext(CartContext)
   const { set_cart } = useContext(TestCartContext)
+  const [{ cart }, dispatch] = useStateValue();
 
   let weightSubProduct = []
   let coverSubProduct = []
@@ -169,12 +170,10 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   const handleAddToCart = () => {
     set_cart(testCart)
     setToggle()
-    let element = document.getElementsByTagName('body')[0]
-    if (toggle === false) {
-      element.classList.add('cartopen')
-    } else {
-      element.classList.remove('cartopen')
-    }
+    dispatch({
+      type: 'setCart',
+      setCart: {drawer: true}
+    })
   }
   let price =
     selectedProduct && selectedProduct.price + weightPrice + coverPrice

@@ -41,6 +41,7 @@
 @import "./homepage/HelpsWith.scss";
 
 @import "./learnPage/main.scss";
+@import "./cartDrawer.scss";
 
 @import "./contact.scss";
 
@@ -283,6 +284,17 @@
   padding: 0 0 25px;
 
   .shipping-boxs {
+    .row{
+      margin:10px 0 ;
+
+      .col-6,.col-12{
+        padding:0px;
+        &:nth-child(2){
+          padding-left:10px;
+        }
+
+      }
+    }
     height: calc(100vh - 19vh);
     overflow-y: auto;
     overflow-x: hidden;

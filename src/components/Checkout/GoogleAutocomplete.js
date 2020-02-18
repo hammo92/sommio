@@ -61,10 +61,10 @@ const LocationSearchInput = () => {
       searchOptions={searchOptions}
     >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-        <div>
+        <div className="frm_grp row">
           <Field name="postcode">
             {({ input, meta }) => (
-              <div className="form-group">
+              <div className="form-group col-12">
                 <input
                   type="text"
                   id="postcode"

@@ -6,6 +6,7 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 const Head = ({children, head, type}) => {
     const [isVisible, setVisibility] = useState(true)
+    console.log("currently visible =>",children,isVisible)
     const onChange = visiblity => {
         setVisibility(visiblity);
     };
@@ -21,8 +22,8 @@ const Head = ({children, head, type}) => {
             opacity: 0.3,
             transform: `translate3d(0px,30px,0)`,},
         to:{
-            opacity: isVisible ? 1 : 0.3,
-            transform: isVisible ? `translate3d(0,0px,0)` : `translate3d(0px,30px,0)`,
+            opacity: !isVisible ? 0.3 : 1,
+            transform: !isVisible ? `translate3d(0px,30px,0)` : `translate3d(0px,0px,0)`,
         },
         config,
         

@@ -9,7 +9,7 @@ import Header from './Header'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css'
 import '../../styles/main.scss'
-
+import Cart from '../CartButton/Cart'
 
 
 const toastOptions = {
@@ -50,7 +50,7 @@ const Layout = ({ children, transitionStatus }) => {
         human_id={builtonProduct.human_id}
         transitionStatus = {transitionStatus}
       />
-
+      <Cart />
       <main>{children}</main>
       <ToastContainer {...toastOptions} />
     </Fragment>  

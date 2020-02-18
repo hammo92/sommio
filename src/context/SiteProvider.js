@@ -11,6 +11,9 @@ const initialState = {
       sleepScore:0,
       stressScore:0
     },
+    cart:{
+      drawer:false,
+    },
   };
   
   const reducer = (state, action) => {
@@ -66,6 +69,11 @@ const initialState = {
             stressScore:action.stress
   
           }
+        };
+        case 'setCart':
+        return {
+          ...state,
+          cart:action.setCart
         };
         
         

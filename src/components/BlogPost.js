@@ -4,7 +4,7 @@ import { useStaticQuery } from 'gatsby'
 export default function BlogPost() {
   const contentfulData = useStaticQuery(graphql`
     query {
-      contentfulBlogPost {
+      contentfulArticle {
         author {
           title
           id
@@ -26,12 +26,12 @@ export default function BlogPost() {
   return (
     <div className="mb-10">
       <h4 className="mb-3">BLOG PAGE</h4>
-      <p className="mb-1">Title :{contentfulData.contentfulBlogPost.title}</p>
+      <p className="mb-1">Title :{contentfulData.contentfulArticle.title}</p>
       <p className="mb-1">
-        Authour :{contentfulData.contentfulBlogPost.author.title}
+        Authour :{contentfulData.contentfulArticle.author.title}
       </p>
       <p className="mb-1">
-        Description :{contentfulData.contentfulBlogPost.description.description}
+        Description :{contentfulData.contentfulArticle.description.description}
       </p>
     </div>
   )

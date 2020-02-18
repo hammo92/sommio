@@ -111,10 +111,10 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
       {({ handleSubmit, form, submitting, pristine, values }) => {
         return (
           <form onSubmit={handleSubmit}>
-            <div className="frm_grp">
+            <div className="frm_grp row ">
               <Field name="first_name">
                 {({ input, meta }) => (
-                  <div className="form-group">
+                  <div className="form-group col-6">
                     <input
                       {...input}
                       type="text"
@@ -132,12 +132,9 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                   </div>
                 )}
               </Field>
-            </div>
-
-            <div className="frm_grp">
               <Field name="last_name">
                 {({ input, meta }) => (
-                  <div className="form-group">
+                  <div className="form-group col-6 ">
                     <input
                       {...input}
                       type="text"
@@ -157,7 +154,8 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
               </Field>
             </div>
 
-            <div className="frm_grp">
+            <div className="frm_grp row">
+              <div className="form-group col-12">
               <Field
                 onChange={e => formValues(e)}
                 name="country"
@@ -186,21 +184,23 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                     </option>
                   ))}
               </Field>
+              </div>
             </div>
 
-            <div className="my-2 w-full">
+
               {gmapsLoaded && <LocationSearchInput />}
-            </div>
 
-            <div className="frm_grp">
+
+            <div className="frm_grp row">
               <Field name="line_1">
                 {({ input, meta }) => (
-                  <div className="form-group">
+                  <div className="form-group col-12">
                     <input
                       {...input}
                       type="text"
                       placeholder="Address line 1"
                       id="address_line_1"
+                      
                       onChange={e => {
                         input.onChange(e)
                         if (input.onChange) {
@@ -215,10 +215,10 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
               </Field>
             </div>
 
-            <div className="frm_grp">
+            <div className="frm_grp row">
               <Field name="city">
                 {({ input, meta }) => (
-                  <div className="form-group">
+                  <div className="form-group col-12">
                     <input
                       {...input}
                       type="text"
@@ -238,11 +238,10 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
               </Field>
             </div>
 
-            <div className="md:flex -mx-2 frm_half">
-              <div className="my-2 w-full">
+            <div className="frm_grp row">
                 <Field name="county">
                   {({ input, meta }) => (
-                    <div className="form-group">
+                    <div className="form-group col-12">
                       <input
                         {...input}
                         type="text"
@@ -260,12 +259,12 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                     </div>
                   )}
                 </Field>
-              </div>
+
             </div>
-            <div className="frm_grp">
+            <div className="frm_grp row">
               <Field name="phone">
                 {({ input, meta }) => (
-                  <div className="form-group">
+                  <div className="form-group col-12">
                     <input
                       {...input}
                       type="text"
@@ -283,12 +282,13 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                   </div>
                 )}
               </Field>
+              
             </div>
 
-            <div className="frm_grp">
+            <div className="frm_grp row">
               <Field name="email">
                 {({ input, meta }) => (
-                  <div className="form-group">
+                  <div className="form-group col-12">
                     <input
                       {...input}
                       type="text"
@@ -310,10 +310,10 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
             </div>
             {!isCurrentUser && (
               <>
-                <div className="frm_grp">
+                <div className="frm_grp row">
                   <Field name="password">
                     {({ input, meta }) => (
-                      <div className="form-group">
+                      <div className="form-group col-6">
                         <input
                           {...input}
                           type="password"
@@ -327,12 +327,9 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                       </div>
                     )}
                   </Field>
-                </div>
-
-                <div className="frm_grp">
                   <Field name="confirm_password">
                     {({ input, meta }) => (
-                      <div className="form-group">
+                      <div className="form-group col-6">
                         <input
                           {...input}
                           type="password"
