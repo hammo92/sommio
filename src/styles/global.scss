@@ -61,7 +61,7 @@ p {
     + label {
       font-size: 14px;
       line-height: 20px;
-      color: #555555;
+      color: #8db1bf;
       transition: ease-in-out 0.3s;
       margin: 0;
       z-index: 0;
@@ -98,13 +98,13 @@ p {
       text-overflow: ellipsis;
       position: absolute;
       top: 20px;
-      left: 5px;
+      left: 10px;
     }
 
     &:focus + label,
     &:not(:placeholder-shown) + label {
       top: 0px;
-      left: 5px;
+      left: 10px;
       cursor:url('/point.svg'),auto;
       position: absolute;
       font-size: 12px;
@@ -117,15 +117,22 @@ p {
 }
 
 .autocomplete-dropdown-container {
-  color: #000;
+
+  color: #fff;
+  width:100%;
+  background:$purpleB;
+
 
   .suggestion-item {
     padding: 5px 10px;
-    color: #000;
+    color: #8db1bf;
     line-height: 1.2;
+    background:$purpleB;
   }
   .suggestion-item--active{
-    color:#555555
+    color:#ffffff;
+    padding: 5px 10px;
+    line-height: 1.2;
   }
 }
 .animationOverlay{

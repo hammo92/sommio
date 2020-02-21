@@ -73,9 +73,9 @@ const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
             <span className="text">DELIVERY INFORMATION</span>
           </h2>
           {!currentUser && (
-            <div className="frm_grp">
+            <div className="frm_grp checkoutAccount">
               <p>Already have an account ?</p>
-              <button onClick={handleLogin}>Login</button>
+              <button className="btn btn-info ml-auto" onClick={handleLogin}>Login</button>
             </div>
           )}
 
