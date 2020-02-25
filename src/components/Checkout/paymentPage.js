@@ -3,40 +3,30 @@ import { Form } from 'react-final-form'
 import { CardElement, injectStripe } from 'react-stripe-elements'
 import {
   CheckoutContext,
-  CartContext,
+  ShippingAndUserDetailContext,
   FirebaseContext,
-  TestCartContext
+  CartContext
 } from '../../context'
 import ShippingSelectOption from './shippingSelectOption'
 import stripeValidation from '../../validation/stripe'
 import axios from 'axios'
 const PaymentPage = ({ changeFormEnable, isEditable }) => {
-  const {
-    shipping_address,
-
-    shippingRatesArray,
-    builton
-  } = useContext(CartContext)
   const { paymentData, paymentDetails } = useContext(CheckoutContext)
+  const { shipping_address, builton } = useContext(ShippingAndUserDetailContext)
   const {
-    testProductsArray,
+    ProductsArray,
     shippingCost,
     shippingRate,
     shippingProvider
-  } = useContext(TestCartContext)
+  } = useContext(CartContext)
   const { firebase } = useContext(FirebaseContext)
   const [checkoutError, setCheckoutError] = useState(null)
   const [makeEnable, setMakeEnable] = useState(true)
-  // const enableForm =
-  //   shippingRatesArray &&
-  //   shippingRatesArray.map(
-  //     charge => charge && charge.total_charge && charge.total_charge.amount
-  //   )
+
   const shipmentProductId =
-    testProductsArray[0] && testProductsArray[0].shippingProductId
+    ProductsArray[0] && ProductsArray[0].shippingProductId
 
   const url = `https://api.builton.dev/products/${shipmentProductId}`
-  console.log('payment testProduct testProductsArray => ', testProductsArray)
 
   const handlePayment = async values => {
     // shippingCost(shippingRate, shippingProvider)

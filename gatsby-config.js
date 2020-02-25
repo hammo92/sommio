@@ -35,8 +35,7 @@ module.exports = {
     },
     'gatsby-plugin-postcss',
     {
-       resolve: "gatsby-plugin-transition-link",    
-       
+      resolve: 'gatsby-plugin-transition-link'
     },
     {
       resolve: 'gatsby-plugin-purgecss',
@@ -45,7 +44,7 @@ module.exports = {
         purgeOnly: ['src/styles/main.css']
       }
     },
-    
+
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
@@ -62,9 +61,9 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-transformer-remark",
+      resolve: 'gatsby-transformer-remark',
       options: {
-        plugins: ["gatsby-remark-component"]
+        plugins: ['gatsby-remark-component']
       }
     },
     {

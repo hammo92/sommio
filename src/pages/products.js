@@ -1,18 +1,18 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 
 import SEO from '../components/SEO'
 import PageTitle from '../components/PageTitle'
 import ProductGrid from '../components/ProductGrid'
-import Layout from "../components/Layout/Layout";
+import Layout from '../components/Layout/Layout'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 
-const ProductsInner = ({products}) => {
+const ProductsInner = ({ products }) => {
   console.log('Index allBuiltonProduct =======>', products)
 
   const baseProductList =
     products &&
-      products.nodes.filter(mainProduct => {
+    products.nodes.filter(mainProduct => {
       return (
         mainProduct.parents.length < 1 && mainProduct.name !== 'Shipping cost'
       )
@@ -23,18 +23,19 @@ const ProductsInner = ({products}) => {
       <SEO title="All Products" />
       <PageTitle>All Products</PageTitle>
       <ProductGrid products={baseProductList} />
-      
     </Fragment>
   )
 }
 
-const ProductsPage = ({ data: {allBuiltonProduct} }) => {
-  console.log("data is =>", allBuiltonProduct)
+const ProductsPage = ({ data: { allBuiltonProduct } }) => {
   return (
     <TransitionState>
-      {({transitionStatus}) => (
+      {({ transitionStatus }) => (
         <Layout transitionStatus={transitionStatus}>
-          <ProductsInner products={allBuiltonProduct} transitionStatus={transitionStatus}/>
+          <ProductsInner
+            products={allBuiltonProduct}
+            transitionStatus={transitionStatus}
+          />
         </Layout>
       )}
     </TransitionState>

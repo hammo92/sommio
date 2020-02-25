@@ -1,347 +1,243 @@
-import React, { useContext, createContext, useReducer } from 'react'
-import { toast } from 'react-toastify'
-import axios from 'axios'
-import { FirebaseContext } from './FirebaseContext'
-import { TestCartContext } from './TestCartConext'
-import { CheckoutContext } from './CheckoutContext'
-export const SET_RATES = 'SET_RATES'
-export const SET_ADDRESS = 'SET_ADDRESS'
-export const SET_LOADING = 'SET_LOADING'
+import React, { createContext, useReducer } from 'react'
+import { StaticQuery } from 'gatsby'
+import _ from 'lodash'
+let CartContext
+const { Provider, Consumer } = (CartContext = createContext())
+export const SET_CART = 'SET_CART'
+export const REMOVE_CART = 'REMOVE_CART'
+export const UPDATE_CART = 'UPDATE_CART'
+export const FETCH_CART_DATA = 'FETCH_CART_DATA'
 export const CLEAN_CART = 'CLEAN_CART'
-export const SET_TOGGLE = 'SET_TOGGLE'
-export const SET_VARIATION = 'SET_VARIATION'
+export const SET_SELCETED_RATES = 'SET_SELCETED_RATES'
 export const SET_BUILTON_PRODUCT_PRICE = 'SET_BUILTON_PRODUCT_PRICE'
-export const USER_DETAIL_BUILTON = 'USER_DETAIL_BUILTON'
-export const CART_BUILTON = 'CART_BUILTON'
-export const AUTOCOMPLETE_ADDRESS = 'AUTOCOMPLETED_ADDRESS'
-export const SET_POSTAL_CODE = 'SET_POSTAL_CODE'
-export const SET_ADDRESS_ONCHANGE = 'SET_ADDRESS_ONCHANGE'
 
 export const initialState = {
-  errorMessage: '',
-  builton: '',
-  user: { email: '', password: '' },
-  isAddToCart: false,
-  price: 0,
-  subTotalBuilton: 0,
-  weihtPrice: 0,
+  ProductsArray: [],
+  CartObj: {
+    type: '',
+    main_product_id: '',
+    coverId: '',
+    weightId: '',
+    coverName: '',
+    weightName: '',
+    id: '',
+    name: '',
+    quantityBuilton: '',
+    human_id: '',
+    description: '',
+    price: '',
+    final_price: '',
+    main_product: '',
+    image_url: '',
+    media: '',
+    coverPrice: '',
+    weightPrice: '',
+    subProduct: '',
+    isAddToCart: '',
+    currency: '',
+    shippingProductId: ''
+  },
+  count: 0,
+  productSubTotal: 0,
+  total: 0,
+  shippingRate: 0,
+  shippingProvider: '',
+  weightPrice: 0,
   coverPrice: 0,
-  products: [],
   Size: 'Single',
   Weight: null,
-  Cover: null,
-  quantityBuilton: 0,
-  countBuilton: 0,
-  loading: false,
-  rate: 0,
-  paymentButton: false,
-  shippingProvider: null,
-  orderCartItems: [],
-  toggle: false,
-  shippingRate: 0,
-  shipping_address: {
-    first_name: '',
-    last_name: '',
-    country: '',
-    city: '',
-    postcode: '',
-    county: '',
-    line_1: '',
-    phone: '',
-    email: ''
-  }
+  Cover: null
 }
 
 export default function reducer(state, action) {
   switch (action.type) {
-    case SET_RATES:
-      const shippingRatesArray =
-        action.payload && action.payload.data.data.rates
-      let loadingAfterRate = false
-      console.log('shippingRatesArray => ', shippingRatesArray)
+    case SET_CART:
+      const cartItemObj = action.payload
 
-      let test = {
-        ...state,
-        shippingRatesArray,
-        loading: loadingAfterRate
+      const prods = state.ProductsArray
+
+      if (state.ProductsArray.length === 0) {
+        prods.push(cartItemObj)
+      } else {
+        let x = _.find(state.ProductsArray, {
+          main_product_id: cartItemObj.main_product_id,
+          coverId: cartItemObj.coverId,
+          weightId: cartItemObj.weightId
+        })
+        if (x === undefined) {
+          prods.push(cartItemObj)
+        }
       }
+      let count = _.sumBy(prods, data => {
+        return data.quantityBuilton
+      })
+      let productSubTotal = _.sumBy(state.ProductsArray, data => {
+        return data.final_price * data.quantityBuilton
+      })
+      let finalTotal = productSubTotal + state.shippingRate
+      console.log('finalTotal  => ', finalTotal)
 
-      return test
-
-    case SET_ADDRESS:
-      const shipping_address = action.shippingData
-      const customerDetails = action.user
-
-      const paymentButton = true
+      sessionStorage.setItem('cartDetails', JSON.stringify(prods))
 
       return {
         ...state,
-        shipping_address: shipping_address,
-        customerDetails,
-        paymentButton: paymentButton
+        CartObj: cartItemObj,
+        ProductsArray: prods,
+        count: count,
+        productSubTotal: productSubTotal,
+        total: finalTotal
       }
-    case SET_ADDRESS_ONCHANGE:
-      let data = state.shipping_address
 
-      if (action.shippingDataOnchange.first_name) {
-        data.first_name = action.shippingDataOnchange.first_name
-      } else if (action.shippingDataOnchange.last_name) {
-        data.last_name = action.shippingDataOnchange.last_name
-      } else if (action.shippingDataOnchange.phone) {
-        data.phone = action.shippingDataOnchange.phone
-      } else if (action.shippingDataOnchange.email) {
-        data.email = action.shippingDataOnchange.email
-      } else if (action.shippingDataOnchange.city) {
-        data.city = action.shippingDataOnchange.city
-      } else if (action.shippingDataOnchange.county) {
-        data.county = action.shippingDataOnchange.county
-      } else if (action.shippingDataOnchange.line_1) {
-        data.line_1 = action.shippingDataOnchange.line_1
-      } else if (action.shippingDataOnchange.country) {
-        data.country = action.shippingDataOnchange.country
+    case UPDATE_CART:
+      console.log('[testcart] UPDATE_CART => ', action)
+
+      const product = action.payload.product
+      const flag = action.payload.flag
+
+      let y = _.findIndex(state.ProductsArray, product)
+
+      if (flag === 1) {
+        let updateToProduct = product
+        updateToProduct.quantityBuilton = updateToProduct.quantityBuilton + 1
+        state.ProductsArray.splice(y, 1, updateToProduct)
+      } else if (flag === 0) {
+        let updateToProduct = product
+        updateToProduct.quantityBuilton = updateToProduct.quantityBuilton - 1
       }
+      let updateCount = _.sumBy(state.ProductsArray, data => {
+        return data.quantityBuilton
+      })
+      let prodSubTotal = _.sumBy(state.ProductsArray, data => {
+        return data.final_price * data.quantityBuilton
+      })
+      let updateTotal = prodSubTotal + state.shippingRate
+
+      sessionStorage.setItem('cartDetails', JSON.stringify(state.ProductsArray))
 
       return {
         ...state,
-        ...shipping_address,
-        shipping_address: data
+        count: updateCount,
+        productSubTotal: prodSubTotal,
+        total: updateTotal
       }
 
-    case SET_LOADING:
-      const loading = true
+    case REMOVE_CART:
+      let selectedProduct = action.payload
 
-      return { loading: loading }
+      let removeCount
+      let z = _.findIndex(state.ProductsArray, selectedProduct)
+      state.ProductsArray.splice(z, 1)
+      console.log('Remove state.ProductsArray => ', state.ProductsArray)
 
-    case CLEAN_CART:
-      return initialState
+      removeCount = _.sumBy(state.ProductsArray, data => {
+        return data.quantityBuilton
+      })
+      let removeSubTotal = _.sumBy(state.ProductsArray, data => {
+        return data.final_price * data.quantityBuilton
+      })
+      let removeTotal = removeSubTotal + state.shippingRate
+      console.log('[remove cart ]state.ProductsArray => ', state.ProductsArray)
 
-    case SET_VARIATION:
-      var obj = {}
-
-      const price = action.payload.price
-      obj[action.payload.name] = action.payload.value
+      sessionStorage.setItem('cartDetails', JSON.stringify(state.ProductsArray))
 
       return {
         ...state,
-        ...obj,
-        SubproductPrice: price
+        count: removeCount,
+        productSubTotal: removeSubTotal,
+        total: removeTotal,
+        ProductsArray: state.ProductsArray
       }
-    case SET_TOGGLE:
+
+    case FETCH_CART_DATA:
+      const cartProduct = action.payload
+      console.log('cartProduct ================> ', cartProduct)
+
+      let updateTocount = _.sumBy(cartProduct, data => {
+        return data.quantityBuilton
+      })
+      let updateToSubTotal = _.sumBy(cartProduct, data => {
+        return data.final_price * data.quantityBuilton
+      })
+      let fetchTotal = updateToSubTotal + state.shippingRate
+      console.log('[testcart] updateTocount => ', updateTocount)
+
       return {
         ...state,
-        toggle: !state.toggle
+        ProductsArray: cartProduct,
+        count: updateTocount,
+        productSubTotal: updateToSubTotal,
+        total: fetchTotal
+      }
+
+    case SET_SELCETED_RATES:
+      const shippingRate = action.payload.convertedRates
+        ? action.payload.convertedRates
+        : initialState.shippingRate
+      let total = state.productSubTotal + shippingRate
+
+      return {
+        ...state,
+        shippingRate: shippingRate,
+        shippingProvider: action.payload.shipping_provider,
+        total: total
       }
     case SET_BUILTON_PRODUCT_PRICE:
       console.log('SET_BUILTON_PRODUCT_PRICE action => ', action)
 
-      const weightPrice = action.payload.selectWeightPrice
-      const coverPrice = action.payload.selectCoverPrice
-      const selectedWeight = action.payload.selectedWeight
-      const selectedCover = action.payload.selectedCover
+      let weightPrice = action.payload.selectWeightPrice
+      let coverPrice = action.payload.selectCoverPrice
+      let selectedWeight = action.payload.selectedWeight
+      let selectedCover = action.payload.selectedCover
 
       return {
         ...state,
         weightPrice: weightPrice,
         coverPrice: coverPrice,
-        selectedWeight,
-        selectedCover,
-        shippingSubProduct: action.payload.shippingSubProduct
+        Weight: selectedWeight[0] && selectedWeight[0].name,
+        Cover: selectedCover[0] && selectedCover[0].name
       }
 
-    case USER_DETAIL_BUILTON:
-      const builton = action.builton
+    case CLEAN_CART:
+      console.log('CLEAN_CART action => ', action, initialState)
+      return { ...initialState, ProductsArray: [] }
 
-      return {
-        ...state,
-        user: action.data,
-        builton: builton
-      }
-
-    case AUTOCOMPLETE_ADDRESS:
-      let formData = state.shipping_address
-      const address = action.address[0]
-      const address_components = action.address[0].address_components
-      let county,
-        city,
-        SelectedCountry,
-        postal_code,
-        street_number,
-        route,
-        area,
-        locality,
-        administrative_area_level_2,
-        neighborhood,
-        political,
-        postal_town,
-        countryCode
-
-      address_components.map(data => {
-        if (data.types[0] === 'street_number') {
-          street_number = data.long_name
-        } else if (data.types[0] === 'route') {
-          route = data.long_name
-        } else if (data.types[0] === 'postal_town') {
-          postal_town = data.long_name
-        } else if (data.types[0] === 'locality') {
-          locality = data.long_name // area/city
-        } else if (data.types[0] === 'political') {
-          political = data.long_name //area
-        } else if (data.types[0] === 'neighborhood') {
-          neighborhood = data.long_name
-        } else if (data.types[0] === 'administrative_area_level_2') {
-          administrative_area_level_2 = data.long_name //city
-        } else if (data.types[0] === 'administrative_area_level_1') {
-          formData.county = data.long_name
-        } else if (data.types[0] === 'country') {
-          formData.country = data.long_name
-          countryCode = data.short_name
-        } else if (data.types[0] === 'postal_code') {
-          formData.postcode = data.long_name
-        }
-      })
-
-      return {
-        ...state,
-        shipping_address: {
-          ...formData,
-          city: postal_town ? postal_town : locality,
-          line_1: `${street_number ? street_number + ',' : ''}${
-            neighborhood ? neighborhood + ',' : ''
-          }${political ? political + ',' : ''}${route ? route : ''}`
-        },
-        countryCode
-      }
-    case SET_POSTAL_CODE:
-      let myData = state.shipping_address
-      myData.postcode = action.postalCode
-      return {
-        ...state,
-        shipping_address: myData
-      }
     default:
       return state
   }
 }
 
-let CartContext
-
-const { Provider, Consumer } = (CartContext = createContext())
-
 function CartProvider({ children, ...props }) {
-  const { firebase } = useContext(FirebaseContext)
-  const { productSubTotal } = useContext(TestCartContext)
-
   const [state, dispatch] = useReducer(reducer, initialState)
-  let isEmpty = state.countBuilton === 0
-
-  const shippingCostCalculate = async (
-    user,
-    shippingData,
-    cartItemsBuilton
-  ) => {
-    console.log('CartContext cartItemsBuilton => ', cartItemsBuilton)
-
-    dispatch({ type: SET_ADDRESS, user, shippingData })
-
-    const details = JSON.parse(localStorage.getItem('details'))
-
-    var items = []
-
-    // const cartDetails = JSON.parse(sessionStorage.getItem('cartDetails'))
-
-    for (const item of cartItemsBuilton) {
-      const finalPrice = productSubTotal
-      items.push({
-        description: item.description,
-        origin_country: 'USA',
-        quantity: item.quantityBuilton,
-        price: {
-          amount: finalPrice,
-          currency: item.currency
-        },
-        weight: {
-          value: 0.6,
-          unit: 'kg'
-        },
-        sku: item.human_id
-      })
-    }
-    console.log('CartContext items => ', items)
-
-    let data = {
-      async: false,
-      shipper_accounts: [
-        {
-          id: 'a2b8a970-6fe5-4491-b9e2-8e3a6d17cd08'
-        }
-      ],
-      shipment: {
-        parcels: [
-          {
-            description: 'Food XS',
-            box_type: 'custom',
-            weight: {
-              value: 10,
-              unit: 'kg'
-            },
-            dimension: {
-              width: 20,
-              height: 40,
-              depth: 40,
-              unit: 'cm'
-            },
-            items: items
-          }
-        ],
-        ship_from: {
-          contact_name: 'Sommio',
-          street1: 'Unit 17 Harnham Trading Estate',
-          city: 'Salisbury',
-          state: 'Maryland',
-          country: 'GBR',
-          postal_code: 'SP2 8NW',
-          phone: '96679797',
-          email: 'test@test.test',
-          type: 'residential'
-        },
-        ship_to: {
-          contact_name: `${shippingData.first_name}`,
-          street1: `${shippingData.line_1}`,
-          city: `${shippingData.city}`,
-          state: `${shippingData.county}`,
-          postal_code: `${shippingData.postcode}`,
-          country: `${shippingData.country}`,
-          phone: '7657168649',
-          email: `${details && details.email}`,
-          type: 'residential'
-        }
-      }
-    }
-
-    const apiKey = process.env.GATSBY_POSTMEN_API_KEY
-
-    let payload = await axios.post(
-      'https://sandbox-api.postmen.com/v3/rates',
-      data,
-      { headers: { 'postmen-api-key': apiKey } }
-    )
-
-    dispatch({ type: SET_RATES, payload })
+  let isEmpty = state.count === 0
+  const set_cart = payload => {
+    dispatch({ type: SET_CART, payload: payload })
   }
-
-  const setToggle = () => {
-    dispatch({ type: SET_TOGGLE })
+  const update_cart = (product, flag) => {
+    dispatch({ type: UPDATE_CART, payload: { product, flag } })
   }
-  function setVariation(name, value, price) {
-    dispatch({
-      type: SET_VARIATION,
-      payload: { name, value, price }
-    })
+  const remove_cart = payload => {
+    dispatch({ type: REMOVE_CART, payload: payload })
   }
-  const deleteCart = () => {
+  const fetchCartDataFromStorage = payload => {
+    dispatch({ type: FETCH_CART_DATA, payload: payload })
+  }
+  const deleteCartData = () => {
     dispatch({ type: CLEAN_CART })
   }
+  const shippingCost = (convertedRates, shipping_provider) => {
+    dispatch({
+      type: SET_SELCETED_RATES,
+      payload: { convertedRates, shipping_provider }
+    })
+  }
+
   const setSubProductPrice = (selectedWeight, selectedCover) => {
+    console.log(
+      '[cartcontext] selectedWeight,selectedCover => ',
+      selectedWeight,
+      selectedCover
+    )
+
     const selectWeightPrice = selectedWeight[0] && selectedWeight[0].price
     const selectCoverPrice = selectedWeight[0] && selectedCover[0].price
     dispatch({
@@ -355,37 +251,19 @@ function CartProvider({ children, ...props }) {
     })
   }
 
-  const setUserBuilton = (data, builton) => {
-    dispatch({ type: USER_DETAIL_BUILTON, data, builton })
-  }
-  const cartBuilton = cart => {
-    dispatch({ type: CART_BUILTON, cart })
-  }
-  const setAddressFromAutoComplete = address => {
-    dispatch({ type: AUTOCOMPLETE_ADDRESS, address })
-  }
-  const setPostalCode = postalCode => {
-    dispatch({ type: SET_POSTAL_CODE, postalCode })
-  }
-  const setAddress = shippingDataOnchange => {
-    dispatch({ type: SET_ADDRESS_ONCHANGE, shippingDataOnchange })
-  }
   return (
     <Provider
       value={{
         ...state,
         ...props,
         isEmpty,
-        shippingCostCalculate,
-        setToggle,
-        setVariation,
-        setSubProductPrice,
-        setUserBuilton,
-        cartBuilton,
-        deleteCart,
-        setAddressFromAutoComplete,
-        setPostalCode,
-        setAddress
+        set_cart,
+        update_cart,
+        remove_cart,
+        shippingCost,
+        deleteCartData,
+        fetchCartDataFromStorage,
+        setSubProductPrice
       }}
     >
       {children}

@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { CartContext, FirebaseContext } from '../../context'
+import { ShippingAndUserDetailContext, FirebaseContext } from '../../context'
 import AddressFields from './AddressFields'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 import RegisterOrLogin from '../Checkout/RegisterOrLogin'
 
 const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
-  const { shipping_address, customerDetails } = useContext(CartContext)
+  const { shipping_address, customerDetails } = useContext(
+    ShippingAndUserDetailContext
+  )
   const { firebase } = useContext(FirebaseContext)
   const [modal, setModal] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
@@ -75,7 +77,9 @@ const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
           {!currentUser && (
             <div className="frm_grp checkoutAccount">
               <p>Already have an account ?</p>
-              <button className="btn btn-info ml-auto" onClick={handleLogin}>Login</button>
+              <button className="btn btn-info ml-auto" onClick={handleLogin}>
+                Login
+              </button>
             </div>
           )}
 

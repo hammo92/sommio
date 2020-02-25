@@ -3,10 +3,10 @@ import { Field, Form } from 'react-final-form'
 
 import country from '../../../countryWithThree'
 import {
-  CartContext,
+  ShippingAndUserDetailContext,
   FirebaseContext,
   CheckoutContext,
-  TestCartContext
+  CartContext
 } from '../../context'
 import validation from '../../validation/shippingFormValidation'
 import { log } from 'util'
@@ -19,14 +19,13 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   const {
     shipping_address,
     user,
-    customerDetails,
     shippingCostCalculate,
     builton,
     setUserBuilton,
     countryCode,
     setAddress
-  } = useContext(CartContext)
-  const { testProductsArray } = useContext(TestCartContext)
+  } = useContext(ShippingAndUserDetailContext)
+  const { ProductsArray } = useContext(CartContext)
 
   let countryWithThree = country.filter(data => {
     return data.alpha2.toUpperCase() === countryCode
@@ -56,7 +55,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
     if (firebase && firebase.auth().currentUser) {
       setErrorMessage('')
       toggleEditable(true)
-      shippingCostCalculate(user, values, testProductsArray)
+      shippingCostCalculate(user, values, ProductsArray)
     } else {
       setErrorMessage('')
       firebase &&
@@ -76,7 +75,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
 
             SetCurrentUser(resp.user)
             setUserBuilton(values.email, builton)
-            shippingCostCalculate(user, values, testProductsArray)
+            shippingCostCalculate(user, values, ProductsArray)
             toggleEditable(true)
           })
           .catch(error => {
@@ -156,40 +155,38 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
 
             <div className="frm_grp row">
               <div className="form-group col-12">
-              <Field
-                onChange={e => formValues(e)}
-                name="country"
-                component="select"
-              >
-                <option value={-1}>
-                  {shipping_address.country
-                    ? shipping_address.country
-                    : 'Select Country'}
-                </option>
-                {country.length &&
-                  country.map((cntry, i) => (
-                    <option
-                      selected={
-                        countryCode &&
-                        countryCode === cntry.alpha2.toUpperCase()
-                      }
-                      value={
-                        countryWithThree
-                          ? countryWithThree[0] && countryWithThree[0].alpha3
-                          : cntry.alpha3
-                      }
-                      key={i}
-                    >
-                      {cntry.name}
-                    </option>
-                  ))}
-              </Field>
+                <Field
+                  onChange={e => formValues(e)}
+                  name="country"
+                  component="select"
+                >
+                  <option value={-1}>
+                    {shipping_address.country
+                      ? shipping_address.country
+                      : 'Select Country'}
+                  </option>
+                  {country.length &&
+                    country.map((cntry, i) => (
+                      <option
+                        selected={
+                          countryCode &&
+                          countryCode === cntry.alpha2.toUpperCase()
+                        }
+                        value={
+                          countryWithThree
+                            ? countryWithThree[0] && countryWithThree[0].alpha3
+                            : cntry.alpha3
+                        }
+                        key={i}
+                      >
+                        {cntry.name}
+                      </option>
+                    ))}
+                </Field>
               </div>
             </div>
 
-
-              {gmapsLoaded && <LocationSearchInput />}
-
+            {gmapsLoaded && <LocationSearchInput />}
 
             <div className="frm_grp row">
               <Field name="line_1">
@@ -200,7 +197,6 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                       type="text"
                       placeholder="Address line 1"
                       id="address_line_1"
-                      
                       onChange={e => {
                         input.onChange(e)
                         if (input.onChange) {
@@ -239,27 +235,26 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
             </div>
 
             <div className="frm_grp row">
-                <Field name="county">
-                  {({ input, meta }) => (
-                    <div className="form-group col-12">
-                      <input
-                        {...input}
-                        type="text"
-                        placeholder="State / County / Region"
-                        id="county"
-                        onChange={e => {
-                          input.onChange(e)
-                          if (input.onChange) {
-                            formValues(e)
-                          }
-                        }}
-                      />
-                      <label for="county">State / County / Region</label>
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
-
+              <Field name="county">
+                {({ input, meta }) => (
+                  <div className="form-group col-12">
+                    <input
+                      {...input}
+                      type="text"
+                      placeholder="State / County / Region"
+                      id="county"
+                      onChange={e => {
+                        input.onChange(e)
+                        if (input.onChange) {
+                          formValues(e)
+                        }
+                      }}
+                    />
+                    <label for="county">State / County / Region</label>
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
             </div>
             <div className="frm_grp row">
               <Field name="phone">
@@ -282,7 +277,6 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                   </div>
                 )}
               </Field>
-              
             </div>
 
             <div className="frm_grp row">

@@ -1,18 +1,23 @@
 import React, { useContext, useEffect } from 'react'
 import { Link } from 'gatsby'
-import { CheckoutContext, CartContext, TestCartContext } from '../../context'
+import {
+  CheckoutContext,
+  ShippingAndUserDetailContext,
+  CartContext,
+  FirebaseContext
+} from '../../context'
 import OrderItems from '../OrderItems'
 
 export default function OrderConfirmation(props) {
-  const { deleteCart, shipping_address, customerDetails } = useContext(
-    CartContext
-  )
+  const { shipping_address } = useContext(ShippingAndUserDetailContext)
 
+  const { deleteCartData } = useContext(CartContext)
   const { orderId } = useContext(CheckoutContext)
+  const { firebase } = useContext(FirebaseContext)
 
   useEffect(() => {
     return () => {
-      deleteCart()
+      deleteCartData()
       sessionStorage.clear()
     }
   }, [])
@@ -57,7 +62,7 @@ export default function OrderConfirmation(props) {
               Name - {shipping_address.first_name} {shipping_address.last_name}
             </p>
             <p className="mb-2">
-              Email - {customerDetails && customerDetails.email}
+              Email - {firebase && firebase.auth().currentUser.email}
             </p>
           </div>
           <div className="boxs">

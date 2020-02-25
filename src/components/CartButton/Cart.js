@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react'
-import { CartContext } from '../../context/CartContext'
+import { ShippingAndUserDetailContext } from '../../context/ShippingAndUserDetailContext'
 import { Link, useStaticQuery } from 'gatsby'
 import CartItemList from '../../components/CartItemList'
 import CartIcon from '../../images/shopping-basket-duotone.svg'
-import { TestCartContext } from '../../context'
+import { CartContext } from '../../context/CartContext'
 import { useStateValue } from '../../context/SiteContext'
 
 const Cart = () => {
-  const [{ cart }, dispatch] = useStateValue();
+  const [{ cart }, dispatch] = useStateValue()
   const { allBuiltonProduct } = useStaticQuery(graphql`
     query {
       allBuiltonProduct {
@@ -30,29 +30,21 @@ const Cart = () => {
   const product = allBuiltonProduct.nodes.find(element => {
     return element.main_product === true && element.tags.length > 0
   })
-  const {
-    isEmpty,
-    toggle,
-    subTotal,
-    setToggle,
-    rate,
-    countBuilton,
-    subTotalBuilton
-  } = useContext(CartContext)
+  const { toggle, setToggle } = useContext(ShippingAndUserDetailContext)
 
-  const { testIsEmpty, testCount } = useContext(TestCartContext)
+  const { isEmpty } = useContext(CartContext)
 
   const handleToggle = () => {
     dispatch({
       type: 'setCart',
-      setCart: {drawer: false}
+      setCart: { drawer: false }
     })
   }
   return (
     <div className="Cart">
       <div className={`${cart.drawer ? 'show' : 'hide'} cartsliderbar-main`}>
         <div onClick={handleToggle} className="overlay"></div>
-        {!testIsEmpty ? (
+        {!isEmpty ? (
           <div className="cartsliderbar-boxs">
             <div className="cartsliderbar-header">
               <h3>Your Basket</h3>

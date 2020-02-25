@@ -1,20 +1,14 @@
 import React, { useState, useContext, useEffect, useRef } from 'react'
-import {
-  CartContext,
-  CheckoutContext,
-  FirebaseContext,
-  TestCartContext
-} from '../context'
+import { CheckoutContext, FirebaseContext, CartContext } from '../context'
 import ShippingAddress from '../components/Checkout/shippingAddress'
 import PaymentPage from '../components/Checkout/paymentPage'
 import ReviewOrder from '../components/Checkout/ReviewOrder'
 import OrderConfirmation from '../components/Checkout/OrderConfirmation'
-import Layout from "../components/Layout/Layout";
+import Layout from '../components/Layout/Layout'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 
 const CheckoutInner = () => {
   const { isEmpty } = useContext(CartContext)
-  const { testIsEmpty } = useContext(TestCartContext)
 
   const { defaultPayment, checkoutClear } = useContext(CheckoutContext)
   const { firebase } = useContext(FirebaseContext)
@@ -49,46 +43,46 @@ const CheckoutInner = () => {
   }
 
   if (defaultPayment && defaultPayment === true) return <OrderConfirmation />
-  if (testIsEmpty && !defaultPayment)
+  if (isEmpty && !defaultPayment)
     return <p className="text-center">Your cart is empty</p>
 
   return (
-      <div className="flex flex-wrap lg:-mx-4">
-        <div className="custom_cart">
-          <div className={'cart_first' + (!isEditable ? ' purple' : ' ')}>
-            <ShippingAddress
-              gmapsLoaded={gmapsLoaded}
-              isCompleted={isEditable}
-              toggleEditable={status => setIsEditable(status)}
-            />
-          </div>
-          <div
-            className={
-              'cart_second' + (isEditable && !formEnable ? ' purple' : ' ')
-            }
-          >
-            <h2 className="text-black font-medium leading-loose p-0 mb-3">
-              <span>2</span>
-              <span className="text">PAYMENT INFORMATION</span>{' '}
-            </h2>
-            <PaymentPage
-              changeFormEnable={status => setFormEnable(status)}
-              isEditable={isEditable}
-            />
-          </div>
-          <div className={'cart_third' + (formEnable ? ' purple' : ' ')}>
-            <ReviewOrder formEnable={formEnable} />
-          </div>
+    <div className="flex flex-wrap lg:-mx-4">
+      <div className="custom_cart">
+        <div className={'cart_first' + (!isEditable ? ' purple' : ' ')}>
+          <ShippingAddress
+            gmapsLoaded={gmapsLoaded}
+            isCompleted={isEditable}
+            toggleEditable={status => setIsEditable(status)}
+          />
+        </div>
+        <div
+          className={
+            'cart_second' + (isEditable && !formEnable ? ' purple' : ' ')
+          }
+        >
+          <h2 className="text-black font-medium leading-loose p-0 mb-3">
+            <span>2</span>
+            <span className="text">PAYMENT INFORMATION</span>{' '}
+          </h2>
+          <PaymentPage
+            changeFormEnable={status => setFormEnable(status)}
+            isEditable={isEditable}
+          />
+        </div>
+        <div className={'cart_third' + (formEnable ? ' purple' : ' ')}>
+          <ReviewOrder formEnable={formEnable} />
         </div>
       </div>
+    </div>
   )
 }
 const CheckoutPage = () => {
   return (
     <TransitionState>
-      {({transitionStatus}) => (
+      {({ transitionStatus }) => (
         <Layout transitionStatus={transitionStatus}>
-          <CheckoutInner transitionStatus={transitionStatus}/>
+          <CheckoutInner transitionStatus={transitionStatus} />
         </Layout>
       )}
     </TransitionState>

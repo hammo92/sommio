@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'gatsby'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
-import { CartContext, TestCartContext } from '../context'
+import { CartContext } from '../context/CartContext'
 import CartItem from './CartItem'
 import CartButton from './CartButton'
 import { useStateValue } from '../context/SiteContext'
@@ -15,52 +15,36 @@ export default function CartItemList(props) {
       if (document) {
         handleToggle()
         // Preventing overflow here make the animation smoother IMO
-        
       }
-    },
+    }
   }
 
   const entryTransition = {
     delay: 0.8, // Wait 1 seconds before entering
     trigger: () => {
       if (document && window) {
-
       }
-    },
+    }
   }
-  const [{ cart }, dispatch] = useStateValue();
-  const {
-    isEmpty,
-    removeFromCartBuilton,
-    subTotalBuilton,
-    price,
-    isAddToCart
-  } = useContext(CartContext)
+  const [{ cart }, dispatch] = useStateValue()
+  const { isEmpty, productSubTotal, total, shippingRate } = useContext(
+    CartContext
+  )
 
-  const {
-    testIsEmpty,
-    testCount,
-    productSubTotal,
-    total,
-    shippingRate
-  } = useContext(TestCartContext)
-
-  console.log('CartItemList total => ', total)
-  console.log('CartItemList shippingRate => ', shippingRate)
   const handleToggle = () => {
     dispatch({
       type: 'setCart',
-      setCart: {drawer: false}
+      setCart: { drawer: false }
     })
   }
 
-  if (testIsEmpty) return <p className="text-center">Your cart is empty</p>
+  if (isEmpty) return <p className="text-center">Your cart is empty</p>
 
   return (
     <div className="cartsliderbar-boby">
       <CartItem {...props} />
 
-      {!testIsEmpty && props.cartButton ? (
+      {!isEmpty && props.cartButton ? (
         <div className="cartsliderbar-footer">
           <div className="total-list">
             <ul>
@@ -79,8 +63,7 @@ export default function CartItemList(props) {
               </li>
             </ul>
           </div>
-          <TransitionLink 
-            
+          <TransitionLink
             to="/checkout"
             exit={exitTransition}
             entry={entryTransition}

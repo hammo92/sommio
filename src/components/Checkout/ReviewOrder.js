@@ -1,24 +1,21 @@
 import React, { useContext, useState } from 'react'
 import { injectStripe } from 'react-stripe-elements'
 
-import { CartContext, CheckoutContext, TestCartContext } from '../../context'
+import {
+  ShippingAndUserDetailContext,
+  CheckoutContext,
+  CartContext
+} from '../../context'
 import CartItemList from '../CartItemList'
 import Loader from '../Loader'
 const RiviewOrder = ({ stripe, formEnable }) => {
-  const {
-    shipping_address,
-    builton,
-    cartItemsBuilton,
-    selectedCover,
-    selectedWeight,
-    quantityBuilton
-  } = useContext(CartContext)
+  const { shipping_address, builton } = useContext(ShippingAndUserDetailContext)
+  const { ProductsArray } = useContext(CartContext)
   const { createOrderBuilton, paymentBuilton } = useContext(CheckoutContext)
-  const { testProductsArray } = useContext(TestCartContext)
   const [checkoutError, setCheckoutError] = useState(null)
 
   const shipmentProductId =
-    testProductsArray[0] && testProductsArray[0].shippingProductId
+    ProductsArray[0] && ProductsArray[0].shippingProductId
 
   let dataFrom = JSON.parse(sessionStorage.getItem('cartDetails'))
 
@@ -31,13 +28,11 @@ const RiviewOrder = ({ stripe, formEnable }) => {
         sub_products: [pro.coverId, pro.weightId]
       }
     })
-  console.log('ReviewmOrder orderItems before => ', orderItems)
 
   orderItems.push({
     product: shipmentProductId,
     quantity: 1
   })
-  console.log('ReviewmOrder orderItems afetr => ', orderItems)
 
   const [isLoading, setLoading] = useState(false)
   const handleOrder = async () => {
@@ -63,12 +58,11 @@ const RiviewOrder = ({ stripe, formEnable }) => {
       console.log('After generating token ===>', token, token.token.id)
 
       //creating payment
+
       const paymentMethod = await builton.paymentMethods.create({
         payment_method: 'stripe',
         token: token.token.id
       })
-      console.log('After Payment method ===>')
-      console.log('ReviewOreder testProductsArray => ', testProductsArray)
 
       //creating orders
       const createdOrder = await builton.orders.create({
@@ -100,6 +94,7 @@ const RiviewOrder = ({ stripe, formEnable }) => {
       setCheckoutError(errors)
     }
   }
+
   return (
     <div className={`${!formEnable ? 'form-disable' : ''}`}>
       <h2 className="text-black font-medium leading-loose p-0 mb-3">

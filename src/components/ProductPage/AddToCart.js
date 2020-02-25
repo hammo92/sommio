@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { CartContext } from '../../context/CartContext'
+import { ShippingAndUserDetailContext } from '../../context/ShippingAndUserDetailContext'
 import PlushImages from '../../images/plush.png'
 import SommioModal from '../modal.js'
 import { useStateValue } from '../../context/SiteContext'
-
 
 import {
   Dropdown,
@@ -12,7 +11,7 @@ import {
   DropdownItem
 } from 'reactstrap'
 import { useStaticQuery, Link } from 'gatsby'
-import { TestCartContext } from '../../context'
+import { CartContext } from '../../context/CartContext'
 const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   const { allBuiltonProduct } = useStaticQuery(graphql`
     query {
@@ -46,18 +45,22 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       }
     }
   `)
+  const { setVariation, setToggle, toggle } = useContext(
+    ShippingAndUserDetailContext
+  )
   const {
+    set_cart,
     setSubProductPrice,
-    setVariation,
-    Weight,
-    Cover,
-    setToggle,
-    toggle,
     weightPrice,
-    coverPrice
+    coverPrice,
+    Weight,
+    Cover
   } = useContext(CartContext)
-  const { set_cart } = useContext(TestCartContext)
-  const [{ cart }, dispatch] = useStateValue();
+  const [{ cart }, dispatch] = useStateValue()
+  const [weight, setWeight] = useState(null)
+  const [cover, setCover] = useState(null)
+
+  console.log('[addtocart] Weight, Cover => ', Weight, Cover)
 
   let weightSubProduct = []
   let coverSubProduct = []
@@ -90,25 +93,26 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     }
   })
 
+  console.log('[addtocart] local weight,cover => ', weight, cover)
+
   const selectedCover = coverSubProduct.filter(sub => {
-    if (Cover === null) {
+    if (cover === null) {
       return sub.name === coverSubProduct[0].name
     } else {
-      return sub.name === Cover
+      return sub.name === cover
     }
   })
 
   const selectedWeight = weightSubProduct.filter(sub => {
-    if (Weight === null) {
+    if (weight === null) {
       return sub.name === weightSubProduct[0].name
     } else {
-      return sub.name === Weight
+      return sub.name === weight
     }
   })
-
   useEffect(() => {
     setSubProductPrice(selectedWeight, selectedCover)
-  }, [Weight, Cover])
+  }, [weight, cover])
 
   const [blancketCover, setBlancketCover] = useState(coverSubProduct[0].name)
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -122,8 +126,10 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     onChangeSelectedProduct(id)
     if (name === 'Weight') {
       setVariation(name, e.target.value, price)
+      setWeight(e.target.value)
     } else if (name === 'Cover') {
       setVariation(name, e, price)
+      setCover(e)
     } else {
       setVariation(name, 'Single', price)
     }
@@ -142,6 +148,8 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   let finalProductPrice =
     selectedProduct &&
     selectedProduct.price + selectedCoverPrice + selectedWeightPrice
+
+  console.log('[addtocart] finalProductPrice => ', finalProductPrice)
 
   let testCart = {
     type: 'cart_item_builton',
@@ -172,7 +180,7 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     setToggle()
     dispatch({
       type: 'setCart',
-      setCart: {drawer: true}
+      setCart: { drawer: true }
     })
   }
   let price =
@@ -187,7 +195,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
         <SommioModal text="are other sizes available?">
           <p>Currently only the standard single size is available</p>
         </SommioModal>
-
       </div>
       <div className="blanket-boxs">
         <div className="size-boxs">
@@ -279,7 +286,7 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
           <span>{Weight}</span> blanket with <span>{Cover}</span> cover
         </h4>
         <div className="price-boxs">
-          <span className="price">{price} </span>
+          <span className="price">{finalProductPrice} </span>
           <p>Or 6 weekly Interest free payments from £ 21.12</p>
         </div>
         <button className="btn btn-success" onClick={handleAddToCart}>

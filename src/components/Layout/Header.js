@@ -3,12 +3,15 @@ import { Link } from 'gatsby'
 import axios from 'axios'
 import { navigate } from 'gatsby'
 import Builton from '@builton/core-sdk'
-import { CartContext, CheckoutContext, FirebaseContext, TestCartContext } from '../../context'
-import {useSpring, animated, config} from 'react-spring'
+import {
+  ShippingAndUserDetailContext,
+  CheckoutContext,
+  FirebaseContext,
+  CartContext
+} from '../../context'
+import { useSpring, animated, config } from 'react-spring'
 import { useStateValue } from '../../context/SiteContext'
 import CartIcon from '../../images/shopping-basket-duotone.svg'
-// import base64 from 'base-64'
-
 
 import Logo from '../../images/logo.png'
 import logoCheckout from '../../images/logo-checkout.png'
@@ -21,19 +24,19 @@ import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 
-
-
-const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, props) => {
-  const [{ cart }, dispatch] = useStateValue();
+const Header = (
+  { siteTitle, collections, slug, human_id, transitionStatus },
+  props
+) => {
+  const [{ cart }, dispatch] = useStateValue()
   const { orderId } = useContext(CheckoutContext)
-  const { setCartData, setUserBuilton } = useContext(CartContext)
-  const { set_cart, fetchCartDataFromStorage } = useContext(TestCartContext)
+  const { setUserBuilton } = useContext(ShippingAndUserDetailContext)
+  const { fetchCartDataFromStorage, count, isEmpty } = useContext(CartContext)
   const { setFirebase, firebase } = useContext(FirebaseContext)
   const [refresh, setRefresh] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [modal, setModal] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  const { testIsEmpty, testCount } = useContext(TestCartContext)
   const toggleModal = () => setModal(!modal)
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen)
 
@@ -43,16 +46,15 @@ const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, pr
   const slide = useSpring({
     to: {
       opacity: mount ? 1 : 0,
-      transform: mount ? "translateY(0px)" : `translateY(-100%)`,
+      transform: mount ? 'translateY(0px)' : `translateY(-100%)`
     }
-    
   })
   const handleCart = () => {
-    console.log("clicked")
-    console.log("cart state => ", cart)
+    console.log('clicked')
+    console.log('cart state => ', cart)
     dispatch({
-    type: 'setCart',
-    setCart: {drawer: true}
+      type: 'setCart',
+      setCart: { drawer: true }
     })
   }
 
@@ -179,13 +181,15 @@ const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, pr
                   <li className="nav-item nav-account">
                     {refresh && firebase && firebase.auth().currentUser ? (
                       <DropdownButton
-                        title = {firebase.auth().currentUser.email}
-                        id = {'accountDropdown'}
+                        title={firebase.auth().currentUser.email}
+                        id={'accountDropdown'}
                       >
-                        <Dropdown.Item><Link to="/userOrdersList">My Orders</Link></Dropdown.Item>
-                        <Dropdown.Item >
+                        <Dropdown.Item>
+                          <Link to="/userOrdersList">My Orders</Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
                           <button onClick={handleLogout}>Log Out</button>
-                          </Dropdown.Item>
+                        </Dropdown.Item>
                       </DropdownButton>
                     ) : (
                       <div>
@@ -197,11 +201,11 @@ const Header = ({ siteTitle, collections, slug, human_id, transitionStatus }, pr
                 <ul className="navbar-nav cart-boxs">
                   <li className="nav-item">
                     <button onClick={handleCart}>
-                    <img src={CartIcon} />
-                    <span className="count-number">
-                      {testIsEmpty && testCount === 0 ? 0 : testCount}
-                    </span>
-                  </button>
+                      <img src={CartIcon} />
+                      <span className="count-number">
+                        {isEmpty && count === 0 ? 0 : count}
+                      </span>
+                    </button>
                   </li>
                 </ul>
               </div>

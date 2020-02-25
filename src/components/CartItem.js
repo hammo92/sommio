@@ -1,34 +1,24 @@
 import React, { useState, useContext } from 'react'
 import QuantityStepper from './QuantityStepper'
-import { CartContext } from '../context/CartContext'
 import Photo from './Photo'
-import { TestCartContext } from '../context'
+import { CartContext } from '../context/CartContext'
 
 function CartItem({ locked, cartButton }) {
   const [removing, setRemoving] = useState(false)
-  const {
-    Weight,
-    Size,
-    Cover,
-    subTotalBuilton,
-    quantityBuilton,
-    isAddToCart,
-    products
-  } = useContext(CartContext)
-  const { remove_cart, testProductsArray, total, productSubTotal } = useContext(
-    TestCartContext
+
+  const { remove_cart, ProductsArray, productSubTotal } = useContext(
+    CartContext
   )
 
   const onRemove = data => {
     setRemoving(true)
     remove_cart(data)
-    sessionStorage.clear()
   }
 
   return cartButton ? (
     <div className="cartsliderbar-item">
-      {testProductsArray &&
-        testProductsArray.map(p => {
+      {ProductsArray &&
+        ProductsArray.map(p => {
           return (
             <>
               <Photo
@@ -39,7 +29,7 @@ function CartItem({ locked, cartButton }) {
               <div className="content">
                 <h4>{p.name}</h4>
                 <ul>
-                  <li>Size: {Size}</li>
+                  <li>Size: Single 130*120</li>
                   <li>Weight: {p.weightName}</li>
                   <li>Cover: {p.coverName}</li>
                 </ul>
@@ -61,8 +51,8 @@ function CartItem({ locked, cartButton }) {
     </div>
   ) : (
     <div className="revieworder-box">
-      {testProductsArray &&
-        testProductsArray.map(prod => (
+      {ProductsArray &&
+        ProductsArray.map(prod => (
           <>
             <Photo
               cartImg="cartImg"
@@ -71,9 +61,11 @@ function CartItem({ locked, cartButton }) {
             />
             <div className="content">
               <h5>{prod.name}</h5>
-              <span className="qty-text">{productSubTotal} £ </span>
+              <span className="qty-text">{prod.quantityBuilton} </span>
             </div>
-            <div className="price ml-auto">{productSubTotal} £ </div>
+            <div className="price ml-auto">
+              {prod.final_price * prod.quantityBuilton} £{' '}
+            </div>
           </>
         ))}
     </div>

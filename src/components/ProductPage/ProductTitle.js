@@ -3,7 +3,6 @@ import FlagIcon from '../../images/flag-of-europe.png'
 import Head from '../AnimatedText/Head'
 
 const ProductTitle = ({ title }) => {
-  console.log("title => ",title)
   return (
     <div className="product-name">
       <Head head={title}></Head>
