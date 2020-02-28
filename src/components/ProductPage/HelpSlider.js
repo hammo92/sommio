@@ -28,7 +28,16 @@ const HelpSlider = () => {
     infinite: false,
     slidesToShow: 2.5,
     slidesToScroll: 1,
-    centerMode: false
+    centerMode: false,
+    responsive: [
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   }
   return (
     <div className="helpslider-bg">

@@ -1,15 +1,60 @@
+header {
+    @media (max-width: $ipadlandscape) {
+        padding: 1em 0;
+        border-bottom: solid 2px rgba($white, 0.3);
+    }
+}
+
 .navbar {
     padding: 0;
     border-bottom: solid 2px rgba($white, 0.3);
     align-content: center;
+
+    @media (max-width: $ipadlandscape) {
+        border-bottom: 0;
+    }
+
+    .navbar-toggler {
+
+        @media (max-width: $ipadportrait) {
+            margin-right: 15px;
+            padding: 0;
+            border: 0;
+        }
+
+    }
 
     .navbar-brand {
         padding: 0;
         margin: 0;
         width: 200px;
 
+        @media (max-width: $ipadportrait) {
+            width: auto;
+            margin-right: auto;
+        }
+
         img {
             max-width: 100%;
+
+            &.logofull {
+                display: block;
+
+                @media (max-width: $ipadportrait) {
+                    display: none;
+                }
+
+            }
+
+            &.logosymbol {
+                display: none;
+
+                @media (max-width: $ipadportrait) {
+                    display: block;
+                }
+
+            }
+
         }
 
     }
@@ -17,8 +62,6 @@
     .navbar-nav {
 
         &.menu-list {
-
-            
 
             .nav-item {
                 button {
@@ -28,7 +71,7 @@
                     font-weight: 700;
                     font-size: 24px;
                     color: #fff;
-                    
+
                     align-content: center;
                     text-decoration: none;
                     background: none;
@@ -72,8 +115,6 @@
                         padding:0;
                     }
                 }
-                
-                
 
             }
 
@@ -82,6 +123,11 @@
         &.cart-boxs {
             border-left: solid 2px rgba($white, 0.3);
             padding: 40px 30px;
+
+            @media (max-width: $ipadportrait) {
+                padding: 10px 0px;
+                border-left: 0;
+            }
 
             .nav-item {
                 display: block;
@@ -94,6 +140,10 @@
                     background: none;
                     border: 0;
                     outline: 0;
+
+                    @media (max-width: $ipadportrait) {
+                        padding: 0px;
+                    }
 
                     span.count-number {
                         display: flex;
@@ -108,6 +158,11 @@
                         background: $apricotpeach;
                         border-radius: 50%;
                         margin-left: 10px;
+
+                        @media (max-width: $ipadportrait) {
+                            display: none;
+                        }
+
                     }
 
                 }

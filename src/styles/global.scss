@@ -1,24 +1,32 @@
 body {
+  background: $midnight;
+  font-family: $tksofiapro;
+  user-select: none;
+  cursor: url('/cursor.svg'), auto;
+
+  &.so-checkout-page {
     background: $midnight;
-    font-family: $tksofiapro;
-    user-select: none;
-    cursor:url('/cursor.svg'),auto;
-    
+  }
 
-    &.so-checkout-page {
-        background: $midnight;
+  &.cartopen {
+    overflow: hidden;
+  }
+  .container-fluid,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    padding-left: 30px;
+    padding-right: 30px;
+    @media (max-width: $mobileportrait) {
+      padding-left: 15px;
+      padding-right: 15px;
     }
-
-    &.cartopen {
-        overflow: hidden;
-    }
-    .container-fluid, .container-sm, .container-md, .container-lg, .container-xl{
-        padding-left:30px;
-        padding-right: 30px;
-    }
+  }
 }
-a, button{
-  cursor:url('/point.svg'),auto !important;
+a,
+button {
+  cursor: url('/point.svg'), auto !important;
 }
 h1,
 h2,
@@ -47,14 +55,13 @@ p {
   flex-wrap: wrap;
   width: 100%;
   position: relative;
-  margin-bottom:0px;
+  margin-bottom: 0px;
 
-
-  span{
-    position:absolute;
-    top:2px;
-    right:15px;
-    color:red;
+  span {
+    position: absolute;
+    top: 2px;
+    right: 15px;
+    color: red;
   }
 
   input {
@@ -105,7 +112,7 @@ p {
     &:not(:placeholder-shown) + label {
       top: 0px;
       left: 10px;
-      cursor:url('/point.svg'),auto;
+      cursor: url('/point.svg'), auto;
       position: absolute;
       font-size: 12px;
     }
@@ -117,29 +124,27 @@ p {
 }
 
 .autocomplete-dropdown-container {
-
   color: #fff;
-  width:100%;
-  background:$purpleB;
-
+  width: 100%;
+  background: $purpleB;
 
   .suggestion-item {
     padding: 5px 10px;
     color: #8db1bf;
     line-height: 1.2;
-    background:$purpleB;
+    background: $purpleB;
   }
-  .suggestion-item--active{
-    color:#ffffff;
+  .suggestion-item--active {
+    color: #ffffff;
     padding: 5px 10px;
     line-height: 1.2;
   }
 }
-.animationOverlay{
-    width:100%;
-    height:60px;
-    background:black
+.animationOverlay {
+  width: 100%;
+  height: 60px;
+  background: black;
 }
-.tl-edges{
-    overflow:hidden
+.tl-edges {
+  overflow: hidden;
 }

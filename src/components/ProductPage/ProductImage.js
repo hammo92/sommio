@@ -165,11 +165,13 @@ function ProductImage({ productId, selectedVariationId }) {
   const data = allBuiltonProduct.nodes.find(
     ({ _id: { _oid } }) => _oid === selectedVariationId
   ).media
+  console.log('[productImage] data => ', data)
 
   const mainProduct = allBuiltonProduct.nodes.filter(product => {
     return product.id === productId
   })
   const [images, setImages] = useState(data)
+
   useEffect(() => setImages(data), [data])
 
   return (

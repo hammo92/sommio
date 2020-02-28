@@ -1,82 +1,125 @@
 .quiz-boxs {
+  display: flex;
+  flex-wrap: wrap;
+  .quizText {
     display: flex;
     flex-wrap: wrap;
-    .quizText{
-        display: flex;
-        flex-wrap: wrap;
-        z-index: 1;
+    z-index: 1;
+    @media (max-width: $mobileportrait) {
+      padding: 20px 0;
+      //   background-color: $purpleA;
+    }
+  }
+
+  &.wide {
+    flex-direction: row;
+    background-image: linear-gradient(135deg, #3b2667 10%, #bc78ec 100%);
+    .quizText {
+      align-content: center;
+      padding: 30px;
+    }
+    .image {
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  &.thin {
+    border-left: solid 2px rgba($white, 0.3);
+    padding: 92px 0 105px 65px;
+    height: 100%;
+
+    @media (max-width:$ipadlandscape) {
+      padding: 50px 0 50px 45px;
     }
 
-    &.wide{
-        flex-direction: row;
-        background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);
-        .quizText{
-            align-content:center;
-            padding:30px
-        }
-        .image{
-            img{width:100%}
-        }
+    @media (max-width:$ipadportrait) {
+      padding: 35px;
+      border: 0;
     }
 
-    &.thin{
-        
-        border-left: solid 2px rgba($white, 0.3);
-        padding: 92px 0 105px 65px;
-        height: 100%;
-        &::before {
-            content: '';
-            position: absolute;
-            left: 0%;
-            right: 0%;
-            bottom: 0;
-            top: 0;
-            background: url(/blackboard.png)  center center no-repeat;
-            background-size: 130% auto;
-            opacity:0.1;
-            z-index: 0;
-        }
+    @media (max-width: $mobileportrait) {
+      padding: 0px;
+      border-left: 0;
     }
 
-    
-
-    h3 {
-        font-size: 60px;
-        color: $linkwater;
-        font-weight: 900;
-        margin: 0 0 0px;
-        z-index: 1;
-
-        @media (max-width:$desktop18) {
-            font-size: 40px;
-        }
-
-        span {
-                
-            display:inline-block;
-            padding-right:15px;
-
-            &:last-child{
-                color: $madang;
-            }
-        }
-
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0%;
+      right: 0%;
+      bottom: 0;
+      top: 0;
+      background: url(/blackboard.png) center center no-repeat;
+      background-size: 130% auto;
+      opacity: 0.1;
+      z-index: 0;
+      @media (max-width: $mobileportrait) {
+        display: none;
+      }
     }
-    .btn {
-        z-index: 99;
-    }
+  }
 
-    p {
-        font-size: $FontSize24;
-        color: $linkwater;
-        line-height: 1.3;
-        margin: 0 0 50px;
-        z-index:1;
+  h3 {
+    font-size: 60px;
+    color: $linkwater;
+    font-weight: 900;
+    margin: 0 0 0px;
+    z-index: 1;
 
-        span {
-            display:inline-block;
-            padding-right:10px
-        }
+    @media (max-width: $desktop18) {
+      font-size: 40px;
     }
 
+    @media (max-width: $mobileportrait) {
+      font-size: 30px;
+      margin: 0 0 15px;
+    }
+
+    span {
+      display: inline-block;
+      padding-right: 15px;
+
+      &:last-child {
+        color: $madang;
+      }
+    }
+  }
+  .btn {
+    z-index: 99;
+    &.btn-info {
+      @media (max-width: $mobileportrait) {
+        width: 100%;
+        border-radius: 10px;
+      }
+      img {
+        @media (max-width: $mobileportrait) {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+
+  p {
+    font-size: $FontSize24;
+    color: $linkwater;
+    line-height: 1.3;
+    margin: 0 0 50px;
+    z-index: 1;
+
+    @media (max-width: $ipadportrait) {
+      margin: 0 0 30px;
+    }
+
+    @media (max-width: $mobileportrait) {
+      font-size: 16px;
+      margin: 0 0 20px;
+    }
+
+    span {
+      display: inline-block;
+      padding-right: 10px;
+    }
+  }
 }

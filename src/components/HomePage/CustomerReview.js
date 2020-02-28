@@ -8,11 +8,30 @@ const CustomerReview = () => {
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
-    centerMode: false
+    centerMode: false,
+    responsive: [
+      {
+        breakpoint: 1199,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1.1,
+          arrows: false
+        }
+      }
+    ]
   }
   return (
     <div className="customerreview-bg">
-      <h3>Customer Reviews</h3>
+      <h3>
+        <span>Customer</span> Reviews
+      </h3>
       <Slider {...settings}>
         <div className="review-boxs">
           <div className="d-flex flex-wrap">

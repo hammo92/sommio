@@ -4,13 +4,11 @@ import { ToastContainer } from 'react-toastify'
 import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
-
 import Header from './Header'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-toastify/dist/ReactToastify.css'
 import '../../styles/main.scss'
 import Cart from '../CartButton/Cart'
-
 
 const toastOptions = {
   position: 'bottom-center',
@@ -19,7 +17,6 @@ const toastOptions = {
   progressClassName: 'bg-white opacity-25',
   closeButton: false
 }
-
 
 const Layout = ({ children, transitionStatus }) => {
   const { site, allBuitlon } = useStaticQuery(categoriesQuery)
@@ -48,14 +45,12 @@ const Layout = ({ children, transitionStatus }) => {
       <Header
         siteTitle={site.siteMetadata.title}
         human_id={builtonProduct.human_id}
-        transitionStatus = {transitionStatus}
+        transitionStatus={transitionStatus}
       />
       <Cart />
       <main>{children}</main>
       <ToastContainer {...toastOptions} />
-    </Fragment>  
-      
-    
+    </Fragment>
   )
 }
 

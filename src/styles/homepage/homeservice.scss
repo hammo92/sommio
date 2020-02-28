@@ -1,40 +1,57 @@
 .home-service {
-    background: #ACC7F0;
+  background: #acc7f0;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px 0 0 5px;
+  @media (max-width: $mobileportrait) {
+    display: none;
+  }
+  .service-boxs {
+    width: 33.33%;
     display: flex;
     flex-wrap: wrap;
-    border-radius:5px 0 0 5px;
+    align-items: center;
+    padding: 35px 70px;
 
-    .service-boxs {
-        width: 33.33%;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        padding: 35px 70px;
-
-        @media (max-width:$desktop18) {
-            padding: 25px 30px;
-        }
-
-        img {
-            height: 50px;
-
-            @media (max-width:$desktop18) {
-                height: 30px;
-            }
-        }
-
-        p {
-            padding: 0 0 0 30px;
-            font-size: 30px;
-            color: $midnight;
-            line-height: 1;
-            font-weight: 900;
-
-            @media (max-width:$desktop18) {
-                font-size: 28px;
-            }
-        }
-
+    @media (max-width: $desktop18) {
+      padding: 25px 30px;
     }
 
+    @media (max-width: $ipadlandscape) {
+      padding: 25px 20px;
+    }
+
+    @media (max-width: $ipadportrait) {
+      padding: 20px;
+    }
+
+    img {
+      height: 50px;
+
+      @media (max-width: $desktop18) {
+        height: 30px;
+      }
+    }
+
+    p {
+      padding: 0 0 0 30px;
+      font-size: 30px;
+      color: $midnight;
+      line-height: 1;
+      font-weight: 900;
+
+      @media (max-width: $desktop18) {
+        font-size: 28px;
+      }
+
+      @media (max-width: $ipadlandscape) {
+        padding: 0 0 0 20px;
+      }
+
+      @media (max-width: $ipadportrait) {
+        font-size: $FontSize22;
+      }
+
+    }
+  }
 }

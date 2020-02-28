@@ -10,10 +10,10 @@ import Compare from '../components/HomePage/Compare/Compare'
 import CustomerReview from '../components/HomePage/CustomerReview'
 import BlanketDifference from '../components/HomePage/BlanketDifference'
 import Carousel from '../components/Carousel/Carousel'
-import Layout from "../components/Layout/Layout";
+import Layout from '../components/Layout/Layout'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 import { useStateValue } from '../context/SiteContext'
-import {animated, useSpring } from 'react-spring'
+import { animated, useSpring } from 'react-spring'
 
 const TRANSITION_LENGTH = 1
 
@@ -22,9 +22,8 @@ const exitTransition = {
   trigger: () => {
     if (document) {
       // Preventing overflow here make the animation smoother IMO
-      
     }
-  },
+  }
 }
 
 const entryTransition = {
@@ -35,78 +34,75 @@ const entryTransition = {
       // prevents any additional JANK when the transition ends.
       window.scrollTo(0, 0)
     }
-  },
+  }
 }
 
-export const IndexInner = ({transitionStatus}) => {
-  const [{ quiz }, dispatch] = useStateValue();
+export const IndexInner = ({ transitionStatus }) => {
+  const [{ quiz }, dispatch] = useStateValue()
   const mount = ['entering', 'entered'].includes(transitionStatus)
 
   const fadeUp = useSpring({
     opacity: mount ? 1 : 0
   })
+  console.log('transitionStatus [homepage] => ', transitionStatus)
+  console.log('mount [homepage] => ', mount)
+  console.log('fadeUp [homepage] => ', fadeUp)
+
   return (
     <animated.div style={fadeUp} className="homepage-bg">
-          <div className="goodquiz-bg">
-            <div className="container-fluid">
-              <div className="row no-gutters">
-                <div
-                  className="col-12 col-lg-7"
-                >
-                  <Goodbye />
-                </div>
-                <div className="col-12 col-lg-5">
-                    <Quiz />
-                </div>
-              </div>
+      <div className="goodquiz-bg">
+        <div className="container-fluid">
+          <div className="row no-gutters">
+            <div className="col-12 col-lg-7">
+              <Goodbye />
             </div>
-
-            <div className="row no-gutters" id="service">
-              <div className="ml-auto col-12 col-lg-10">
-                <HomeService />
-              </div>
-            </div>
-
-
-            <SecretIngredient />
-
-          </div>
-
-          <Carousel shifted={true} />
-          <div
-                className="col-12 col-lg-8 mx-auto"
-                data-scroll
-                data-scroll-speed="2"
-              >
-                <MagicWeightex />
-              </div>
-
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12" data-scroll>
-                <BlanketImages />
-              </div>
-
-              
-
-                <Compare />
-
-              <div className="col-12" >
-                <CustomerReview />
-              </div>
+            <div className="col-12 col-lg-5">
+              <Quiz />
             </div>
           </div>
-        </animated.div>
+        </div>
+
+        <div className="row no-gutters" id="service">
+          <div className="ml-auto col-12 col-lg-10">
+            <HomeService />
+          </div>
+        </div>
+
+        <SecretIngredient />
+      </div>
+
+      <Carousel shifted={true} />
+      <div
+        className="col-12 col-lg-8 mx-auto"
+        data-scroll
+        data-scroll-speed="2"
+      >
+        <MagicWeightex />
+      </div>
+
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12" data-scroll>
+            <BlanketImages />
+          </div>
+
+          <Compare />
+
+          <div className="col-12">
+            <CustomerReview />
+          </div>
+        </div>
+      </div>
+    </animated.div>
   )
 }
-
 
 const IndexPage = () => {
   return (
     <TransitionState>
-      {({transitionStatus}) => (
+      {({ transitionStatus }) => (
         <Layout transitionStatus={transitionStatus}>
-          <IndexInner transitionStatus={transitionStatus}/>
+          <IndexInner transitionStatus={transitionStatus} />
         </Layout>
       )}
     </TransitionState>

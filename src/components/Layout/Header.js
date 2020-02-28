@@ -39,7 +39,7 @@ const Header = (
   const [isLoading, setLoading] = useState(false)
   const toggleModal = () => setModal(!modal)
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen)
-
+  const [collapsed, setCollapsed] = useState(true)
   let token = localStorage.getItem('firebaseToken')
   let details = JSON.parse(localStorage.getItem('details'))
   let mount = ['entering', 'entered'].includes(transitionStatus)
@@ -100,6 +100,13 @@ const Header = (
         })
   }
 
+  const toggleNavbar = () => {
+    setCollapsed(!collapsed)
+  }
+  const classOne = collapsed
+    ? 'collapse navbar-collapse'
+    : 'collapse navbar-collapse show'
+
   return (
     <animated.div style={slide}>
       {window.location.pathname === '/checkout' ? (
@@ -149,10 +156,8 @@ const Header = (
         <header>
           <div className="container-fluid">
             <div className="navbar navbar-expand-lg">
-              <Link className="navbar-brand" to="/">
-                <img src={Logo} />
-              </Link>
               <button
+                onClick={toggleNavbar}
                 className="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
@@ -160,14 +165,12 @@ const Header = (
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-
-              <div
-                className="collapse navbar-collapse"
-                id="navbarSupportedContent"
-              >
+              ></button>
+              <Link className="navbar-brand" to="/">
+                <img src={Logo} className="logofull" />
+                <img src={logoCheckout} className="logosymbol" />
+              </Link>
+              <div className={`${classOne}`} id="navbarSupportedContent">
                 <ul className="navbar-nav ml-auto menu-list">
                   <li className="nav-item">
                     <Link to="/products">Shop</Link>
@@ -198,17 +201,17 @@ const Header = (
                     )}
                   </li>
                 </ul>
-                <ul className="navbar-nav cart-boxs">
-                  <li className="nav-item">
-                    <button onClick={handleCart}>
-                      <img src={CartIcon} />
-                      <span className="count-number">
-                        {isEmpty && count === 0 ? 0 : count}
-                      </span>
-                    </button>
-                  </li>
-                </ul>
               </div>
+              <ul className="navbar-nav cart-boxs">
+                <li className="nav-item">
+                  <button onClick={handleCart}>
+                    <img src={CartIcon} />
+                    <span className="count-number">
+                      {isEmpty && count === 0 ? 0 : count}
+                    </span>
+                  </button>
+                </li>
+              </ul>
             </div>
           </div>
           <Modal show={modal} toggle={toggleModal}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { graphql, withPrefix } from 'gatsby'
 import SEO from '../components/SEO'
@@ -74,13 +74,17 @@ const ProductPageInner = ({
   transitionStatus,
   data: { product, contentfulProduct }
 }) => {
-  console.log('[productpage] contentfulProduct => ', contentfulProduct)
+  let mount = ['entering', 'entered'].includes(transitionStatus)
 
-  const mount = ['entering', 'entered'].includes(transitionStatus)
+  console.log('transitionStatus [productpage]  => ', transitionStatus)
+
+  console.log('mount [productpage] => ', mount)
 
   const fadeUp = useSpring({
     opacity: mount ? 1 : 0
   })
+  console.log('fadeUp [productpage] => ', fadeUp)
+
   const Titles = ['Overview', 'Materials', 'Learn', 'Usage', 'FAQ']
   const Overview = contentfulProduct && contentfulProduct.overview
   const Faq = contentfulProduct && contentfulProduct.faqQuestions
@@ -230,6 +234,7 @@ const ProductPageBuilton = ({ data }) => {
     <TransitionState>
       {({ transitionStatus }) => (
         <Layout transitionStatus={transitionStatus}>
+          {console.log('transitionStatus', transitionStatus)}
           <ProductPageInner transitionStatus={transitionStatus} data={data} />
         </Layout>
       )}

@@ -1,186 +1,204 @@
-.animationOverlay{
-    z-index: 5;
-    background:#000;
-    pointer-events: none;
-    will-change: transform;
-    opacity:0;
+.animationOverlay {
+  z-index: 5;
+  background: #000;
+  pointer-events: none;
+  will-change: transform;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+
+  .transitionCover {
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
     position: absolute;
-
-    .transitionCover{
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        position: absolute;
-    }
+  }
 }
 
 .c {
-    position: absolute;
-    max-width: 100%;
-    height: 100%;
-    cursor: pointer;
-    will-change: transform, opacity;
-  }
-  .back{
-    background-size: cover;
-  }
-  
-  .front{
-    background-size: cover;
-    padding:10px;
-    overflow-y: hidden;
-    width:100%;
-    background:#0E0E0E;
+  position: absolute;
+  max-width: 100%;
+  height: 100%;
+  cursor: pointer;
+  will-change: transform, opacity;
+}
+.back {
+  background-size: cover;
+}
+
+.front {
+  background-size: cover;
+  padding: 10px;
+  overflow-y: hidden;
+  width: 100%;
+  background: #0e0e0e;
 }
 
 .helpsWith {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 40px;
+
+  &.shiftUp {
+    margin-top: -94px;
+
+    @media (max-width: $ipadlandscape) {
+      margin-top: -78px;
+    }
+
+    .helpHeading {
+      border-bottom: solid 2px rgba(255, 255, 255, 0.3);
+      margin: 0 0 40px 0;
+      padding-bottom: 20px;
+    }
+  }
+  &.noShift {
+    .helpHeading {
+      display: flex;
+      margin: 10px 0 20px 0;
+      position: relative;
+      padding: 20px 0;
+      align-items: center;
+      justify-content: space-between;
+      .navIcons {
+      }
+    }
+  }
+
+  .helpHeading {
+    display: flex;
+    align-items: center;
+
+    .navIcons {
+      svg {
+        height: 50px;
+        width: 50px;
+        color: $madang;
+        cursor: pointer;
+        transition: opacity 0.3s;
+        @media (max-width: $mobileportrait) {
+          height: 43px;
+          width: 43px;
+        }
+        &:nth-child(1) {
+          margin-right: 15px;
+        }
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+      }
+    }
+
+    h3 {
+      display: block;
+      font-size: 60px;
+      color: $white;
+      font-weight: 700;
+      padding-right: 30px;
+
+      @media (max-width: $ipadlandscape) {
+        font-size: 50px;
+      }
+
+      @media (max-width: $mobileportrait) {
+        font-size: 30px;
+      }
+      span {
+        padding-right: 15px;
+        display: inline-block;
+      }
+    }
+  }
+
+  .cardWrap {
     position: relative;
+    height: 400px;
+  }
+
+  .gradient-overlay {
+    position: absolute;
+    height: 100%;
+    bottom: 0px;
+    width: 100%;
+    background: linear-gradient(
+      0deg,
+      rgba(1, 18, 43, 0.7) 0%,
+      rgba(0, 41, 50, 0) 70%
+    );
+  }
+
+  .help-boxs {
+    position: relative;
+    padding: 0px;
     overflow: hidden;
-    padding-bottom: 40px;
-    
+    border-radius: 5px;
+    position: absolute;
+    will-change: transform, width, opacity;
+    height: 400px;
 
-    &.shiftUp{
-        margin-top: -94px;
-        .helpHeading{
-            border-bottom: solid 2px rgba(255, 255, 255, 0.3);
-            margin: 0 0 40px 0;
-            padding-bottom: 20px;
-        }
-    
-    }
-    &.noShift{
-        .helpHeading{
-            display:flex;
-            margin: 10px 0 20px 0;
-            position:relative;
-            padding:20px 0;
-            align-items: center;
-            justify-content: space-between;
-            .navIcons{
-                
-            }
-        
-        }
-    
+    @media (max-width: $ipadlandscape) {
+      height: 360px;
     }
 
-    .helpHeading{
-        display:flex;
-        align-items:center;   
-        
-        .navIcons{
-            svg{
-                height:50px;
-                width:50px;
-                color:$madang;
-                cursor:pointer;
-                transition:opacity 0.3s;
-                &:nth-child(1){
-                    margin-right:15px
-                }
-                &.disabled{
-                    pointer-events: none;
-                    opacity: 0.3;
-                }
-    
-                
-            }
-        }
-        
-
-        
-        h3 {
-            display: block;
-            font-size: 60px;
-            color: $white;
-            font-weight: 700;
-            padding-right:30px;
-            span{
-                padding-right:15px;
-                display:inline-block;
-            }
-    
-        }
+    @media (max-width: $mobileportrait) {
+      height: auto;
+    }
+    overflow:visible &:first-child {
     }
 
-    .cardWrap{
-        position:relative;
-        height:400px
+    img {
+      width: 100%;
+      display: block;
     }
 
+    .help-content {
+      position: absolute;
+      left: 30px;
+      right: 30px;
+      bottom: 20px;
 
-    
+      h2 {
+        font-size: 80px;
+        color: $white;
+        display: block;
+        line-height: 1;
+        margin: 0;
+        font-weight: 900;
 
-    .gradient-overlay{
-        position: absolute;
-        height: 100%;
-        bottom: 0px;
-        width:100%;
-        background: linear-gradient(0deg,
-        rgba(1, 18, 43, 0.7) 0%, rgba(0,41,50,0) 70%);
+        @media (max-width: $desktop18) {
+          font-size: 90px;
+        }
+
+        @media (max-width: $ipadlandscape) {
+          font-size: 70px;
+        }
+
+        @media (max-width: $mobileportrait) {
+          font-size: 33px;
+        }
+      }
+
+      a.btn-link {
+        color: $white;
+        font-size: 34px;
+        font-weight: 300;
+        line-height: 1;
+        text-decoration: none;
+
+        @media (max-width: $desktop18) {
+          font-size: $FontSize28;
+        }
+        @media (max-width: $mobileportrait) {
+          font-size: 16px;
+        }
+      }
     }
-
-    .help-boxs {
-        position: relative;
-        padding: 0px;
-        overflow:hidden;
-        border-radius:5px;
-        position: absolute;
-        will-change: transform, width, opacity;
-        height:400px;
-        overflow:visible
-
-        &:first-child{
-            
-        }
-        
-
-        img {
-            width: 100%;
-            display: block;
-        }
-
-        .help-content {
-            position: absolute;
-            left: 30px;
-            right: 30px;
-            bottom: 20px;
-
-            h2 {
-                font-size: 80px;
-                color: $white;
-                display: block;
-                line-height: 1;
-                margin: 0;
-                font-weight: 900;
-
-                @media (max-width:$desktop18) {
-                    font-size: 90px
-                }
-
-            }
-
-            a.btn-link {
-                color: $white;
-                font-size: 34px;
-                font-weight: 300;
-                line-height: 1;
-                text-decoration: none;
-
-                @media (max-width:$desktop18) {
-                    font-size: $FontSize28;
-                }
-            }
-
-        }
-
-    }
-
+  }
 }
