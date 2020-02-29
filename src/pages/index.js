@@ -51,16 +51,16 @@ export const IndexInner = ({ transitionStatus }) => {
   return (
     <animated.div style={fadeUp} className="homepage-bg">
       <div className="goodquiz-bg">
-        <div className="container-fluid">
-          <div className="row no-gutters">
-            <div className="col-12 col-lg-7">
-              <Goodbye />
-            </div>
-            <div className="col-12 col-lg-5">
-              <Quiz />
-            </div>
+        {/* <div className="container-fluid"> */}
+        <div className="row no-gutters">
+          <div className="col-12 col-lg-8">
+            <Goodbye />
+          </div>
+          <div className="col-12 col-lg-4">
+            <Quiz />
           </div>
         </div>
+        {/* </div> */}
 
         <div className="row no-gutters" id="service">
           <div className="ml-auto col-12 col-lg-10">

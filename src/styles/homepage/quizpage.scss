@@ -2,9 +2,10 @@
   display: flex;
   flex-wrap: wrap;
   .quizText {
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
     z-index: 1;
+    background-color: $purpleA;
+    padding: 45px 45px 45px 85px;
     @media (max-width: $mobileportrait) {
       padding: 20px 0;
       //   background-color: $purpleA;
@@ -26,46 +27,18 @@
   }
 
   &.thin {
-    border-left: solid 2px rgba($white, 0.3);
-    padding: 92px 0 105px 65px;
-    height: 100%;
-
-    @media (max-width:$ipadlandscape) {
-      padding: 50px 0 50px 45px;
-    }
-
-    @media (max-width:$ipadportrait) {
-      padding: 35px;
-      border: 0;
-    }
-
-    @media (max-width: $mobileportrait) {
-      padding: 0px;
-      border-left: 0;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0%;
-      right: 0%;
-      bottom: 0;
-      top: 0;
-      background: url(/blackboard.png) center center no-repeat;
-      background-size: 130% auto;
-      opacity: 0.1;
-      z-index: 0;
-      @media (max-width: $mobileportrait) {
-        display: none;
-      }
-    }
+    border-left: solid 2px rgba($madang, 0.3);
+    padding: 0;
+    margin-right: 30px;
+    height: auto;
   }
 
   h3 {
-    font-size: 60px;
+    font-size: 50px;
     color: $linkwater;
     font-weight: 900;
-    margin: 0 0 0px;
+    margin: 30px 0 15px;
+    line-height: 1.1;
     z-index: 1;
 
     @media (max-width: $desktop18) {
@@ -82,30 +55,32 @@
       padding-right: 15px;
 
       &:last-child {
-        color: $madang;
+        color: $ligthgreen;
       }
     }
   }
   .btn {
     z-index: 99;
+    border-radius: 10px;
+    padding: 15px 25px;
+    font-size: 40px;
+
     &.btn-info {
       @media (max-width: $mobileportrait) {
         width: 100%;
         border-radius: 10px;
       }
       img {
-        @media (max-width: $mobileportrait) {
-          margin-left: auto;
-        }
+        margin-left: auto;
       }
     }
   }
 
   p {
     font-size: $FontSize24;
-    color: $linkwater;
+    color: $bridalheath;
     line-height: 1.3;
-    margin: 0 0 50px;
+    margin: 0 0 20px;
     z-index: 1;
 
     @media (max-width: $ipadportrait) {
