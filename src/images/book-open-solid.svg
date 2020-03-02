@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52.352" height="41.386" viewBox="0 0 52.352 41.386">
+  <defs>
+    <filter id="book-open-solid" x="0" y="0" width="52.352" height="41.386" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur result="blur"/>
+      <feFlood flood-color="#b58dd6"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#book-open-solid)">
+    <path id="book-open-solid-2" data-name="book-open-solid" d="M46.458,32c-4.7.266-14.028,1.236-19.789,4.763a1.317,1.317,0,0,0-.623,1.128V69.069a1.356,1.356,0,0,0,1.995,1.156c5.927-2.983,14.5-3.8,18.739-4.02a2.672,2.672,0,0,0,2.572-2.627V34.631A2.686,2.686,0,0,0,46.458,32ZM22.683,36.763C16.922,33.237,7.59,32.268,2.894,32A2.687,2.687,0,0,0,0,34.631V63.578a2.671,2.671,0,0,0,2.572,2.627c4.24.223,12.817,1.038,18.745,4.023a1.352,1.352,0,0,0,1.989-1.153v-31.2A1.29,1.29,0,0,0,22.683,36.763Z" transform="translate(0 -32)" fill="#080a1e"/>
+  </g>
+</svg>

@@ -68,7 +68,7 @@ export const IndexInner = ({ transitionStatus }) => {
         <div className="row no-gutters" id="service">
 
           <div className="ml-auto col-12 col-lg-10">
-            <HomeService />
+            
           </div>
         </div>
         */}

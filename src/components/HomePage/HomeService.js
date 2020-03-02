@@ -28,7 +28,7 @@ const HomeService = () => {
       <div className="service-boxs">
         <FontAwesomeIcon icon={faTruck} />
         <p>Free Delivery</p>
-      </div>
+      </div>     
     </animated.div>
   )
 }

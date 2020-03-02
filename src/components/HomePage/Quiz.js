@@ -20,11 +20,13 @@ export const QuizButton = () => {
       hex="#D8A8FF"
       className="btn btn-info ml-auto"
     >
-      {quiz.currentQuestion !== 0 && quiz.complete
-        ? 'Your Results'
-        : quiz.currentQuestion !== 0
-        ? 'Resume'
-        : 'Start'}
+      <span>
+        {quiz.currentQuestion !== 0 && quiz.complete
+          ? 'Your Results'
+          : quiz.currentQuestion !== 0
+          ? 'Resume'
+          : 'Start'}
+      </span>
       <img src={PlayIcon} />
     </AniLink>
   )

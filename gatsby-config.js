@@ -73,6 +73,7 @@ module.exports = {
           'Rqd56FLNq539fNET8PGvIsA9kNkr12dkyHwk8SLyLtKISlMgEJ-cyQ3aTKtQapYxXNwx-u18dByEnViH59QBBQ=='
       }
     },
+
     'gatsby-plugin-stripe'
   ]
 }

@@ -2,26 +2,21 @@
   display: block;
   text-align: center;
 
-  h2 {
-    font-size: 130px;
-    color: $bridalheath;
-    font-weight: 900;
-    margin: 0 0 30px 0;
+  .scrollText {
+    position:relative;
+    top:0;
+    left:0;
 
-    @media (max-width: $desktop18) {
-      font-size: 80px;
-    }
-    @media (max-width: $mobileportrait) {
-      font-size: 46px;
-    }
+    h2 {
+        font-size:160px;
+        font-weight:700;
+        color: $ligthgreen;
+        white-space: nowrap;
 
-    span {
-      display: inline-block;
-      padding-right: 15px;
+        @media (max-width: $ipadlandscape) {
+            font-size: 100px;
+        }
 
-      &:last-child {
-        color: $madang;
-      }
     }
   }
 
@@ -31,16 +26,39 @@
     line-height: 1.2;
     margin: 0 0 70px;
 
-    @media (max-width: $desktop18) {
-      font-size: 28px;
-      line-height: 1.5;
-    }
-    @media (max-width: $mobileportrait) {
-      font-size: 16px;
-    }
-    span {
-      display: inline-block;
-      padding-right: 10px;
-    }
-  }
+  //   @media (max-width: $desktop18) {
+  //     font-size: 80px;
+  //   }
+  //   @media (max-width: $mobileportrait) {
+  //     font-size: 46px;
+  //   }
+
+  //   span {
+  //     display: inline-block;
+  //     padding-right: 15px;
+
+  //     &:last-child {
+  //       color: $madang;
+  //     }
+  //   }
+  // }
+
+  // p {
+  //   font-size: 34px;
+  //   color: $white;
+  //   line-height: 1.2;
+  //   margin: 0 0 70px;
+
+  //   @media (max-width: $desktop18) {
+  //     font-size: 28px;
+  //     line-height: 1.5;
+  //   }
+  //   @media (max-width: $mobileportrait) {
+  //     font-size: 16px;
+  //   }
+  //   span {
+  //     display: inline-block;
+  //     padding-right: 10px;
+  //   }
+  // }
 }

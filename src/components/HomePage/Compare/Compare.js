@@ -11,6 +11,7 @@ import ReactPlayer from 'react-player'
 import VisibilitySensor from "react-visibility-sensor"
 import Head from '../../AnimatedText/Head'
 import Para from '../../AnimatedText/Para'
+import {Tab, Row, Col, Nav} from 'react-bootstrap'
 
 const details = [
   { 
@@ -91,18 +92,50 @@ const CompareRow = ({row}) => {
 
 const Compare = () => {
   return (
-    <div className="col-12 blanketdifference-main" >
-      <div className="row no-gutters">
-        <div className="col-12 col-lg-6 bor-right">
-          <h2>Sommio Weightex™ </h2>
-        </div>
-        <div className="col-12 col-lg-6">
-          <h2>Bead Filled Pockets </h2>
-        </div>
-      </div>
-      <CompareRow row={0} />
-      <CompareRow row={2}/>
-      <CompareRow row={4}/>
+    <div className="col-12 blanketdifference-main">
+
+      <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+        <Row>
+          <Col xs={12}>
+            <Nav variant="pills">
+              <Nav.Item>
+                <Nav.Link eventKey="first">Weightex</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="second">Cover</Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Col>
+          <Col xs={12}>
+            <Tab.Content>
+              <Tab.Pane eventKey="first">
+                <div className="row no-gutters">
+                  <div className="col-12 col-lg-6">
+                    <div className="weightex-box">
+                      <h2>Sommio Weightex<sup>™</sup></h2>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    </div>
+                  </div>
+                  <div className="col-12 col-lg-6">
+                    <div className="weightex-box">
+                      <h2>Bead-filled Pockets</h2>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    </div>
+                  </div>
+                </div>
+                <CompareRow row={0} />
+                <CompareRow row={2}/>
+                <CompareRow row={4}/>
+              </Tab.Pane>
+              <Tab.Pane eventKey="second">
+                Lorem
+              </Tab.Pane>
+            </Tab.Content>
+          </Col>
+        </Row>
+      </Tab.Container>
+
+      
       
     </div>
     

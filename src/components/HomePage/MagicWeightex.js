@@ -1,4 +1,5 @@
 import React from 'react'
+import ScrollText from './scrollText'
 import Head from '../AnimatedText/Head'
 import Para from '../AnimatedText/Para'
 
@@ -6,7 +7,8 @@ import Para from '../AnimatedText/Para'
 const MagicWeightex = () => {
   return (
     <div className="magicweightex-main">
-      <Head type={2}>
+      <ScrollText text={"Discover Calm • Discover Calm • Discover Calm • Discover Calm"}/>
+      {/* <Head type={2}>
         The magic of Weightex™
       </Head>
       <Para>
@@ -14,7 +16,7 @@ const MagicWeightex = () => {
         sided cover has a luxurious plush furry fabric and a smooth fuzzy
         velvet; providing fantastic tactile stimulation (We never user cheap
         microfibre/minky). The weighted inner is hand sewn
-      </Para>
+      </Para> */}
     </div>
   )
 }

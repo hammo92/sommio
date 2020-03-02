@@ -1,5 +1,4 @@
 import React, {useRef} from 'react'
-import ScrollText from './scrollText'
 import ReactPlayer from 'react-player'
 import Spin from "../../video/spin3.mp4"
 import VisibilitySensor from "react-visibility-sensor"
@@ -20,6 +19,7 @@ const SecretIngredient = () => {
         <div className="col-12 col-lg-6">
           <div className="secretingredient-boxs">
             <Head type={2}>Your secret ingredient</Head>
+
             <Para>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy text ever
