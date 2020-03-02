@@ -5,7 +5,10 @@
     display: block;
     z-index: 1;
     background-color: $purpleA;
-    padding: 45px 45px 45px 85px;
+    padding: 45px 75px;
+    border-bottom: solid 2px rgba($madang, 0.3);
+
+    
     @media (max-width: $mobileportrait) {
       padding: 20px 0;
       //   background-color: $purpleA;
@@ -29,7 +32,7 @@
   &.thin {
     border-left: solid 2px rgba($madang, 0.3);
     padding: 0;
-    margin-right: 30px;
+    padding-right: 30px;
     height: auto;
   }
 
@@ -64,11 +67,15 @@
     border-radius: 10px;
     padding: 15px 25px;
     font-size: 40px;
+    box-shadow: 5px 5px 0 #B58DD6;
 
     &.btn-info {
       @media (max-width: $mobileportrait) {
         width: 100%;
         border-radius: 10px;
+      }
+      span {
+        line-height: 1;
       }
       img {
         margin-left: auto;

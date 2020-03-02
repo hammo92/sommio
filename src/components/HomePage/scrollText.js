@@ -25,7 +25,6 @@ function ScrollText({text}) {
 
         <div className="scrollText">
             <animated.h2 style={style1}>{text}</animated.h2>
-            
         </div>
     )
 }

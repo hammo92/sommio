@@ -17,16 +17,16 @@ const HomeService = () => {
     <animated.div style={props} className="home-service">
       <div className="service-boxs">
         <img src={NightIcon} />
-        <p> 100 Night Trial</p>
-      </div>
-      <div className="service-boxs">
-        <img src={WarantyIcon} />
-        <p>1 Year Waranty</p>
+        <p>100 Night Trial</p>
       </div>
       <div className="service-boxs">
         <img src={DeliveryIcon} />
         <p>Free Delivery</p>
       </div>
+      <div className="service-boxs">
+        <img src={WarantyIcon} />
+        <p>1 year warranty</p>
+      </div>      
     </animated.div>
   )
 }

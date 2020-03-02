@@ -1,17 +1,24 @@
 .home-service {
-  background: #acc7f0;
-  display: flex;
-  flex-wrap: wrap;
-  border-radius: 5px 0 0 5px;
+  // background: #acc7f0;
+  display: block;
+  border-radius: 0;
+  margin-right: 30px;
+  border-left: solid 2px rgba($madang, 0.3);
+
   @media (max-width: $mobileportrait) {
     display: none;
   }
   .service-boxs {
-    width: 33.33%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 35px 70px;
+    padding: 35px 55px 35px 50px;
+    border-bottom: solid 2px rgba($madang, 0.3);
+
+    &:last-child {
+      border-bottom: 0;
+    }
 
     @media (max-width: $desktop18) {
       padding: 25px 30px;
@@ -34,9 +41,10 @@
     }
 
     p {
-      padding: 0 0 0 30px;
-      font-size: 30px;
-      color: $midnight;
+      margin-left: auto;
+      padding: 0;
+      font-size: 33px;
+      color: $white;
       line-height: 1;
       font-weight: 900;
 

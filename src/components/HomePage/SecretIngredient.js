@@ -1,27 +1,32 @@
 import React, {useRef} from 'react'
-import ScrollText from './scrollText'
 import ReactPlayer from 'react-player'
 import Spin from "../../video/spin3.mp4"
 import VisibilitySensor from "react-visibility-sensor"
 import Para from '../AnimatedText/Para'
+import secretContainImages from "../../images/secretContain-img.svg"
+import BookOpen from "../../images/book-open-solid.svg"
 
 
 const SecretIngredient = () => {
   const vid = useRef()
   return (
     <div className="container-fluid secretContain">
-       <ScrollText text={"Discover Calm • Discover Calm"}/>
-      <div className="row">
-        
-        <div className="col-12 col-lg-5">
+      <div className="row">        
+        <div className="col-12 col-lg-7">
           <div className="secretingredient-boxs">
+            <h4>Your secret ingredient</h4>
             <Para>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy text ever
                 since the dummy text of the printing and typesetting
                 industry.
             </Para>
-  {/* <button className="btn btn-primary">Discover Yours</button> */}
+            <button className="btn btn-primary"><span>Learn</span><img src={BookOpen} /></button>
+          </div>
+        </div>
+        <div className="col-12 col-lg-5">
+          <div className="img">
+            <img src={secretContainImages} />
           </div>
         </div>
         {/*<div className="col-12 col-lg-7">

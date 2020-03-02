@@ -58,27 +58,23 @@ export const IndexInner = ({ transitionStatus }) => {
           </div>
           <div className="col-12 col-lg-4">
             <Quiz />
+            <HomeService />
           </div>
         </div>
         {/* </div> */}
 
-        <div className="row no-gutters" id="service">
+        {/* <div className="row no-gutters" id="service">
           <div className="ml-auto col-12 col-lg-10">
-            <HomeService />
+            
           </div>
-        </div>
+        </div> */}
 
         <SecretIngredient />
       </div>
 
       <Carousel shifted={true} />
-      <div
-        className="col-12 col-lg-8 mx-auto"
-        data-scroll
-        data-scroll-speed="2"
-      >
-        <MagicWeightex />
-      </div>
+
+      <MagicWeightex />
 
       <div className="container-fluid">
         <div className="row">

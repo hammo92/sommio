@@ -53,9 +53,9 @@
     }
 
     .helpHeading {
-      border-bottom: solid 2px rgba(255, 255, 255, 0.3);
+      // border-bottom: solid 2px rgba(255, 255, 255, 0.3);
       margin: 0 0 40px 0;
-      padding-bottom: 20px;
+      // padding-bottom: 20px;
     }
   }
   &.noShift {
@@ -160,12 +160,12 @@
 
     .help-content {
       position: absolute;
-      left: 30px;
-      right: 30px;
-      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 30px;
 
       h2 {
-        font-size: 80px;
+        font-size: 100px;
         color: $white;
         display: block;
         line-height: 1;
@@ -187,7 +187,7 @@
 
       a.btn-link {
         color: $white;
-        font-size: 34px;
+        font-size: 35px;
         font-weight: 300;
         line-height: 1;
         text-decoration: none;

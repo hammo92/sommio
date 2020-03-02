@@ -29,9 +29,7 @@ const CustomerReview = () => {
   }
   return (
     <div className="customerreview-bg">
-      <h3>
-        <span>Customer</span> Reviews
-      </h3>
+      <h3>Reviews</h3>
       <Slider {...settings}>
         <div className="review-boxs">
           <div className="d-flex flex-wrap">
