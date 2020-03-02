@@ -92,7 +92,7 @@
     .tab-content {
 
         .tab-pane {
-            font-size: 34px;
+            font-size: $FontSize30;
             color: $white;
             line-height: 1.2;
 
@@ -106,7 +106,7 @@
 
             p {
                 display: block;
-                font-size: 34px;
+                font-size: $FontSize30;
                 color: $white;
                 line-height: 1.2;
                 margin: 0;

@@ -3,6 +3,9 @@ import Para from '../AnimatedText/Para'
 import Head from '../AnimatedText/Head'
 import GoodquizImages from '../../images/goodquiz-img.jpg'
 import GoodquizEyeIcon from '../../images/eye-solid.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
+import Button from '../Button'
 
 const Goodbye = () => {
   return (
@@ -19,9 +22,9 @@ const Goodbye = () => {
           </Para>
         </div>
         <div className="goodquiz-view">
-          <a href="#" className="eye-box">
-            <img src={GoodquizEyeIcon} alt="View" />
-          </a>
+          <Button type="round large" >
+            <FontAwesomeIcon icon={faEye} />
+          </Button>
         </div>
       </div>
     </div>

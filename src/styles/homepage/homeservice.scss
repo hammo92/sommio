@@ -1,17 +1,25 @@
 .home-service {
-  background: #acc7f0;
+  background:$purpleB;
   display: flex;
   flex-wrap: wrap;
+  flex-direction:column;
   border-radius: 5px 0 0 5px;
+  flex:1;
   @media (max-width: $mobileportrait) {
     display: none;
   }
   .service-boxs {
-    width: 33.33%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     padding: 35px 70px;
+    border-bottom:$purpleborder;
+    border-left:$purpleborder;
+    justify-content: space-between;
+    flex:1;
+    &:last-child{
+      border-bottom:none
+    }
 
     @media (max-width: $desktop18) {
       padding: 25px 30px;
@@ -25,8 +33,9 @@
       padding: 20px;
     }
 
-    img {
-      height: 50px;
+    svg {
+      font-size: 35px;
+      color:$white;
 
       @media (max-width: $desktop18) {
         height: 30px;
@@ -36,7 +45,7 @@
     p {
       padding: 0 0 0 30px;
       font-size: 30px;
-      color: $midnight;
+      color: $white;
       line-height: 1;
       font-weight: 900;
 

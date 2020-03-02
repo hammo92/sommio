@@ -14,6 +14,8 @@ import Layout from '../components/Layout/Layout'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 import { useStateValue } from '../context/SiteContext'
 import { animated, useSpring } from 'react-spring'
+import ScrollText from '../components/HomePage/scrollText'
+
 
 const TRANSITION_LENGTH = 1
 
@@ -50,41 +52,50 @@ export const IndexInner = ({ transitionStatus }) => {
 
   return (
     <animated.div style={fadeUp} className="homepage-bg">
-      <div className="goodquiz-bg">
+      <div className="goodquiz-bg container-fluid">
         {/* <div className="container-fluid"> */}
-        <div className="row no-gutters">
+        <div className="row no-gutters borderBottom">
           <div className="col-12 col-lg-8">
             <Goodbye />
           </div>
-          <div className="col-12 col-lg-4">
+          <div className="col-12 col-lg-4 d-flex flex-column">
             <Quiz />
+            <HomeService />
           </div>
         </div>
-        {/* </div> */}
+        {/*
 
         <div className="row no-gutters" id="service">
+
           <div className="ml-auto col-12 col-lg-10">
             <HomeService />
           </div>
         </div>
+        */}
 
         <SecretIngredient />
       </div>
-
+      
       <Carousel shifted={true} />
-      <div
-        className="col-12 col-lg-8 mx-auto"
-        data-scroll
-        data-scroll-speed="2"
-      >
-        <MagicWeightex />
+      <ScrollText text={"Discover Calm • Discover Calm • Discover Calm"} />
+      <div className="container-fluid">
+        <div className="row no-gutters ">
+          <div
+          className="col-12 col-lg-12 mx-auto"
+          data-scroll
+          data-scroll-speed="2"
+          >
+          
+          <BlanketImages />
+          
+          </div>
+        </div>
       </div>
+      
 
       <div className="container-fluid">
         <div className="row">
-          <div className="col-12" data-scroll>
-            <BlanketImages />
-          </div>
+          
 
           <Compare />
 
