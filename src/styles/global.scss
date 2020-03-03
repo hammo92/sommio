@@ -61,7 +61,17 @@ p {
     }
   }
 }
-
+.backgroundPurple{
+  &.colorA{
+    background:#1A172F;
+  }
+  &.colorB{
+    background:#2C2444;
+  }
+  &.colorC{
+    background:#080A1E;
+  }
+}
 .form-group {
   display: flex;
   flex-wrap: wrap;

@@ -1,24 +1,40 @@
 import React from 'react'
-import NightIcon from '../../images/moon-stars-duotone.svg'
-import WarantyIcon from '../../images/badge-check-duotone.svg'
-import DeliveryIcon from '../../images/truck-duotone.svg'
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faMoonCloud} from '@fortawesome/pro-solid-svg-icons'
+import { faCertificate, faTruck } from '@fortawesome/free-solid-svg-icons'
+import {
+  useSpring,
+  animated
+} from 'react-spring'
+
+const config = {
+  mass: 1,
+  tension: 500,
+  friction: 100
+}
 
 const ProductService = () => {
+  const props = useSpring({ 
+    config,
+    from:{opacity: 0},
+    to:{opacity: 1}   
+  })
   return (
-    <div className="product-service">
+    <animated.div style={props} className="product-service">
       <div className="service-boxs">
-        <img src={NightIcon} alt="try1" />
+        <FontAwesomeIcon icon={faMoonCloud} />
         <p> 100 Night Trial</p>
       </div>
       <div className="service-boxs">
-        <img src={WarantyIcon} alt="try2" />
+        <FontAwesomeIcon icon={faCertificate} />
         <p>1 Year Waranty</p>
       </div>
       <div className="service-boxs">
-        <img src={DeliveryIcon} alt="try3" />
+        <FontAwesomeIcon icon={faTruck} />
         <p>Free Delivery</p>
-      </div>
-    </div>
+      </div>     
+    </animated.div>
   )
 }
 export default ProductService

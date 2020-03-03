@@ -192,17 +192,13 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
           <h4>Blanket Size</h4>
           <p>Single 130*120</p>
         </div>
-        <SommioModal text="are other sizes available?">
-          <p>Currently only the standard single size is available</p>
-        </SommioModal>
+        
       </div>
       <div className="blanket-boxs">
         <div className="size-boxs">
           <h4>Blanket Weight</h4>
         </div>
-        <SommioModal text="Help me choose">
-          <p>Currently only the standard single size is available</p>
-        </SommioModal>
+        
 
         <div className="radio-group">
           {weightSubProduct.map((weight, k) => (
@@ -238,9 +234,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
         <div className="size-boxs">
           <h4>Blanket Cover</h4>
         </div>
-        <SommioModal text="Help me choose">
-          <p>Currently only the standard single size is available</p>
-        </SommioModal>
         <Dropdown
           defaultValue={blancketCover}
           isOpen={dropdownOpen}

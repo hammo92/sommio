@@ -139,7 +139,7 @@ header {
             font-size: $FontSize23;
             color: $white;
             font-weight: 700;
-            background: $ligthgreen;
+            background: $lightgreen;
             border-radius: 50%;
             margin-left: 10px;
             line-height: 1;
@@ -205,7 +205,7 @@ header {
             .cartsliderbar-header {
               display: flex;
               flex-wrap: wrap;
-              border-bottom: solid 2px rgba($white, 0.3);
+              border-bottom: $purpleborder;
               padding: 25px;
               align-items: center;
 
@@ -463,7 +463,7 @@ header {
                     line-height: 1;
 
                     &:last-child {
-                      border-top: solid 2px rgba($white, 0.3);
+                      border-top: $purpleborder;
                     }
                   }
                 }

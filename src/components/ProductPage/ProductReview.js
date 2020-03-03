@@ -16,19 +16,19 @@ const ProductReview = () => {
       <div className="review-totals">
         <div className="star-list">
           <div className="star">
-            <img src={StarIconGreen} alt="greenStarIcon" />
+            <img src={StarIconRed} alt="redStarIcon" /> 
           </div>
           <div className="star">
-            <img src={StarIconGreen} alt="greenStarIcon" />
+            <img src={StarIconRed} alt="redStarIcon" /> 
           </div>
           <div className="star">
-            <img src={StarIconGreen} alt="greenStarIcon" />
+            <img src={StarIconRed} alt="redStarIcon" /> 
           </div>
           <div className="star">
-            <img src={StarIconGreen} alt="greenStarIcon" />
+            <img src={StarIconRed} alt="redStarIcon" /> 
           </div>
           <div className="star">
-            <img src={StarIconGreen} alt="greenStarIcon" />
+            <img src={StarIconRed} alt="redStarIcon" /> 
           </div>
         </div>
         <span>120 Reviews</span>

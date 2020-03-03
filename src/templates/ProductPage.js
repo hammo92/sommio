@@ -21,25 +21,9 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 import { animated, useSpring } from 'react-spring'
-
+import Head from '../components/AnimatedText/Head'
+import Para from '../components/AnimatedText/Para'
 import styled from 'styled-components'
-
-const TitleContain = styled.div`
-  margin: 0 15px;
-  padding-bottom: 20px;
-
-  h2 {
-    font-size: 5em;
-    color: #acc7f0;
-    font-weight: 900;
-    margin: 0;
-    line-height: 1;
-
-    &:first-child {
-      color: #ffffff;
-    }
-  }
-`
 
 const DarkRow = styled(Row)`
   margin: 20px 0 40px 0;
@@ -89,12 +73,7 @@ const ProductPageInner = ({
   const Overview = contentfulProduct && contentfulProduct.overview
   const Faq = contentfulProduct && contentfulProduct.faqQuestions
   const Features = contentfulProduct && contentfulProduct.feature
-  //const FeatureSlides = CurrentProduct.featureSlide[0]
-  let Headings =
-    contentfulProduct && contentfulProduct.overviewHeading.split(' ')
-  const LastWord = Headings && Headings.pop()
-  Headings = Headings && Headings.join(' ')
-  //console.log(FeatureSlides);
+
 
   const [selectedVariationId, setSelectedVariationId] = useState(
     product._id._oid
@@ -148,18 +127,12 @@ const ProductPageInner = ({
           <div className="container-fluid">
             <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example">
               <Tab eventKey="overview" title="Overview">
-                <Container fluid>
-                  <Row>
-                    <TitleContain>
-                      <h2>{Headings && Headings}</h2>
-                      <h2>{LastWord && LastWord}</h2>
-                    </TitleContain>
+                
+                  <Row noGutters>
+                    <Head type={2} head={contentfulProduct.overviewHeading}/>
                   </Row>
-                  <ProductVideo />
                   <DarkRow>
-                    <Col md={12}>
-                      <h3>What is it?</h3>
-                    </Col>
+                    
                     <Col md={9}>
                       {
                         <div
@@ -178,8 +151,19 @@ const ProductPageInner = ({
                           ))}
                       </ul>
                     </Col>
-                  </DarkRow>
-                </Container>
+                </DarkRow>
+                <Row noGutters  className="justify-content-md-center backgroundPurple colorA videoWrap"> 
+                  <Col md={6}>
+                    <Head type={3}>Look Inside</Head>
+                    <Para>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Para>
+
+                  </Col>
+                  
+                  <ProductVideo />          
+                </Row>
+                  
+                  
+
                 <ImageGrid>
                   <div>
                     <img src="https://cdn.shopify.com/s/files/1/0064/3262/0633/t/35/assets/sleepings.png?128218" />

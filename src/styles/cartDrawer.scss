@@ -54,7 +54,7 @@
                 .cartsliderbar-header {
                     display: flex;
                     flex-wrap: wrap;
-                    border-bottom: solid 2px rgba($white, 0.3);
+                    border-bottom: $purpleborder;
                     padding: 25px;
                     align-items: center;
 
@@ -325,7 +325,7 @@
                                 line-height: 1;
 
                                 &:last-child {
-                                    border-top:solid 2px rgba($white, 0.3);
+                                    border-top:$purpleborder;
                                 }
                             }
 
