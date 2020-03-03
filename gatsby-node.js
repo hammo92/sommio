@@ -49,6 +49,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       }
     })
   })
+
   pages.data.contentfulCondition.edges.forEach(({ node }, index) => {
     const next =
       index !== pages.data.contentfulCondition.edges.length - 1

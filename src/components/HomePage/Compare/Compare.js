@@ -7,6 +7,7 @@ import BeadSmoke from "../../../video/explodeSmoke3.mp4"
 import WeightexTurn from "../../../video/weightexTurn.mp4"
 import WeightexExplode from "../../../video/weightexExploCold.mp4"
 import Leak from "../../../video/leakSquare.mp4"
+import PlayDuotone from "../../../images/play-duotone.png"
 import ReactPlayer from 'react-player'
 import VisibilitySensor from "react-visibility-sensor"
 import Head from '../../AnimatedText/Head'
@@ -56,14 +57,12 @@ const CompareBox = ({details: {title, text, url}, visible, left}) => {
   return (
     <div className= {left ? "col-12 col-lg-6 bor-right" : "col-12 col-lg-6"}> 
       <div className="sommio-box">
-      
-        
         <ReactPlayer url={url[Object.keys(url)[0]]}
-                playing={visible ? true : false}
-                muted
-                width={'100%'}
-                height={'100%'}
-                loop={false}
+          playing={visible ? true : false}
+          muted
+          width={'100%'}
+          height={'100%'}
+          loop={false}
         />
         <Head>{title}</Head>
         <Para>{text}</Para>
@@ -82,6 +81,12 @@ const CompareRow = ({row}) => {
     <VisibilitySensor onChange={onChange} partialVisibility>
       <div className="row no-gutters">
           <CompareBox key="0" details={details[row]} visible={isVisible} left/>
+          <div className="play-box">
+            <button className="btn btn-primary">
+              <img src={PlayDuotone} />
+            </button>
+            <span>Play</span>
+          </div>
           <CompareBox key="1" details={details[row + 1]} visible={isVisible}/>
       </div>
     </VisibilitySensor>

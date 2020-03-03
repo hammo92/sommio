@@ -13,8 +13,12 @@
         color: $ligthgreen;
         white-space: nowrap;
 
+        @media (max-width: $desktophidpi) {
+          font-size: 130px;
+        }
+
         @media (max-width: $ipadlandscape) {
-            font-size: 100px;
+          font-size: 100px;
         }
 
     }

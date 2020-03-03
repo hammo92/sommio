@@ -12,7 +12,7 @@ const SecretIngredient = () => {
   return (
     <div className="container-fluid secretContain">
       <div className="row">        
-        <div className="col-12 col-lg-7">
+        <div className="col-12 col-lg-6">
           <div className="secretingredient-boxs">
             <h4>Your secret ingredient</h4>
             <Para>
@@ -24,7 +24,7 @@ const SecretIngredient = () => {
             <button className="btn btn-primary"><span>Learn</span><img src={BookOpen} /></button>
           </div>
         </div>
-        <div className="col-12 col-lg-5">
+        <div className="col-12 col-lg-6">
           <div className="img">
             <img src={secretContainImages} />
           </div>

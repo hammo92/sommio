@@ -48,6 +48,14 @@
   &.shiftUp {
     margin-top: -94px;
 
+    @media (max-width: $desktop18) {
+      margin-top: -113px;
+    }
+
+    @media (max-width: $desktophidpi) {
+      margin-top: -92px;
+    }
+
     @media (max-width: $ipadlandscape) {
       margin-top: -78px;
     }
@@ -56,6 +64,11 @@
       // border-bottom: solid 2px rgba(255, 255, 255, 0.3);
       margin: 0 0 40px 0;
       // padding-bottom: 20px;
+
+      @media (max-width: $desktophidpi) {
+        margin: 0 0 20px 0;
+      }
+
     }
   }
   &.noShift {
@@ -143,6 +156,14 @@
     will-change: transform, width, opacity;
     height: 400px;
 
+    @media (max-width: $desktop18) {
+      height: 370px;
+    }
+
+    @media (max-width: $desktophidpi) {
+      height: 440px;
+    }
+
     @media (max-width: $ipadlandscape) {
       height: 360px;
     }
@@ -173,7 +194,7 @@
         font-weight: 900;
 
         @media (max-width: $desktop18) {
-          font-size: 90px;
+          font-size: 80px;
         }
 
         @media (max-width: $ipadlandscape) {

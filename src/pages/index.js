@@ -14,7 +14,7 @@ import Layout from '../components/Layout/Layout'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 import { useStateValue } from '../context/SiteContext'
 import { animated, useSpring } from 'react-spring'
-
+import  Footer from "../components/HomePage/footer"
 const TRANSITION_LENGTH = 1
 
 const exitTransition = {
@@ -89,6 +89,7 @@ export const IndexInner = ({ transitionStatus }) => {
           </div>
         </div>
       </div>
+      <Footer/>
     </animated.div>
   )
 }
