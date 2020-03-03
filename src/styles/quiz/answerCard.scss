@@ -1,12 +1,16 @@
 .AnswerBlock{
   display:flex;
   flex:1;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  background:$purpleB;
   align-items:center;
   padding-left:40px;
-  transition:all 0.3s;
   cursor:pointer;
-  transition:all 0.3s;
+  margin-bottom:10px;
+  border-radius: 10px;
+  margin-right:10px;
+  &:last-child{
+    margin-bottom:0
+  }
   &.active{
     background:$madang;
     color:$violet;
