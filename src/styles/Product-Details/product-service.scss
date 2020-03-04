@@ -1,7 +1,7 @@
-.product-service{
+.product-service {
     display: flex;
     flex-wrap: wrap;
-    border-bottom: solid 2px rgba($white, 0.3);
+    border-bottom: $purpleborder;
     padding: 0px 0;
 
 
@@ -10,13 +10,14 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        padding: 20px 0;
+        padding: 20px;
         align-content: center;
-        justify-content: center;
-        border-left: solid 2px rgba(255,255,255,0.3);
+        justify-content: space-between;
+        border-left: $purpleborder;
+        background: $purpleA;
 
-        &:first-child{
-          border:none !important
+        &:first-child {
+            border: none !important
         }
 
         img {
@@ -30,7 +31,14 @@
             color: $white;
             font-weight: 700;
         }
-
+        svg {
+            font-size: 35px;
+            color:$white;
+      
+            @media (max-width: $desktop18) {
+              height: 30px;
+            }
+        }
     }
 
 }

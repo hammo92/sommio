@@ -42,7 +42,6 @@
   &.thin {
     border-left: solid 2px rgba($madang, 0.3);
     padding: 0;
-    padding-right: 30px;
     height: auto;
   }
 
@@ -72,7 +71,7 @@
       padding-right: 15px;
 
       &:last-child {
-        color: $ligthgreen;
+        color: $lightgreen;
       }
     }
   }

@@ -6,7 +6,8 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import {ArrowLeft, ArrowRight} from './Arrows'
 import { useStateValue } from '../../context/SiteContext';
 import YAMLData from '../../../content/Quiz.yaml' 
-import {useTransition, useTrail, animated} from 'react-spring'
+import { useTransition, useTrail, animated } from 'react-spring'
+
 
 const Questions = YAMLData
 const AnimatedAnswer = animated(AnswerCard)

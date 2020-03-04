@@ -4,7 +4,9 @@ import WarantyIcon from '../../images/badge-check-duotone-home.svg'
 // import DeliveryIcon from '../../images/truck-duotone.svg'
 import DeliveryIcon from '../../images/truck-duotone-home.svg'
 import {useSpring, animated} from 'react-spring'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMoonCloud } from '@fortawesome/pro-solid-svg-icons'
+import { faCertificate , faTruck } from '@fortawesome/free-solid-svg-icons'
 
 const config = { mass: 1, tension: 500, friction: 100 }
 const HomeService = () => {
@@ -16,17 +18,17 @@ const HomeService = () => {
   return (
     <animated.div style={props} className="home-service">
       <div className="service-boxs">
-        <img src={NightIcon} />
-        <p>100 Night Trial</p>
+        <FontAwesomeIcon icon={faMoonCloud} />
+        <p> 100 Night Trial</p>
       </div>
       <div className="service-boxs">
-        <img src={DeliveryIcon} />
+        <FontAwesomeIcon icon={faCertificate} />
+        <p>1 Year Waranty</p>
+      </div>
+      <div className="service-boxs">
+        <FontAwesomeIcon icon={faTruck} />
         <p>Free Delivery</p>
-      </div>
-      <div className="service-boxs">
-        <img src={WarantyIcon} />
-        <p>1 year warranty</p>
-      </div>      
+      </div>     
     </animated.div>
   )
 }

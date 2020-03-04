@@ -9,6 +9,7 @@
     background-size: auto 200%;
 }
 .nav-tabs{
+    border:none;
 
    .nav-link{
      text-align: center;
@@ -17,17 +18,11 @@
       color:
       #fff;
       font-weight: 700;
-      border: 0;
-          border-bottom-color: currentcolor;
-          border-bottom-style: none;
-          border-bottom-width: 0px;
-      border-bottom: solid 2px
-      transparent;
+      border:none;
       border-radius: 0;
       line-height: 1;
       cursor: pointer;
       flex:1;
-      border-right:2px solid rgba(255,255,255,0.3);
 
       &:last-child{
         border-right:none;
@@ -35,9 +30,9 @@
 
 
       &.active{
-        border-bottom-color: #ACF0B5;
-        background:none;
-        color:#ACF0B5;
+        border-color: $lightgreen;
+        background:$purpleA;
+        color:$white;
       }
    }
    .nav-item.show{
@@ -54,13 +49,13 @@
     padding-bottom:40px;
 
     .nav.nav-tabs {
-        border: solid 2px rgba($white, 0.3);
+        border: $purpleborder;
         margin-bottom: 30px;
 
         li {
             width: 20%;
             margin: 0 0 -2px;
-            border-right: solid 2px rgba($white, 0.3);
+            border-right: $purpleborder;
 
             &:last-child {
                 border-right: 0;
@@ -90,11 +85,49 @@
     }
 
     .tab-content {
+        .videoWrap{
+            text-align: center;
+            h3 {
+                font-size: 60px;
+                color: $white;
+                font-weight: 900;
+                line-height: 1.2;
+                span {
+                    display: inline-block;
+                    padding-right: 15px;
+            
+                    &:last-child {
+                      color: $lightgreen;
+                    }
+                  }
+            }
+            P{
+                span {
+                    display: inline-block;
+                    padding-right: 15px;
+                }
+            }
+        }
 
         .tab-pane {
-            font-size: 34px;
+            font-size: $FontSize30;
             color: $white;
             line-height: 1.2;
+
+            h2 {
+                font-size: 130px;
+                color: $white;
+                font-weight: 900;
+                line-height: 1.2;
+                span {
+                    display: inline-block;
+                    padding-right: 15px;
+            
+                    &:last-child {
+                      color: $lightgreen;
+                    }
+                  }
+            }
 
             h3 {
                 display: block;
@@ -106,7 +139,7 @@
 
             p {
                 display: block;
-                font-size: 34px;
+                font-size: $FontSize30;
                 color: $white;
                 line-height: 1.2;
                 margin: 0;

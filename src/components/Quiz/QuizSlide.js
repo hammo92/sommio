@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useStateValue } from '../../context/SiteContext';
 import YAMLData from '../../../content/Quiz.yaml' 
+import Button from '../Button'
 
 
 const Questions = YAMLData
@@ -41,7 +42,9 @@ const QuizSlide = () => {
               nextQuestion: {currentQuestion: quiz.currentQuestion + 1}
             })}
             >
+            <Button type="long">
               <FaArrowRight />
+            </Button>
             </div>) : null}
           
         </Row>

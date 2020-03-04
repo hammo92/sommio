@@ -6,6 +6,10 @@ import BlackboardImage from '../../images/blackboard.png'
 import { useStateValue } from '../../context/SiteContext'
 import Para from '../AnimatedText/Para'
 import Head from '../AnimatedText/Head'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { animated, useSpring } from 'react-spring'
+import Button from '../Button'
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
 
 export const QuizButton = () => {
   const [{ quiz }, dispatch] = useStateValue()
@@ -46,7 +50,16 @@ const Quiz = ({ display }) => {
           Take our short quiz to discover whether a sommio weighted blanket
           could help you sleep better and enjoy lower stress
         </Para>
-        <QuizButton />
+        <AniLink
+          paintDrip
+          to="/QuizNew"
+          hex="#D8A8FF"
+        >
+        <Button  >
+          <h3>Start</h3>
+          <FontAwesomeIcon icon={faPlay} />
+        </Button>
+        </AniLink>
       </div>
     </div>
   )

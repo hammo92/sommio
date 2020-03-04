@@ -1,8 +1,8 @@
 import React from 'react'
 import { FaArrowLeft, FaArrowRight, FaCircle } from 'react-icons/fa';
 import { useStateValue } from '../../context/SiteContext';
-import {useTransition, animated} from 'react-spring'
 
+import Button from '../Button'
 
 
 
@@ -30,11 +30,6 @@ export const ArrowRight = ({answered}) => {
         sleep = sleep + question.sleepScore
         stress = stress + question.stressScore
     }
-    const transitions = useTransition(answered, null, {
-        from: { position: 'absolute', opacity: 0 },
-        enter: { opacity: 1 },
-        leave: { opacity: 0 },
-        })
     return (
         <div 
           className={answered === false ? "arrow next disabled" : "arrow next"}
@@ -51,14 +46,10 @@ export const ArrowRight = ({answered}) => {
                 stress: stress,
             }): console.log(' ')
         }
-          >
-        {
-          transitions.map(({ item, key, props }) => 
-            item !== false
-            ? <animated.div className="disabled" style={props}><FaArrowRight /></animated.div>
-            : <animated.div style={props}><FaCircle /></animated.div>
-            )
-        }
+      >
+        <Button type={`long ${!answered && "disabled"}`}>
+             <FaArrowRight />
+        </Button>
         </div>
     )
 }

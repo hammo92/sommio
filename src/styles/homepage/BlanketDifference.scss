@@ -3,16 +3,14 @@
   // border-top: solid 1px rgba($white, 0.3);
   // border-bottom: solid 1px rgba($white, 0.3);
 
-
   @media (max-width: $mobileportrait) {
     border: 0;
   }
 
   .nav.nav-pills {
-    
     .nav-item {
       width: 50%;
-      
+
       .nav-link {
         padding: 43px 0;
         font-size: 70px;
@@ -27,29 +25,24 @@
           background: $purpleA;
           color: $portage;
         }
-
       }
-
     }
-
   }
 
   .tab-content {
-
     .tab-pane {
       background: $purpleA;
     }
-
   }
 
   .weightex-box {
     padding: 20px 6rem 40px;
-    border-bottom: solid 2px rgba($madang, 0.30);
+    border-bottom: solid 2px rgba($madang, 0.3);
     text-align: center;
 
     @media (max-width: $desktophidpi) {
-      padding: 20px 4rem 40px;    }
-
+      padding: 20px 4rem 40px;
+    }
   }
 
   .bor-right {
@@ -59,11 +52,11 @@
       border: 0;
     }
   }
-  
+
   h2 {
     text-align: center;
     font-size: 56px;
-    color: $ligthgreen;
+    color: $lightgreen;
     font-weight: 700;
     margin: 0 0 20px;
     line-height: 1;
@@ -104,25 +97,23 @@
       justify-content: center;
       align-items: center;
       padding: 0;
-      box-shadow: 5px 5px 0 #B58DD6;
+      box-shadow: 5px 5px 0 #b58dd6;
 
       img {
         max-width: 42px;
         margin: 0 0 -8px 10px;
       }
-
     }
 
     span {
       display: block;
       width: 100%;
       font-size: 35px;
-      color: $ligthgreen;
+      color: $lightgreen;
       font-weight: 700;
       margin: 1rem 0 0 0;
       line-height: 1;
     }
-
   }
 
   .sommio-box {
@@ -154,7 +145,7 @@
       text-align: center;
       width: 100%;
       font-size: 35px;
-      color: $ligthgreen;
+      color: $lightgreen;
       font-weight: 700;
       margin: 10px 0 25px 0;
       @media (max-width: $mobileportrait) {

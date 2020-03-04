@@ -1,7 +1,7 @@
 .product-name {
     display: flex;
     flex-wrap: wrap;
-    border-bottom: solid 2px rgba($white, 0.3);
+    border-bottom: $purpleborder;
     padding: 20px 0;
     position: relative;
     z-index: 2;
@@ -9,7 +9,7 @@
     h3 {
         margin: 0px;
         font-size: 130px;
-        color: $lightBlue;
+        color: $white;
         font-weight: 900;
         width: 80%;
         line-height: 1;

@@ -3,54 +3,54 @@
 @tailwind components;
 @import '~bootstrap/dist/css/bootstrap.css';
 @import url('https://use.typekit.net/lam5mga.css');
-@import "./variable.scss";
-@import "./global.scss";
-@import "./button.scss";
-@import "./header.scss";
-@import "./footer.scss";
+@import './variable.scss';
+@import './global.scss';
+@import './button.scss';
+@import './header.scss';
+@import './footer.scss';
 
-@import "./homepage/goodbye.scss";
-@import "./homepage/quizpage.scss";
-@import "./homepage/homeservice.scss";
-@import "./homepage/secretingredient.scss";
-@import "./homepage/homehelpSlider.scss";
-@import "./homepage/blanketImages.scss";
-@import "./homepage/MagicWeightex.scss";
-@import "./homepage/BlanketDifference.scss";
-@import "./homepage/CustomerReview.scss";
+@import './homepage/goodbye.scss';
+@import './homepage/quizpage.scss';
+@import './homepage/homeservice.scss';
+@import './homepage/secretingredient.scss';
+@import './homepage/homehelpSlider.scss';
+@import './homepage/blanketImages.scss';
+@import './homepage/MagicWeightex.scss';
+@import './homepage/BlanketDifference.scss';
+@import './homepage/CustomerReview.scss';
 
-@import "./Product-Details/product-service.scss";
-@import "./Product-Details/product-name.scss";
-@import "./Product-Details/product-review.scss";
-@import "./Product-Details/product-details.scss";
-@import "./Product-Details/free-delivery.scss";
-@import "./Product-Details/product-variation.scss";
-@import "./Product-Details/videoBlock.scss";
-@import "./Product-Details/product-tabs.scss";
-@import "./Product-Details/help-slider.scss";
-@import "./Product-Details/product-gallery.scss";
-@import "./Product-Details/FAQ.scss";
-@import "./Product-Details/featureSlider.scss";
+@import './Product-Details/product-service.scss';
+@import './Product-Details/product-name.scss';
+@import './Product-Details/product-review.scss';
+@import './Product-Details/product-details.scss';
+@import './Product-Details/free-delivery.scss';
+@import './Product-Details/product-variation.scss';
+@import './Product-Details/videoBlock.scss';
+@import './Product-Details/product-tabs.scss';
+@import './Product-Details/help-slider.scss';
+@import './Product-Details/product-gallery.scss';
+@import './Product-Details/FAQ.scss';
+@import './Product-Details/featureSlider.scss';
 
-@import "./modal.scss";
+@import './modal.scss';
 
-@import "./quiz/main.scss";
-@import "./quiz/questionSlide.scss";
-@import "./quiz/answerCard.scss";
-@import "./quiz/results.scss";
-@import "./condition.scss";
-@import "./homepage/HelpsWith.scss";
+@import './quiz/main.scss';
+@import './quiz/questionSlide.scss';
+@import './quiz/answerCard.scss';
+@import './quiz/results.scss';
+@import './condition.scss';
+@import './homepage/HelpsWith.scss';
 
-@import "./learnPage/main.scss";
-@import "./cartDrawer.scss";
+@import './learnPage/main.scss';
+@import './cartDrawer.scss';
 
-@import "./contact.scss";
+@import './contact.scss';
 
 .visible {
   display: block;
 }
-.ReactModal__Overlay{
-  z-index:9999
+.ReactModal__Overlay {
+  z-index: 9999;
 }
 
 .hidden {
@@ -86,9 +86,9 @@
 }
 
 .custom_cart {
-	width: 100%;
-	background: $purpleC;
-	padding: 0px;
+  width: 100%;
+  background: $purpleC;
+  padding: 0px;
   display: flex;
 
   @media (max-width: $ipadportrait) {
@@ -152,7 +152,7 @@
         line-height: 1;
         font-size: 18px;
         text-transform: capitalize;
-        font-weight:700;
+        font-weight: 700;
 
         @media (max-width: $ipadportrait) {
           font-size: 14px;
@@ -212,7 +212,7 @@
 
   &.purple {
     h2.leading-loose {
-      color:$white;
+      color: $white;
 
       @media (max-width: $ipadportrait) {
         opacity: 1;
@@ -231,7 +231,7 @@
 
   &.purple {
     h2.leading-loose {
-      color:$white;
+      color: $white;
 
       @media (max-width: $ipadportrait) {
         opacity: 1;
@@ -251,8 +251,7 @@
 
   &.purple {
     h2.leading-loose {
-      color:$white;
-
+      color: $white;
 
       @media (max-width: $ipadportrait) {
         opacity: 1;
@@ -272,8 +271,10 @@
     width: 100%;
   }
 }
-.cart_first.purple, .cart_second.purple, .cart_third.purple {
-	background: $purpleA;
+.cart_first.purple,
+.cart_second.purple,
+.cart_third.purple {
+  background: $purpleA;
   color: $white;
 
   @media (max-width: $ipadportrait) {
@@ -284,26 +285,25 @@
 .cart_first {
   padding: 0 0 25px;
 
-  .checkoutAccount{
+  .checkoutAccount {
     margin: 0 -50px;
     padding: 10px 50px;
     display: flex;
     justify-content: space-between;
-    background:
-    #080a1e;
+    background: #080a1e;
     align-items: center;
   }
 
   .shipping-boxs {
-    .row{
-      margin:10px 0 ;
+    .row {
+      margin: 10px 0;
 
-      .col-6,.col-12{
-        padding:0px;
-        &:nth-child(2){
-          border-left:2px solid $purpleA;
+      .col-6,
+      .col-12 {
+        padding: 0px;
+        &:nth-child(2) {
+          border-left: 2px solid $purpleA;
         }
-
       }
     }
     height: calc(100vh - 19vh);
@@ -341,8 +341,8 @@
     transition: all 300ms ease 0s;
     color: #f8f8f8;
     border: 2px solid transparent;
-    background:$purpleB;
-    padding-left:8px;
+    background: $purpleB;
+    padding-left: 8px;
   }
 
   label {
@@ -365,7 +365,7 @@
     transition: all 300ms ease 0s;
     color: #f8f8f8;
     border: 2px solid transparent;
-    background:$purpleB;
+    background: $purpleB;
   }
 }
 
@@ -392,16 +392,15 @@
     right: 20px;
   }
 
-	button {
-		background-color: $madang;
-		width: 100%;
-		height: 60px;
-		color: $midnight;
-		font-size: 20px;
-    font-weight:700;
-    border:none;
-    text-transform: capitalize;;
-
+  button {
+    background-color: $madang;
+    width: 100%;
+    height: 60px;
+    color: $midnight;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    text-transform: capitalize;
   }
 }
 
@@ -504,24 +503,23 @@
     height: 60px;
     position: relative;
 
-		.backcart-btn {
-			position: absolute;
-			left: 50px;
-			top: 50%;
-			transform: translateY(-50%);
-			font-size: 20px;
-			color: $white;
-			text-decoration: none;
-			line-height: 1;
+    .backcart-btn {
+      position: absolute;
+      left: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: $white;
+      text-decoration: none;
+      line-height: 1;
       font-weight: bold;
 
       @media (max-width: $mobileportrait) {
         left: 10px;
       }
 
-			svg {
-				margin-right: 10px;
-
+      svg {
+        margin-right: 10px;
       }
     }
   }

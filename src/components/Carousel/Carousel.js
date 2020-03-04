@@ -8,6 +8,10 @@ import useMeasure from 'react-use-measure'
 import Card from './Card'
 import AnimatedOver from './Animated'
 import Head from '../AnimatedText/Head'
+import Button from '../Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 
 const HelpsWith = ({shifted}) => {
@@ -84,10 +88,18 @@ const { allContentfulCondition } = useStaticQuery(graphql`
         <div className="helpHeading" >
             <Head size="h3">Helps you with</Head>
             <div className="navIcons">
-              <FaChevronCircleLeft className={page == 0 ? "disabled" : ""} onClick={() => setPage(page - 1)}/>
-              <FaChevronCircleRight className={page >= condCount - columns ? "disabled" : ""} onClick={() => setPage(page + 1)} />
+              <div  className={page == 0 && 'disabled'} onClick={() => setPage(page - 1)}>
+                <Button type="round small" >
+                  <FontAwesomeIcon icon={faArrowLeft} />
+                </Button>
+              </div>
+              <div className={page == condCount - columns && 'disabled'} onClick={() => setPage(page + 1)}>
+                <Button type="round small">
+                   <FontAwesomeIcon icon={faArrowRight} />
+                </Button>
+              </div>
             </div>
-            </div>
+          </div>
         <div className="cardWrap" >
         {transition.map(({item, props: { xy, column, ...rest }, key}) => (
             <animated.div 

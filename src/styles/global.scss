@@ -28,6 +28,7 @@ a,
 button {
   cursor: url('/point.svg'), auto !important;
 }
+
 h1,
 h2,
 h3,
@@ -39,7 +40,18 @@ p {
   font-weight: normal;
   margin: 0px;
 }
-
+.borderBottom{
+  border-bottom:$purpleborder;
+}
+.borderLeft{
+  border-left:$purpleborder;
+}
+.borderTop{
+  border-top:$purpleborder;
+}
+.borderRight{
+  border-right:$purpleborder;
+}
 .table {
   .product-image {
     width: 100px;
@@ -49,7 +61,17 @@ p {
     }
   }
 }
-
+.backgroundPurple{
+  &.colorA{
+    background:#1A172F;
+  }
+  &.colorB{
+    background:#2C2444;
+  }
+  &.colorC{
+    background:#080A1E;
+  }
+}
 .form-group {
   display: flex;
   flex-wrap: wrap;

@@ -5,8 +5,8 @@
     padding: 10px;
     background: url(/review-bg.png) center center no-repeat;
     background-size: cover;
-    border-left: solid 2px rgba($white, 0.3);
-    border-bottom: solid 2px rgba($white, 0.3);
+    border-left: $purpleborder;
+    border-bottom: $purpleborder;
     z-index: 2;
 
     .review-totals {
@@ -39,7 +39,7 @@
     }
 
     .review-boxs {
-        background: $bluezodiac;
+        background: $purpleA;
         border-radius: 10px;
         padding: 15px;
 
@@ -79,7 +79,7 @@
             font-size: $FontSize22;
             color: $white;
             line-height: 30px;
-            font-weight: 300;
+            font-weight: 500;
 
             @media (max-width:$desktop18) {
                 font-size: $FontSize18;
@@ -92,13 +92,13 @@
     .slick-arrow {
         position: absolute;
         right: 0;
-        top: -45px;
+        top: -50px;
         width: 50px;
         height: 50px;
 
         &.slick-prev {
             left: auto;
-            right: 50px;
+            right: 70px;
 
             &:before {
                 content: '';
@@ -118,13 +118,13 @@
 
         &:before {
             font-size: 45px;
-            background-color: rgba(129, 213, 244, 0.4);
+            background-color:rgba($madang, 0.4);
             background-position: center center;
             background-repeat: no-repeat;
             background-size: auto 50%;
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
+            width: 50px;
+            height: 50px;
             display: block;
         }
 

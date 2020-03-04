@@ -12,7 +12,7 @@ exports.sourceNodes = async (
   })
 
   const processProduct = async product => {
-    console.log('product => ', product)
+    // console.log('product => ', product)
 
     const nodeId = createNodeId(product.id)
     const nodeContent = JSON.stringify(product)
@@ -43,7 +43,7 @@ exports.onCreateNode = async ({ node, actions, store, cache }) => {
     return
   }
 
-  console.log('node => ', node.internal.type === 'BuiltonProduct' && node)
+  // console.log('node => ', node.internal.type === 'BuiltonProduct' && node)
 
   const { createNode } = actions
 
@@ -60,7 +60,7 @@ exports.onCreateNode = async ({ node, actions, store, cache }) => {
             createNodeId: id => `testId-${id}`
           })
           if (fileNode) {
-            console.log('In fileNode If condition')
+            // console.log('In fileNode If condition')
             node.image___NODE = fileNode.id
             return med
           }
