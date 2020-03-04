@@ -1,17 +1,31 @@
 import React, { useRef } from 'react'
+import { useStaticQuery, graphql } from "gatsby"
 import ReactPlayer from 'react-player'
 import Spin from '../../video/spin3.mp4'
 import VisibilitySensor from 'react-visibility-sensor'
 import Para from '../AnimatedText/Para'
 import Head from '../AnimatedText/Head'
-import Button from '../Button'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBookOpen } from '@fortawesome/free-solid-svg-icons'
 import secretContainImages from '../../images/secretContain-img.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBook } from '@fortawesome/free-solid-svg-icons'
 import BookOpen from '../../images/book-open-solid.svg'
+import Button from '../Button'
+import Img from 'gatsby-image'
 
 const SecretIngredient = () => {
   const vid = useRef()
+  const Meditate = useStaticQuery(graphql`
+    query {
+      file(name: {eq: "Meditate"}) {
+        childImageSharp {
+          fluid(maxWidth: 800, quality: 100) {
+            ...GatsbyImageSharpFluid_noBase64
+          }
+        }
+      }
+    }
+  `) 
+  console.log("meditate is => ", Meditate)
   return (
     <div className="container-fluid secretContain">
       <div className="row">
@@ -25,15 +39,15 @@ const SecretIngredient = () => {
               ever since the dummy text of the printing and typesetting
               industry.
             </Para>
-            <button className="btn btn-primary">
-              <span>Learn</span>
-              <img src={BookOpen} />
-            </button>
+            <Button type="thin">
+              <h3>Learn</h3>
+              <FontAwesomeIcon icon={faBook} />
+            </Button>
           </div>
         </div>
         <div className="col-12 col-lg-6">
           <div className="img">
-            <img src={secretContainImages} />
+            <Img fluid={Meditate.file.childImageSharp.fluid} />
             {/* <Button type="thin">
               <h3>Learn</h3>
               <FontAwesomeIcon icon={faBookOpen} />
@@ -52,6 +66,7 @@ const SecretIngredient = () => {
           progressInterval={100}
 
           />
+          
         }
 
       </VisibilitySensor>
