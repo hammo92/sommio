@@ -171,7 +171,7 @@ const Header = (
                 <img src={logoCheckout} className="logosymbol" />
               </Link>
               <div className={`${classOne}`} id="navbarSupportedContent">
-                <ul className="navbar-nav ml-auto menu-list">
+                <ul className="navbar-nav ml-md-auto menu-list">
                   <li className="nav-item">
                     <Link to="/products">Shop</Link>
                   </li>

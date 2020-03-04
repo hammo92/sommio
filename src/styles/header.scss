@@ -1,6 +1,6 @@
 header {
-  @media (max-width: $ipadlandscape) {
-    padding: 1em 0;
+  @media (max-width: $ipadportrait) {
+    padding: 1em 15px;
     border-bottom: solid 2px rgba($madang, 0.3);
   }
 }
@@ -10,7 +10,7 @@ header {
   border-bottom: solid 2px rgba($madang, 0.3);
   align-content: center;
 
-  @media (max-width: $ipadlandscape) {
+  @media (max-width: $ipadportrait) {
     border-bottom: 0;
   }
 
@@ -19,6 +19,10 @@ header {
       margin-right: 15px;
       padding: 0;
       border: 0;
+      width: 33px;
+      height: 29px;
+      background: url(../images/bars-solid.png) center center no-repeat;
+      border-radius: 0;
     }
   }
 
@@ -28,7 +32,7 @@ header {
     width: 200px;
 
     @media (max-width: $ipadportrait) {
-      width: auto;
+      width: 40px;
       margin-right: auto;
     }
 
@@ -50,6 +54,17 @@ header {
           display: block;
         }
       }
+    }
+  }
+
+  .navbar-collapse {
+    @media (max-width: $ipadportrait) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      background: $midnight;
+      z-index: 9999;
     }
   }
 

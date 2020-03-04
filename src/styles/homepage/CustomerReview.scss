@@ -16,6 +16,10 @@
       margin: 0 0 25px 0;
     }
 
+    @media (max-width: $ipadlandscape) {
+      font-size: 80px;
+    }
+
     @media (max-width: $mobileportrait) {
       font-size: 46px;
       font-weight: 900;
@@ -27,7 +31,6 @@
         display: none;
       }
     }
-
   }
 
   .slick-slider {
@@ -74,7 +77,6 @@
           @media (max-width: $mobileportrait) {
             font-size: $FontSize18;
           }
-
         }
       }
 

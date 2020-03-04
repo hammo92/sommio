@@ -1,10 +1,17 @@
 .home-service {
-  background:$purpleB;
+  background: $purpleB;
   display: flex;
   flex-wrap: wrap;
-  flex-direction:column;
+  flex-direction: column;
   border-radius: 5px 0 0 5px;
-  flex:1;
+  flex: 1;
+
+  @media (max-width: $ipadportrait) {
+    margin: 0 15px;
+    background: none;
+    border-radius: 0;
+  }
+
   @media (max-width: $mobileportrait) {
     display: none;
   }
@@ -13,29 +20,30 @@
     flex-wrap: wrap;
     align-items: center;
     padding: 35px 70px;
-    border-bottom:$purpleborder;
-    border-left:$purpleborder;
+    border-bottom: $purpleborder;
+    border-left: $purpleborder;
     justify-content: space-between;
-    flex:1;
-    &:last-child{
-      border-bottom:none
+    flex: 1;
+    &:last-child {
+      border-bottom: none;
     }
 
     @media (max-width: $desktop18) {
       padding: 25px 30px;
     }
 
-    @media (max-width: $ipadlandscape) {
-      padding: 25px 20px;
+    @media (max-width: $desktopmdpi) {
+      padding: 15px 20px;
     }
 
     @media (max-width: $ipadportrait) {
-      padding: 20px;
+      padding: 12px 0;
+      border-left: 0;
     }
 
     svg {
       font-size: 35px;
-      color:$white;
+      color: $white;
 
       @media (max-width: $desktop18) {
         height: 30px;
@@ -53,14 +61,18 @@
         font-size: 28px;
       }
 
+      @media (max-width: $desktopmdpi) {
+        font-size: 22px;
+      }
+
       @media (max-width: $ipadlandscape) {
         padding: 0 0 0 20px;
       }
 
       @media (max-width: $ipadportrait) {
-        font-size: $FontSize22;
+        font-size: $FontSize18;
+        padding: 0;
       }
-
     }
   }
 }

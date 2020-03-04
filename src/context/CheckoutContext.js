@@ -56,6 +56,9 @@ export default function reducer(state, action) {
     case USER_ORDER:
       const userOrder = action.data
       const userOrderItem = action.data.map(object => object.items)
+      console.log('[checkoutContext] userOrder => ', userOrder)
+      console.log('[checkoutContext] userOrderItem => ', userOrderItem)
+      console.log('[checkoutContext] action => ', action)
 
       return {
         userOrder: userOrder,

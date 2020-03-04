@@ -57,7 +57,7 @@
     }
 
     @media (max-width: $ipadlandscape) {
-      margin-top: -78px;
+      margin-top: 0;
     }
 
     .helpHeading {
@@ -144,6 +144,10 @@
   .cardWrap {
     position: relative;
     height: 400px;
+
+    @media (max-width: $ipadlandscape) {
+      height: 360px;
+    }
   }
 
   .gradient-overlay {

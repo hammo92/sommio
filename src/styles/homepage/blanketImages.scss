@@ -1,9 +1,20 @@
 .github-main {
+  padding: 40px 0 0 0;
 
-    padding: 40px 0 0 0;
+  img {
+    margin-bottom: 30px;
+  }
 
-    img {
-        margin-bottom: 30px;
+  h2 {
+    display: block;
+    font-size: 60px;
+    color: $white;
+    line-height: 1;
+    margin: 0 0 30px;
+    font-weight: 700;
+
+    @media (max-width: $ipadlandscape) {
+      font-size: 40px;
     }
-
+  }
 }

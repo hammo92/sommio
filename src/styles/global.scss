@@ -18,9 +18,9 @@ body {
   .container-xl {
     padding-left: 30px;
     padding-right: 30px;
-    @media (max-width: $mobileportrait) {
-      padding-left: 15px;
-      padding-right: 15px;
+    @media (max-width: $ipadportrait) {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }
@@ -40,17 +40,17 @@ p {
   font-weight: normal;
   margin: 0px;
 }
-.borderBottom{
-  border-bottom:$purpleborder;
+.borderBottom {
+  border-bottom: $purpleborder;
 }
-.borderLeft{
-  border-left:$purpleborder;
+.borderLeft {
+  border-left: $purpleborder;
 }
-.borderTop{
-  border-top:$purpleborder;
+.borderTop {
+  border-top: $purpleborder;
 }
-.borderRight{
-  border-right:$purpleborder;
+.borderRight {
+  border-right: $purpleborder;
 }
 .table {
   .product-image {
@@ -61,15 +61,15 @@ p {
     }
   }
 }
-.backgroundPurple{
-  &.colorA{
-    background:#1A172F;
+.backgroundPurple {
+  &.colorA {
+    background: #1a172f;
   }
-  &.colorB{
-    background:#2C2444;
+  &.colorB {
+    background: #2c2444;
   }
-  &.colorC{
-    background:#080A1E;
+  &.colorC {
+    background: #080a1e;
   }
 }
 .form-group {

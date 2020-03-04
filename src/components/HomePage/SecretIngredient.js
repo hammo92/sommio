@@ -34,10 +34,10 @@ const SecretIngredient = () => {
         <div className="col-12 col-lg-6">
           <div className="img">
             <img src={secretContainImages} />
-            <Button type="thin">
+            {/* <Button type="thin">
               <h3>Learn</h3>
               <FontAwesomeIcon icon={faBookOpen} />
-            </Button>
+            </Button> */}
             {/* <button className="btn btn-primary">Discover Yours</button> */}
           </div>
         </div>

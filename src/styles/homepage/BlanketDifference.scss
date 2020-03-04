@@ -21,6 +21,10 @@
         border-radius: 0;
         line-height: 1;
 
+        @media (max-width: $ipadlandscape) {
+          font-size: 50px;
+        }
+
         &.active {
           background: $purpleA;
           color: $portage;
@@ -43,6 +47,10 @@
     @media (max-width: $desktophidpi) {
       padding: 20px 4rem 40px;
     }
+
+    @media (max-width: $ipadlandscape) {
+      padding: 20px 2rem 30px;
+    }
   }
 
   .bor-right {
@@ -61,9 +69,10 @@
     margin: 0 0 20px;
     line-height: 1;
 
-    @media (max-width: $mobileportrait) {
-      font-size: 46px;
+    @media (max-width: $ipadlandscape) {
+      font-size: 40px;
     }
+
     span {
       display: inline-block;
       padding-right: 5px;
@@ -76,6 +85,11 @@
     color: $white;
     line-height: 35px;
     margin: 0;
+
+    @media (max-width: $ipadlandscape) {
+      font-size: $FontSize20;
+      line-height: 30px;
+    }
   }
 
   .row {
@@ -99,9 +113,19 @@
       padding: 0;
       box-shadow: 5px 5px 0 #b58dd6;
 
+      @media (max-width: $ipadlandscape) {
+        width: 70px;
+        height: 70px;
+        box-shadow: 3px 3px 0 #b58dd6;
+      }
+
       img {
         max-width: 42px;
         margin: 0 0 -8px 10px;
+
+        @media (max-width: $ipadlandscape) {
+          max-width: 30px;
+        }
       }
     }
 
@@ -113,6 +137,10 @@
       font-weight: 700;
       margin: 1rem 0 0 0;
       line-height: 1;
+
+      @media (max-width: $ipadlandscape) {
+        font-size: 30px;
+      }
     }
   }
 
@@ -148,6 +176,11 @@
       color: $lightgreen;
       font-weight: 700;
       margin: 10px 0 25px 0;
+
+      @media (max-width: $ipadlandscape) {
+        font-size: 28px;
+      }
+
       @media (max-width: $mobileportrait) {
         font-size: 23px;
         margin: 20px 0;
@@ -164,6 +197,11 @@
       color: $white;
       margin: 0;
       text-align: center;
+
+      @media (max-width: $ipadlandscape) {
+        font-size: 20px;
+      }
+
       @media (max-width: $mobileportrait) {
         font-size: 16px;
       }

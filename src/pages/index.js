@@ -58,7 +58,7 @@ export const IndexInner = ({ transitionStatus }) => {
           <div className="col-12 col-lg-8">
             <Goodbye />
           </div>
-          <div className="col-12 col-lg-4 d-flex flex-column">
+          <div className="col-12 col-lg-4 d-flex flex-column-reverse flex-lg-column">
             <Quiz />
             <HomeService />
           </div>
