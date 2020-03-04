@@ -12,8 +12,8 @@ const BlanketImages = () => {
     query {
       file(name: {eq: "housealicefinal-img"}) {
         childImageSharp {
-          fluid(maxWidth: 1800, jpegProgressive: true, quality:70) {
-            ...GatsbyImageSharpFluid_noBase64
+          fluid(maxWidth: 1800, quality: 100) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

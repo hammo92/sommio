@@ -19,7 +19,7 @@ const SecretIngredient = () => {
       file(name: {eq: "Meditate"}) {
         childImageSharp {
           fluid(maxWidth: 800, quality: 100) {
-            ...GatsbyImageSharpFluid_noBase64
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

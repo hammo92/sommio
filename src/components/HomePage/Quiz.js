@@ -40,7 +40,7 @@ const Quiz = ({ display }) => {
     query {
       file(name: {eq: "blackboard"}) {
         childImageSharp {
-          fluid(maxWidth: 1800, jpegProgressive: true, quality:70) {
+          fluid(maxWidth: 800, quality:70) {
             ...GatsbyImageSharpFluid_noBase64
           }
         }
