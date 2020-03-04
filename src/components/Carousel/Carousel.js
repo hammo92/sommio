@@ -28,6 +28,9 @@ const { allContentfulCondition } = useStaticQuery(graphql`
             }
           }
           cardImage {
+            fluid(maxWidth: 800) {
+              ...GatsbyContentfulFluid_withWebp
+            }
             file {
               url
             }
