@@ -57,8 +57,7 @@ const Next = ({ data, mount }) => {
         <div className="title">
           <h1>{data.contentfulNext.conditionName}</h1>
           <h4>
-            ADHD is a chronic condition marked by persistent inattention,
-            hyperactivity, and sometimes impulsivity.{' '}
+          {data.contentfulNext.subtitle}
           </h4>
         </div>
         <div className="image">
@@ -82,8 +81,7 @@ const Header = ({ data, mount }) => {
         <div className="title">
           <h1>{data.contentfulCondition.conditionName}</h1>
           <h4>
-            ADHD is a chronic condition marked by persistent inattention,
-            hyperactivity, and sometimes impulsivity.{' '}
+            {data.contentfulCondition.subtitle}
           </h4>
         </div>
         <div className="image">
@@ -166,6 +164,7 @@ export const query = graphql`
     contentfulCondition: contentfulCondition(slug: { eq: $slug }) {
       slug
       id
+      subtitle
       conditionName
       cardImage {
         fluid(maxWidth: 1800) {
@@ -184,6 +183,7 @@ export const query = graphql`
     contentfulNext: contentfulCondition(slug: { eq: $nextSlug }) {
       slug
       id
+      subtitle
       conditionName
       cardImage {
         fluid(maxWidth: 1800) {
