@@ -10,8 +10,6 @@ module.exports = {
     url: process.env.DEPLOY_PRIME_URL || process.env.URL || 'localhost:8000'
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sass',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -19,8 +17,23 @@ module.exports = {
         path: path.join(__dirname, `src`, `images`)
       }
     },
-    'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: ['gatsby-remark-component']
+      }
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `1eaguqndmewd`,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+      }
+    },
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sass',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -53,19 +66,8 @@ module.exports = {
         }
       }
     },
-    {
-      resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: `1eaguqndmewd`,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
-      }
-    },
-    {
-      resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: ['gatsby-remark-component']
-      }
-    },
+    
+    
     {
       resolve: `gatsby-builton`,
       options: {

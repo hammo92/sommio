@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import TransitionLink from 'gatsby-plugin-transition-link'
+import Img from 'gatsby-image'
 
 
 
 export default function Card({item}) {
     return (
-        <>
-                <img
-                  src={item.cardImage.file.url}
-                  alt={item.cardImage.file.fileName}
-                />
+      <>
+                <Img
+                    fluid={item.cardImage.fluid}
+                  />
                 <div className="gradient-overlay"></div>
                 <div className="help-content">
                   <h2>{item.conditionName}</h2>

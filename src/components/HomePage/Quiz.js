@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'gatsby-plugin-transition-link'
+import { useStaticQuery, graphql } from "gatsby"
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import PlayIcon from '../../images/play-duotone.png'
 import BlackboardImage from '../../images/blackboard.png'
@@ -10,9 +11,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { animated, useSpring } from 'react-spring'
 import Button from '../Button'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
+import Img from 'gatsby-image'
 
 export const QuizButton = () => {
   const [{ quiz }, dispatch] = useStateValue()
+  
   return (
     <AniLink
       paintDrip
@@ -33,6 +36,17 @@ export const QuizButton = () => {
 }
 
 const Quiz = ({ display }) => {
+  const Blackboard = useStaticQuery(graphql`
+    query {
+      file(name: {eq: "blackboard"}) {
+        childImageSharp {
+          fluid(maxWidth: 800, quality:70) {
+            ...GatsbyImageSharpFluid_noBase64
+          }
+        }
+      }
+    }
+  `) 
   return (
     <div
       className={display === 'wide' ? 'quiz-boxs wide' : 'quiz-boxs thin'}
@@ -40,11 +54,11 @@ const Quiz = ({ display }) => {
     >
       {display === 'wide' && (
         <div className="col-4 image">
-          <img src="/blackboard.png" />
+          <Img fluid={Blackboard .file.childImageSharp.fluid} />
         </div>
       )}
       <div className={display === 'wide' ? 'col-8 quizText' : 'quizText'}>
-        <img src={BlackboardImage} />
+        <Img fluid={Blackboard .file.childImageSharp.fluid} />
         <Head>Is a weighted blanket, a good fit for you.</Head>
         <Para>
           Take our short quiz to discover whether a sommio weighted blanket
