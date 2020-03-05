@@ -75,6 +75,7 @@ const Next = ({ data, mount }) => {
 }
 
 const Header = ({ data, mount }) => {
+  console.log("article data is => ",data)
   return (
     <div className="container-fluid">
       <div className="condition-hero">
@@ -168,7 +169,7 @@ export const query = graphql`
       conditionName
       cardImage {
         fluid(maxWidth: 1800) {
-          ...GatsbyContentfulFluid_withWebp_noBase64
+          ...GatsbyContentfulFluid_withWebp
         }
         file {
           url
@@ -186,7 +187,7 @@ export const query = graphql`
       conditionName
       cardImage {
         fluid(maxWidth: 1800) {
-          ...GatsbyContentfulFluid_withWebp_noBase64
+          ...GatsbyContentfulFluid_withWebp
         }
         file {
           url
