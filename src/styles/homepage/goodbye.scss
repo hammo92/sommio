@@ -65,7 +65,7 @@
       }
 
       @media (max-width: $mobileportrait) {
-        font-size: 46px;
+        font-size: 44px;
         color: $bridalheath;
       }
 
@@ -88,6 +88,11 @@
       @media (max-width: $ipadportrait) {
         margin-top: -60px;
       }
+
+      @media (max-width: $mobileportrait) {
+        margin-top: -40px;
+      }
+
     }
 
     .goodquiz-bottom {
@@ -115,6 +120,10 @@
 
         @media (max-width: $ipadlandscape) {
           width: calc(100% - 140px);
+        }
+
+        @media (max-width: $mobileportrait) {
+          width: 100%;
         }
 
         h2 {
@@ -158,16 +167,33 @@
           margin: 0 0px 0 auto;
         }
 
+        @media (max-width: $mobileportrait) {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: auto;
+        }
+
         .buttonWrapper.round.large {
           @media (max-width: $desktopmdpi) {
             width: 100px;
             height: 100px;
           }
 
+          @media (max-width: $mobileportrait) {
+            width: 70px;
+            height: 70px;
+          }
+
           .buttonInner svg {
             @media (max-width: $desktopmdpi) {
               font-size: 40px;
             }
+
+            @media (max-width: $mobileportrait) {
+              font-size: 30px;
+            }
+
           }
         }
 
@@ -212,6 +238,7 @@
       @media (max-width: $mobileportrait) {
         font-size: 16px;
         color: $linkwater;
+        line-height: 1.4;
       }
 
       span {

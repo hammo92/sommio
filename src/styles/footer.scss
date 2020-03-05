@@ -15,12 +15,20 @@ footer {
       width: 40%;
     }
 
+    @media (max-width: $ipadportrait) {
+      width: 100%;
+    }
+
     .content {
       display: block;
       margin: 35px 0 0 0;
 
       @media (max-width: $desktophidpi) {
         margin: 25px 0 0 0;
+      }
+
+      @media (max-width: $mobileportrait) {
+        margin: 25px 0 20px 0;
       }
 
       p {
@@ -32,6 +40,10 @@ footer {
         @media (max-width: $desktophidpi) {
           margin: 0 0 20px 0;
           font-size: 20px;
+        }
+
+        @media (max-width: $mobileportrait) {
+          font-size: 16px;
         }
 
         &:last-child {
@@ -49,6 +61,10 @@ footer {
     width: 50%;
     position: relative;
 
+    @media (max-width: $ipadportrait) {
+      width: 100%;
+    }
+
     .newsletter-box {
       display: block;
 
@@ -63,6 +79,18 @@ footer {
 
         @media (max-width: $desktophidpi) {
           font-size: 50px;
+        }
+
+        @media (max-width: $ipadportrait) {
+          text-align: left;
+          margin-top: 2rem;
+          font-size: 50px;
+        }
+
+        @media (max-width: $mobileportrait) {
+          font-size: 30px;
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
         }
 
       }
@@ -82,6 +110,11 @@ footer {
           padding: 20px 28px;
         }
 
+        @media (max-width: $mobileportrait) {
+          font-size: 18px;
+          padding: 15px 25px;
+        }
+
       }
 
     }
@@ -97,11 +130,23 @@ footer {
       right: 0;
       bottom: 0;
 
+      @media (max-width: $ipadportrait) {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        justify-content: center;
+        margin: 2rem 0 1rem 0;
+      }
+
       li {
         margin: 0 0 0 24px;
 
         @media (max-width: $desktophidpi) {
           margin: 0 0 0 15px;
+        }
+
+        @media (max-width: $mobileportrait) {
+          margin: 0 5px;
         }
 
         a {
@@ -116,6 +161,11 @@ footer {
             font-size: 20px;
           }
 
+          @media (max-width: $mobileportrait) {
+            font-size: 14px;
+            font-weight: 400;
+          }
+
           &:hover {
             color: $portage;
           }
@@ -125,7 +175,6 @@ footer {
       }
 
     }
-
 
   }
 

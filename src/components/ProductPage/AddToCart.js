@@ -1,8 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { ShippingAndUserDetailContext } from '../../context/ShippingAndUserDetailContext'
-import PlushImages from '../../images/plush.png'
+import PlushImages from '../../images/plush.jpg'
 import SommioModal from '../modal.js'
 import { useStateValue } from '../../context/SiteContext'
+import ArrowUp from '../../images/arrow-up.svg'
+import ArrowDown from '../../images/arrow-down.svg'
 
 import {
   Dropdown,
@@ -189,17 +191,32 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     <div className="product-variation">
       <div className="blanket-boxs">
         <div className="size-boxs">
-          <h4>Blanket Size</h4>
-          <p>Single 130*120</p>
+          <h4>Size:</h4>
+          <p>Adult Single - 135 x 200 cm</p>
         </div>
-        
       </div>
-      <div className="blanket-boxs">
+
+      <div className="weight-boxs">
+        <div className="left">
+          <h3>Weight:</h3>
+          <h4>Recommended for users who weigh between:</h4>
+          <h2>70 - 89 kg | 8 - 10 stone</h2>
+        </div>
+        <div className="right">
+          <div className="button up">
+            lighter <img src={ArrowUp} />
+          </div>
+          <div className="active">8 kg | 12 lb</div>
+          <div className="button down">
+            heavier <img src={ArrowDown} />
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="blanket-boxs">
         <div className="size-boxs">
           <h4>Blanket Weight</h4>
         </div>
-        
-
         <div className="radio-group">
           {weightSubProduct.map((weight, k) => (
             <div className="radio-boxs" key={weight._id._oid}>
@@ -228,23 +245,21 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
-      <div className="blanket-boxs">
-        <div className="size-boxs">
-          <h4>Blanket Cover</h4>
-        </div>
+      <div className="blanket-boxs cover-boxs">
         <Dropdown
           defaultValue={blancketCover}
           isOpen={dropdownOpen}
           toggle={toggleHandle}
         >
           <DropdownToggle caret>
-            <img src={PlushImages} alt="plushImages" />
             <div className="content ml-auto">
+              <h2>Cover:</h2>
               <h3>{blancketCover}</h3>
               <p>A luxuriously soft faux fur cover</p>
             </div>
+            <img src={PlushImages} alt="plushImages" />
           </DropdownToggle>
           <DropdownMenu>
             {coverSubProduct.map((cover, i) => (

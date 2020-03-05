@@ -14,8 +14,12 @@
         width: 80%;
         line-height: 1;
         margin-bottom:0.2em;
+
+        @media (max-width: $desktop18) {
+            font-size: 100px;
+        }
+
         span {
-                
             display:inline-block;
             padding-right:15px;
         }

@@ -20,6 +20,11 @@
       font-size: 80px;
     }
 
+    @media (max-width: $ipadportrait) {
+      font-size: 60px;
+      padding: 0 30px;
+    }
+
     @media (max-width: $mobileportrait) {
       font-size: 46px;
       font-weight: 900;
@@ -148,12 +153,20 @@
         height: 50px;
       }
 
+      @media (max-width: $ipadportrait) {
+        right: 30px;
+      }
+
       &.slick-prev {
         left: auto;
         right: 90px;
 
         @media (max-width: $desktop18) {
           right: 70px;
+        }
+
+        @media (max-width: $ipadportrait) {
+          right: 100px;
         }
 
         &:before {

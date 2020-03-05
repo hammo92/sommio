@@ -16,5 +16,10 @@
     @media (max-width: $ipadlandscape) {
       font-size: 40px;
     }
+
+    @media (max-width: $ipadportrait) {
+      padding: 0 30px;
+    }
+
   }
 }

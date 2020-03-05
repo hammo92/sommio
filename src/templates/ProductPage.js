@@ -74,7 +74,6 @@ const ProductPageInner = ({
   const Faq = contentfulProduct && contentfulProduct.faqQuestions
   const Features = contentfulProduct && contentfulProduct.feature
 
-
   const [selectedVariationId, setSelectedVariationId] = useState(
     product._id._oid
   )
@@ -103,7 +102,7 @@ const ProductPageInner = ({
 
           <div className="col-12">
             <div className="blanket-bg">
-              <div className="row productMain">
+              <div className="row productMain no-gutters">
                 <div className="col-12 col-lg-4">
                   <AddToCart
                     onChangeSelectedProduct={onChangeSelectedProduct}
@@ -127,42 +126,42 @@ const ProductPageInner = ({
           <div className="container-fluid">
             <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example">
               <Tab eventKey="overview" title="Overview">
-                
-                  <Row noGutters>
-                    <Head type={2} head={contentfulProduct.overviewHeading}/>
-                  </Row>
-                  <DarkRow>
-                    
-                    <Col md={9}>
-                      {
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html:
-                              Overview && Overview.childMarkdownRemark.html
-                          }}
-                        />
-                      }
-                    </Col>
-                    <Col md={3} className="justify-content-md-center d-flex">
-                      <ul>
-                        {Features &&
-                          Features.map((element, index) => (
-                            <li key={index * Math.random()}>{element.title}</li>
-                          ))}
-                      </ul>
-                    </Col>
+                <Row noGutters>
+                  <Head type={2} head={contentfulProduct.overviewHeading} />
+                </Row>
+                <DarkRow>
+                  <Col md={9}>
+                    {
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: Overview && Overview.childMarkdownRemark.html
+                        }}
+                      />
+                    }
+                  </Col>
+                  <Col md={3} className="justify-content-md-center d-flex">
+                    <ul>
+                      {Features &&
+                        Features.map((element, index) => (
+                          <li key={index * Math.random()}>{element.title}</li>
+                        ))}
+                    </ul>
+                  </Col>
                 </DarkRow>
-                <Row noGutters  className="justify-content-md-center backgroundPurple colorA videoWrap"> 
+                <Row
+                  noGutters
+                  className="justify-content-md-center backgroundPurple colorA videoWrap"
+                >
                   <Col md={6}>
                     <Head type={3}>Look Inside</Head>
-                    <Para>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Para>
-
+                    <Para>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry.
+                    </Para>
                   </Col>
-                  
-                  <ProductVideo />          
+
+                  <ProductVideo />
                 </Row>
-                  
-                  
 
                 <ImageGrid>
                   <div>

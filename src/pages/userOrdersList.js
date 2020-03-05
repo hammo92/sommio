@@ -1,18 +1,40 @@
 import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'gatsby'
-import { CheckoutContext } from '../context/index'
+import { Link, useStaticQuery } from 'gatsby'
+import { navigate } from 'gatsby'
+import { CheckoutContext, FirebaseContext } from '../context/index'
 import Loader from '../components/Loader'
 import { newFirebaseToken } from '../utils/newFirebaseToken'
 import Layout from '../components/Layout/Layout'
-const UserOrdersList = () => {
-  const { userOrderData, userOrder, userOrderItem } = useContext(
-    CheckoutContext
-  )
-  const [isLoading, setLoading] = useState(false)
+import Photo from '../components/Photo'
 
+const UserOrdersList = () => {
+  const { userOrderData, userOrder } = useContext(CheckoutContext)
+  const { firebase } = useContext(FirebaseContext)
+  // console.log('firebase => ', firebase)
+
+  const [isLoading, setLoading] = useState(false)
   const url = 'https://api.builton.dev/orders'
-  console.log('userOrder => ', userOrder)
+
+  const { allBuiltonProduct } = useStaticQuery(graphql`
+    query {
+      allBuiltonProduct {
+        nodes {
+          name
+          _sub_products {
+            _oid
+          }
+          parents {
+            _oid
+          }
+          _id {
+            _oid
+          }
+          tags
+        }
+      }
+    }
+  `)
 
   useEffect(() => {
     setLoading(true)
@@ -20,27 +42,52 @@ const UserOrdersList = () => {
     const fetchOrder = async () => {
       var token = await newFirebaseToken()
 
-      let response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
-          'Content-Type': 'application/json'
-        }
-      })
-      console.log('response  ============> ', response)
-
-      userOrderData(response.data)
+      await axios
+        .get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(res => {
+          userOrderData(res.data)
+        })
+        .catch(err => {
+          console.log('err => ', err, err.code)
+          navigate('/')
+        })
       setLoading(false)
     }
     fetchOrder()
   }, [])
-  console.log('userOrderItem => ', userOrderItem)
-  const items =
-    userOrderItem &&
-    userOrderItem.length > 0 &&
-    userOrderItem.map(data => data.filter(d => d.name !== 'Shipping cost'))
-  console.log('items SSI => ', items)
 
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+  console.log('newPassword ,confirmPassword => ', newPassword, confirmPassword)
+
+  var user = firebase && firebase.auth().currentUser
+
+  const handleChange = e => {
+    console.log('e.target.value => ', e.target.value)
+    if (e.target.name === 'newPassword') {
+      setNewPassword(e.target.value)
+    } else {
+      setConfirmPassword(e.target.value)
+    }
+  }
+  const updatePassword = () => {
+    console.log('user => ', user)
+    // user
+    //   .updatePassword(confirmPassword)
+    //   .then(() => {
+    //     console.log(' Hello => ')
+    //   })
+    //   .catch(error => {
+    //     console.log('error => ', error)
+    //   })
+  }
   return (
     <Layout>
       {isLoading === true ? (
@@ -54,13 +101,32 @@ const UserOrdersList = () => {
               <div>
                 <p>{new Date(order.created.$date).toDateString()}</p>
                 <p>Status:{order.order_status}</p>
-                <p>List</p>
                 <div>
-                  {items &&
-                    items.map(prod => (
-                      <div>
+                  {order.items
+                    .filter(data => data.name !== 'Shipping cost')
+                    .map(prod => (
+                      <div className="revieworder-box">
+                        <Photo
+                          cartImg="cartImg"
+                          src={
+                            prod.product.media[0] && prod.product.media[0].url
+                          }
+                          alt={prod.product.name}
+                        />
                         <div className="content">
                           <h5>{prod.name}</h5>
+                          {prod.sub_products.map(sub => {
+                            let name = allBuiltonProduct.nodes.filter(
+                              data => data._id._oid === sub.$oid
+                            )
+                            if (name[0].tags[0] === 'Weight') {
+                              return <p>Weight:{name[0].name}</p>
+                            } else if (name[0].tags[0] === 'Cover') {
+                              return <p>Cover:{name[0].name}</p>
+                            } else {
+                              return null
+                            }
+                          })}
                         </div>
                         <div className="price ml-auto">
                           {prod.final_price} £{' '}
@@ -86,13 +152,19 @@ const UserOrdersList = () => {
                 userOrder[0].delivery_address.raw.formatted_address}
             </p>
             <p>Update Password</p>
-            <input name="password" type="password" placeholder="New Password" />
+            <input
+              name="newPassword"
+              type="password"
+              placeholder="New Password"
+              onChange={e => handleChange(e)}
+            />
             <input
               name="confirmPassword"
               type="password"
               placeholder="Confirm"
+              onChange={e => handleChange(e)}
             />
-            <button>Update</button>
+            <button onClick={updatePassword}>Update</button>
           </div>
         </div>
       )}

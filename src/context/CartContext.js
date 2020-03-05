@@ -136,7 +136,6 @@ export default function reducer(state, action) {
         return data.final_price * data.quantityBuilton
       })
       let removeTotal = removeSubTotal + state.shippingRate
-      console.log('[remove cart ]state.ProductsArray => ', state.ProductsArray)
 
       sessionStorage.setItem('cartDetails', JSON.stringify(state.ProductsArray))
 
@@ -150,7 +149,6 @@ export default function reducer(state, action) {
 
     case FETCH_CART_DATA:
       const cartProduct = action.payload
-      console.log('cartProduct ================> ', cartProduct)
 
       let updateTocount = _.sumBy(cartProduct, data => {
         return data.quantityBuilton
@@ -159,7 +157,6 @@ export default function reducer(state, action) {
         return data.final_price * data.quantityBuilton
       })
       let fetchTotal = updateToSubTotal + state.shippingRate
-      console.log('[testcart] updateTocount => ', updateTocount)
 
       return {
         ...state,

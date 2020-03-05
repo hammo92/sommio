@@ -1,18 +1,16 @@
-
-
 .product-variation {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     position: relative;
     z-index: 2;
-    padding: 10px 0;
+    padding: 0 15px 0 0;
 
     .blanket-boxs {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        margin-bottom: 35px;
+        margin-bottom: 15px;
 
         .size-boxs {
             width: 100%;
@@ -22,27 +20,27 @@
 
             h4 {
                 display: block;
-                font-size: $FontSize24;
+                font-size: $FontSize30;
                 color: $lightgreen;
                 line-height: 1;
                 margin: 0;
                 font-weight: 700;
 
                 @media (max-width:$desktop18) {
-                    font-size: $FontSize20;
+                    font-size: $FontSize22;
                 }
 
             }
 
             p {
-                font-size: $FontSize30;
+                font-size: $FontSize28;
                 color: $white;
                 line-height: 1;
                 margin: 0;
                 font-weight: 700;
 
                 @media (max-width:$desktop18) {
-                    font-size: $FontSize22;
+                    font-size: $FontSize20;
                 }
 
             }
@@ -61,7 +59,6 @@
                 display: block;
                 margin: 0 10px 0 0;
 
-
                 &:nth-child(2) input {
                     left: 70px;
                 }
@@ -74,8 +71,6 @@
                     left: 210px;
                 }
 
-
-
                 input {
                     position: absolute;
                     left: 0;
@@ -86,11 +81,9 @@
                     opacity: 0;
                     display:none;
 
-
                     &:checked {
 
                         + label {
-
 
                             .title {
                                 color: $madang;
@@ -171,7 +164,7 @@
 
         .dropdown {
             width: 100%;
-            margin: 10px 0 0 0;
+            margin: 0;
 
             .dropdown-toggle {
                 width: 100%;
@@ -181,9 +174,9 @@
 
                 &.btn-secondary {
                     border: 0;
-                    border-radius: 0px;
-                    background: $bluezodiac;
-                    padding: 5px 10px;
+                    border-radius: 10px;
+                    background: $purpleA;
+                    padding: 0;
                     text-align: left;
 
                     &:focus {
@@ -193,34 +186,43 @@
                     &:after {
                         content: '';
                         position: absolute;
-                        right: 10px;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        background: url(/arrow-down.svg) center center no-repeat;
-                        background-size: 100% auto;
+                        right: 0px;
+                        top: 0;
+                        bottom: 0;
+                        background: $purpleB url(/arrow-down.svg) center center no-repeat;
+                        background-size: 20px auto;
                         border: 0;
-                        width: 15px;
-                        height: 20px;
+                        width: 80px;
                     }
 
                 }
 
                 img {
-                    width: 90px;
-                    height: 90px;
+                    width: 172px;
+                    height: auto;
+                    margin-right: 80px;
 
                     @media (max-width:$desktop18) {
                         width: 70px;
-                        height: 70px;
                     }
 
                 }
 
                 .content {
-                    width: calc(100% - 110px);
+                    width: calc(100% - 252px);
+                    padding-left: 20px;
 
                     @media (max-width:$desktop18) {
                         width: calc(100% - 80px);
+                    }
+
+                    h2 {
+                        display: block;
+                        font-size: $FontSize30;
+                        color: $lightgreen;
+                        line-height: 1;
+                        margin: 0;
+                        font-weight: 900;
                     }
 
                     h3 {
@@ -282,7 +284,7 @@
                     }
 
                     .content {
-                        width: calc(100% - 110px);
+                        width: calc(100% - 252px);
 
                         @media (max-width:$desktop18) {
                             width: calc(100% - 80px);
@@ -316,6 +318,87 @@
 
                 }
 
+            }
+
+        }
+
+    }
+
+    .weight-boxs {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: $purpleA;
+        border-radius: 10px;
+        margin: 0 0 10px;
+
+        .left {
+            width: calc(100% - 220px);
+            padding: 15px 0 15px 20px;
+
+            h3 {
+                display: block;
+                margin: 0 0 35px;
+                font-size: $FontSize30;
+                color: $lightgreen;
+                line-height: 1;
+                font-weight: 900;
+            }
+
+            h4 {
+                display: block;
+                font-size: $FontSize24;
+                color: $white;
+                margin: 0 0 15px;
+                line-height: 30px;
+                font-weight: 500;
+            }
+
+            h2 {
+                display: block;
+                font-size: $FontSize30;
+                color: $white;
+                margin: 0;
+                font-weight: 900;
+            }
+
+        }
+
+        .right {
+            width: 220px;
+
+            .button {
+                background-color: $purpleB;
+                font-size: $FontSize24;
+                color: #fff;
+                width: 100%;
+                padding: 21px 20px 21px 40px;
+                display: flex;
+                flex-wrap: wrap;
+                font-weight: 300;
+
+                &.up {
+                    border-radius: 0px 10px 0 0;
+                }
+
+                &.down {
+                    border-radius: 0 0 10px 0px;
+                }
+
+                img {
+                    margin-left: auto;
+                }
+
+            }
+
+            .active {
+                display: block;
+                text-align: center;
+                font-size: 34px;
+                color: $midnight;
+                line-height: 1;
+                background-color: $madang;
+                padding: 23px 0;
+                font-weight: 900;
             }
 
         }

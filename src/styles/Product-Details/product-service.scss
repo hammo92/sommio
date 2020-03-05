@@ -4,7 +4,6 @@
     border-bottom: $purpleborder;
     padding: 0px 0;
 
-
     .service-boxs {
         width: 33.333%;
         display: flex;
@@ -14,7 +13,7 @@
         align-content: center;
         justify-content: space-between;
         border-left: $purpleborder;
-        background: $purpleA;
+        // background: $purpleA;
 
         &:first-child {
             border: none !important
@@ -34,7 +33,7 @@
         svg {
             font-size: 35px;
             color:$white;
-      
+
             @media (max-width: $desktop18) {
               height: 30px;
             }
