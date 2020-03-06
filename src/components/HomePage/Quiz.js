@@ -64,12 +64,10 @@ const Quiz = ({ display }) => {
           Take our short quiz to discover whether a sommio weighted blanket
           could help you sleep better and enjoy lower stress
         </Para>
-        <AniLink paintDrip to="/QuizNew" hex="#D8A8FF">
-          <Button>
-            <h3>Start</h3>
-            <FontAwesomeIcon icon={faPlay} />
-          </Button>
-        </AniLink>
+        <Button link="/QuizNew">
+          <h3>Start</h3>
+          <FontAwesomeIcon icon={faPlay} />
+        </Button>
       </div>
     </div>
   )

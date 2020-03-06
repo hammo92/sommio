@@ -1,18 +1,21 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 
 import SommioImg3 from '../../../images/sommio-img3.png'
 
-import BeadOpen from "../../../video/windowTurn.mp4"
-import BeadSmoke from "../../../video/explodeSmoke3.mp4"
-import WeightexTurn from "../../../video/weightexTurn.mp4"
-import WeightexExplode from "../../../video/weightexExploCold.mp4"
+import BeadOpen from "../../../video/Window.mp4"
+import BeadSmoke from "../../../video/Explode2.mp4"
+import WeightexTurn from "../../../video/Turn.mp4"
+import WeightexExplode from "../../../video/Explode.mp4"
 import Leak from "../../../video/leakSquare.mp4"
 import PlayDuotone from "../../../images/play-duotone.png"
 import ReactPlayer from 'react-player'
 import VisibilitySensor from "react-visibility-sensor"
 import Head from '../../AnimatedText/Head'
 import Para from '../../AnimatedText/Para'
-import {Tab, Row, Col, Nav} from 'react-bootstrap'
+import { Tab, Row, Col, Nav } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay, faRedo, faStop } from '@fortawesome/free-solid-svg-icons'
+import Button from '../../Button'
 
 const details = [
   { 
@@ -35,7 +38,7 @@ const details = [
     title:`Quickly Overheats`,
     text:`To disguise the bunching and reduce the noise of beads moving manufacturers add thick wadding, which traps heat and can feel suffocating..` 
   },
-  { 
+  /*{ 
     url:{Leak},
     title:`Keeps on going`,
     text:`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the` 
@@ -44,25 +47,24 @@ const details = [
     url:{Leak},
     title:`Leak over time`,
     text:`As the blanket is used the stitching loosens allowing beads to escape, turning your bed into a sandpit.` 
-  },
+  },*/
 ]
 
 
   
-
-
-const CompareBox = ({details: {title, text, url}, visible, left}) => {
+const CompareBox = ({details: {title, text, url}, setPlaying, playing, left}) => {
   console.log("Details =>", url[Object.keys(url)[0]])
-  console.log("visible =>", visible)
+  console.log(`playing ${title} => `, playing)
   return (
     <div className= {left ? "col-12 col-lg-6 bor-right" : "col-12 col-lg-6"}> 
       <div className="sommio-box">
         <ReactPlayer url={url[Object.keys(url)[0]]}
-          playing={visible ? true : false}
+          playing={playing ? true : false}
           muted
           width={'100%'}
           height={'100%'}
           loop={false}
+          onEnded={() => setPlaying(false)}
         />
         <Head>{title}</Head>
         <Para>{text}</Para>
@@ -72,24 +74,27 @@ const CompareBox = ({details: {title, text, url}, visible, left}) => {
 }
 
 const CompareRow = ({row}) => {
-  const [isVisible, setVisibility] = useState(false)
-  const onChange = visiblity => {
-    setVisibility(visiblity);
-  };
-  console.log("visible =>", isVisible)
+  const [onePlaying, setOnePlay] = useState(false)
+  const [twoPlaying, setTwoPlay] = useState(false)
+  let playing = (twoPlaying && onePlaying) ? true : false
   return (
-    <VisibilitySensor onChange={onChange} partialVisibility>
       <div className="row no-gutters">
-          <CompareBox key="0" details={details[row]} visible={isVisible} left/>
-          <div className="play-box">
-            <button className="btn btn-primary">
-              <img src={PlayDuotone} />
-            </button>
-            <span>Play</span>
+      <CompareBox key="0" details={details[row]} playing={onePlaying} setPlaying={setOnePlay} left/>
+      <CompareBox key="1" details={details[row + 1]}  playing={twoPlaying} setPlaying={setTwoPlay}/>
+      
+      <div className="play-box" onClick={() => {
+        setOnePlay(playing ? false : true)
+        setTwoPlay(playing ? false : true)
+      }}>
+            <Button type="round medium" >
+              <FontAwesomeIcon icon={playing ? faStop : faPlay} />
+              
+          </Button>
+        <span>{playing ? "Stop" : "Play"}</span>
+              
           </div>
-          <CompareBox key="1" details={details[row + 1]} visible={isVisible}/>
+      
       </div>
-    </VisibilitySensor>
   )
 }
 
@@ -130,7 +135,7 @@ const Compare = () => {
                 </div>
                 <CompareRow row={0} />
                 <CompareRow row={2}/>
-                <CompareRow row={4}/>
+                {/*<CompareRow row={4}/>*/}
               </Tab.Pane>
               <Tab.Pane eventKey="second">
                 Lorem

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { animated, useSpring, config } from 'react-spring'
 import { useGesture } from 'react-use-gesture'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
-
-const Button = ({type, text, children}) => {
+const Button = ({type, text, link, children}) => {
     const domTarget = useRef(null)
     const [hovered, setHovered] = useState(false)
     const configTwo ={
@@ -29,13 +29,13 @@ const Button = ({type, text, children}) => {
             },
     })
     return (
-        <div className={`buttonWrapper ${type}`} {...bind()}>
-            <div  className="buttonShadow" ></div>
+        <button className={`buttonWrapper ${type}`} {...bind()}>
+            {link && <AniLink paintDrip to={link} hex="#D8A8FF"></AniLink>}
+            <div  className="buttonShadow" />
             <animated.div style={props}  className="buttonInner">
                 {children}
-            </animated.div>
-            
-        </div>
+            </animated.div>            
+        </button>
     )
 }
 

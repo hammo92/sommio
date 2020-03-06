@@ -2,6 +2,16 @@
     position:relative;
     width: 100%;
     height:80px;
+    background: none;
+    border: none;
+    a{
+      position: absolute;
+      width:100%;
+      height:100%;
+      left:0;
+      top:0;
+      z-index:999;
+    }
     &.thin{
       width:30%;
     }
@@ -63,6 +73,17 @@
       &.small{
         height:60px;
         width:60px;
+      }
+      &.medium{
+        height:80px;
+        width:80px;
+        .buttonInner{
+          svg{
+            margin:auto;
+            font-size:40px
+          }
+        }
+
       }
       
       .buttonInner{
