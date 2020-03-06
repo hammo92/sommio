@@ -175,7 +175,7 @@ function ProductImage({ productId, selectedVariationId }) {
   useEffect(() => setImages(data), [data])
 
   return (
-    <div ref={bind} className="col-12 col-lg-8 ">
+    <div ref={bind} className="col-12 col-lg-7 col-xl-8">
       <div className="springWrap">
         <Viewpager pages={images} width={width} />
       </div>

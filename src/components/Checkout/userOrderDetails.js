@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import Photo from '../Photo'
-import { FirebaseContext } from '../../context/FirebaseContext'
+
 import Loader from '../../components/Loader'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
 
@@ -10,7 +10,6 @@ const UserOrderDetails = props => {
   const url = `https://api.builton.dev/orders/${orderId}`
   const token = localStorage.getItem('firebaseToken')
 
-  const { firebase } = useContext(FirebaseContext)
   const [orderDetails, setOrderDetails] = useState(null)
   const [isLoading, setLoading] = useState(false)
 

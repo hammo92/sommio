@@ -3,8 +3,17 @@
     overflow: hidden;
     padding-bottom: 80px;
 
-    .container-fluid{
+    @media (max-width:$ipadlandscape) {
+        padding-bottom: 40px;
+    }
+
+    .container-fluid {
         padding-right:0;
+
+        @media (max-width:$ipadlandscape) {
+            padding-left: 0;
+        }
+
     }
 
     h3 {
@@ -14,7 +23,6 @@
         font-weight: 700;
         margin: 0 0 40px 0;
     }
-    
 
     .slick-slider {
         position: relative;
@@ -34,6 +42,10 @@
             overflow:hidden;
             border-radius:5px;
 
+            @media (max-width:$mobileportrait) {
+                padding: 0;
+            }
+
             img {
                 width: 100%;
                 display: block;
@@ -45,6 +57,12 @@
                 right: 30px;
                 bottom: 20px;
 
+                @media (max-width:$mobileportrait) {
+                    left: 10px;
+                    right: 10px;
+                    bottom: 10px;
+                }
+
                 h2 {
                     font-size: 140px;
                     color: $white;
@@ -55,6 +73,18 @@
 
                     @media (max-width:$desktop18) {
                         font-size: 90px
+                    }
+
+                    @media (max-width:$desktopmdpi) {
+                        font-size: 60px
+                    }
+
+                    @media (max-width:$ipadportrait) {
+                        font-size: 40px;
+                    }
+
+                    @media (max-width:$mobileportrait) {
+                        font-size: 30px;
                     }
 
                 }
@@ -69,6 +99,19 @@
                     @media (max-width:$desktop18) {
                         font-size: $FontSize28;
                     }
+
+                    @media (max-width:$desktopmdpi) {
+                        font-size: $FontSize24;
+                    }
+
+                    @media (max-width:$ipadportrait) {
+                        font-size: 20px;
+                    }
+
+                    @media (max-width:$mobileportrait) {
+                        font-size: 16px;
+                    }
+
                 }
 
             }
@@ -84,9 +127,27 @@
             height: 60px;
 
             @media (max-width:$desktop18) {
-                left: 35%;
+                left: 40%;
                 width: 50px;
                 height: 50px;
+                top: -51px;
+            }
+
+            @media (max-width:$ipadlandscape) {
+                left: auto;
+                right: 0;
+            }
+
+            @media (max-width:$ipadportrait) {
+                width: 40px;
+                height: 40px;
+                top: -40px;
+            }
+
+            @media (max-width:$mobileportrait) {
+                width: 20px;
+                height: 20px;
+                top: -32px;
             }
 
             &.slick-prev {
@@ -94,7 +155,20 @@
                 right: auto;
 
                 @media (max-width:$desktop18) {
-                    left: 30%;
+                    left: 35%;
+                }
+
+                @media (max-width:$ipadlandscape) {
+                    left: auto;
+                    right: 60px;
+                }
+
+                @media (max-width:$ipadportrait) {
+                    right: 50px;
+                }
+
+                @media (max-width:$mobileportrait) {
+                    right: 30px;
                 }
 
                 &:before {
@@ -128,6 +202,17 @@
                     width: 50px;
                     height: 50px;
                 }
+
+                @media (max-width:$ipadportrait) {
+                    width: 40px;
+                    height: 40px;
+                }
+
+                @media (max-width:$mobileportrait) {
+                    width: 20px;
+                    height: 20px;
+                }
+
             }
 
         }

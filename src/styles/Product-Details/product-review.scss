@@ -9,6 +9,12 @@
     border-bottom: $purpleborder;
     z-index: 2;
 
+    @media (max-width:$mobileportrait) {
+        padding: 0 10px;
+        background: none;
+        border: 0;
+    }
+
     .review-totals {
         display: flex;
         flex-wrap: wrap;
@@ -19,6 +25,10 @@
             margin: 10px 0 20px 0;
         }
 
+        @media (max-width:$mobileportrait) {
+            margin: 0;
+        }
+
         .star-list {
             display: flex;
             flex-wrap: wrap;
@@ -26,6 +36,17 @@
             .star {
                 display: block;
                 margin-right: 9px;
+
+                @media (max-width:$ipadlandscape) {
+                    width: 18px;
+                    margin-right: 5px;
+                }
+
+                img {
+                    display: block;
+                    max-width: 100%;
+                }
+
             }
 
         }
@@ -35,6 +56,11 @@
             font-weight: bold;
             color: $white;
             line-height: 1;
+
+            @media (max-width:$ipadlandscape) {
+                font-size: 20px;
+            }
+
         }
     }
 
@@ -53,6 +79,11 @@
                 font-weight: 900;
                 margin: 0 0 10px;
                 line-height: 1;
+
+                @media (max-width:$ipadlandscape) {
+                    font-size: $FontSize24;
+                }
+
             }
 
             span {
@@ -61,6 +92,12 @@
                 font-weight: 700;
                 color: rgba($white, 0.7);
                 margin: 0;
+
+                @media (max-width:$ipadlandscape) {
+                    font-size: $FontSize20;
+                    line-height: 1;
+                }
+
             }
 
         }
@@ -86,6 +123,19 @@
                 margin: 15px 0 0 0;
             }
 
+            @media (max-width:$ipadlandscape) {
+                font-size: $FontSize16;
+                line-height: 1.5;
+            }
+
+        }
+
+    }
+
+    .slick-slider {
+
+        @media (max-width:$mobileportrait) {
+            display: none;
         }
 
     }

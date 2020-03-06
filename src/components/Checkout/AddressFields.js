@@ -95,6 +95,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
     phone: shipping_address && shipping_address.phone,
     email: shipping_address && shipping_address.email
   }
+
   const formValues = e => {
     e.preventDefault()
     setAddress({ [e.target.name]: e.target.value })

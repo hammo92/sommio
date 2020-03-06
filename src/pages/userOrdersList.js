@@ -11,7 +11,6 @@ import Photo from '../components/Photo'
 const UserOrdersList = () => {
   const { userOrderData, userOrder } = useContext(CheckoutContext)
   const { firebase } = useContext(FirebaseContext)
-  // console.log('firebase => ', firebase)
 
   const [isLoading, setLoading] = useState(false)
   const url = 'https://api.builton.dev/orders'
@@ -55,6 +54,7 @@ const UserOrdersList = () => {
         })
         .catch(err => {
           console.log('err => ', err, err.code)
+          alert('Error')
           navigate('/')
         })
       setLoading(false)
@@ -67,8 +67,6 @@ const UserOrdersList = () => {
 
   console.log('newPassword ,confirmPassword => ', newPassword, confirmPassword)
 
-  var user = firebase && firebase.auth().currentUser
-
   const handleChange = e => {
     console.log('e.target.value => ', e.target.value)
     if (e.target.name === 'newPassword') {
@@ -78,15 +76,21 @@ const UserOrdersList = () => {
     }
   }
   const updatePassword = () => {
-    console.log('user => ', user)
-    // user
-    //   .updatePassword(confirmPassword)
-    //   .then(() => {
-    //     console.log(' Hello => ')
-    //   })
-    //   .catch(error => {
-    //     console.log('error => ', error)
-    //   })
+    firebase &&
+      firebase
+        .auth()
+        .currentUser.updatePassword(confirmPassword)
+        .then(() => {
+          alert('Password changed !!')
+          setNewPassword('')
+          setConfirmPassword('')
+        })
+        .catch(error => {
+          console.log('error => ', error)
+        })
+  }
+  const updateAddress = () => {
+    console.log('Updating')
   }
   return (
     <Layout>
@@ -143,14 +147,16 @@ const UserOrdersList = () => {
           )}
           <div>
             <h4>Details</h4>
-            <p>
-              Address
+            <h5>Address</h5>
+            <textArea>
               {userOrder &&
                 userOrder.length > 0 &&
                 userOrder[0].delivery_address &&
                 userOrder[0].delivery_address.raw &&
                 userOrder[0].delivery_address.raw.formatted_address}
-            </p>
+            </textArea>
+            <button onClick={updateAddress}>Update Address</button>
+
             <p>Update Password</p>
             <input
               name="newPassword"
@@ -161,10 +167,12 @@ const UserOrdersList = () => {
             <input
               name="confirmPassword"
               type="password"
-              placeholder="Confirm"
+              placeholder="Confirm Password"
               onChange={e => handleChange(e)}
             />
-            <button onClick={updatePassword}>Update</button>
+            <button type="submit" onClick={updatePassword}>
+              Update
+            </button>
           </div>
         </div>
       )}

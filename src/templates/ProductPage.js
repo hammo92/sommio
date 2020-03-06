@@ -24,6 +24,7 @@ import { animated, useSpring } from 'react-spring'
 import Head from '../components/AnimatedText/Head'
 import Para from '../components/AnimatedText/Para'
 import styled from 'styled-components'
+import inHand from '../images/inHand.jpg'
 
 const DarkRow = styled(Row)`
   margin: 20px 0 40px 0;
@@ -92,25 +93,27 @@ const ProductPageInner = ({
       />
       <div className="container-fluid">
         <div className="row no-gutters">
-          <div className="col-12 col-lg-8">
+          <div className="col-12 col-lg-7 col-xl-8">
             <ProductService />
+            <div className="product-images">
+              <img src={inHand} alt="" />
+            </div>
             <ProductTitle title={product.name} />
           </div>
-          <div className="col-12 col-lg-4">
+          <div className="col-12 col-lg-5 col-xl-4">
             <ProductReview />
           </div>
 
           <div className="col-12">
             <div className="blanket-bg">
               <div className="row productMain no-gutters">
-                <div className="col-12 col-lg-4">
+                <div className="col-12 col-lg-5 col-xl-4">
                   <AddToCart
                     onChangeSelectedProduct={onChangeSelectedProduct}
                     productId={product._id._oid}
                     tags={product.tags}
                   />
                 </div>
-
                 <ProductImage
                   selectedVariationId={selectedVariationId}
                   productId={product.id}
@@ -130,7 +133,7 @@ const ProductPageInner = ({
                   <Head type={2} head={contentfulProduct.overviewHeading} />
                 </Row>
                 <DarkRow>
-                  <Col md={9}>
+                  <Col md={7}>
                     {
                       <div
                         dangerouslySetInnerHTML={{
@@ -139,7 +142,7 @@ const ProductPageInner = ({
                       />
                     }
                   </Col>
-                  <Col md={3} className="justify-content-md-center d-flex">
+                  <Col md={5} className="justify-content-md-center d-flex">
                     <ul>
                       {Features &&
                         Features.map((element, index) => (

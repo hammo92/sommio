@@ -1,10 +1,14 @@
 .freedelivery-bg {
-    background: $bluezodiac;
+    // background: $bluezodiac;
     position: relative;
     padding: 65px 0 130px 0;
 
     @media (max-width:$desktop18) {
         padding: 65px 0 90px 0;
+    }
+
+    @media (max-width:$desktopmdpi) {
+        padding: 50px 0;
     }
 
     h2 {
@@ -17,6 +21,15 @@
 
         @media (max-width:$desktop18) {
             font-size: 100px;
+        }
+
+        @media (max-width:$desktopmdpi) {
+            font-size: 70px;
+        }
+
+        @media (max-width:$mobileportrait) {
+            font-size: 40px;
+            margin: 0 0 20px 0;
         }
 
     }
@@ -32,6 +45,16 @@
             font-size: 28px;
             line-height: 32px;
             margin: 0 1em;
+        }
+
+        @media (max-width:$desktopmdpi) {
+            font-size: 24px;
+            line-height: 30px;
+        }
+
+        @media (max-width:$mobileportrait) {
+            font-size: 20px;
+            line-height: 26px;
         }
 
     }

@@ -8,37 +8,52 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#01122c', endColorstr='#01122c',GradientType=0 );
     background-size: auto 200%;
 }
-.nav-tabs{
+.nav-tabs {
     border:none;
 
-   .nav-link{
-     text-align: center;
-      padding: 30px 0;
-      font-size: 30px;
-      color:
-      #fff;
-      font-weight: 700;
-      border:none;
-      border-radius: 0;
-      line-height: 1;
-      cursor: pointer;
-      flex:1;
+    .nav-link {
+        text-align: center;
+        padding: 30px 0;
+        font-size: 30px;
+        color: #fff;
+        font-weight: 900;
+        border-left: 0;
+        border-top: $purpleborder;
+        border-bottom: $purpleborder;
+        border-right: $purpleborder;
+        border-radius: 0;
+        line-height: 1;
+        cursor: pointer;
+        flex:1;
 
-      &:last-child{
-        border-right:none;
-      }
+        @media (max-width:$ipadportrait) {
+            font-size: 20px;
+            padding: 16px 0;
+        }
 
+        @media (max-width:$mobileportrait) {
+            font-size: 13px;
+            padding: 12px 0;
+        }
 
-      &.active{
-        border-color: $lightgreen;
-        background:$purpleA;
-        color:$white;
-      }
+        &:last-child {
+            border-right:none;
+
+            &.active, &:hover {
+                border-right: 0;
+            }
+
+        }
+
+        &.active, &:hover {
+            border-top: $purpleborder;
+            border-right: $purpleborder;
+            background: none;
+            color: $madang;
+            border-bottom-color: $madang;
+        }
+
    }
-   .nav-item.show{
-     .nav-link{}
-   }
-
 
  }
 
@@ -48,8 +63,16 @@
     margin: 0px 0;
     padding-bottom:40px;
 
+    @media (max-width:$ipadportrait) {
+        padding: 0 15px 40px;
+    }
+
+    @media (max-width:$mobileportrait) {
+        padding: 0 15px;
+    }
+
     .nav.nav-tabs {
-        border: $purpleborder;
+        border: 0;
         margin-bottom: 30px;
 
         li {
@@ -87,21 +110,32 @@
     .tab-content {
         .videoWrap{
             text-align: center;
+            padding: 65px 0 0 0;
+
+            @media (max-width:$desktop18) {
+                padding: 35px 0 0 0;
+            }
+
             h3 {
                 font-size: 60px;
                 color: $white;
                 font-weight: 900;
                 line-height: 1.2;
+
+                @media (max-width:$desktop18) {
+                    font-size: 40px;
+                }
+
                 span {
                     display: inline-block;
                     padding-right: 15px;
-            
-                    &:last-child {
-                      color: $lightgreen;
-                    }
-                  }
+
+                    // &:last-child {
+                    //   color: $lightgreen;
+                    // }
+                }
             }
-            P{
+            P {
                 span {
                     display: inline-block;
                     padding-right: 15px;
@@ -114,19 +148,48 @@
             color: $white;
             line-height: 1.2;
 
+            @media (max-width:$ipadportrait) {
+                font-size: 22px;
+            }
+
+            @media (max-width:$mobileportrait) {
+                font-size: 16px;
+            }
+
             h2 {
                 font-size: 130px;
                 color: $white;
                 font-weight: 900;
                 line-height: 1.2;
+
+                @media (max-width:$desktop18) {
+                    font-size: 100px;
+                }
+
+                @media (max-width:$ipadlandscape) {
+                    font-size: 80px;
+                }
+
+                @media (max-width:$ipadportrait) {
+                    font-size: 50px;
+                }
+
+                @media (max-width:$mobileportrait) {
+                    font-size: 26px;
+                }
+
                 span {
                     display: inline-block;
                     padding-right: 15px;
-            
+
+                    @media (max-width:$mobileportrait) {
+                        padding-right: 5px;
+                    }
+
                     &:last-child {
                       color: $lightgreen;
                     }
-                  }
+                }
             }
 
             h3 {
@@ -135,6 +198,22 @@
                 color: $white;
                 margin: 0 0 20px 0;
                 font-weight: 900;
+
+                @media (max-width:$ipadportrait) {
+                    font-size: 40px;
+                }
+
+                @media (max-width:$mobileportrait) {
+                    font-size: 24px;
+                }
+
+            }
+
+            .iiOSgx {
+
+                @media (max-width:$mobileportrait) {
+                    margin: 20px -15px;
+                }
             }
 
             p {
@@ -142,17 +221,63 @@
                 font-size: $FontSize30;
                 color: $white;
                 line-height: 1.2;
-                margin: 0;
+                margin:0 0 65px;
+
+                @media (max-width:$desktop18) {
+                    font-size: $FontSize24;
+                }
+
+                @media (max-width:$ipadlandscape) {
+                    font-size: 20px;
+                    line-height: 1.5;
+                    margin:0;
+                }
+
+                @media (max-width:$mobileportrait) {
+                    font-size: 16px;
+                }
+
+            }
+
+            .XkAuM {
+                margin-bottom: 50px;
+
+                @media (max-width:$ipadlandscape) {
+                    margin-top: 30px;
+                }
+            }
+
+            .eWtwTB {
+                @media (max-width:$ipadlandscape) {
+                    height: 62vh;
+                }
+                @media (max-width:$mobileportrait) {
+                    height: 25vh;
+                }
             }
 
             ul {
                 padding: 0;
                 margin: 0;
 
+                @media (max-width:$mobileportrait) {
+                    margin: 20px 0 0 20px;
+                }
+
                 li {
                     font-size: $FontSize28;
                     color: $white;
                     font-weight: 700;
+                    line-height: 2;
+
+                    @media (max-width:$desktop18) {
+                        font-size: $FontSize22;
+                    }
+
+                    @media (max-width:$mobileportrait) {
+                        font-size: 18px;
+                    }
+
                 }
 
             }

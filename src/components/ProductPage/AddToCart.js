@@ -151,8 +151,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     selectedProduct &&
     selectedProduct.price + selectedCoverPrice + selectedWeightPrice
 
-  console.log('[addtocart] finalProductPrice => ', finalProductPrice)
-
   let testCart = {
     type: 'cart_item_builton',
     main_product_id: selectedProduct._id._oid,
@@ -177,6 +175,9 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     currency: selectedProduct.currency,
     shippingProductId: shipmentProduct[0]._id._oid
   }
+  console.log('[addtocart] weightSubProduct => ', weightSubProduct)
+  console.log('[addtocart] coverSubProduct => ', coverSubProduct)
+
   const handleAddToCart = () => {
     set_cart(testCart)
     setToggle()
@@ -289,20 +290,20 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
           </DropdownMenu>
         </Dropdown>
       </div>
+
       <div className="price-main">
         <h4>
           <span>{Weight}</span> blanket with <span>{Cover}</span> cover
         </h4>
-        <div className="price-boxs">
-          <span className="price">{finalProductPrice} </span>
-          <p>Or 6 weekly Interest free payments from £ 21.12</p>
-        </div>
-        <button className="btn btn-success" onClick={handleAddToCart}>
-          Add to Basket
-        </button>
         <p className="delivery-text">
           Delivery tomorrow if ordered in the next 3h 45m{' '}
         </p>
+        <div className="price-boxs">
+          <span className="price">£{finalProductPrice} </span>
+          <button className="btn btn-success" onClick={handleAddToCart}>
+            Add to Basket
+          </button>
+        </div>
       </div>
     </div>
   )

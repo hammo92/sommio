@@ -6,6 +6,24 @@
     position: relative;
     z-index: 2;
 
+    @media (max-width:$ipadlandscape) {
+        min-height: 270px;
+    }
+
+    @media (max-width:$ipadportrait) {
+        min-height: initial;
+        padding: 20px 30px;
+        border-radius: 10px 10px 0 0;
+        margin-top: -10px;
+        background-color: $midnight;
+        position: relative;
+    }
+
+    @media (max-width:$mobileportrait) {
+        padding: 15px;
+        border-bottom: 0;
+    }
+
     h3 {
         margin: 0px;
         font-size: 130px;
@@ -17,6 +35,19 @@
 
         @media (max-width: $desktop18) {
             font-size: 100px;
+        }
+
+        @media (max-width:$ipadlandscape) {
+            font-size: 80px;
+            width: 100%;
+        }
+
+        @media (max-width:$ipadlandscape) {
+            margin: 0;
+        }
+
+        @media (max-width:$mobileportrait) {
+            font-size: 40px;
         }
 
         span {
@@ -34,8 +65,37 @@
         font-weight: 500;
         padding: 0 20px 0 0;
 
+        @media (max-width:$ipadlandscape) {
+            font-size: $FontSize18;
+        }
+
+        @media (max-width:$ipadlandscape) {
+            position: absolute;
+            right: 30px;
+            bottom: 20px;
+            padding: 0;
+        }
+
+        @media (max-width:$mobileportrait) {
+            font-size: 14px;
+            width: 40px;
+            text-indent: -9000px;
+            overflow: hidden;
+            right: 15px;
+            bottom: -20px;
+        }
+
         img {
             margin-left:20px;
+
+            @media (max-width:$ipadlandscape) {
+                margin-left:10px;
+            }
+
+            @media (max-width:$mobileportrait) {
+                margin-left:0px;
+            }
+
         }
 
     }
