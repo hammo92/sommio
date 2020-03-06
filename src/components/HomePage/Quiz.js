@@ -58,13 +58,15 @@ const Quiz = ({ display }) => {
         </div>
       )}
       <div className={display === 'wide' ? 'col-8 quizText' : 'quizText'}>
-        <Img fluid={Blackboard.file.childImageSharp.fluid} />
+        {display !== 'wide' && (
+            <Img fluid={Blackboard.file.childImageSharp.fluid} />
+        )}
         <Head>Is a weighted blanket, a good fit for you.</Head>
         <Para>
           Take our short quiz to discover whether a sommio weighted blanket
           could help you sleep better and enjoy lower stress
         </Para>
-        <Button link="/QuizNew">
+        <Button link="/QuizNew" type={display === 'wide' && "thin"}>
           <h3>Start</h3>
           <FontAwesomeIcon icon={faPlay} />
         </Button>

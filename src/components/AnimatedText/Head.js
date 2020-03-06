@@ -15,8 +15,8 @@ const Head = ({ children, head, type }) => {
   const config = { mass: 0.1, tension: 900, friction: 40 }
   const trail = useTrail(words.length, {
     from: {
-      opacity: 0.3,
-      transform: `translate3d(0px,30px,0)`
+      opacity: 1,
+      transform: `translate3d(0px,0px,0)`
     },
     to: {
       opacity: !isVisible ? 0.3 : 1,
