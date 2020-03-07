@@ -1,16 +1,23 @@
 .AnswerBlock{
   display:flex;
-  flex:1;
+  flex-wrap: wrap;
+  flex: 1;
   background:$purpleB;
   align-items:center;
-  padding-left:40px;
+  padding: 0 75px 0 40px;
   cursor:pointer;
   margin-bottom:10px;
   border-radius: 10px;
   margin-right:10px;
+
+  @media (max-width: $ipadlandscape) {
+    padding: 0 20px;
+  }
+
   &:last-child{
     margin-bottom:0
   }
+
   &.active{
     background:$madang;
     color:$violet;
@@ -24,6 +31,31 @@
   &:hover{
     background:#010813;
   }
+
+  span {
+    display: inline-flex;
+    font-size: 90px;
+    color: #FFF9F4;
+    font-weight: 900;
+    line-height: 1;
+    margin-right: 90px;
+
+    @media (max-width: $desktophidpi) {
+      margin-right: 50px;
+    }
+
+    @media (max-width: $desktophidpi) {
+      margin-right: 30px;
+      font-size: 70px;
+    }
+
+    @media (max-width: $ipadlandscape) {
+      margin-right: 20px;
+      font-size: 50px;
+    }
+
+  }
+
   h5{
     font-weight: 900;
     line-height: 1em;
@@ -34,6 +66,20 @@
   }
   p{
     font-size:2em;
+    width: calc(100% - 170px);
+
+    @media (max-width: $desktophidpi) {
+      width: calc(100% - 130px);
+    }
+
+    @media (max-width: $desktophidpi) {
+      width: calc(100% - 110px);
+    }
+
+    @media (max-width: $ipadlandscape) {
+      width: calc(100% - 70px);
+      font-size: 1.3em;
+    }
 
   }
 }

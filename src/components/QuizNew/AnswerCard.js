@@ -19,7 +19,8 @@ const AnswerCard = ({i}) => {
           stress: Question.Options[i][2]
         })}
          >
-         <p>{Question.Options[i][0]}</p>
+          <span>a.</span>
+          <p>{Question.Options[i][0]}</p>
         </div>
     )
 

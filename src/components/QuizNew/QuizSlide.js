@@ -32,17 +32,14 @@ const QuizSlide = () => {
         <ArrowLeft />
         {transitions.map(({ item, props, key }) => (
           <animated.div key={key} style={props} className="QuizCard">
-            <Col className="QuestionContain" >
+            <Col xs={12} lg={6} className="QuestionContain" >
               <h4>{item.Question}</h4>
               <p>{item.Info}</p>
             </Col>
-            <Col className="AnswerContain">
-
-            {CurrentQuestion.Options.map((option, index) => (
-              <AnswerCard i={index} />
-            ))}
-
-
+            <Col xs={12} lg={6} className="AnswerContain">
+              {CurrentQuestion.Options.map((option, index) => (
+                <AnswerCard i={index} />
+              ))}
             </Col>
           </animated.div>
         ))}        
