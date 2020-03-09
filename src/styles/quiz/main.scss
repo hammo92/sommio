@@ -1,16 +1,15 @@
 
 .QuizContain{
-
+display:flex;
 color:#ffffff;
   &.setHeight{
     height:80vh;
     position: relative;
-    margin-top:20px;
+  }
+  .row{
+    min-height:100%;
   }
 
 
-.row{
-  height:100%
-}
 
 }

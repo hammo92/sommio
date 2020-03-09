@@ -12,6 +12,7 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@n8tb1t/use-scroll-position": "^1.0.43",
     "@reach/router": "^1.2.1",
+    "@reach/window-size": "^0.8.6",
     "axios": "^0.19.0",
     "body-scroll-lock": "^2.6.4",
     "bootstrap": "^4.3.1",

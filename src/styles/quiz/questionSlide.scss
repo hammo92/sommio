@@ -17,6 +17,8 @@ $arrowMargin: 30px;
   margin-left:0px;
   padding:20px;
   position:relative;
+  border-right:$purpleborder;
+  margin-right:10px;
 
     
   h4 {
@@ -50,9 +52,10 @@ $arrowMargin: 30px;
   align-items: center;
   position:absolute;
   width:60px;
-  height:100%;
+  height: calc(100% - 40px);
   justify-content: center;
   border-radius: 10px;
+  margin-top:20px;
 
   cursor:pointer;
   &.back{
@@ -74,4 +77,5 @@ $arrowMargin: 30px;
   padding-left:0;
   padding-right:0;
   opacity:1;
+  margin:20px 0;
 }

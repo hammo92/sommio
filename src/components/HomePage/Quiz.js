@@ -36,11 +36,12 @@ export const QuizButton = () => {
 }
 
 const Quiz = ({ display }) => {
+  const [{ quiz }, dispatch] = useStateValue()
   const Blackboard = useStaticQuery(graphql`
     query {
       file(name: { eq: "blackboard" }) {
         childImageSharp {
-          fluid(maxWidth: 800, quality: 70) {
+          fluid(maxWidth: 800, quality: 100) {
             ...GatsbyImageSharpFluid_noBase64
           }
         }
@@ -67,7 +68,13 @@ const Quiz = ({ display }) => {
           could help you sleep better and enjoy lower stress
         </Para>
         <Button link="/QuizNew" type={display === 'wide' && "thin"}>
-          <h3>Start</h3>
+          <h3>
+          {quiz.currentQuestion !== 0 && quiz.complete
+          ? 'Your Results'
+          : quiz.currentQuestion !== 0
+          ? 'Resume'
+          : 'Start'}
+          </h3>
           <FontAwesomeIcon icon={faPlay} />
         </Button>
       </div>
