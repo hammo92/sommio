@@ -1,31 +1,30 @@
 $arrowWidth: 60px;
 $arrowMargin: 30px;
-.QuizCard{
-  display:flex;
-  flex:1;
-  position:absolute;
-  width:calc(100% - (#{$arrowWidth} * 2) - (#{$arrowMargin} * 2));
+.QuizCard {
+  display: flex;
+  flex: 1;
+  position: absolute;
+  width: calc(100% - (#{$arrowWidth} * 2) - (#{$arrowMargin} * 2));
   left: $arrowWidth + $arrowMargin;
-  height:100%;
+  height: 100%;
 }
 
-.QuestionContain{
-  display:flex;
-  align-items:left;
-  flex-direction:column;
-  justify-content:center;
-  margin-left:0px;
-  padding:20px;
-  position:relative;
-  border-right:$purpleborder;
-  margin-right:10px;
+.QuestionContain {
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 0px;
+  padding: 20px;
+  position: relative;
+  border-right: $purpleborder;
+  margin-right: 10px;
 
-    
   h4 {
-    font-size:5em;
-    font-weight:900;
-    color:#a6daf0;
-    opacity:1;
+    font-size: 5em;
+    font-weight: 900;
+    color: #a6daf0;
+    opacity: 1;
 
     @media (max-width: $desktophidpi) {
       font-size: 4em;
@@ -34,48 +33,46 @@ $arrowMargin: 30px;
     @media (max-width: $ipadlandscape) {
       font-size: 3em;
     }
-
   }
   p {
-    margin-top:30px;
-    font-size:1.5em;
+    margin-top: 30px;
+    font-size: 1.5em;
 
     @media (max-width: $ipadlandscape) {
       font-size: 1.2em;
     }
-
   }
-
 }
-.arrow{
-  display:flex;
+.arrow {
+  display: flex;
   align-items: center;
-  position:absolute;
-  width:60px;
+  position: absolute;
+  width: 60px;
   height: calc(100% - 40px);
   justify-content: center;
   border-radius: 10px;
-  margin-top:20px;
+  margin-top: 20px;
 
-  cursor:pointer;
-  &.back{
-    left:$arrowMargin;
-    background:$purpleA;
+  cursor: pointer;
+  &.back {
+    left: $arrowMargin;
+    background: $purpleA;
   }
-  &.next{right:$arrowMargin}
-  &.disabled{
-    cursor:disabled;
-    svg{
-      opacity:0.3;
+  &.next {
+    right: $arrowMargin;
+  }
+  &.disabled {
+    cursor: disabled;
+    svg {
+      opacity: 0.3;
     }
-    
   }
 }
-.AnswerContain{
-  display:flex;
-  flex-direction:column;
-  padding-left:0;
-  padding-right:0;
-  opacity:1;
-  margin:20px 0;
+.AnswerContain {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  padding-right: 0;
+  opacity: 1;
+  margin: 20px 0;
 }

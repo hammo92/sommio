@@ -15,10 +15,12 @@ const UserOrdersList = () => {
   const [isLoading, setLoading] = useState(false)
   const [textAreaDisable, setTextAreaDisable] = useState(true)
   const url = 'https://api.builton.dev/orders'
-  // const orderId = userOrder && userOrder[0]._id.$oid
-  // const updateOrderAddressUrl = `https://api.builton.dev/orders/${orderId}`
-  console.log('userOrder => ', userOrder)
 
+  console.log('userOrder =>', userOrder)
+  const orderId = userOrder[0] && userOrder[0]._id && userOrder[0]._id.$oid
+  console.log('orderId => ', orderId)
+
+  const updateOrderAddressUrl = `https://api.builton.dev/orders/${orderId}`
   const { allBuiltonProduct } = useStaticQuery(graphql`
     query {
       allBuiltonProduct {
@@ -68,11 +70,13 @@ const UserOrdersList = () => {
 
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [address, setAddress] = useState('')
 
-  console.log('newPassword ,confirmPassword => ', newPassword, confirmPassword)
+  console.log('newPassword, confirmPassword => ', newPassword, confirmPassword)
 
   const handleChange = e => {
     console.log('e.target.value => ', e.target.value)
+
     if (e.target.name === 'newPassword') {
       setNewPassword(e.target.value)
     } else {
@@ -98,22 +102,33 @@ const UserOrdersList = () => {
     setTextAreaDisable(false)
   }
   const updateAddress = async e => {
-    console.log('e.target.value ====> ', e.target.value)
-    // let token = await newFirebaseToken()
-    // await axios
-    //   .put(updateOrderAddressUrl, {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //       'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
-    //       'Content-Type': 'application/json'
-    //     }
-    //   })
-    //   .then(res => {
-    //     console.log('updatedAddress res => ', res)
-    //   })
-    //   .catch(err => {
-    //     console.log('err => ', err, err.code)
-    //   })
+    console.log('e.target.value ====>', e.target.value)
+    setAddress(e.target.value)
+    console.log('address => ', address)
+    let add = e.target.value
+    console.log('add => ', add)
+
+    let token = await newFirebaseToken()
+    await axios
+      .put(
+        updateOrderAddressUrl,
+        {
+          delivery_address: { raw: { formatted_address: 'Testing' } }
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+      .then(res => {
+        console.log('updatedAddress res =>', res)
+      })
+      .catch(err => {
+        console.log('err => ', err, err.code)
+      })
   }
   return (
     <Layout>
@@ -173,7 +188,7 @@ const UserOrdersList = () => {
             <h5>Address</h5>
             <textarea
               disabled={textAreaDisable === true ? true : false}
-              onChange={e => updateAddress(e)}
+              onBlur={e => updateAddress(e)}
             >
               {userOrder &&
                 userOrder.length > 0 &&

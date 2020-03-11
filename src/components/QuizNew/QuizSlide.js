@@ -13,6 +13,7 @@ const AnimatedAnswer = animated(AnswerCard)
 
 const QuizSlide = () => {
   const [{ quiz }, dispatch] = useStateValue()
+  console.log('[squizSlide] quiz => ', quiz)
 
   const CurrentQuestion = Questions[quiz.currentQuestion]
   const answered = quiz.questions[quiz.currentQuestion].Answer
@@ -47,7 +48,7 @@ const QuizSlide = () => {
           </Col>
         </animated.div>
       ))}
-      <ArrowRight answered={answered} />
+      <ArrowRight answered={answered && answered} />
     </Row>
   )
 }
