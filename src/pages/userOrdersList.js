@@ -13,7 +13,11 @@ const UserOrdersList = () => {
   const { firebase } = useContext(FirebaseContext)
 
   const [isLoading, setLoading] = useState(false)
+  const [textAreaDisable, setTextAreaDisable] = useState(true)
   const url = 'https://api.builton.dev/orders'
+  // const orderId = userOrder && userOrder[0]._id.$oid
+  // const updateOrderAddressUrl = `https://api.builton.dev/orders/${orderId}`
+  console.log('userOrder => ', userOrder)
 
   const { allBuiltonProduct } = useStaticQuery(graphql`
     query {
@@ -86,11 +90,30 @@ const UserOrdersList = () => {
           setConfirmPassword('')
         })
         .catch(error => {
+          alert('Not updated')
           console.log('error => ', error)
         })
   }
-  const updateAddress = () => {
-    console.log('Updating')
+  const enableToUpdateAddress = () => {
+    setTextAreaDisable(false)
+  }
+  const updateAddress = async e => {
+    console.log('e.target.value ====> ', e.target.value)
+    // let token = await newFirebaseToken()
+    // await axios
+    //   .put(updateOrderAddressUrl, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
+    //       'Content-Type': 'application/json'
+    //     }
+    //   })
+    //   .then(res => {
+    //     console.log('updatedAddress res => ', res)
+    //   })
+    //   .catch(err => {
+    //     console.log('err => ', err, err.code)
+    //   })
   }
   return (
     <Layout>
@@ -148,14 +171,17 @@ const UserOrdersList = () => {
           <div>
             <h4>Details</h4>
             <h5>Address</h5>
-            <textArea>
+            <textarea
+              disabled={textAreaDisable === true ? true : false}
+              onChange={e => updateAddress(e)}
+            >
               {userOrder &&
                 userOrder.length > 0 &&
                 userOrder[0].delivery_address &&
                 userOrder[0].delivery_address.raw &&
                 userOrder[0].delivery_address.raw.formatted_address}
-            </textArea>
-            <button onClick={updateAddress}>Update Address</button>
+            </textarea>
+            <button onClick={enableToUpdateAddress}>Update Address</button>
 
             <p>Update Password</p>
             <input

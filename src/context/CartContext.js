@@ -230,7 +230,7 @@ function CartProvider({ children, ...props }) {
 
   const setSubProductPrice = (selectedWeight, selectedCover) => {
     console.log(
-      '[cartcontext] selectedWeight,selectedCover => ',
+      '[cartcontext] selectedWeight,selectedCover =>',
       selectedWeight,
       selectedCover
     )

@@ -99,6 +99,7 @@ export default function reducer(state, action) {
 
     case SET_VARIATION:
       var obj = {}
+      console.log('action => ', action)
 
       const price = action.payload.price
       obj[action.payload.name] = action.payload.value
@@ -293,6 +294,8 @@ function ShippingAndUserDetailProvider({ children, ...props }) {
     dispatch({ type: SET_TOGGLE })
   }
   function setVariation(name, value, price) {
+    console.log('name, value, price => ', name, value, price)
+
     dispatch({
       type: SET_VARIATION,
       payload: { name, value, price }

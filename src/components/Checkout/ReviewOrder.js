@@ -85,6 +85,7 @@ const RiviewOrder = ({ stripe, formEnable }) => {
       const payBuilton = await builton.payments.pay(
         createdOrder.payments[0].$oid
       )
+
       //dispatch method
       paymentBuilton(payBuilton)
 

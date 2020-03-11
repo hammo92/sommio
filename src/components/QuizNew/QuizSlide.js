@@ -2,53 +2,52 @@ import React, { useState } from 'react'
 import AnswerCard from './AnswerCard'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import {ArrowLeft, ArrowRight} from './Arrows'
-import { useStateValue } from '../../context/SiteContext';
-import YAMLData from '../../../content/Quiz.yaml' 
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
+import { ArrowLeft, ArrowRight } from './Arrows'
+import { useStateValue } from '../../context/SiteContext'
+import YAMLData from '../../../content/Quiz.yaml'
 import { useTransition, useTrail, animated } from 'react-spring'
-
 
 const Questions = YAMLData
 const AnimatedAnswer = animated(AnswerCard)
 
 const QuizSlide = () => {
-  const [{ quiz }, dispatch] = useStateValue();
-  
+  const [{ quiz }, dispatch] = useStateValue()
+
   const CurrentQuestion = Questions[quiz.currentQuestion]
   const answered = quiz.questions[quiz.currentQuestion].Answer
   const config = { mass: 5, tension: 2000, friction: 200 }
-  const transitions = useTransition(Questions[quiz.currentQuestion], item => item.Key, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-  } )
+  const transitions = useTransition(
+    Questions[quiz.currentQuestion],
+    item => item.Key,
+    {
+      from: { opacity: 0 },
+      enter: { opacity: 1 },
+      leave: { opacity: 0 }
+    }
+  )
   const trail = useTrail(CurrentQuestion.Options.length, {
     config,
     opacity: 1
   })
-  return(
-      <Row>
-        <ArrowLeft />
-        {transitions.map(({ item, props, key }) => (
-          <animated.div key={key} style={props} className="QuizCard">
-            <Col className="QuestionContain" >
-              <h4>{item.Question}</h4>
-              <p>{item.Info}</p>
-            </Col>
-            <Col className="AnswerContain">
-
+  return (
+    <Row>
+      <ArrowLeft />
+      {transitions.map(({ item, props, key }) => (
+        <animated.div key={key} style={props} className="QuizCard">
+          <Col className="QuestionContain">
+            <h4>{item.Question}</h4>
+            <p>{item.Info}</p>
+          </Col>
+          <Col className="AnswerContain">
             {CurrentQuestion.Options.map((option, index) => (
               <AnswerCard i={index} />
             ))}
-
-
-            </Col>
-          </animated.div>
-        ))}        
-        <ArrowRight answered={answered} />
-        
-      </Row>
+          </Col>
+        </animated.div>
+      ))}
+      <ArrowRight answered={answered} />
+    </Row>
   )
 }
 

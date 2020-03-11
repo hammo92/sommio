@@ -5,13 +5,14 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 const Head = ({ children, head, type }) => {
   const [isVisible, setVisibility] = useState(true)
-  console.log('currently visible =>', children, isVisible)
+  console.log('children =>', children)
+  console.log('head =>', head)
   const onChange = visiblity => {
     setVisibility(visiblity)
   }
   const CustomTag = type ? `h${type}` : `h3`
 
-  const words = children ? children.split(' ') : head.split(' ')
+  const words = children ? children.split(' ') : head ? head.split(' ') : ''
   const config = { mass: 0.1, tension: 900, friction: 40 }
   const trail = useTrail(words.length, {
     from: {

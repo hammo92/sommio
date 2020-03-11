@@ -61,8 +61,10 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   const [{ cart }, dispatch] = useStateValue()
   const [weight, setWeight] = useState(null)
   const [cover, setCover] = useState(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   console.log('[addtocart] Weight, Cover => ', Weight, Cover)
+  console.log('[addtocart] Weight, cover => ', weight, cover)
 
   let weightSubProduct = []
   let coverSubProduct = []
@@ -125,10 +127,12 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   }
 
   const updateVariations = (e, name, price, id) => {
+    console.log('e,name,price,id => ', e, name, price, id)
     onChangeSelectedProduct(id)
     if (name === 'Weight') {
-      setVariation(name, e.target.value, price)
-      setWeight(e.target.value)
+      console.log('e,name,price,id => ', e, name, price, id)
+      setVariation(name, e, price)
+      setWeight(e)
     } else if (name === 'Cover') {
       setVariation(name, e, price)
       setCover(e)
@@ -188,6 +192,36 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   }
   let price =
     selectedProduct && selectedProduct.price + weightPrice + coverPrice
+  console.log('currentIndex => ', currentIndex)
+
+  const arrowUp = index => {
+    console.log('Up ===> ', index)
+    setCurrentIndex(index)
+    updateVariations(
+      weightSubProduct[index].name,
+      weightSubProduct[index].tags[0],
+      weightSubProduct[index].price,
+      weightSubProduct[index]._id._oid
+    )
+  }
+  const arrowDown = index => {
+    console.log('Down ===> ', index)
+    console.log('Down length===> ', weightSubProduct.length)
+    console.log('Down currentIndex===> ', currentIndex)
+    setCurrentIndex(index)
+    updateVariations(
+      weightSubProduct[index].name,
+      weightSubProduct[index].tags[0],
+      weightSubProduct[index].price,
+      weightSubProduct[index]._id._oid
+    )
+  }
+  console.log(
+    'weightSubProduct.length , currentIndex =>',
+    weightSubProduct.length,
+    currentIndex
+  )
+
   return (
     <div className="product-variation">
       <div className="blanket-boxs">
@@ -201,14 +235,32 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
         <div className="left">
           <h3>Weight:</h3>
           <h4>Recommended for users who weigh between:</h4>
-          <h2>70 - 89 kg | 8 - 10 stone</h2>
+          <h2>
+            {weightSubProduct[currentIndex] &&
+              weightSubProduct[currentIndex].short_description}
+          </h2>
         </div>
         <div className="right">
-          <div className="button up">
+          <div
+            className="button up"
+            onClick={() => arrowUp(currentIndex === 0 ? 0 : currentIndex - 1)}
+          >
             lighter <img src={ArrowUp} />
           </div>
-          <div className="active">8 kg | 12 lb</div>
-          <div className="button down">
+          <div className="active">
+            {weightSubProduct[currentIndex] &&
+              weightSubProduct[currentIndex].name}
+          </div>
+          <div
+            className="button down"
+            onClick={() =>
+              arrowDown(
+                currentIndex < weightSubProduct.length - 1
+                  ? currentIndex + 1
+                  : weightSubProduct.length - 1
+              )
+            }
+          >
             heavier <img src={ArrowDown} />
           </div>
         </div>

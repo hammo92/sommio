@@ -130,7 +130,12 @@ const ProductPageInner = ({
             <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example">
               <Tab eventKey="overview" title="Overview">
                 <Row noGutters>
-                  <Head type={2} head={contentfulProduct.overviewHeading} />
+                  <Head
+                    type={2}
+                    head={
+                      contentfulProduct && contentfulProduct.overviewHeading
+                    }
+                  />
                 </Row>
                 <DarkRow>
                   <Col md={7}>

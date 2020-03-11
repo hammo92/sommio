@@ -45,6 +45,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   }, [details && details.email])
 
   const handleShippingCost = async values => {
+    console.log('values =====>', values)
     let token = await newFirebaseToken()
     const builton = new Builton({
       apiKey: process.env.GATSBY_BUILTON_API_KEY,
