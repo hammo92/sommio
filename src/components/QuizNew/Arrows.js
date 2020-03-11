@@ -32,14 +32,14 @@ export const ArrowRight = ({answered}) => {
     }
     return (
         <div 
-          className={answered === false ? "arrow next disabled" : "arrow next"}
+          className={`arrow next` }
           onClick={
-            answered !== false && quiz.currentQuestion < 10 ?
+            answered && quiz.currentQuestion < 10 ?
             () => dispatch({
                 type: 'changeQuestion',
                 nextQuestion: quiz.currentQuestion + 1
             }):
-            answered !== false ? 
+            answered ? 
             () => dispatch({
                 type: 'setCompleted',
                 score: sleep,
@@ -47,7 +47,7 @@ export const ArrowRight = ({answered}) => {
             }): console.log(' ')
         }
       >
-        <Button type={`long ${!answered && "disabled"}`}>
+        <Button type={`long`} disabled={!answered}>
              <FaArrowRight />
         </Button>
         </div>

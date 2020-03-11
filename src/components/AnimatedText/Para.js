@@ -16,8 +16,8 @@ const Para = ({children, head}) => {
     const words = children.split(" ")
     const trail = useTrail(words.length, {
         from:{
-            opacity: 0.3,
-            transform: `translate3d(0px,20px,0)`,},
+            opacity: 1,
+            transform: `translate3d(0px,0px,0)`,},
         to:{
             opacity: isVisible ? 1 : 0.3,
             transform: isVisible ? `translate3d(0,0px,0)` : `translate3d(0px,20px,0)`,

@@ -1800,6 +1800,23 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@reach/utils@^0.8.6":
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.8.6.tgz#41c7ac8b7699d0e663bda773398ae1c459679ee3"
+  integrity sha512-ec9Ea99LQhlBoMKsJ7n2GYD3u3a0IHDLcfbA50C6aDKnSFvVYSPkF2Iav3fQ07VGfe+FuNGi0iYi1qkE8uSmDw==
+  dependencies:
+    tslib "^1.10.0"
+    warning "^4.0.3"
+
+"@reach/window-size@^0.8.6":
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/@reach/window-size/-/window-size-0.8.6.tgz#94dc517c722b40ee093997bd6759f1f72ba10680"
+  integrity sha512-Rk5QwdzIgvwfsKVHpvBL8ooocmbNZcwIli1KMaJ2syJiTCtXNdJRd49ZwvWxeGGzlZ7PsJc7eHQbzfOaeTW+uw==
+  dependencies:
+    "@reach/utils" "^0.8.6"
+    prop-types "^15.7.2"
+    tslib "^1.10.0"
+
 "@restart/context@^2.1.4":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@restart/context/-/context-2.1.4.tgz#a99d87c299a34c28bd85bb489cb07bfd23149c02"

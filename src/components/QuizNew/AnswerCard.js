@@ -9,17 +9,18 @@ const AnswerCard = ({i}) => {
 
     return (
         <div 
-        className={Question.Answer === i ? "AnswerBlock active" : "AnswerBlock"}
+        className={Question.Answer === i + 1? "AnswerBlock active" : "AnswerBlock"}
         key={i}
         onClick={() => dispatch({
           type: 'selectAnswer',
           question: quiz.currentQuestion,
-          answer: i,
+          answer: i + 1,
           sleep: Question.Options[i][1],
           stress: Question.Options[i][2]
         })}
          >
-         <p>{Question.Options[i][0]}</p>
+        <span>{i == 0 ? "a" : i == 1 ? "b" : i == 2 ? "c" : "d"}. </span>
+          <p>{Question.Options[i][0]}</p>
         </div>
     )
 

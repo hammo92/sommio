@@ -36,11 +36,12 @@ export const QuizButton = () => {
 }
 
 const Quiz = ({ display }) => {
+  const [{ quiz }, dispatch] = useStateValue()
   const Blackboard = useStaticQuery(graphql`
     query {
       file(name: { eq: "blackboard" }) {
         childImageSharp {
-          fluid(maxWidth: 800, quality: 70) {
+          fluid(maxWidth: 800, quality: 100) {
             ...GatsbyImageSharpFluid_noBase64
           }
         }
@@ -58,14 +59,22 @@ const Quiz = ({ display }) => {
         </div>
       )}
       <div className={display === 'wide' ? 'col-8 quizText' : 'quizText'}>
-        <Img fluid={Blackboard.file.childImageSharp.fluid} />
+        {display !== 'wide' && (
+            <Img fluid={Blackboard.file.childImageSharp.fluid} />
+        )}
         <Head>Is a weighted blanket, a good fit for you.</Head>
         <Para>
           Take our short quiz to discover whether a sommio weighted blanket
           could help you sleep better and enjoy lower stress
         </Para>
-        <Button link="/QuizNew">
-          <h3>Start</h3>
+        <Button link="/QuizNew" type={display === 'wide' && "thin"}>
+          <h3>
+          {quiz.currentQuestion !== 0 && quiz.complete
+          ? 'Your Results'
+          : quiz.currentQuestion !== 0
+          ? 'Resume'
+          : 'Start'}
+          </h3>
           <FontAwesomeIcon icon={faPlay} />
         </Button>
       </div>

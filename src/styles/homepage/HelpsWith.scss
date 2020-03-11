@@ -109,11 +109,6 @@
 
       .buttonWrapper {
 
-        .buttonShadow {
-          top: 2px;
-          left: 2px;
-        }
-
         &.round.small {
 
           @media (max-width: $mobileportrait) {

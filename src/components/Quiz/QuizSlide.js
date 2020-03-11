@@ -24,17 +24,19 @@ const QuizSlide = () => {
           >
             <FaArrowLeft />
           </div>) : null}
+
           <div className="QuizCard">
-          <Col className="QuestionContain" >
-            <h4>{CurrentQuestion.Question}</h4>
-            <p>{CurrentQuestion.Info}</p>
-          </Col>
-          <Col className="AnswerContain">
-            {CurrentQuestion.Options.map((ans, i, step) => (
-              <AnswerCard ans={ans} key={i} />
-            ))}
-          </Col>
+            <Col className="QuestionContain">
+              <h4>{CurrentQuestion.Question}</h4>
+              <p>{CurrentQuestion.Info} </p>
+            </Col>
+            <Col className="AnswerContain">
+              {CurrentQuestion.Options.map((ans, i, step) => (
+                <AnswerCard ans={ans} key={i} />
+              ))}
+            </Col>
           </div>
+
           {quiz.currentQuestion.answered !== false ? (<div 
             className="next"
             onClick={() => dispatch({

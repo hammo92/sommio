@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react'
 import { Helmet } from 'react-helmet'
 import VisibilitySensor from "react-visibility-sensor"
-import Explode from "../../video/exploding.mp4"
+import Explode from "../../video/exploding2.mp4"
 import styled from "styled-components"
 import Row from 'react-bootstrap/Row'
 import ReactPlayer from 'react-player'
