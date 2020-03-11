@@ -89,13 +89,30 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     }
   })
 
+  function compare(a, b) {
+    const weightA = parseInt(a.name.split(" ")[0], 10)
+    const weightB = parseInt(b.name.split(" ")[0], 10)
+    let comparison = 0;
+    if (weightA > weightB) {
+      comparison = 1
+    } else if (weightA < weightB){
+      comparison = -1
+    }
+    return comparison
+  }
+
+  // set child data to category
   childData.map(sub => {
     if (sub.tags[0] === 'Weight' && productId === sub.parents[0]._oid) {
       weightSubProduct.push(sub)
     } else if (sub.tags[0] === 'Cover' && productId === sub.parents[0]._oid) {
       coverSubProduct.push(sub)
     }
+    
   })
+
+  // sort weight
+  weightSubProduct.sort(compare)
 
   console.log('[addtocart] local weight,cover => ', weight, cover)
 
