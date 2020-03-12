@@ -3,6 +3,7 @@ import axios from 'axios'
 import { FirebaseContext } from './FirebaseContext'
 
 import { CheckoutContext } from './CheckoutContext'
+
 import { CartContext } from './CartContext'
 export const SET_RATES = 'SET_RATES'
 export const SET_ADDRESS = 'SET_ADDRESS'
@@ -56,7 +57,26 @@ export default function reducer(state, action) {
     case SET_ADDRESS:
       const shipping_address = action.shippingData
       const customerDetails = action.user
-
+      state.builton &&
+        state.builton.users
+          .setMe()
+          .update({
+            addresses: [
+              {
+                street_name: shipping_address.line_1,
+                city: shipping_address.city,
+                zip_code: shipping_address.postcode,
+                state: shipping_address.county,
+                country: shipping_address.country
+              }
+            ]
+          })
+          .then(response => {
+            console.log('response => ', response)
+          })
+          .catch(err => {
+            console.log('err => ', err)
+          })
       const paymentButton = true
 
       return {

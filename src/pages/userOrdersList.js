@@ -2,7 +2,11 @@ import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useStaticQuery } from 'gatsby'
 import { navigate } from 'gatsby'
-import { CheckoutContext, FirebaseContext } from '../context/index'
+import {
+  CheckoutContext,
+  FirebaseContext,
+  ShippingAndUserDetailContext
+} from '../context/index'
 import Loader from '../components/Loader'
 import { newFirebaseToken } from '../utils/newFirebaseToken'
 import Layout from '../components/Layout/Layout'
@@ -11,16 +15,17 @@ import Photo from '../components/Photo'
 const UserOrdersList = () => {
   const { userOrderData, userOrder } = useContext(CheckoutContext)
   const { firebase } = useContext(FirebaseContext)
+  const { builton } = useContext(ShippingAndUserDetailContext)
 
   const [isLoading, setLoading] = useState(false)
   const [textAreaDisable, setTextAreaDisable] = useState(true)
   const url = 'https://api.builton.dev/orders'
+  const getUserDetailUrl = 'https://api.builton.dev/users/me'
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [address, setAddress] = useState('')
+  const [finalAddress, setFinalAddress] = useState('')
 
-  console.log('userOrder =>', userOrder)
-  const orderId = userOrder[0] && userOrder[0]._id && userOrder[0]._id.$oid
-  console.log('orderId => ', orderId)
-
-  const updateOrderAddressUrl = `https://api.builton.dev/orders/${orderId}`
   const { allBuiltonProduct } = useStaticQuery(graphql`
     query {
       allBuiltonProduct {
@@ -55,24 +60,38 @@ const UserOrdersList = () => {
             'Content-Type': 'application/json'
           }
         })
-        .then(res => {
+        .then(async res => {
           userOrderData(res.data)
+
+          await axios
+            .get(getUserDetailUrl, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
+                'Content-Type': 'application/json'
+              }
+            })
+            .then(response => {
+              console.log('USER r => ', response)
+              setFinalAddress(
+                response.data.addresses[0] &&
+                  response.data.addresses[0].raw.formatted_address
+              )
+            })
+            .catch(err => {
+              console.log('USER err => ', err)
+            })
         })
         .catch(err => {
           console.log('err => ', err, err.code)
-          alert('Error')
-          navigate('/')
+          // alert('Error')
+          // navigate('/')
         })
+
       setLoading(false)
     }
     fetchOrder()
   }, [])
-
-  const [newPassword, setNewPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [address, setAddress] = useState('')
-
-  console.log('newPassword, confirmPassword => ', newPassword, confirmPassword)
 
   const handleChange = e => {
     console.log('e.target.value => ', e.target.value)
@@ -101,35 +120,38 @@ const UserOrdersList = () => {
   const enableToUpdateAddress = () => {
     setTextAreaDisable(false)
   }
-  const updateAddress = async e => {
+  const updateValue = e => {
     console.log('e.target.value ====>', e.target.value)
-    setAddress(e.target.value)
-    console.log('address => ', address)
-    let add = e.target.value
-    console.log('add => ', add)
-
-    let token = await newFirebaseToken()
-    await axios
-      .put(
-        updateOrderAddressUrl,
-        {
-          delivery_address: { raw: { formatted_address: 'Testing' } }
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
-            'Content-Type': 'application/json'
+    setAddress({ ...address, [e.target.name]: e.target.value })
+  }
+  const updateAddress = async () => {
+    await builton.users
+      .setMe()
+      .update({
+        addresses: [
+          {
+            street_name: address.street_name,
+            city: address.city,
+            state: address.state,
+            zip_code: address.zip_code,
+            country: address.country
           }
-        }
-      )
-      .then(res => {
-        console.log('updatedAddress res =>', res)
+        ]
       })
-      .catch(err => {
-        console.log('err => ', err, err.code)
+      .then(response => {
+        console.log('[userOrder] response => ', response)
+        setFinalAddress(
+          response.addresses[0] && response.addresses[0].raw.formatted_address
+        )
+        setAddress('')
+        setTextAreaDisable(true)
+      })
+      .catch(error => {
+        console.log('[userOrder] errrr => ', error)
+        error.code === 401 && alert('Please login again')
       })
   }
+
   return (
     <Layout>
       {isLoading === true ? (
@@ -186,18 +208,50 @@ const UserOrdersList = () => {
           <div>
             <h4>Details</h4>
             <h5>Address</h5>
-
-            <textarea
-              disabled={textAreaDisable === true ? true : false}
-              onBlur={e => updateAddress(e)}
-            >
-              {userOrder &&
-                userOrder.length > 0 &&
-                userOrder[0].delivery_address &&
-                userOrder[0].delivery_address.raw &&
-                userOrder[0].delivery_address.raw.formatted_address}
-            </textarea>
-            <button onClick={enableToUpdateAddress}>Update Address</button>
+            {textAreaDisable === false ? (
+              <div>
+                <input
+                  placeholder="street_name"
+                  type="text"
+                  name="street_name"
+                  onChange={updateValue}
+                />
+                <input
+                  placeholder="city"
+                  type="text"
+                  name="city"
+                  onChange={updateValue}
+                />
+                <input
+                  placeholder="zip_code"
+                  type="text"
+                  name="zip_code"
+                  onChange={updateValue}
+                />
+                <input
+                  placeholder="state"
+                  type="text"
+                  name="state"
+                  onChange={updateValue}
+                />
+                <input
+                  placeholder="country"
+                  type="text"
+                  name="country"
+                  onChange={updateValue}
+                />
+                <button type="submit" onClick={updateAddress}>
+                  Update
+                </button>
+              </div>
+            ) : (
+              <div>
+                <textarea disabled={textAreaDisable === true ? true : false}>
+                  {finalAddress}
+                </textarea>
+                <button onClick={enableToUpdateAddress}>Update Address</button>
+              </div>
+            )}
 
             <p>Update Password</p>
             <input

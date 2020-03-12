@@ -90,12 +90,12 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   })
 
   function compare(a, b) {
-    const weightA = parseInt(a.name.split(" ")[0], 10)
-    const weightB = parseInt(b.name.split(" ")[0], 10)
-    let comparison = 0;
+    const weightA = parseInt(a.name.split(' ')[0], 10)
+    const weightB = parseInt(b.name.split(' ')[0], 10)
+    let comparison = 0
     if (weightA > weightB) {
       comparison = 1
-    } else if (weightA < weightB){
+    } else if (weightA < weightB) {
       comparison = -1
     }
     return comparison
@@ -108,7 +108,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     } else if (sub.tags[0] === 'Cover' && productId === sub.parents[0]._oid) {
       coverSubProduct.push(sub)
     }
-    
   })
 
   // sort weight
