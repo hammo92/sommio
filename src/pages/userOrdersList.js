@@ -186,6 +186,7 @@ const UserOrdersList = () => {
           <div>
             <h4>Details</h4>
             <h5>Address</h5>
+
             <textarea
               disabled={textAreaDisable === true ? true : false}
               onBlur={e => updateAddress(e)}

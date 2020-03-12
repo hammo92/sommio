@@ -5,18 +5,10 @@
     font-weight: 900;
     margin: 0 0 0px;
     z-index: 1;
-
-    @media (max-width:$desktop18) {
-        font-size: 160px;
-    }
-
     span {
-            
         display:inline-block;
         padding-right:0.3em;
-    }
-
-}
+    }}
     form{
         margin-top:40px;
         input{
@@ -25,6 +17,29 @@
         }
         #message{
             height:120px;
+        }
+    }
+}
+
+@media(max-width:1024px){
+    main{
+        .contactForm{
+            padding:15px;
+            h1{
+                font-size:40px;
+            }
+            form{
+                margin-top:20px;
+                input{
+                    height: 50px;
+                    padding-left: 8px;
+                    &:placeholder-shown + label{
+                        top: 14px;
+                        left: 15px;
+                    }
+                }
+
+            }
         }
     }
 }

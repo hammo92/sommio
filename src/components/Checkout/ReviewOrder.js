@@ -13,6 +13,7 @@ const RiviewOrder = ({ stripe, formEnable }) => {
   const { ProductsArray } = useContext(CartContext)
   const { createOrderBuilton, paymentBuilton } = useContext(CheckoutContext)
   const [checkoutError, setCheckoutError] = useState(null)
+  console.log('[reviewOrder] builton => ', builton)
 
   const shipmentProductId =
     ProductsArray[0] && ProductsArray[0].shippingProductId

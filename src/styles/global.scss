@@ -170,3 +170,20 @@ p {
 .tl-edges {
   overflow: hidden;
 }
+
+@media(max-width:992px){
+  body.so-checkout-page .header-checkout{height:auto;}
+  .tl-edges {overflow: visible;}
+  .cart_first .shipping-boxs form, .cart_second .visible, .cart_third .cartsliderbar-boby, .cart_third .submit_btn { display:none;}
+  main .cart_first { padding:0;}
+  .cart_first.purple  .shipping-boxs form, .cart_second.purple .visible, .cart_third.purple, .cart_third .cartsliderbar-boby, .cart_third.purple .submit_btn { display:block;}
+
+  .cart_first .shipping-boxs {overflow: visible;}
+  .cart_first.purple, .cart_second.purple, .cart_third.purple{ position:relative; height: auto;}
+  .custom_cart .cart_first .shipping-boxs {padding: 20px; height: auto;}
+  main .submit_btn{ position:relative; right:0; left:0; bottom:0;}
+  main .custom_cart h2.leading-loose {background: #1a172f;}
+  #payment{ background:#494b72; padding:10px;}
+  .cart_first >div.visible:first-child{ display:none;}
+  .tl-edges .header-checkout a.backcart-btn{ font-size:0;}
+}
