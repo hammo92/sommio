@@ -46,6 +46,8 @@
 
 @import './contact.scss';
 
+@import './myAccount/myAccount.scss';
+
 .visible {
   display: block;
 }
@@ -56,6 +58,7 @@
 .hidden {
   display: none;
 }
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus, .btn-primary:focus, .btn-primary.focus, button:focus,  input:focus, select:focus, textarea:focus, a:focus, img:focus { box-shadow: none; outline:none; outline-offset:0; }
 
 .submit_btn {
   .btn-outline-secondary {
@@ -552,18 +555,15 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0 -15px;
-
     .boxs {
       width: 25%;
       text-align: left;
       padding: 0 15px;
-
       &.yourproduct-main {
         width: 50%;
       }
     }
   }
-
   .continue-btn {
     display: flex;
     flex-wrap: wrap;

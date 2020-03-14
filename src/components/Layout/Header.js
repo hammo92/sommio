@@ -49,6 +49,7 @@ const Header = (
       transform: mount ? 'translateY(0px)' : `translateY(-100%)`
     }
   })
+
   const handleCart = () => {
     console.log('clicked')
     console.log('cart state => ', cart)
@@ -57,12 +58,39 @@ const Header = (
       setCart: { drawer: true }
     })
   }
-
+  console.log(
+    'firebase.auth().currentUser OUT => ',
+    firebase && firebase.auth() && firebase.auth().currentUser
+  )
+  console.log(
+    'firebase.auth().currentUser.email OUT => ',
+    firebase &&
+      firebase.auth() &&
+      firebase.auth().currentUser &&
+      firebase.auth().currentUser.email
+  )
+  let email
   useEffect(() => {
     const lazyApp = import('firebase')
     lazyApp.then(firebaseObj => {
       const firebase = getFirebase(firebaseObj)
+      email =
+        firebase.auth() &&
+        firebase.auth().currentUser &&
+        firebase.auth().currentUser.email
+      console.log(
+        'firebase.auth().currentUser OUT =>',
+        firebase && firebase.auth() && firebase.auth().currentUser
+      )
+      console.log('firebase.auth().currentUser email => ', email)
 
+      console.log(
+        'firebase.auth().currentUser.email => ',
+        firebase &&
+          firebase.auth() &&
+          firebase.auth().currentUser &&
+          firebase.auth().currentUser.email
+      )
       setFirebase(firebase)
       if (firebase && firebase.auth().currentUser) {
         setModal(false)
@@ -108,7 +136,7 @@ const Header = (
     : 'collapse navbar-collapse show'
 
   return (
-    <animated.div style={slide}>
+    <animated.div className="header-wrap" style={slide}>
       {window.location.pathname === '/checkout' ? (
         <header className="header-checkout">
           {!orderId ? (
@@ -184,14 +212,18 @@ const Header = (
                   <li className="nav-item nav-account">
                     {refresh && firebase && firebase.auth().currentUser ? (
                       <DropdownButton
-                        title={firebase.auth().currentUser.email}
+                        title={
+                          firebase.auth() &&
+                          firebase.auth().currentUser &&
+                          firebase.auth().currentUser.email
+                        }
                         id={'accountDropdown'}
                       >
-                        <Dropdown.Item>
-                          <Link to="/userOrdersList">My Orders</Link>
+                        <Dropdown.Item href="/myAccount">
+                          My Orders
                         </Dropdown.Item>
-                        <Dropdown.Item>
-                          <button onClick={handleLogout}>Log Out</button>
+                        <Dropdown.Item onClick={handleLogout}>
+                          Log Out
                         </Dropdown.Item>
                       </DropdownButton>
                     ) : (
@@ -214,8 +246,15 @@ const Header = (
               </ul>
             </div>
           </div>
-          <Modal show={modal} toggle={toggleModal}>
-            <ModalHeader toggle={toggleModal}>User Account</ModalHeader>
+          <Modal
+            show={modal}
+            toggle={toggleModal}
+            className="Login-modal"
+            onHide={toggleModal}
+          >
+            <ModalHeader toggle={toggleModal} closeButton>
+              User Account
+            </ModalHeader>
             <ModalBody>
               <RegisterOrLogin
                 isModal={true}

@@ -75,7 +75,8 @@ const RiviewOrder = ({ stripe, formEnable }) => {
           country: shipping_address.country,
           zip_code: shipping_address.postcode
         },
-        payment_method: paymentMethod.id
+        payment_method: paymentMethod.id,
+        note: ''
       })
       console.log('After CreateOrder ===>', createdOrder)
 

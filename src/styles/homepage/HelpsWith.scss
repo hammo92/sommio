@@ -46,14 +46,14 @@
   padding-bottom: 40px;
 
   &.shiftUp {
-    margin-top: -100px;
+    margin-top: -50px;
 
     @media (max-width: $desktop18) {
-      margin-top: -113px;
+      margin-top: -50px;
     }
 
     @media (max-width: $desktophidpi) {
-      margin-top: -92px;
+      margin-top: -50px;
     }
 
     @media (max-width: $ipadlandscape) {
@@ -98,7 +98,7 @@
       display: flex;
       width: 140px;
       justify-content: space-between;
-
+      padding-top: 6px;
       @media (max-width: $ipadportrait) {
         margin-left: auto;
       }
@@ -300,6 +300,14 @@
           font-size: 16px;
         }
       }
+    }
+  }
+}
+
+@media(max-width:1024px){
+  .scrollText {
+    h2 {
+      font-size:50px;
     }
   }
 }

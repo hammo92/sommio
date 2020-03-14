@@ -15,7 +15,12 @@ import shippingFormValidation from '../../validation/shippingFormValidation'
 import LocationSearchInput from './GoogleAutocomplete'
 import countryWithThree from '../../../countryWithThree'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
-const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
+const AddressFields = ({
+  type,
+  toggleEditable,
+  gmapsLoaded,
+  retrieveUserDetail
+}) => {
   const {
     shipping_address,
     user,
@@ -37,6 +42,10 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   const [errorMessage, setErrorMessage] = useState('')
 
   let details = JSON.parse(localStorage.getItem('details'))
+  console.log('retrieveUserDetail => ', retrieveUserDetail)
+  const retrieveAddress = []
+
+  retrieveAddress.push(retrieveUserDetail && retrieveUserDetail.addresses)
 
   useEffect(() => {
     if (details && details.email) {
@@ -45,18 +54,39 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   }, [details && details.email])
 
   const handleShippingCost = async values => {
-    console.log('values =====>', values)
     let token = await newFirebaseToken()
     const builton = new Builton({
       apiKey: process.env.GATSBY_BUILTON_API_KEY,
       bearerToken: token
     })
+    retrieveAddress.push({
+      street_name: values.line_1,
+      city: values.city,
+      state: values.county,
+      zip_code: values.postcode,
+      country: values.country
+    })
+    console.log('retrieveAddress In side => ', retrieveAddress)
+    //update user's address in builton(multiple address)
 
     setUserBuilton(values.email, builton)
     if (firebase && firebase.auth().currentUser) {
       setErrorMessage('')
       toggleEditable(true)
       shippingCostCalculate(user, values, ProductsArray)
+      await builton.users
+        .setMe()
+        .update({
+          mobile_phone_number: values.phone,
+          note: 'Sejal here  !!',
+          addresses: retrieveAddress
+        })
+        .then(response => {
+          console.log('[userOrder] response => ', response)
+        })
+        .catch(error => {
+          console.log('[userOrder] errrr => ', error)
+        })
     } else {
       setErrorMessage('')
       firebase &&
@@ -78,6 +108,29 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
             setUserBuilton(values.email, builton)
             shippingCostCalculate(user, values, ProductsArray)
             toggleEditable(true)
+            builton.users
+              .create({
+                first_name: values.first_name,
+                last_name: values.last_name,
+                email: values.email,
+                mobile_phone_number: values.phone,
+                addresses: [
+                  {
+                    street_name: values.line_1,
+                    city: values.city,
+                    zip_code: values.postcode,
+                    state: values.county,
+                    country: values.country
+                  }
+                ],
+                note: 'Sejal here Sign up time !!'
+              })
+              .then(res => {
+                console.log('res => ', res)
+              })
+              .catch(err => {
+                console.log('err => ', err)
+              })
           })
           .catch(error => {
             setErrorMessage(error.message)

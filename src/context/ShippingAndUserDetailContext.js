@@ -57,27 +57,30 @@ export default function reducer(state, action) {
     case SET_ADDRESS:
       const shipping_address = action.shippingData
       const customerDetails = action.user
-      state.builton &&
-        state.builton.users
-          .setMe()
-          .update({
-            addresses: [
-              {
-                street_name: shipping_address.line_1,
-                city: shipping_address.city,
-                zip_code: shipping_address.postcode,
-                state: shipping_address.county,
-                country: shipping_address.country
-              }
-            ]
-          })
-          .then(response => {
-            console.log('response => ', response)
-          })
-          .catch(err => {
-            console.log('err => ', err)
-          })
       const paymentButton = true
+
+      // state.builton &&
+      //   state.builton.users
+      //     .setMe()
+      //     .update({
+      //       addresses: [
+      //         {
+      //           street_name: shipping_address.line_1,
+      //           city: shipping_address.city,
+      //           zip_code: shipping_address.postcode,
+      //           state: shipping_address.county,
+      //           country: shipping_address.country
+      //         }
+      //       ],
+      //       mobile_phone_number: shipping_address && shipping_address.phone,
+      //       note: 'Sejal here !!'
+      //     })
+      //     .then(response => {
+      //       console.log('response => ', response)
+      //     })
+      //     .catch(err => {
+      //       console.log('err => ', err)
+      //     })
 
       return {
         ...state,
@@ -292,7 +295,7 @@ function ShippingAndUserDetailProvider({ children, ...props }) {
           state: `${shippingData.county}`,
           postal_code: `${shippingData.postcode}`,
           country: `${shippingData.country}`,
-          phone: '7657168649',
+          phone: `${shippingData.phone}`,
           email: `${details && details.email}`,
           type: 'residential'
         }

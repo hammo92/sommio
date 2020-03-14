@@ -2,15 +2,15 @@
     // background: $bluezodiac;
     position: relative;
     padding: 65px 0 130px 0;
-
     @media (max-width:$desktop18) {
         padding: 65px 0 90px 0;
     }
-
     @media (max-width:$desktopmdpi) {
         padding: 50px 0;
     }
-
+    @media (max-width:$mobilelandscape) {
+        overflow-x:hidden;
+    }
     h2 {
         display: block;
         font-size: 130px;
@@ -33,7 +33,6 @@
         }
 
     }
-
     p {
         display: block;
         margin: 0 3em;
@@ -58,5 +57,4 @@
         }
 
     }
-
 }
