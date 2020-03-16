@@ -39,6 +39,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   const [errorMessage, setErrorMessage] = useState('')
   const [retrieveUserDetail, setRetrieveUserDetail] = useState()
   const [addNewAddress, setAddNewAddress] = useState(false)
+  const [index, setIndex] = useState(false)
   let details = JSON.parse(localStorage.getItem('details'))
 
   let retrieveAddress = retrieveUserDetail && retrieveUserDetail.addresses
@@ -82,8 +83,9 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
     toggleEditable(true)
   }
   let data
-  const selectedAddress = selectedData => {
+  const selectedAddress = (selectedData, i) => {
     console.log('selectedData => ', selectedData)
+    setIndex(i)
     data = {
       first_name: retrieveUserDetail && retrieveUserDetail.first_name,
       last_name: retrieveUserDetail && retrieveUserDetail.last_name,
@@ -202,9 +204,12 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
       <Link to="#">not you ?</Link>
       <p>Your Address List</p>
       {retrieveUserDetail ? (
-        retrieveUserDetail.addresses.map(data => (
+        retrieveUserDetail.addresses.map((data, i) => (
           <div>
-            <li onClick={() => selectedAddress(data)}>
+            <li
+              onClick={() => selectedAddress(data, i)}
+              className={i === index ? 'addressList' : ''}
+            >
               {data.raw.formatted_address}
               <p>Phone: {retrieveUserDetail.mobile_phone_number}</p>
             </li>
