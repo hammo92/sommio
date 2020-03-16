@@ -14,7 +14,12 @@ import Layout from '../components/Layout/Layout'
 import Photo from '../components/Photo'
 import Header from '../components/Layout/Header'
 // import BookOpen from '../images/book-open-solid.svg'
-import { faBook, faReceipt } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBook,
+  faReceipt,
+  faCheck,
+  faPencilAlt
+} from '@fortawesome/free-solid-svg-icons'
 import Button from '../components/Button'
 
 const MyAccount = () => {
@@ -123,6 +128,8 @@ const MyAccount = () => {
         })
   }
   const enableToUpdateAddress = () => {
+    console.log('In function')
+
     setTextAreaDisable(false)
   }
   const updateValue = e => {
@@ -155,6 +162,7 @@ const MyAccount = () => {
         console.log('[userOrder] errrr => ', error)
       })
   }
+  console.log('textAreaDisable => ', textAreaDisable)
 
   return (
     <Layout>
@@ -163,7 +171,7 @@ const MyAccount = () => {
       ) : (
         <div className="myAccountPage">
           <div className="container-fluid">
-            <div className="row no-gutters">
+            <div className="row">
               <div className="col-12">
                 <h1>My Account</h1>
               </div>
@@ -237,10 +245,10 @@ const MyAccount = () => {
               </div>
               <div className="col-12 col-lg-5 col-xl-4">
                 <h4 className="MyAccount-SubTitle">Details</h4>
-                <div className="Address-details">
+                <div className="AddressDetails">
                   <h5>Address</h5>
                   {textAreaDisable === false ? (
-                    <div>
+                    <div className="AddressDetailsBody">
                       <input
                         placeholder="street_name"
                         type="text"
@@ -271,40 +279,59 @@ const MyAccount = () => {
                         name="country"
                         onChange={updateValue}
                       />
-                      <button type="submit" onClick={updateAddress}>
-                        Update
-                      </button>
+                      <Button
+                        className="ml-auto"
+                        type="thin"
+                        onClick={updateAddress}
+                      >
+                        <h3>Update</h3>
+                        <FontAwesomeIcon className="ml-auto" icon={faCheck} />
+                      </Button>
                     </div>
                   ) : (
-                    <div>
+                    <div className="AddressDetailsBody">
                       <textarea
                         disabled={textAreaDisable === true ? true : false}
                       >
                         {finalAddress}
                       </textarea>
-                      <button onClick={enableToUpdateAddress}>
-                        Update Address
-                      </button>
+                      <Button
+                        type="thin"
+                        className="ml-auto"
+                        onClick={enableToUpdateAddress}
+                      >
+                        <FontAwesomeIcon
+                          className="ml-auto"
+                          icon={faPencilAlt}
+                        />
+                      </Button>
                     </div>
                   )}
                 </div>
                 <div className="UpdatePassword">
                   <h5>Update Password</h5>
-                  <input
-                    name="newPassword"
-                    type="password"
-                    placeholder="New Password"
-                    onChange={e => handleChange(e)}
-                  />
-                  <input
-                    name="confirmPassword"
-                    type="password"
-                    placeholder="Confirm Password"
-                    onChange={e => handleChange(e)}
-                  />
-                  <button type="submit" onClick={updatePassword}>
-                    Update
-                  </button>
+                  <div className="UpdatePasswordBody">
+                    <input
+                      name="newPassword"
+                      type="password"
+                      placeholder="New Password"
+                      onChange={e => handleChange(e)}
+                    />
+                    <input
+                      name="confirmPassword"
+                      type="password"
+                      placeholder="Confirm Password"
+                      onChange={e => handleChange(e)}
+                    />
+                    <Button
+                      type="thin"
+                      className="ml-auto"
+                      onClick={updatePassword}
+                    >
+                      <h3>Update</h3>
+                      <FontAwesomeIcon className="ml-auto" icon={faCheck} />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

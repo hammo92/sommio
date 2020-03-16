@@ -19,13 +19,14 @@ const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
     user,
     shippingCostCalculate
   } = useContext(ShippingAndUserDetailContext)
+  console.log('shipping_address SSI => ', shipping_address)
 
   const { ProductsArray } = useContext(CartContext)
   const { firebase } = useContext(FirebaseContext)
   const [modal, setModal] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
-  const [retrieveUserDetail, setRetrieveUserDetail] = useState()
-  const [addNewAddress, setAddNewAddress] = useState(false)
+  // const [retrieveUserDetail, setRetrieveUserDetail] = useState()
+  // const [addNewAddress, setAddNewAddress] = useState(false)
 
   let details = JSON.parse(localStorage.getItem('details'))
 
@@ -34,35 +35,6 @@ const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
       setCurrentUser(true)
     }
   }, [details && details.email])
-  let getUsersDetailUrl = 'https://api.builton.dev/users/me'
-
-  const fetchUserDetails = async () => {
-    let token = await newFirebaseToken()
-    await axios
-      .get(getUsersDetailUrl, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(response => {
-        console.log('response => ', response)
-        setRetrieveUserDetail(response.data)
-      })
-      .catch(error => {
-        console.log('error => ', error)
-        return error
-      })
-  }
-
-  useEffect(() => {
-    //Retrive user's existing address from builton
-
-    if (details.email || (firebase && firebase.auth().currentUser)) {
-      fetchUserDetails()
-    }
-  }, [])
 
   const toggleModal = () => setModal(!modal)
 
@@ -71,25 +43,10 @@ const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
       setModal(false)
       setCurrentUser(true)
     }
-    fetchUserDetails()
+    // fetchUserDetails()
     toggleModal()
   }
-  const selectedAddress = selectedData => {
-    console.log('selectedData => ', selectedData)
-    const data = {
-      first_name: retrieveUserDetail && shipping_address.first_name,
-      last_name: retrieveUserDetail && shipping_address.last_name,
-      line_1: selectedData.street_name,
-      city: selectedData.city,
-      county: selectedData.state,
-      postcode: selectedData.zip_code,
-      country: selectedData.country,
-      phone: retrieveUserDetail.phone,
-      email: retrieveUserDetail.email
-    }
 
-    shippingCostCalculate(user, data, ProductsArray)
-  }
   return (
     <>
       <div className={`${isCompleted ? 'visible' : 'hidden'}`}>
@@ -144,36 +101,11 @@ const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
             </div>
           )}
 
-          {currentUser && addNewAddress === false ? (
-            <div>
-              <p>{details.email}</p>
-              <Link to="#">not you ?</Link>
-              <p>Your Address List</p>
-              {retrieveUserDetail ? (
-                retrieveUserDetail.addresses.map(data => (
-                  <div>
-                    {console.log('data => ', data)}
-                    <li onClick={() => selectedAddress(data)}>
-                      {data.raw.formatted_address}
-                      <p>Phone: {data.mobile_phone_number}</p>
-                    </li>
-                  </div>
-                ))
-              ) : (
-                <Loader />
-              )}
-              <button onClick={() => setAddNewAddress(!addNewAddress)}>
-                Add new
-              </button>
-            </div>
-          ) : (
-            <AddressFields
-              gmapsLoaded={gmapsLoaded}
-              type="shipping_address"
-              toggleEditable={toggleEditable}
-              retrieveUserDetail={retrieveUserDetail}
-            />
-          )}
+          <AddressFields
+            gmapsLoaded={gmapsLoaded}
+            type="shipping_address"
+            toggleEditable={toggleEditable}
+          />
         </div>
       </div>
       <div>

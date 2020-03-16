@@ -59,29 +59,6 @@ export default function reducer(state, action) {
       const customerDetails = action.user
       const paymentButton = true
 
-      // state.builton &&
-      //   state.builton.users
-      //     .setMe()
-      //     .update({
-      //       addresses: [
-      //         {
-      //           street_name: shipping_address.line_1,
-      //           city: shipping_address.city,
-      //           zip_code: shipping_address.postcode,
-      //           state: shipping_address.county,
-      //           country: shipping_address.country
-      //         }
-      //       ],
-      //       mobile_phone_number: shipping_address && shipping_address.phone,
-      //       note: 'Sejal here !!'
-      //     })
-      //     .then(response => {
-      //       console.log('response => ', response)
-      //     })
-      //     .catch(err => {
-      //       console.log('err => ', err)
-      //     })
-
       return {
         ...state,
         shipping_address: shipping_address,

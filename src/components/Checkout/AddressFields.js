@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { Field, Form } from 'react-final-form'
-
+import { Link } from 'gatsby'
+import axios from 'axios'
 import country from '../../../countryWithThree'
 import {
   ShippingAndUserDetailContext,
@@ -15,12 +16,8 @@ import shippingFormValidation from '../../validation/shippingFormValidation'
 import LocationSearchInput from './GoogleAutocomplete'
 import countryWithThree from '../../../countryWithThree'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
-const AddressFields = ({
-  type,
-  toggleEditable,
-  gmapsLoaded,
-  retrieveUserDetail
-}) => {
+import Loader from '../Loader'
+const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   const {
     shipping_address,
     user,
@@ -40,25 +37,69 @@ const AddressFields = ({
 
   const [isCurrentUser, SetCurrentUser] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-
+  const [retrieveUserDetail, setRetrieveUserDetail] = useState()
+  const [addNewAddress, setAddNewAddress] = useState(false)
   let details = JSON.parse(localStorage.getItem('details'))
-  console.log('retrieveUserDetail => ', retrieveUserDetail)
-  const retrieveAddress = []
 
-  retrieveAddress.push(retrieveUserDetail && retrieveUserDetail.addresses)
+  let retrieveAddress = retrieveUserDetail && retrieveUserDetail.addresses
 
   useEffect(() => {
     if (details && details.email) {
       SetCurrentUser(true)
+      fetchUserDetails()
     }
   }, [details && details.email])
 
-  const handleShippingCost = async values => {
+  useEffect(() => {
+    if (details && details.email) {
+      fetchUserDetails()
+    }
+  }, [])
+
+  let getUsersDetailUrl = 'https://api.builton.dev/users/me'
+
+  const fetchUserDetails = async () => {
     let token = await newFirebaseToken()
-    const builton = new Builton({
-      apiKey: process.env.GATSBY_BUILTON_API_KEY,
-      bearerToken: token
-    })
+    await axios
+      .get(getUsersDetailUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        console.log('response => ', response)
+        setRetrieveUserDetail(response.data)
+      })
+      .catch(error => {
+        console.log('error => ', error)
+        return error
+      })
+  }
+
+  const handleFormToggle = () => {
+    toggleEditable(true)
+  }
+  let data
+  const selectedAddress = selectedData => {
+    console.log('selectedData => ', selectedData)
+    data = {
+      first_name: retrieveUserDetail && retrieveUserDetail.first_name,
+      last_name: retrieveUserDetail && retrieveUserDetail.last_name,
+      line_1: selectedData.street_name,
+      city: selectedData.city,
+      county: selectedData.state,
+      postcode: selectedData.zip_code,
+      country: selectedData.country,
+      phone: retrieveUserDetail.mobile_phone_number,
+      email: retrieveUserDetail.email
+    }
+    // toggleEditable(true)
+
+    shippingCostCalculate(user, data, ProductsArray)
+  }
+  const handleShippingCost = async values => {
     retrieveAddress.push({
       street_name: values.line_1,
       city: values.city,
@@ -77,8 +118,6 @@ const AddressFields = ({
       await builton.users
         .setMe()
         .update({
-          mobile_phone_number: values.phone,
-          note: 'Sejal here  !!',
           addresses: retrieveAddress
         })
         .then(response => {
@@ -108,6 +147,7 @@ const AddressFields = ({
             setUserBuilton(values.email, builton)
             shippingCostCalculate(user, values, ProductsArray)
             toggleEditable(true)
+            //create users details in builton
             builton.users
               .create({
                 first_name: values.first_name,
@@ -154,7 +194,35 @@ const AddressFields = ({
     e.preventDefault()
     setAddress({ [e.target.name]: e.target.value })
   }
-  return (
+  console.log('addNewAddress => ', addNewAddress)
+
+  return firebase && firebase.auth().currentUser && addNewAddress === false ? (
+    <div>
+      <p>{details.email}</p>
+      <Link to="#">not you ?</Link>
+      <p>Your Address List</p>
+      {retrieveUserDetail ? (
+        retrieveUserDetail.addresses.map(data => (
+          <div>
+            <li onClick={() => selectedAddress(data)}>
+              {data.raw.formatted_address}
+              <p>Phone: {retrieveUserDetail.mobile_phone_number}</p>
+            </li>
+          </div>
+        ))
+      ) : (
+        <Loader />
+      )}
+
+      <button onClick={() => setAddNewAddress(!addNewAddress)}>Add new</button>
+
+      <div className="submit_btn">
+        <button type="submit" onClick={handleFormToggle}>
+          Next Step
+        </button>
+      </div>
+    </div>
+  ) : (
     <Form
       onSubmit={handleShippingCost}
       initialValues={myInitData}

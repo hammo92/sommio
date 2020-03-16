@@ -58,46 +58,19 @@ const Header = (
       setCart: { drawer: true }
     })
   }
-  console.log(
-    'firebase.auth().currentUser OUT => ',
-    firebase && firebase.auth() && firebase.auth().currentUser
-  )
-  console.log(
-    'firebase.auth().currentUser.email OUT => ',
-    firebase &&
-      firebase.auth() &&
-      firebase.auth().currentUser &&
-      firebase.auth().currentUser.email
-  )
-  let email
+
   useEffect(() => {
     const lazyApp = import('firebase')
     lazyApp.then(firebaseObj => {
       const firebase = getFirebase(firebaseObj)
-      email =
-        firebase.auth() &&
-        firebase.auth().currentUser &&
-        firebase.auth().currentUser.email
-      console.log(
-        'firebase.auth().currentUser OUT =>',
-        firebase && firebase.auth() && firebase.auth().currentUser
-      )
-      console.log('firebase.auth().currentUser email => ', email)
 
-      console.log(
-        'firebase.auth().currentUser.email => ',
-        firebase &&
-          firebase.auth() &&
-          firebase.auth().currentUser &&
-          firebase.auth().currentUser.email
-      )
       setFirebase(firebase)
       if (firebase && firebase.auth().currentUser) {
         setModal(false)
       }
       !(firebase && firebase.auth().currentUser)
         ? setTimeout(() => setRefresh(true), 1000)
-        : setRefresh(false)
+        : setRefresh(true)
     })
 
     let dataFromStorage = sessionStorage.getItem('cartDetails')
@@ -213,6 +186,7 @@ const Header = (
                     {refresh && firebase && firebase.auth().currentUser ? (
                       <DropdownButton
                         title={
+                          firebase &&
                           firebase.auth() &&
                           firebase.auth().currentUser &&
                           firebase.auth().currentUser.email

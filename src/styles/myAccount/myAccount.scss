@@ -1,4 +1,7 @@
 .myAccountPage{
+    @media (max-width:$ipadportrait) {
+        padding:0 15px;
+    }
     h1{
         font-size:130px;
         font-family:$tksofiapro;
@@ -6,6 +9,13 @@
         border-bottom:1px solid rgba(216,168,255,.31);
         padding:0 0 38px;
         margin:0;
+        @media (max-width:$ipadportrait) {
+            font-size:60px ;
+        }
+        @media (max-width:$mobilelandscape) {
+            font-size:40px ;
+            padding:0 0 20px;
+        }
     }
     h4.MyAccount-SubTitle{
         margin:20px 0 25px;
@@ -16,6 +26,10 @@
         display:block;
         line-height:100%;
         color:$white;
+        @media (max-width:$mobilelandscape) {
+            font-size: 30px;
+            margin: 10px 0 15px;
+        }
     }
     .myAccountPageContent{
         position:relative;
@@ -43,6 +57,9 @@
         margin-bottom: 55px;
         .OrderListBoxHead{
             padding:15px;
+            @media (max-width:$mobilelandscape) {
+                flex-wrap:wrap;
+            }
             p{
                 font-size:30px;
                 font-family:$tksofiapro;
@@ -54,6 +71,10 @@
                 padding:0;
                 span{
                     color:$lightgreen;
+                }
+                @media (max-width:$mobilelandscape) {
+                    font-size:24px;
+                    margin:0 0 10px;
                 }
             }
         }
@@ -76,10 +97,32 @@
                 }
                 .product-image {
                     width:256px;
+                    @media (max-width:$ipadportrait) {
+                        width:auto;
+                    }
+                    @media (max-width:$mobilelandscape) {
+                        margin:0 auto 15px;
+                        display:block;
+                    }
+                    img{
+                        @media (max-width:$ipadportrait) {
+                            max-width:150px;
+                        }
+                        @media (max-width:$mobilelandscape) {
+                            max-width:100px;
+                        }
+                    }
                 }
                 .content{
                     width: calc(100% - 250px - 60px);
                     padding: 0 15px;
+                    @media (max-width:$ipadportrait) {
+                        width:auto;
+                    }
+                    @media (max-width:$mobilelandscape) {
+                        width:100%;
+                        padding:0;
+                    }
                     h5{
                         margin:0;
                         padding:0;
@@ -89,6 +132,9 @@
                         display:block;
                         line-height:100%;
                         color:$white;
+                        @media (max-width:$mobilelandscape) {
+                            font-size:25px;
+                        }
                     }
                     p{
                         margin:0;
@@ -99,6 +145,9 @@
                         display:block;
                         line-height:normal;
                         color:$white;
+                        @media (max-width:$mobilelandscape) {
+                            font-size:18px;
+                        }
                     }
                     .price{
                         padding:0;
@@ -111,13 +160,19 @@
                         display:block;
                         line-height:100%;
                         color:$madang;
+                        @media (max-width:$mobilelandscape) {
+                            font-size:18px;
+                            margin:10px 0 0;
+                        }
                     }
                 }
-
             }
         }
         .OrderListBoxFooter{
             padding:15px;
+            @media (max-width:$mobilelandscape) {
+                flex-wrap:wrap;
+            }
             p{
                 font-size:30px;
                 font-family:$tksofiapro;
@@ -130,9 +185,186 @@
                 span{
                     color:$lightgreen;
                 }
+                @media (max-width:$mobilelandscape) {
+                    font-size:24px;
+                    display:block;
+                    margin:0 auto 20px;
+                    text-align:center;
+                }
             }
             button{
-                margin:0 0 -60px auto
+                margin:0 0 -60px auto;
+                @media (max-width:$ipadportrait) {
+                    min-width: 200px;
+                }
+                @media (max-width:$mobilelandscape) {
+                    margin: 0 auto -50px auto;
+                    height: 60px;
+                }
+                h3{
+                    @media (max-width:$mobilelandscape) {
+                        font-size:30px;
+                    }
+                }
+            }
+        }
+    }
+    .AddressDetails {
+        background: #1A172F;
+        border-radius:6px;
+        padding-bottom: 11px;
+        margin-bottom: 50px;
+        h5 {
+            font-size: 30px;
+            font-family: "sofia-pro", sans-serif;
+            font-weight: 900;
+            display: block;
+            color: #fff;
+            line-height: 100%;
+            margin: 0;
+            padding: 15px 25px;
+            @media (max-width:$mobilelandscape) {
+                font-size:26px;
+            }
+        }
+        .AddressDetailsBody {
+            display: block;
+            border-radius: 6px;
+            padding:0 15px;
+            position:relative;
+            margin: 0 0 45px;
+            textarea{
+                background:#2C2444;
+                border:0;
+                display:block;
+                width: 100%;
+                line-height:20px;
+                padding:19px 22px 25px;
+                font-size:24px;
+                color:#fff;
+                font-weight:500;
+                font-family:$tksofiapro;
+                border-radius:6px;
+                height: 136px;
+                line-height: normal;
+                @media (max-width:$mobilelandscape) {
+                    font-size:18px;
+                }
+                +  button.buttonWrapper {
+                    width: 60px;
+                    margin: 0;
+                    display: block;
+                    height: 60px;
+                    border-radius: 100px;
+                    position: absolute;
+                    top: -20px;
+                    right: 10px;
+                    .buttonShadow{
+                        background: #B58DD6;
+                        border-radius: 100px;
+                    }
+                    .buttonInner{
+                        border-radius: 100px;
+                        svg{
+                            font-size:25px;
+                        }
+                    }
+                }
+            }
+            input{
+                background:#2C2444;
+                border:0;
+                display:block;
+                width: 100%;
+                line-height:20px;
+                padding:19px 22px 25px;
+                font-size:24px;
+                color:#fff;
+                font-weight:500;
+                font-family:$tksofiapro;
+                border-radius:6px;
+                opacity:1;
+                + input{
+                    margin-top:10px;
+                }
+                &::-webkit-input-placeholder{color:#fff;}
+                &::-moz-placeholder { color:#fff;}
+                &:-ms-input-placeholder { color:#fff;}
+                &:-moz-placeholder { color:#fff;}
+                @media (max-width:$mobilelandscape) {
+                    font-size:18px;
+                }
+                +  button.buttonWrapper {
+                    width: 210px;
+                    margin:20px 0 -91px auto;
+                    display: block;
+                    height: 60px;
+                    @media (max-width:$mobilelandscape) {
+                        height:50px;
+                        margin:30px auto -35px;
+                    }
+                }
+            }
+        }
+    }
+    .UpdatePassword {
+        border-radius:6px;
+        padding-bottom: 11px;
+        margin-bottom: 25px;
+        background: #1A172F;
+        @media (max-width:$ipadportrait) {
+            margin-bottom:45px;
+        }
+        h5 {
+            font-size: 30px;
+            font-family: "sofia-pro", sans-serif;
+            font-weight: 900;
+            display: block;
+            color: #fff;
+            line-height: 100%;
+            margin: 0;
+            padding: 15px 25px;
+            @media (max-width:$mobilelandscape) {
+                font-size:26px;
+            }
+        }
+        .UpdatePasswordBody{
+            display: block;
+            border-radius: 6px;
+            padding:0 15px;
+            input{
+                background:#2C2444;
+                border:0;
+                display:block;
+                width: 100%;
+                line-height:20px;
+                padding:19px 22px 25px;
+                font-size:24px;
+                color:#fff;
+                font-weight:500;
+                font-family:$tksofiapro;
+                border-radius:6px;
+                opacity:1;
+                + input{
+                    margin-top:10px;
+                }
+                &::-webkit-input-placeholder{color:#fff;}
+                &::-moz-placeholder { color:#fff;}
+                &:-ms-input-placeholder { color:#fff;}
+                &:-moz-placeholder { color:#fff;}
+                @media (max-width:$mobilelandscape) {
+                    font-size:18px;
+                }
+            }
+            button.buttonWrapper {
+                width: 210px;
+                margin: 20px 0 -41px auto;
+                display: block;
+                height: 60px;
+                @media (max-width:$mobilelandscape) {
+                    height:50px;
+                    margin:30px auto -35px;
+                }
             }
         }
     }
