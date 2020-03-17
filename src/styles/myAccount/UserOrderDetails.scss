@@ -1,0 +1,63 @@
+.OrderPage.myAccountPage {
+    .OrderListBox {
+        ul.OrderListUl {
+            li.revieworder-box {
+                .product-image{
+                    width: 150px;
+                }
+            }
+        }
+    }
+    .OrderRightBox{
+        background: rgb(26, 23, 47);
+        border-radius: 6px;
+        margin:0 0 2rem;
+        h3{
+            font-size: 1.5rem;
+            font-family: sofia-pro, sans-serif;
+            font-weight: 900;
+            display: block;
+            line-height: 100%;
+            color: rgb(255, 255, 255);
+            margin: 0px;
+            padding: 15px;
+            border-bottom: 1px solid #2c2444;
+        }
+        p.OrderRightStatus{
+            font-size: 1.5rem;
+            font-family: sofia-pro;
+            font-weight: 900;
+            display: block;
+            line-height: 100%;
+            color: rgb(255, 255, 255);
+            margin: 0px;
+            padding: 15px;
+            span{
+                color: #7dc4b5;
+            }
+        }
+        .OrderRightBoxBody{
+            padding:15px;
+            p{
+                margin: 0;
+                padding: 0;
+                font-size: 1.1rem;
+                font-family: "sofia-pro";
+                font-weight: 500;
+                display: block;
+                line-height: normal;
+                color: #fff;
+            }
+            h6{
+                margin: 0;
+                padding: 0;
+                font-size: .8rem;
+                font-family: "sofia-pro";
+                font-weight: 400;
+                display: block;
+                line-height: normal;
+                color: #fff;
+            }
+        }
+    }
+}

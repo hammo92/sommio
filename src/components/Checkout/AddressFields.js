@@ -28,6 +28,8 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
     setAddress
   } = useContext(ShippingAndUserDetailContext)
   const { ProductsArray } = useContext(CartContext)
+  const { userOrder } = useContext(CheckoutContext)
+  console.log('userOrder => ', userOrder)
 
   let countryWithThree = country.filter(data => {
     return data.alpha2.toUpperCase() === countryCode
@@ -39,7 +41,13 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   const [errorMessage, setErrorMessage] = useState('')
   const [retrieveUserDetail, setRetrieveUserDetail] = useState()
   const [addNewAddress, setAddNewAddress] = useState(false)
-  const [index, setIndex] = useState(false)
+  const [index, setIndex] = useState(0)
+  const [note, setNote] = useState()
+  const [listSelectedAddress, setListSelectedAddress] = useState()
+  const [enableDeliveryInstruction, setEnableDeliveryInstruction] = useState(
+    false
+  )
+  let token
   let details = JSON.parse(localStorage.getItem('details'))
 
   let retrieveAddress = retrieveUserDetail && retrieveUserDetail.addresses
@@ -57,10 +65,12 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
     }
   }, [])
 
+  console.log('retrieveUserDetail => ', retrieveUserDetail)
+
   let getUsersDetailUrl = 'https://api.builton.dev/users/me'
 
   const fetchUserDetails = async () => {
-    let token = await newFirebaseToken()
+    token = await newFirebaseToken()
     await axios
       .get(getUsersDetailUrl, {
         headers: {
@@ -80,11 +90,11 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   }
 
   const handleFormToggle = () => {
+    shippingCostCalculate(user, listSelectedAddress, ProductsArray, note)
     toggleEditable(true)
   }
   let data
   const selectedAddress = (selectedData, i) => {
-    console.log('selectedData => ', selectedData)
     setIndex(i)
     data = {
       first_name: retrieveUserDetail && retrieveUserDetail.first_name,
@@ -97,10 +107,9 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
       phone: retrieveUserDetail.mobile_phone_number,
       email: retrieveUserDetail.email
     }
-    // toggleEditable(true)
-
-    shippingCostCalculate(user, data, ProductsArray)
+    setListSelectedAddress(data)
   }
+
   const handleShippingCost = async values => {
     retrieveAddress.push({
       street_name: values.line_1,
@@ -109,14 +118,13 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
       zip_code: values.postcode,
       country: values.country
     })
-    console.log('retrieveAddress In side => ', retrieveAddress)
     //update user's address in builton(multiple address)
 
     setUserBuilton(values.email, builton)
     if (firebase && firebase.auth().currentUser) {
       setErrorMessage('')
       toggleEditable(true)
-      shippingCostCalculate(user, values, ProductsArray)
+      shippingCostCalculate(user, values, ProductsArray, note)
       await builton.users
         .setMe()
         .update({
@@ -147,7 +155,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
 
             SetCurrentUser(resp.user)
             setUserBuilton(values.email, builton)
-            shippingCostCalculate(user, values, ProductsArray)
+            shippingCostCalculate(user, values, ProductsArray, note)
             toggleEditable(true)
             //create users details in builton
             builton.users
@@ -165,7 +173,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                     country: values.country
                   }
                 ],
-                note: 'Sejal here Sign up time !!'
+                note: ''
               })
               .then(res => {
                 console.log('res => ', res)
@@ -220,7 +228,22 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
       )}
 
       <button onClick={() => setAddNewAddress(!addNewAddress)}>Add new</button>
-
+      <button
+        onClick={() => setEnableDeliveryInstruction(!enableDeliveryInstruction)}
+      >
+        Add Delivery Instrunctions
+      </button>
+      {enableDeliveryInstruction ? (
+        <div>
+          <input
+            placeholder="Additional delivery information"
+            name="note"
+            onChange={e => setNote(e.target.value)}
+          />
+        </div>
+      ) : (
+        ''
+      )}
       <div className="submit_btn">
         <button type="submit" onClick={handleFormToggle}>
           Next Step

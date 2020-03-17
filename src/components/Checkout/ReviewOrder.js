@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { injectStripe } from 'react-stripe-elements'
-
+import axios from 'axios'
 import {
   ShippingAndUserDetailContext,
   CheckoutContext,
@@ -8,17 +8,21 @@ import {
 } from '../../context'
 import CartItemList from '../CartItemList'
 import Loader from '../Loader'
+import { newFirebaseToken } from '../../utils/newFirebaseToken'
+
 const RiviewOrder = ({ stripe, formEnable }) => {
-  const { shipping_address, builton } = useContext(ShippingAndUserDetailContext)
+  const { shipping_address, builton, note } = useContext(
+    ShippingAndUserDetailContext
+  )
   const { ProductsArray } = useContext(CartContext)
   const { createOrderBuilton, paymentBuilton } = useContext(CheckoutContext)
   const [checkoutError, setCheckoutError] = useState(null)
-  console.log('[reviewOrder] builton => ', builton)
 
   const shipmentProductId =
     ProductsArray[0] && ProductsArray[0].shippingProductId
 
   let dataFrom = JSON.parse(sessionStorage.getItem('cartDetails'))
+  let details = JSON.parse(localStorage.getItem('details'))
 
   let orderItems =
     dataFrom &&
@@ -38,6 +42,8 @@ const RiviewOrder = ({ stripe, formEnable }) => {
   const [isLoading, setLoading] = useState(false)
   const handleOrder = async () => {
     setLoading(true)
+    var authToken = await newFirebaseToken()
+
     try {
       //Stripe token
       console.log('Before generating token ===>')
@@ -76,7 +82,7 @@ const RiviewOrder = ({ stripe, formEnable }) => {
           zip_code: shipping_address.postcode
         },
         payment_method: paymentMethod.id,
-        note: ''
+        note: note
       })
       console.log('After CreateOrder ===>', createdOrder)
 
@@ -84,10 +90,26 @@ const RiviewOrder = ({ stripe, formEnable }) => {
       createOrderBuilton(createdOrder)
 
       // pay for the order
-      const payBuilton = await builton.payments.pay(
-        createdOrder.payments[0].$oid
-      )
-
+      // const payBuilton = await builton.payments.pay(
+      //   createdOrder.payments[0].$oid
+      // )
+      let payBuilton = await axios
+        .post(
+          `https://api.builton.dev/payments`,
+          {
+            orders: [createdOrder.id],
+            payment_method: paymentMethod.id
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+              'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
+              'Content-Type': 'application/json'
+            }
+          }
+        )
+        .catch(error => console.log('error => ', error))
+      console.log('payBuilton => ', payBuilton)
       //dispatch method
       paymentBuilton(payBuilton)
 

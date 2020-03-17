@@ -162,7 +162,6 @@ const MyAccount = () => {
         console.log('[userOrder] errrr => ', error)
       })
   }
-  console.log('textAreaDisable => ', textAreaDisable)
 
   return (
     <Layout>
@@ -175,7 +174,6 @@ const MyAccount = () => {
               <div className="col-12">
                 <h1>My Account</h1>
               </div>
-              <div className="myAccountPageContent"></div>
               <div className="col-12 col-lg-7 col-xl-8">
                 <h4 className="MyAccount-SubTitle">Orders</h4>
                 {userOrder && userOrder.length > 0 ? (

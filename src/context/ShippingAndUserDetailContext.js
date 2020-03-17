@@ -35,7 +35,8 @@ export const initialState = {
     line_1: '',
     phone: '',
     email: ''
-  }
+  },
+  note: ''
 }
 
 export default function reducer(state, action) {
@@ -55,16 +56,20 @@ export default function reducer(state, action) {
       return test
 
     case SET_ADDRESS:
+      console.log('action => ', action)
+
       const shipping_address = action.shippingData
       const customerDetails = action.user
       const paymentButton = true
-
+      const note = action.note
       return {
         ...state,
         shipping_address: shipping_address,
         customerDetails,
-        paymentButton: paymentButton
+        paymentButton: paymentButton,
+        note
       }
+
     case SET_ADDRESS_ONCHANGE:
       let data = state.shipping_address
 
@@ -203,9 +208,11 @@ function ShippingAndUserDetailProvider({ children, ...props }) {
   const shippingCostCalculate = async (
     user,
     shippingData,
-    cartItemsBuilton
+    cartItemsBuilton,
+    note
   ) => {
-    dispatch({ type: SET_ADDRESS, user, shippingData })
+    dispatch({ type: SET_ADDRESS, user, shippingData, note })
+    console.log('shippingData => ', shippingData)
 
     const details = JSON.parse(localStorage.getItem('details'))
 

@@ -97,7 +97,8 @@ const Header = (
           localStorage.removeItem('details')
         })
         .catch(err => {
-          console.log('sis err Logout => ', err)
+          console.log('err Logout => ', err)
+          return err
         })
   }
 

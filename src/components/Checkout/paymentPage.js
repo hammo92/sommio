@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { Form } from 'react-final-form'
 import { CardElement, injectStripe } from 'react-stripe-elements'
+import { toast } from 'react-toastify'
+
 import {
   CheckoutContext,
   ShippingAndUserDetailContext,
@@ -10,6 +12,7 @@ import {
 import ShippingSelectOption from './shippingSelectOption'
 import stripeValidation from '../../validation/stripe'
 import axios from 'axios'
+import { navigate } from 'gatsby'
 const PaymentPage = ({ changeFormEnable, isEditable }) => {
   const { paymentData, paymentDetails } = useContext(CheckoutContext)
   const { shipping_address, builton } = useContext(ShippingAndUserDetailContext)
@@ -32,11 +35,33 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
     // shippingCost(shippingRate, shippingProvider)
 
     //user authenticate
-    await builton.users.authenticate({
-      first_name: shipping_address && shipping_address.first_name,
-      last_name: shipping_address && shipping_address.last_name,
-      email: firebase && firebase.auth().currentUser.email
-    })
+    await builton.users
+      .authenticate({
+        first_name: shipping_address && shipping_address.first_name,
+        last_name: shipping_address && shipping_address.last_name,
+        email: firebase && firebase.auth().currentUser.email
+      })
+      .catch(err => {
+        console.log('err builton =>', err)
+        if (err.response.status === 401) {
+          firebase &&
+            firebase
+              .auth()
+              .signOut()
+              .then(res => {
+                toast('Session expired please Login again!', {
+                  position: toast.POSITION.TOP_RIGHT,
+                  className: 'error_testing'
+                })
+                navigate(`/`)
+                localStorage.removeItem('firebaseToken')
+                localStorage.removeItem('details')
+              })
+              .catch(err => {
+                console.log('err Logout => ', err)
+              })
+        }
+      })
 
     // update shipping price in builton
     try {
@@ -53,9 +78,11 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
           }
         }
       )
+      console.log('response => ', response)
     } catch (error) {
       console.error('Here is Error ====>', error)
     }
+
     setMakeEnable(false)
     paymentData(values)
   }
