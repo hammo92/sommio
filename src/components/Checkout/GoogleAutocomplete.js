@@ -29,8 +29,6 @@ const LocationSearchInput = () => {
   const handleSelect = address => {
     geocodeByAddress(address)
       .then(results => {
-        console.log('results =========>', results)
-
         results[0].address_components.map(data => {
           if (data.types[0] === 'postal_code') {
             setZip(data.long_name)
@@ -40,7 +38,10 @@ const LocationSearchInput = () => {
         setAddressFromAutoComplete(results)
         getLatLng(results[0])
       })
-      .catch(error => console.error('GoogleAutoComplete Error', error))
+      .catch(error => {
+        console.error('GoogleAutoComplete Error', error)
+        return error
+      })
   }
 
   let countryWithThree = countryData.filter(data => {

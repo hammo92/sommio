@@ -213,7 +213,7 @@
         background: #1A172F;
         border-radius:6px;
         padding-bottom: 11px;
-        margin-bottom: 50px;
+        margin-bottom:4rem;
         h5 {
             font-size: 30px;
             font-family: "sofia-pro", sans-serif;
@@ -232,76 +232,96 @@
             border-radius: 6px;
             padding:0 15px;
             position:relative;
-            margin: 0 0 45px;
-            textarea{
-                background:#2C2444;
-                border:0;
+            margin:0;
+            .form-group{
                 display:block;
-                width: 100%;
-                line-height:20px;
-                padding:19px 22px 25px;
-                font-size:24px;
-                color:#fff;
-                font-weight:500;
-                font-family:$tksofiapro;
-                border-radius:6px;
-                height: 136px;
-                line-height: normal;
-                @media (max-width:$mobilelandscape) {
-                    font-size:18px;
-                }
-                +  button.buttonWrapper {
-                    width: 60px;
-                    margin: 0;
-                    display: block;
-                    height: 60px;
-                    border-radius: 100px;
-                    position: absolute;
-                    top: -20px;
-                    right: 10px;
-                    .buttonShadow{
-                        background: #B58DD6;
-                        border-radius: 100px;
+                margin:0 0 1rem;
+                textarea{
+                    background:#2C2444;
+                    border:0;
+                    display:block;
+                    width: 100%;
+                    line-height: normal;
+                    padding: .8rem;
+                    font-size: 1.2rem;
+                    color:#fff;
+                    font-weight:500;
+                    font-family:$tksofiapro;
+                    border-radius:6px;
+                    height: 136px;
+                    line-height: normal;
+                    @media (max-width:$mobilelandscape) {
+                        font-size:18px;
                     }
-                    .buttonInner{
+                    +  button.buttonWrapper {
+                        width: 60px;
+                        margin: 0;
+                        display: block;
+                        height: 60px;
                         border-radius: 100px;
-                        svg{
-                            font-size:25px;
+                        position: absolute;
+                        top: -20px;
+                        right: 10px;
+                        .buttonShadow{
+                            background: #B58DD6;
+                            border-radius: 100px;
+                        }
+                        .buttonInner{
+                            border-radius: 100px;
+                            svg{
+                                font-size:25px;
+                            }
                         }
                     }
                 }
-            }
-            input{
-                background:#2C2444;
-                border:0;
-                display:block;
-                width: 100%;
-                line-height:20px;
-                padding:19px 22px 25px;
-                font-size:24px;
-                color:#fff;
-                font-weight:500;
-                font-family:$tksofiapro;
-                border-radius:6px;
-                opacity:1;
-                + input{
-                    margin-top:10px;
-                }
-                &::-webkit-input-placeholder{color:#fff;}
-                &::-moz-placeholder { color:#fff;}
-                &:-ms-input-placeholder { color:#fff;}
-                &:-moz-placeholder { color:#fff;}
-                @media (max-width:$mobilelandscape) {
-                    font-size:18px;
-                }
-                +  button.buttonWrapper {
-                    width: 210px;
-                    margin:20px 0 -91px auto;
-                    display: block;
-                    height: 60px;
+                input{
+                    background:#2C2444;
+                    border:0;
+                    display:block;
+                    width: 100%;
+                    line-height: normal;
+                    padding:.8rem;
+                    font-size: 1.2rem;
+                    color:#fff;
+                    font-weight:500;
+                    font-family:$tksofiapro;
+                    border-radius:6px;
+                    opacity:1;
+                    height:auto;
+                    &::-webkit-input-placeholder{color:#fff;}
+                    &::-moz-placeholder { color:#fff;}
+                    &:-ms-input-placeholder { color:#fff;}
+                    &:-moz-placeholder { color:#fff;}
                     @media (max-width:$mobilelandscape) {
-                        height:50px;
-                        margin:30px auto -35px;
+                        font-size:18px;
+                    }
+                }
+            }
+            button{
+                width:210px;
+                height:60px;
+                margin:0 0 -3.2rem auto;
+                display: block;
+                @media (max-width:$mobilelandscape) {
+                    height:50px;
+                    margin:30px auto -35px;
+                }
+            }
+            &.EditAddressDetailsBody{
+                button{
+                    position: absolute;
+                    top: -30px;
+                    right: -10px;
+                    width: 50px;
+                    height: 50px;
+                    .buttonShadow{
+                        border-radius:100px;
+                    }
+                    .buttonInner{
+                        border-radius:100px;
+                        svg{
+                            font-size:20px;
+                        }
                     }
                 }
             }
@@ -332,28 +352,29 @@
             display: block;
             border-radius: 6px;
             padding:0 15px;
-            input{
-                background:#2C2444;
-                border:0;
-                display:block;
-                width: 100%;
-                line-height:20px;
-                padding:19px 22px 25px;
-                font-size:24px;
-                color:#fff;
-                font-weight:500;
-                font-family:$tksofiapro;
-                border-radius:6px;
-                opacity:1;
-                + input{
-                    margin-top:10px;
-                }
-                &::-webkit-input-placeholder{color:#fff;}
-                &::-moz-placeholder { color:#fff;}
-                &:-ms-input-placeholder { color:#fff;}
-                &:-moz-placeholder { color:#fff;}
-                @media (max-width:$mobilelandscape) {
-                    font-size:18px;
+            .form-group{
+                margin-bottom:1rem;
+                input{
+                    background:#2C2444;
+                    border:0;
+                    display:block;
+                    width: 100%;
+                    line-height: normal;
+                    padding: .8rem;
+                    font-size: 1.2rem;
+                    color:#fff;
+                    font-weight:500;
+                    font-family:$tksofiapro;
+                    border-radius:6px;
+                    opacity:1;
+                    height:auto;
+                    &::-webkit-input-placeholder{color:#fff;}
+                    &::-moz-placeholder { color:#fff;}
+                    &:-ms-input-placeholder { color:#fff;}
+                    &:-moz-placeholder { color:#fff;}
+                    @media (max-width:$mobilelandscape) {
+                        font-size:18px;
+                    }
                 }
             }
             button.buttonWrapper {
@@ -367,5 +388,15 @@
                 }
             }
         }
+    }
+}
+main{
+    div.AddressDetailsBody,
+    label.ErrorMessage,
+    span.ErrorMessage{
+        color:red;
+        position:relative;
+        top:0;
+        right:0;
     }
 }

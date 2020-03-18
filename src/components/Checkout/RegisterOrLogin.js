@@ -3,6 +3,8 @@ import React, { useContext, useState } from 'react'
 import { ShippingAndUserDetailContext, FirebaseContext } from '../../context'
 import Builton from '@builton/core-sdk'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
+import { toast } from 'react-toastify'
+
 const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
   const {
     shipping_address,
@@ -81,6 +83,10 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
               setDropdownOpen(false)
 
               setErrorMessage('')
+              toast('Logged in successfully!', {
+                position: toast.POSITION.TOP_RIGHT,
+                className: 'custom_toast'
+              })
             })
             .catch(error => {
               SetCurrentUser(false)

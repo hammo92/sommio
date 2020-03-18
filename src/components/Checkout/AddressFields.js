@@ -41,9 +41,10 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   const [errorMessage, setErrorMessage] = useState('')
   const [retrieveUserDetail, setRetrieveUserDetail] = useState()
   const [addNewAddress, setAddNewAddress] = useState(false)
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(null)
   const [note, setNote] = useState()
   const [listSelectedAddress, setListSelectedAddress] = useState()
+  const [loading, setLoading] = useState(false)
   const [enableDeliveryInstruction, setEnableDeliveryInstruction] = useState(
     false
   )
@@ -65,11 +66,10 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
     }
   }, [])
 
-  console.log('retrieveUserDetail => ', retrieveUserDetail)
-
   let getUsersDetailUrl = 'https://api.builton.dev/users/me'
 
   const fetchUserDetails = async () => {
+    setLoading(true)
     token = await newFirebaseToken()
     await axios
       .get(getUsersDetailUrl, {
@@ -80,8 +80,8 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
         }
       })
       .then(response => {
-        console.log('response => ', response)
         setRetrieveUserDetail(response.data)
+        setLoading(false)
       })
       .catch(error => {
         console.log('error => ', error)
@@ -89,7 +89,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
       })
   }
 
-  const handleFormToggle = () => {
+  const handleForm = () => {
     shippingCostCalculate(user, listSelectedAddress, ProductsArray, note)
     toggleEditable(true)
   }
@@ -135,6 +135,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
         })
         .catch(error => {
           console.log('[userOrder] errrr => ', error)
+          return error
         })
     } else {
       setErrorMessage('')
@@ -175,11 +176,9 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                 ],
                 note: ''
               })
-              .then(res => {
-                console.log('res => ', res)
-              })
               .catch(err => {
                 console.log('err => ', err)
+                return err
               })
           })
           .catch(error => {
@@ -205,49 +204,72 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
     setAddress({ [e.target.name]: e.target.value })
   }
   console.log('addNewAddress => ', addNewAddress)
+  console.log('retrieveUserDetail => ', retrieveUserDetail)
 
-  return firebase && firebase.auth().currentUser && addNewAddress === false ? (
-    <div>
-      <p>{details.email}</p>
-      <Link to="#">not you ?</Link>
-      <p>Your Address List</p>
-      {retrieveUserDetail ? (
-        retrieveUserDetail.addresses.map((data, i) => (
-          <div>
-            <li
-              onClick={() => selectedAddress(data, i)}
-              className={i === index ? 'addressList' : ''}
-            >
-              {data.raw.formatted_address}
-              <p>Phone: {retrieveUserDetail.mobile_phone_number}</p>
-            </li>
+  return loading === true ? (
+    <Loader />
+  ) : firebase && firebase.auth().currentUser && addNewAddress === false ? (
+    <div className="DeliveryInformationWrap">
+      <div className="EmailNotYou d-flex">
+        <p>{details.email}</p>
+        <Link to="#">not you ?</Link>
+      </div>
+      <div className="AddressListWrap">
+        <div className="AddressListWrapInner">
+          <h4>Your Address List</h4>
+          <div className="AddressListDiv">
+            <ul>
+              {retrieveUserDetail &&
+                retrieveUserDetail.addresses.map((data, i) => (
+                  <li
+                    onClick={() => selectedAddress(data, i)}
+                    className={i === index ? 'addressList' : ''}
+                  >
+                    <div className="d-flex">
+                      <p>{data && data.raw.formatted_address}</p>
+                      <p className="ml-auto">
+                        <span>Phone: </span>
+                        {retrieveUserDetail &&
+                          retrieveUserDetail.mobile_phone_number}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+            </ul>
           </div>
-        ))
-      ) : (
-        <Loader />
-      )}
-
-      <button onClick={() => setAddNewAddress(!addNewAddress)}>Add new</button>
-      <button
-        onClick={() => setEnableDeliveryInstruction(!enableDeliveryInstruction)}
-      >
-        Add Delivery Instrunctions
-      </button>
-      {enableDeliveryInstruction ? (
-        <div>
-          <input
-            placeholder="Additional delivery information"
-            name="note"
-            onChange={e => setNote(e.target.value)}
-          />
         </div>
-      ) : (
-        ''
-      )}
-      <div className="submit_btn">
-        <button type="submit" onClick={handleFormToggle}>
-          Next Step
-        </button>
+        <div className="AddressListBTN">
+          <button onClick={() => setAddNewAddress(!addNewAddress)}>
+            Add new
+          </button>
+          <button
+            onClick={() =>
+              setEnableDeliveryInstruction(!enableDeliveryInstruction)
+            }
+          >
+            Add Delivery Instrunctions
+          </button>
+        </div>
+        {enableDeliveryInstruction ? (
+          <div>
+            <input
+              placeholder="Additional delivery information"
+              name="note"
+              onChange={e => setNote(e.target.value)}
+            />
+          </div>
+        ) : (
+          ''
+        )}
+        <div className="submit_btn">
+          <button
+            type="submit"
+            onClick={handleForm}
+            disabled={listSelectedAddress ? false : true}
+          >
+            Next Step
+          </button>
+        </div>
       </div>
     </div>
   ) : (

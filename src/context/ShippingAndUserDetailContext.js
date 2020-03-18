@@ -240,7 +240,7 @@ function ShippingAndUserDetailProvider({ children, ...props }) {
       async: false,
       shipper_accounts: [
         {
-          id: 'a2b8a970-6fe5-4491-b9e2-8e3a6d17cd08'
+          id: '6f43fe77-b056-45c3-bce4-9fec4040da0c'
         }
       ],
       shipment: {
@@ -273,13 +273,13 @@ function ShippingAndUserDetailProvider({ children, ...props }) {
           type: 'residential'
         },
         ship_to: {
-          contact_name: `${shippingData.first_name}`,
-          street1: `${shippingData.line_1}`,
-          city: `${shippingData.city}`,
-          state: `${shippingData.county}`,
-          postal_code: `${shippingData.postcode}`,
-          country: `${shippingData.country}`,
-          phone: `${shippingData.phone}`,
+          contact_name: `${shippingData && shippingData.first_name}`,
+          street1: `${shippingData && shippingData.line_1}`,
+          city: `${shippingData && shippingData.city}`,
+          state: `${shippingData && shippingData.county}`,
+          postal_code: `${shippingData && shippingData.postcode}`,
+          country: `${shippingData && shippingData.country}`,
+          phone: `${shippingData && shippingData.phone}`,
           email: `${details && details.email}`,
           type: 'residential'
         }

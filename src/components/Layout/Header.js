@@ -12,7 +12,6 @@ import {
 import { useSpring, animated, config } from 'react-spring'
 import { useStateValue } from '../../context/SiteContext'
 import CartIcon from '../../images/shopping-basket-duotone.svg'
-
 import Logo from '../../images/logo.png'
 import logoCheckout from '../../images/logo-checkout.png'
 import CartButton from '../CartButton'
@@ -23,7 +22,7 @@ import Modal from 'react-bootstrap/Modal'
 import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
-
+import { newFirebaseToken } from '../../utils/newFirebaseToken'
 const Header = (
   { siteTitle, collections, slug, human_id, transitionStatus },
   props
@@ -50,6 +49,8 @@ const Header = (
     }
   })
 
+  let newToken = newFirebaseToken()
+
   const handleCart = () => {
     console.log('clicked')
     console.log('cart state => ', cart)
@@ -58,6 +59,7 @@ const Header = (
       setCart: { drawer: true }
     })
   }
+  console.log('header token, newToken => ', token, newToken)
 
   useEffect(() => {
     const lazyApp = import('firebase')
@@ -81,7 +83,7 @@ const Header = (
     }
     var builton = new Builton({
       apiKey: process.env.GATSBY_BUILTON_API_KEY,
-      bearerToken: token
+      bearerToken: token !== null ? token : newToken
     })
     setUserBuilton(details && details.email, builton)
   }, [])

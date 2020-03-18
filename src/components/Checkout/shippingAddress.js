@@ -100,7 +100,6 @@ const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
               </button>
             </div>
           )}
-
           <AddressFields
             gmapsLoaded={gmapsLoaded}
             type="shipping_address"

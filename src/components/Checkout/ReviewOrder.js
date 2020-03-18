@@ -62,7 +62,6 @@ const RiviewOrder = ({ stripe, formEnable }) => {
         address_zip: shipping_address.postcode,
         address_country: shipping_address.country
       })
-      console.log('After generating token ===>', token, token.token.id)
 
       //creating payment
 

@@ -51,7 +51,7 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
               .then(res => {
                 toast('Session expired please Login again!', {
                   position: toast.POSITION.TOP_RIGHT,
-                  className: 'error_testing'
+                  className: 'custom_toast'
                 })
                 navigate(`/`)
                 localStorage.removeItem('firebaseToken')
@@ -81,6 +81,7 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
       console.log('response => ', response)
     } catch (error) {
       console.error('Here is Error ====>', error)
+      return error
     }
 
     setMakeEnable(false)

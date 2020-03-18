@@ -46,6 +46,7 @@
 @import './contact.scss';
 @import './myAccount/myAccount.scss';
 @import './myAccount/UserOrderDetails.scss';
+@import './loader.scss';
 
 .visible {
   display: block;
@@ -60,6 +61,8 @@
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus, .btn-primary:focus, .btn-primary.focus, button:focus,  input:focus, select:focus, textarea:focus, a:focus, img:focus { box-shadow: none; outline:none; outline-offset:0; }
 
 .submit_btn {
+    z-index: 1;
+    width: calc(100% - 115px);
   .btn-outline-secondary {
     color: #5b2761;
     background-color: transparent;
@@ -642,4 +645,108 @@
       }
     }
   }
+}
+
+.DeliveryInformationWrap{
+  .EmailNotYou{
+    margin:0 0 1rem ;
+    background:$midnight;
+    padding:.5rem .8rem .6rem;
+    p{
+      font-size:1rem;
+      margin:0;
+      padding:0;
+    }
+    a{
+      margin-left:auto;
+      font-size:1rem;
+      color: #763679;
+      text-decoration: underline;
+    }
+  }
+  .AddressListWrap{
+    .AddressListWrapInner{
+      background:#080a1e;
+      border-radius:6px;
+      z-index: 1;
+      position: relative;
+      h4{
+        margin: 0;
+        padding: 1rem;
+        display: block;
+        color: #fff;
+        font-size: 1rem;
+      }
+      .AddressListDiv{
+        ul{
+          margin:0;
+          padding:0;
+          list-style:none;
+        }
+        li{
+          display:block;
+          background:$purpleB;
+          border-radius:6px;
+          margin:0 0 1rem;
+          padding:.6rem 1rem;
+          &.addressList{
+            background:#8db1bf;
+            color:$purpleC;
+          }
+          .d-flex{
+            @media(max-width:767px){
+              flex-wrap:wrap;
+            }
+            p{
+              width:66%;
+              padding:0;
+              margin:0;
+              + p{
+                span{
+                  display:block;
+                }
+                width:30%;
+                text-align:right;
+                @media(max-width:767px){
+                  width:100%;
+                  text-align:left;
+                  margin-bottom:0;
+                }
+              }
+              @media(max-width:767px){
+                width:100%;
+                margin-bottom: .5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+    .AddressListBTN{
+      margin:-1.7rem 0 1rem;
+      button{
+        background: $midnight;
+        border: 0;
+        width: 100%;
+        border-radius: 0 0 6px 6px;
+        padding: 1.5rem 0 1rem 0;
+        margin: 0;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color:$madang;
+        + button{
+          background:$midnight;
+          color:#8db1bf;
+          margin: 1rem 0 0;
+          width: 100%;
+          border: 0;
+          border-radius: 6px;
+          padding: 1rem;
+        }
+      }
+    }
+  }
+}
+.error-message{
+  color:red;
 }
