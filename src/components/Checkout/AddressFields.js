@@ -247,7 +247,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
               setEnableDeliveryInstruction(!enableDeliveryInstruction)
             }
           >
-            Add Delivery Instrunctions
+            Add Delivery Instructions
           </button>
         </div>
         {enableDeliveryInstruction ? (
