@@ -5,6 +5,8 @@ import SommioModal from '../modal.js'
 import { useStateValue } from '../../context/SiteContext'
 import ArrowUp from '../../images/arrow-up.svg'
 import ArrowDown from '../../images/arrow-down.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight, faArrowLeft, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 
 import {
   Dropdown,
@@ -62,9 +64,8 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   const [weight, setWeight] = useState(null)
   const [cover, setCover] = useState(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [coverIndex, setCoverIndex] = useState(0)
 
-  console.log('[addtocart] Weight, Cover => ', Weight, Cover)
-  console.log('[addtocart] Weight, cover => ', weight, cover)
 
   let weightSubProduct = []
   let coverSubProduct = []
@@ -89,6 +90,7 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     }
   })
 
+  //compare function for sorting weights
   function compare(a, b) {
     const weightA = parseInt(a.name.split(' ')[0], 10)
     const weightB = parseInt(b.name.split(' ')[0], 10)
@@ -101,7 +103,7 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     return comparison
   }
 
-  // set child data to category
+  // set child data to category - weight or cover
   childData.map(sub => {
     if (sub.tags[0] === 'Weight' && productId === sub.parents[0]._oid) {
       weightSubProduct.push(sub)
@@ -109,11 +111,10 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       coverSubProduct.push(sub)
     }
   })
+  
 
   // sort weight
   weightSubProduct.sort(compare)
-
-  console.log('[addtocart] local weight,cover => ', weight, cover)
 
   const selectedCover = coverSubProduct.filter(sub => {
     if (cover === null) {
@@ -122,6 +123,7 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       return sub.name === cover
     }
   })
+
 
   const selectedWeight = weightSubProduct.filter(sub => {
     if (weight === null) {
@@ -134,7 +136,10 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     setSubProductPrice(selectedWeight, selectedCover)
   }, [weight, cover])
 
-  const [blancketCover, setBlancketCover] = useState(coverSubProduct[0].name)
+  const [blanketCover, setblanketCover] = useState({
+    name: coverSubProduct[0].name,
+    desc: coverSubProduct[0].description,
+  })
   const [dropdownOpen, setDropdownOpen] = useState(false)
   let i = 0
 
@@ -143,10 +148,8 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   }
 
   const updateVariations = (e, name, price, id) => {
-    console.log('e,name,price,id => ', e, name, price, id)
     onChangeSelectedProduct(id)
     if (name === 'Weight') {
-      console.log('e,name,price,id => ', e, name, price, id)
       setVariation(name, e, price)
       setWeight(e)
     } else if (name === 'Cover') {
@@ -195,8 +198,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     currency: selectedProduct.currency,
     shippingProductId: shipmentProduct[0]._id._oid
   }
-  console.log('[addtocart] weightSubProduct => ', weightSubProduct)
-  console.log('[addtocart] coverSubProduct => ', coverSubProduct)
 
   const handleAddToCart = () => {
     set_cart(testCart)
@@ -208,10 +209,8 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   }
   let price =
     selectedProduct && selectedProduct.price + weightPrice + coverPrice
-  console.log('currentIndex => ', currentIndex)
 
   const arrowUp = index => {
-    console.log('Up ===> ', index)
     setCurrentIndex(index)
     updateVariations(
       weightSubProduct[index].name,
@@ -221,9 +220,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     )
   }
   const arrowDown = index => {
-    console.log('Down ===> ', index)
-    console.log('Down length===> ', weightSubProduct.length)
-    console.log('Down currentIndex===> ', currentIndex)
     setCurrentIndex(index)
     updateVariations(
       weightSubProduct[index].name,
@@ -232,11 +228,16 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       weightSubProduct[index]._id._oid
     )
   }
-  console.log(
-    'weightSubProduct.length , currentIndex =>',
-    weightSubProduct.length,
-    currentIndex
-  )
+  const coverChange = index => {
+    setCoverIndex(index)
+    updateVariations(
+      coverSubProduct[index].name,
+      coverSubProduct[index].tags[0],
+      coverSubProduct[index].price,
+      coverSubProduct[index]._id._oid
+    )
+  }
+  console.log("covers =>", coverSubProduct)
 
   return (
     <div className="product-variation">
@@ -247,28 +248,28 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
         </div>
       </div>
 
-      <div className="weight-boxs">
-        <div className="left">
-          <h3>Weight:</h3>
-          <h4>Recommended for users who weigh between:</h4>
-          <h2>
+      <div className="weight-box">
+        <div className="leftBox">
+          <h2>Weight:</h2>
+          <p>Recommended for users who weigh between:</p>
+          <h3>
             {weightSubProduct[currentIndex] &&
               weightSubProduct[currentIndex].short_description}
-          </h2>
+          </h3>
         </div>
-        <div className="right">
+        <div className="rightBox weightChange">
           <div
-            className="button up"
+            className={`arrowBox ${currentIndex === 0 && "disabled"}`}
             onClick={() => arrowUp(currentIndex === 0 ? 0 : currentIndex - 1)}
           >
-            lighter <img src={ArrowUp} />
+            <p>lighter</p> <FontAwesomeIcon icon={faArrowUp} />
           </div>
-          <div className="active">
+          <div className="weightBox">
             {weightSubProduct[currentIndex] &&
               weightSubProduct[currentIndex].name}
           </div>
           <div
-            className="button down"
+            className={`arrowBox ${currentIndex === weightSubProduct.length - 1 && "disabled"}`}
             onClick={() =>
               arrowDown(
                 currentIndex < weightSubProduct.length - 1
@@ -277,7 +278,7 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
               )
             }
           >
-            heavier <img src={ArrowDown} />
+            <p>heavier</p> <FontAwesomeIcon icon={faArrowDown} />
           </div>
         </div>
       </div>
@@ -316,16 +317,36 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
         </div>
       </div> */}
 
-      <div className="blanket-boxs cover-boxs">
-        <Dropdown
-          defaultValue={blancketCover}
+      <div className="blanket-boxs cover-box">
+        <div className="leftBox">
+        <h2>Cover:</h2>
+            <h3>{coverSubProduct[coverIndex].name}</h3>
+            <p>{coverSubProduct[coverIndex].description}</p>
+        </div>
+        <div className="rightBox coverChange">
+            <div className="imageWrapper"><img src={PlushImages} alt="plushImages" /></div>
+          <div
+            className={`arrowBox ${coverIndex === 0 && "disabled"}`}
+            onClick={() => coverChange(coverIndex !== 0 && coverIndex - 1)}
+          >
+              <FontAwesomeIcon icon={faArrowLeft} />
+          </div>
+          <div
+            className={`arrowBox ${coverIndex === coverSubProduct.length - 1 && "disabled"}`}
+            onClick={() => coverChange(coverIndex < coverSubProduct.length && coverIndex + 1)}
+          >
+            <FontAwesomeIcon icon={faArrowRight} />
+          </div>
+        </div>
+        {/*} <Dropdown
+          defaultValue={blanketCover}
           isOpen={dropdownOpen}
           toggle={toggleHandle}
         >
           <DropdownToggle caret>
             <div className="content ml-auto">
               <h2>Cover:</h2>
-              <h3>{blancketCover}</h3>
+              <h3>{blanketCover}</h3>
               <p>A luxuriously soft faux fur cover</p>
             </div>
             <img src={PlushImages} alt="plushImages" />
@@ -345,7 +366,7 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
               >
                 <DropdownItem
                   defaultValue={cover.name}
-                  onClick={() => setBlancketCover(cover.name)}
+                  onClick={() => setblanketCover(cover.name)}
                 >
                   <img src={PlushImages} alt="plushImages" />
                   <div className="content ml-auto">
@@ -356,7 +377,7 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
               </div>
             ))}
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>*/}
       </div>
 
       <div className="price-main">
