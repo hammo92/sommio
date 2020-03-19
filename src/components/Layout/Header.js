@@ -59,7 +59,6 @@ const Header = (
       setCart: { drawer: true }
     })
   }
-  console.log('header token, newToken => ', token, newToken)
 
   useEffect(() => {
     const lazyApp = import('firebase')

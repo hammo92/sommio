@@ -35,8 +35,9 @@ const MyAccountInner = () => {
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [address, setAddress] = useState('')
-  const [finalAddress, setFinalAddress] = useState('')
+  const [finalAddress, setFinalAddress] = useState(null)
   const [error, setError] = useState('')
+  const [index, setIndex] = useState('')
 
   const { allBuiltonProduct } = useStaticQuery(graphql`
     query {
@@ -81,19 +82,47 @@ const MyAccountInner = () => {
           })
           .then(response => {
             console.log('USER r => ', response)
-            setFinalAddress(
-              response.data.addresses[0] &&
-                response.data.addresses[0].raw.formatted_address
-            )
+            setFinalAddress(response.data.addresses)
           })
           .catch(err => {
-            console.log('USER err => ', err)
+            console.log('USER err => ', err, err.response)
+            if (err.response.status === 401) {
+              firebase &&
+                firebase
+                  .auth()
+                  .signOut()
+                  .then(res => {
+                    console.log('res => ', res)
+                    navigate(`/`)
+                    localStorage.removeItem('firebaseToken')
+                    localStorage.removeItem('details')
+                    toast('Please Login again!!', {
+                      position: toast.POSITION.TOP_RIGHT,
+                      className: 'custom_toast'
+                    })
+                  })
+                  .catch(err => {
+                    return err
+                  })
+            }
           })
       })
       .catch(err => {
         console.log('err => ', err, err.code)
-        // alert('Error')
-        // navigate('/')
+        if (err.response.status === 401) {
+          firebase &&
+            firebase
+              .auth()
+              .signOut()
+              .then(res => {
+                navigate(`/`)
+                localStorage.removeItem('firebaseToken')
+                localStorage.removeItem('details')
+              })
+              .catch(err => {
+                return err
+              })
+        }
       })
 
     setLoading(false)
@@ -109,14 +138,6 @@ const MyAccountInner = () => {
     fetchOrder()
   }, [firebase && firebase.auth().currentUser])
 
-  const handleChange = e => {
-    if (e.target.name === 'newPassword') {
-      setNewPassword(e.target.value)
-    } else {
-      setConfirmPassword(e.target.value)
-    }
-    checkValidationPassword()
-  }
   const resetPasswordData = () => {
     setNewPassword('')
     setConfirmPassword('')
@@ -124,39 +145,41 @@ const MyAccountInner = () => {
   }
 
   const updatePassword = () => {
-    if (checkValidationPassword()) {
-      firebase &&
-        firebase
-          .auth()
-          .currentUser.updatePassword(confirmPassword)
-          .then(() => {
-            toast('Password is Updated !', {
-              position: toast.POSITION.TOP_RIGHT,
-              className: 'custom_toast'
-            })
-            resetPasswordData()
+    setLoading(true)
+
+    firebase &&
+      firebase
+        .auth()
+        .currentUser.updatePassword(confirmPassword)
+        .then(() => {
+          setLoading(false)
+          toast('Password is Updated !', {
+            position: toast.POSITION.TOP_RIGHT,
+            className: 'custom_toast'
           })
-          .catch(error => {
-            console.log('error => ', error)
-            toast('For updating password need to login again !', {
-              position: toast.POSITION.TOP_RIGHT,
-              className: 'custom_toast'
-            })
-            firebase &&
-              firebase
-                .auth()
-                .signOut()
-                .then(res => {
-                  navigate(`/`)
-                  localStorage.removeItem('firebaseToken')
-                  localStorage.removeItem('details')
+          resetPasswordData()
+        })
+        .catch(error => {
+          console.log('error => ', error)
+
+          firebase &&
+            firebase
+              .auth()
+              .signOut()
+              .then(res => {
+                toast('For updating password need to login again !', {
+                  position: toast.POSITION.TOP_RIGHT,
+                  className: 'custom_toast'
                 })
-                .catch(err => {
-                  return err
-                })
-            resetPasswordData()
-          })
-    }
+                navigate(`/`)
+                localStorage.removeItem('firebaseToken')
+                localStorage.removeItem('details')
+              })
+              .catch(err => {
+                return err
+              })
+          resetPasswordData()
+        })
   }
 
   const checkValidationAddress = () => {
@@ -186,56 +209,57 @@ const MyAccountInner = () => {
     setError(errors)
     return formIsValid
   }
-  const checkValidationPassword = () => {
-    let errors = {}
-    let formIsValid = true
-    if (!newPassword) {
-      let formIsValid = false
-      errors.newPassword = 'Required'
-    }
-    if (!confirmPassword) {
-      let formIsValid = false
-      errors.confirmPassword = 'Required'
-    } else if (newPassword !== confirmPassword) {
-      console.log(' In else password => ')
+  console.log('newPassword,confirmPassword => ', newPassword, confirmPassword)
+  let _errors = {}
 
-      let formIsValid = false
-      errors.confirmPassword = 'Both password should match'
-    } else {
-      let formIsValid = true
-      errors.confirmPassword = ''
+  const handleChangeNewPassword = e => {
+    if (e.target.name === 'newPassword') {
+      setNewPassword(e.target.value)
+      if (!e.target.value) {
+        _errors.newPassword = 'Required'
+      }
     }
-    setError(errors)
-    return formIsValid
+    setError(_errors)
   }
-  console.log('validation error => ', error)
+  const handleChangeConfirmPassword = e => {
+    if (e.target.name === 'confirmPassword') {
+      setConfirmPassword(e.target.value)
+      if (!e.target.value) {
+        _errors.confirmPassword = 'Required'
+      }
+      if (newPassword !== e.target.value) {
+        _errors.confirmPassword = 'Both password should match'
+      }
+    }
+    setError(_errors)
+  }
 
   const updateValue = e => {
-    console.log('e.target.value ====>', e.target.value)
     setAddress({ ...address, [e.target.name]: e.target.value })
     checkValidationAddress()
   }
+  const enableUpdateAddress = index => {
+    setIndex(index)
+    setTextAreaDisable(false)
+  }
+
   const updateAddress = async () => {
+    let tempAddressData = finalAddress
+    tempAddressData[index] = address
+
     if (checkValidationAddress()) {
+      setLoading(true)
+
       await builton.users
         .setMe()
         .update({
-          addresses: [
-            {
-              street_name: address.street_name,
-              city: address.city,
-              state: address.state,
-              zip_code: address.zip_code,
-              country: address.country
-            }
-          ]
+          addresses: tempAddressData
         })
         .then(response => {
           console.log('[userOrder] response => ', response)
-          setFinalAddress(
-            response.addresses[0] && response.addresses[0].raw.formatted_address
-          )
+          setFinalAddress(response.addresses)
           setAddress('')
+          setLoading(false)
           setTextAreaDisable(true)
           toast('Address is updated !', {
             position: toast.POSITION.TOP_RIGHT,
@@ -248,11 +272,28 @@ const MyAccountInner = () => {
             position: toast.POSITION.TOP_RIGHT,
             className: 'custom_toast'
           })
+          if (error.response.status === 401) {
+            firebase &&
+              firebase
+                .auth()
+                .signOut()
+                .then(res => {
+                  toast('Session expired please login again!', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    className: 'custom_toast'
+                  })
+                  navigate(`/`)
+                  localStorage.removeItem('firebaseToken')
+                  localStorage.removeItem('details')
+                })
+                .catch(err => {
+                  return err
+                })
+          }
           return error
         })
     }
   }
-  console.log('calidation error => ', error)
 
   return isLoading === true ? (
     <Loader />
@@ -330,113 +371,127 @@ const MyAccountInner = () => {
               <h5>Address</h5>
               {textAreaDisable === false ? (
                 <div className="AddressDetailsBody">
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      placeholder="street_name"
-                      type="text"
-                      name="street_name"
-                      onChange={updateValue}
-                    />
-                    <span className="ErrorMessage">{error.street_name}</span>
-                  </div>
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      placeholder="city"
-                      type="text"
-                      name="city"
-                      onChange={updateValue}
-                    />
-                    <span className="ErrorMessage">{error.city}</span>
-                  </div>
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      placeholder="zip_code"
-                      type="text"
-                      name="zip_code"
-                      onChange={updateValue}
-                    />
-                    <span className="ErrorMessage">{error.zip_code}</span>
-                  </div>
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      placeholder="state"
-                      type="text"
-                      name="state"
-                      onChange={updateValue}
-                    />
-                    <span className="ErrorMessage">{error.state}</span>
-                  </div>
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      placeholder="country"
-                      type="text"
-                      name="country"
-                      onChange={updateValue}
-                    />
-                    <span className="ErrorMessage">{error.country}</span>
-                  </div>
+                  <ul>
+                    <li>
+                      <input
+                        className="form-control"
+                        placeholder="street_name"
+                        type="text"
+                        name="street_name"
+                        onChange={updateValue}
+                      />
+                      <span className="ErrorMessage">{error.street_name}</span>
+                    </li>
+                    <li>
+                      <input
+                        className="form-control"
+                        placeholder="city"
+                        type="text"
+                        name="city"
+                        onChange={updateValue}
+                      />
+                      <span className="ErrorMessage">{error.city}</span>
+                    </li>
+                    <li>
+                      <input
+                        className="form-control"
+                        placeholder="zip_code"
+                        type="text"
+                        name="zip_code"
+                        onChange={updateValue}
+                      />
+                      <span className="ErrorMessage">{error.zip_code}</span>
+                    </li>
+                    <li>
+                      <input
+                        className="form-control"
+                        placeholder="state"
+                        type="text"
+                        name="state"
+                        onChange={updateValue}
+                      />
+                      <span className="ErrorMessage">{error.state}</span>
+                    </li>
+                    <li>
+                      <input
+                        className="form-control"
+                        placeholder="country"
+                        type="text"
+                        name="country"
+                        onChange={updateValue}
+                      />
+                      <span className="ErrorMessage">{error.country}</span>
+                    </li>
+                  </ul>
                   <Button
                     className="ml-auto"
                     type="thin"
                     onClick={updateAddress}
+                    disabled={finalAddress === null ? true : false}
                   >
                     <h3>Update</h3>
                     <FontAwesomeIcon className="ml-auto" icon={faCheck} />
                   </Button>
                 </div>
               ) : (
-                <div className="AddressDetailsBody EditAddressDetailsBody">
-                  <div className="form-group">
-                    <textarea
-                      disabled={textAreaDisable === true ? true : false}
-                    >
-                      {finalAddress ? finalAddress : 'Not found any Address'}
-                    </textarea>
-                  </div>
-                  <Button
-                    type="thin"
-                    className="ml-auto"
-                    onClick={() => setTextAreaDisable(false)}
-                  >
-                    <FontAwesomeIcon className="ml-auto" icon={faPencilAlt} />
-                  </Button>
+                <div className="AddressDetailsBody ">
+                  {finalAddress
+                    ? finalAddress.map((add, i) => (
+                        <div className="EditAddressDetailsBody">
+                          <textarea
+                            disabled={textAreaDisable === true ? true : false}
+                          >
+                            {add && add.raw.formatted_address}
+                          </textarea>
+                          <Button
+                            type="thin"
+                            className="ml-auto"
+                            onClick={() => enableUpdateAddress(i)}
+                          >
+                            <FontAwesomeIcon
+                              className="ml-auto"
+                              icon={faPencilAlt}
+                            />
+                          </Button>
+                        </div>
+                      ))
+                    : 'Not found any Address'}
                 </div>
               )}
             </div>
             <div className="UpdatePassword">
               <h5>Update Password</h5>
               <div className="UpdatePasswordBody">
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    name="newPassword"
-                    type="password"
-                    placeholder="New Password"
-                    onChange={e => handleChange(e)}
-                    value={newPassword}
-                  />
-                  <span className="ErrorMessage">{error.newPassword}</span>
-                </div>
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    name="confirmPassword"
-                    type="password"
-                    placeholder="Confirm Password"
-                    onChange={e => handleChange(e)}
-                    value={confirmPassword}
-                  />
-                  <span className="ErrorMessage">{error.confirmPassword}</span>
-                </div>
+                <ul>
+                  <li>
+                    <input
+                      className="form-control"
+                      name="newPassword"
+                      type="password"
+                      placeholder="New Password"
+                      onChange={e => handleChangeNewPassword(e)}
+                    />
+                    <span className="ErrorMessage">{error.newPassword}</span>
+                  </li>
+                  <li>
+                    <input
+                      className="form-control"
+                      name="confirmPassword"
+                      type="password"
+                      placeholder="Confirm Password"
+                      onChange={e => handleChangeConfirmPassword(e)}
+                      value={confirmPassword}
+                    />
+                    <span className="ErrorMessage">
+                      {error.confirmPassword}
+                    </span>
+                  </li>
+                </ul>
                 <Button
                   type="thin"
                   className="ml-auto"
                   onClick={updatePassword}
+                  disabled={newPassword && confirmPassword ? false : true}
                 >
                   <h3>Update</h3>
                   <FontAwesomeIcon className="ml-auto" icon={faCheck} />

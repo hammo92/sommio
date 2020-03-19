@@ -44,21 +44,18 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
       .catch(err => {
         console.log('err builton =>', err)
         if (err.response.status === 401) {
+          toast('Session expired please Login again!', {
+            position: toast.POSITION.TOP_RIGHT,
+            className: 'custom_toast'
+          })
           firebase &&
             firebase
               .auth()
               .signOut()
               .then(res => {
-                toast('Session expired please Login again!', {
-                  position: toast.POSITION.TOP_RIGHT,
-                  className: 'custom_toast'
-                })
                 navigate(`/`)
                 localStorage.removeItem('firebaseToken')
                 localStorage.removeItem('details')
-              })
-              .catch(err => {
-                console.log('err Logout => ', err)
               })
         }
       })
@@ -78,7 +75,6 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
           }
         }
       )
-      console.log('response => ', response)
     } catch (error) {
       console.error('Here is Error ====>', error)
       return error

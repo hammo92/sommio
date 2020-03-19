@@ -200,6 +200,7 @@
                 @media (max-width:$mobilelandscape) {
                     margin: 0 auto -50px auto;
                     height: 60px;
+                    width: 40%;
                 }
                 h3{
                     @media (max-width:$mobilelandscape) {
@@ -233,9 +234,67 @@
             padding:0 15px;
             position:relative;
             margin:0;
-            .form-group{
-                display:block;
-                margin:0 0 1rem;
+            ul{
+                margin:0;
+                padding:0;
+                list-style:none;
+                li{
+                    display:block;
+                    margin:0 0 1rem;
+                    textarea{
+                        background:#2C2444;
+                        border:0;
+                        display:block;
+                        width: 100%;
+                        line-height: normal;
+                        padding: .8rem;
+                        font-size: 1.2rem;
+                        color:#fff;
+                        font-weight:500;
+                        font-family:$tksofiapro;
+                        border-radius:6px;
+                        height: 136px;
+                        line-height: normal;
+                        @media (max-width:$mobilelandscape) {
+                            font-size:18px;
+                        }
+                    }
+                    input{
+                        background:#2C2444;
+                        border:0;
+                        display:block;
+                        width: 100%;
+                        line-height: normal;
+                        padding:.8rem 1rem 1rem;
+                        font-size: 1.2rem;
+                        color:#fff;
+                        font-weight:500;
+                        font-family:$tksofiapro;
+                        border-radius:6px;
+                        height:auto;
+                        opacity:1;
+                        &::-webkit-input-placeholder{color:$white;}
+                        &::-moz-placeholder { color:#fff;}
+                        &:-ms-input-placeholder { color:#fff;}
+                        &:-moz-placeholder { color:#fff;}
+                        @media (max-width:$mobilelandscape) {
+                            font-size:18px;
+                        }
+                    }
+                }
+            }
+            button{
+                width:210px;
+                height:60px;
+                margin:0 0 -3.2rem auto;
+                display: block;
+                @media (max-width:$mobilelandscape) {
+                    height:50px;
+                    margin:30px auto -35px;
+                }
+            }
+            .EditAddressDetailsBody{
+                position:relative;
                 textarea{
                     background:#2C2444;
                     border:0;
@@ -253,76 +312,30 @@
                     @media (max-width:$mobilelandscape) {
                         font-size:18px;
                     }
-                    +  button.buttonWrapper {
-                        width: 60px;
-                        margin: 0;
-                        display: block;
-                        height: 60px;
-                        border-radius: 100px;
-                        position: absolute;
-                        top: -20px;
-                        right: 10px;
-                        .buttonShadow{
-                            background: #B58DD6;
-                            border-radius: 100px;
-                        }
-                        .buttonInner{
-                            border-radius: 100px;
-                            svg{
-                                font-size:25px;
-                            }
-                        }
-                    }
                 }
-                input{
-                    background:#2C2444;
-                    border:0;
-                    display:block;
-                    width: 100%;
-                    line-height: normal;
-                    padding:.8rem;
-                    font-size: 1.2rem;
-                    color:#fff;
-                    font-weight:500;
-                    font-family:$tksofiapro;
-                    border-radius:6px;
-                    opacity:1;
-                    height:auto;
-                    &::-webkit-input-placeholder{color:#fff;}
-                    &::-moz-placeholder { color:#fff;}
-                    &:-ms-input-placeholder { color:#fff;}
-                    &:-moz-placeholder { color:#fff;}
-                    @media (max-width:$mobilelandscape) {
-                        font-size:18px;
-                    }
-                }
-            }
-            button{
-                width:210px;
-                height:60px;
-                margin:0 0 -3.2rem auto;
-                display: block;
-                @media (max-width:$mobilelandscape) {
-                    height:50px;
-                    margin:30px auto -35px;
-                }
-            }
-            &.EditAddressDetailsBody{
-                button{
-                    position: absolute;
-                    top: -30px;
-                    right: -10px;
+                button.buttonWrapper {
                     width: 50px;
+                    margin: 0;
+                    display: block;
                     height: 50px;
+                    border-radius: 100px;
+                    position: absolute;
+                    top: -20px;
+                    right:-10px;
                     .buttonShadow{
-                        border-radius:100px;
+                        background: #B58DD6;
+                        border-radius: 100px;
                     }
                     .buttonInner{
-                        border-radius:100px;
+                        padding:0 14px 0 0;
+                        border-radius: 100px;
                         svg{
-                            font-size:20px;
+                            font-size:22px;
                         }
                     }
+                }
+                + .EditAddressDetailsBody{
+                    margin-top:30px;
                 }
             }
         }
@@ -352,29 +365,56 @@
             display: block;
             border-radius: 6px;
             padding:0 15px;
-            .form-group{
-                margin-bottom:1rem;
-                input{
-                    background:#2C2444;
-                    border:0;
-                    display:block;
-                    width: 100%;
-                    line-height: normal;
-                    padding: .8rem;
-                    font-size: 1.2rem;
-                    color:#fff;
-                    font-weight:500;
-                    font-family:$tksofiapro;
-                    border-radius:6px;
-                    opacity:1;
-                    height:auto;
-                    &::-webkit-input-placeholder{color:#fff;}
-                    &::-moz-placeholder { color:#fff;}
-                    &:-ms-input-placeholder { color:#fff;}
-                    &:-moz-placeholder { color:#fff;}
-                    @media (max-width:$mobilelandscape) {
-                        font-size:18px;
+            ul{
+                list-style:none;
+                margin:0;
+                padding:0;
+                li{
+                    margin-bottom:1rem;
+                    input{
+                        background:#2C2444;
+                        border:0;
+                        display:block;
+                        width: 100%;
+                        line-height: normal;
+                        padding:.8rem 1rem 1rem;
+                        font-size: 1.2rem;
+                        color:#fff;
+                        font-weight:500;
+                        font-family:$tksofiapro;
+                        border-radius:6px;
+                        opacity:1;
+                        height:auto;
+                        &::-webkit-input-placeholder{color:$white;}
+                        &::-moz-placeholder { color:#fff;}
+                        &:-ms-input-placeholder { color:#fff;}
+                        &:-moz-placeholder { color:#fff;}
+                        @media (max-width:$mobilelandscape) {
+                            font-size:18px;
+                        }
                     }
+                }
+            }
+            input{
+                background:#2C2444;
+                border:0;
+                display:block;
+                width: 100%;
+                line-height: normal;
+                padding: .8rem;
+                font-size: 1.2rem;
+                color:#fff;
+                font-weight:500;
+                font-family:$tksofiapro;
+                border-radius:6px;
+                opacity:1;
+                height:auto;
+                &::-webkit-input-placeholder{color:$white;}
+                &::-moz-placeholder { color:#fff;}
+                &:-ms-input-placeholder { color:#fff;}
+                &:-moz-placeholder { color:#fff;}
+                @media (max-width:$mobilelandscape) {
+                    font-size:18px;
                 }
             }
             button.buttonWrapper {

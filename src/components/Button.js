@@ -35,7 +35,12 @@ const Button = ({ type, text, link, disabled, children, onClick }) => {
     }
   })
   return (
-    <button className={`buttonWrapper ${type}`} {...bind()} onClick={onClick}>
+    <button
+      className={`buttonWrapper ${type}`}
+      {...bind()}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {link && <AniLink paintDrip to={link} hex="#D8A8FF"></AniLink>}
       <animated.div style={props.opacity} className="buttonShadow" />
       <animated.div style={props} className="buttonInner">

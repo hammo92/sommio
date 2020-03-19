@@ -40,6 +40,7 @@ const RiviewOrder = ({ stripe, formEnable }) => {
   })
 
   const [isLoading, setLoading] = useState(false)
+  let payBuilton
   const handleOrder = async () => {
     setLoading(true)
     var authToken = await newFirebaseToken()
@@ -92,7 +93,7 @@ const RiviewOrder = ({ stripe, formEnable }) => {
       // const payBuilton = await builton.payments.pay(
       //   createdOrder.payments[0].$oid
       // )
-      let payBuilton = await axios
+      payBuilton = await axios
         .post(
           `https://api.builton.dev/payments`,
           {
@@ -132,7 +133,7 @@ const RiviewOrder = ({ stripe, formEnable }) => {
         ) : (
           <button
             onClick={handleOrder}
-            disabled={isLoading === true ? true : false}
+            disabled={isLoading === true || payBuilton ? true : false}
           >
             COMPLETE ORDER
           </button>
