@@ -6,7 +6,8 @@ import BeadOpen from "../../../video/Window.mp4"
 import BeadSmoke from "../../../video/Explode2.mp4"
 import WeightexTurn from "../../../video/Turn.mp4"
 import WeightexExplode from "../../../video/Explode.mp4"
-import Leak from "../../../video/leakSquare.mp4"
+import PocketLeak from "../../../video/pocketCut.mp4"
+import WeightexLeak from "../../../video/weightexCut.mp4"
 import PlayDuotone from "../../../images/play-duotone.png"
 import ReactPlayer from 'react-player'
 import VisibilitySensor from "react-visibility-sensor"
@@ -38,16 +39,16 @@ const details = [
     title:`Quickly Overheats`,
     text:`To disguise the bunching and reduce the noise of beads moving manufacturers add thick wadding, which traps heat and can feel suffocating..` 
   },
-  /*{ 
-    url:{Leak},
+  { 
+    url:{WeightexLeak},
     title:`Keeps on going`,
     text:`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the` 
   },
   { 
-    url:{Leak},
+    url:{PocketLeak},
     title:`Leak over time`,
     text:`As the blanket is used the stitching loosens allowing beads to escape, turning your bed into a sandpit.` 
-  },*/
+  },
 ]
 
 
@@ -134,7 +135,8 @@ const Compare = () => {
                   </div>
                 </div>
                 <CompareRow row={0} />
-                <CompareRow row={2}/>
+                <CompareRow row={2} />
+                <CompareRow row={4}/>
                 {/*<CompareRow row={4}/>*/}
               </Tab.Pane>
               <Tab.Pane eventKey="second">
