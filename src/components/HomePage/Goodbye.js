@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import Para from '../AnimatedText/Para'
 import Head from '../AnimatedText/Head'
 import GoodquizImages from '../../images/goodquiz-img.jpg'
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from 'gatsby'
 import GoodquizEyeIcon from '../../images/eye-solid.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
@@ -12,15 +12,15 @@ import Img from 'gatsby-image'
 const Goodbye = () => {
   const Top = useStaticQuery(graphql`
     query {
-      file(name: {eq: "goodquiz-img"}) {
+      file(name: { eq: "goodquiz-img" }) {
         childImageSharp {
-          fluid(maxWidth: 1800, quality:100) {
+          fluid(maxWidth: 1800, quality: 100) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
     }
-  `) 
+  `)
   return (
     <div className="goodquiz-boxs">
       <Head type={1}>Goodbye stress, hello rest.</Head>
@@ -35,7 +35,7 @@ const Goodbye = () => {
           </Para>
         </div>
         <div className="goodquiz-view">
-          <Button type="round large" link="/products/DEWR3J" >
+          <Button type="round large" link="/products">
             <FontAwesomeIcon icon={faEye} />
           </Button>
         </div>
