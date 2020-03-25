@@ -20,10 +20,11 @@ import { useDrag } from 'react-use-gesture'
 import clamp from 'lodash-es/clamp'
 import useMeasure from 'react-use-measure'
 
-function Viewpager({ pages, width }) {
+function Viewpager({ pages, width}) {
   const index = useRef(0)
   const [currentSlide, setCurrent] = useState(0)
   const config = { mass: 1, tension: 180, friction: 30 }
+  
 
   const [props, set] = useSprings(pages.length, i => ({
     x: i * width,
@@ -33,9 +34,23 @@ function Viewpager({ pages, width }) {
     config
   }))
 
+  useEffect(() => {
+    index.current = 0
+    setCurrent(index.current)
+    set(i => {
+      return {
+        x: i * width,
+        scale: 1,
+        display: 'block',
+        zIndex: i === 0 ? '2' : '1',
+        config
+      }
+    })
+  },[pages])
+
   let indicators = pages.map((indicator, i) => {
-    const indicatorWidth = width / pages.length - 10
-    const xy = [(width / pages.length - 10) * i, 0]
+    const indicatorWidth = width / pages.length 
+    const xy = [(width / pages.length ) * i, 0]
     return { ...indicator, position: i, width: indicatorWidth, xy }
   })
 
@@ -55,24 +70,6 @@ function Viewpager({ pages, width }) {
     }),
     leave: { opacity: 0 }
   })
-  /*const nextSlide = () => {
-    setCurrent(currentSlide + 1)
-    index.current = currentSlide + 1
-    set(i => {
-      const x = (i - currentSlide) * width
-      const scale = 1
-      return { x, scale, display: 'block', zIndex: i === index.current ? '0' : '10'}
-    })
-  }
-  const prevSlide = () => {
-    setCurrent(currentSlide - 1)
-    index.current = currentSlide - 1
-    set(i => {
-      const x = (i - currentSlide) * width
-      const scale = 1
-      return { x, scale, display: 'block', zIndex: i === index.current ? '0' : '10'}
-    })
-  }*/
 
   const bind = useDrag(
     ({ down, movement: [mx], direction: [xDir], distance, cancel }) => {
@@ -161,6 +158,7 @@ function ProductImage({ productId, selectedVariationId }) {
       }
     `
   )
+  console.log("nodes =>", allBuiltonProduct.nodes)
 
   const data = allBuiltonProduct.nodes.find(
     ({ _id: { _oid } }) => _oid === selectedVariationId
@@ -172,7 +170,10 @@ function ProductImage({ productId, selectedVariationId }) {
   })
   const [images, setImages] = useState(data)
 
-  useEffect(() => setImages(data), [data])
+  useEffect(() => {
+    setImages(data)
+
+  }, [data])
 
   return (
     <div ref={bind} className="col-12 col-lg-7 col-xl-8">

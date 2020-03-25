@@ -559,6 +559,14 @@
         overflow:hidden;
         .leftBox{
             padding:20px 15px;
+            display:flex;
+            flex-direction: column;
+            div{
+                display:flex;
+                flex-direction: column;
+                flex:1;
+                justify-content: center;
+            }
             h2{
                 display: block;
                 font-size: 30px;
@@ -577,7 +585,7 @@
                 display: block;
                 font-size: 24px;
                 color: $white;
-                margin: 0 0 15px;
+                margin: 15px 0;
                 line-height: 30px;
                 font-weight: 500;
             }

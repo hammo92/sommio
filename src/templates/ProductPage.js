@@ -25,6 +25,7 @@ import Head from '../components/AnimatedText/Head'
 import Para from '../components/AnimatedText/Para'
 import styled from 'styled-components'
 import inHand from '../images/inHand.jpg'
+import { Clearfix } from 'react-bootstrap'
 
 const DarkRow = styled(Row)`
   margin: 20px 0 40px 0;
@@ -221,6 +222,7 @@ const ProductPageInner = ({
 }
 
 const ProductPageBuilton = ({ data }) => {
+  console.log("product page data =>", data)
   return (
     <TransitionState>
       {({ transitionStatus }) => (

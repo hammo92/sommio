@@ -251,11 +251,14 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       <div className="weight-box">
         <div className="leftBox">
           <h2>Weight:</h2>
-          <p>Recommended for users who weigh between:</p>
-          <h3>
+          <div>   
+            <p>Recommended for users who weigh between:</p>
+            <h3>
             {weightSubProduct[currentIndex] &&
               weightSubProduct[currentIndex].short_description}
-          </h3>
+            </h3>
+          </div>
+          
         </div>
         <div className="rightBox weightChange">
           <div
@@ -320,8 +323,10 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       <div className="blanket-boxs cover-box">
         <div className="leftBox">
         <h2>Cover:</h2>
+          <div>
             <h3>{coverSubProduct[coverIndex].name}</h3>
             <p>{coverSubProduct[coverIndex].description}</p>
+          </div>
         </div>
         <div className="rightBox coverChange">
             <div className="imageWrapper"><img src={PlushImages} alt="plushImages" /></div>
