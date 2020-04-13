@@ -176,7 +176,7 @@ const Header = (
               <div className={`${classOne}`} id="navbarSupportedContent">
                 <ul className="navbar-nav ml-md-auto menu-list">
                   <li className="nav-item">
-                    <Link to="/products">Shop</Link>
+                    <Link to="/products/DEWR3J">Shop</Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/learn">Learn</Link>

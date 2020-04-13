@@ -35,7 +35,7 @@ const Goodbye = () => {
           </Para>
         </div>
         <div className="goodquiz-view">
-          <Button type="round large" link="/products">
+          <Button type="round large" link="/products/DEWR3J">
             <FontAwesomeIcon icon={faEye} />
           </Button>
         </div>
