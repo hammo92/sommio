@@ -592,6 +592,7 @@
         }
         .rightBox{
             .arrowBox{
+                cursor: url("http://localhost:8000/point.svg"), auto !important;
                 display:flex;
                 align-items: center;
                 justify-content: center;
@@ -621,6 +622,7 @@
                 .arrowBox{
                     justify-content: space-between;
                     padding:0 20px;
+                    cursor: url("http://localhost:8000/point.svg"), auto !important;
                     p{
                         font-size:20px;
                     }
