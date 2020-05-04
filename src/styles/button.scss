@@ -27,8 +27,8 @@
     .buttonInner{
         position:absolute;
         width: 100%;
-        background:$madang;
-        color:$midnight;
+        background:var(--portage);
+        color:var(--midnight);
         height:100%;
         z-index: 2;
         border-radius:10px;
@@ -42,7 +42,7 @@
         }
         h3, svg{
           font-size: 35px;
-          color:$midnight;
+          color:var(--midnight);
           padding:0;
           margin:0;
           font-weight:600;
@@ -114,30 +114,30 @@
     }
 
     &.btn-primary {
-        background: $madang;
+        background: var(--portage);
         font-size: $FontSize30;
-        color: $midnight;
+        color: var(--midnight);
 
         &:hover {
-            background: $violet;
-            color: $perano;
+            background: var(--midnight);
+            color: var(--portage);
         }
 
     }
 
     &.btn-success {
         border-radius: 0;
-        background: $madang;
+        background: var(--portage);
         font-size: $FontSize30;
-        color: $midnight;
+        color: var(--midnight);
         font-weight: 700;
         padding: 0;
     }
 
     &.btn-info {
-        background: $madang;
+        background: var(--portage);
         font-size: $FontSize30;
-        color: $midnight;
+        color: var(--midnight);
         font-weight: 700;
         align-items: center;
         display: flex;
@@ -156,7 +156,7 @@
 
     &.btn-link {
         font-size: $FontSize17;
-        color: $midnight;
+        color: var(--midnight);
         font-weight: 500;
         padding: 0;
         text-decoration: underline;

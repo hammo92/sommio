@@ -1,5 +1,5 @@
 footer {
-  background: $purpleA;
+  background: var(--purpleA);
   display: flex;
   flex-wrap: wrap;
   padding: 25px 30px;
@@ -35,7 +35,7 @@ footer {
         display: block;
         font-size: 25px;
         margin: 0 0 30px;
-        color: $white;
+        color: var(--white);
 
         @media (max-width: $desktophidpi) {
           margin: 0 0 20px 0;
@@ -72,7 +72,7 @@ footer {
         display: block;
         margin: 0 0 30px;
         font-size: 60px;
-        color: $white;
+        color: var(--white);
         line-height: 1;
         font-weight: 900;
         text-align: right;
@@ -97,13 +97,13 @@ footer {
 
       .form-control {
         border: 0px;
-        background: $purpleB;
+        background: var(--purpleB);
         padding: 25px 32px;
         height: auto;
         border-radius: 10px;
         line-height: 1;
         font-size: 29px;
-        color: $white;
+        color: var(--white);
         font-weight: 300;
 
         @media (max-width: $desktophidpi) {
@@ -152,7 +152,7 @@ footer {
         a {
           display: block;
           font-size: 25px;
-          color: $white;
+          color: var(--white);
           line-height: 1;
           font-weight: 900;
           text-decoration: none;
@@ -167,7 +167,7 @@ footer {
           }
 
           &:hover {
-            color: $portage;
+            color: var(--portage);
           }
 
         }

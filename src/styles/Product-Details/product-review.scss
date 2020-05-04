@@ -5,8 +5,8 @@
     padding: 10px;
     background: url(/review-bg.png) center center no-repeat;
     background-size: cover;
-    border-left: $purpleborder;
-    border-bottom: $purpleborder;
+    border-left: var(--purpleBorder);
+    border-bottom: var(--purpleBorder);
     z-index: 2;
 
     @media (max-width:$mobileportrait) {
@@ -54,7 +54,7 @@
         span {
             font-size: $FontSize24;
             font-weight: bold;
-            color: $white;
+            color: var(--white);
             line-height: 1;
 
             @media (max-width:$ipadlandscape) {
@@ -65,7 +65,7 @@
     }
 
     .review-boxs {
-        background: $purpleA;
+        background: var(--purpleA);
         border-radius: 10px;
         padding: 15px;
 
@@ -90,7 +90,7 @@
                 display: block;
                 font-size: $FontSize23;
                 font-weight: 700;
-                color: rgba($white, 0.7);
+                color: var(--white);
                 margin: 0;
 
                 @media (max-width:$ipadlandscape) {
@@ -114,7 +114,7 @@
             margin: 20px 0 0 0;
             font-family: $tksofiapro;
             font-size: $FontSize22;
-            color: $white;
+            color: var(--white);
             line-height: 30px;
             font-weight: 500;
 
@@ -179,7 +179,7 @@
 
         &:before {
             font-size: 45px;
-            background-color:rgba($madang, 0.4);
+            background-color:rgba(var(--portage), 0.4);
             background-position: center center;
             background-repeat: no-repeat;
             background-size: auto 50%;

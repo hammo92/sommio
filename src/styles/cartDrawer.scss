@@ -7,7 +7,7 @@
             top: 0;
             bottom: 0;
             width: 100%;
-            // background: rgba($bluezodiac, 0.5);
+            // background: rgba(var(--purpleB), 0.5);
             display: flex;
             flex-wrap: wrap;
             z-index: 9;
@@ -35,7 +35,7 @@
                 top: 0;
                 bottom: 0;
                 left: 0;
-                background: rgba($bluezodiac, 0.5);
+                background: rgba(var(--purpleB), 0.5);
                 z-index: 1;
                 display: none;
                 @media (max-width:$mobilelandscape) {
@@ -45,7 +45,7 @@
 
             .cartsliderbar-boxs {
                 width: 650px;
-                background: $bluezodiac;
+                background: var(--purpleB);
                 margin-left: auto;
                 height: 100%;
                 overflow: auto;
@@ -63,7 +63,7 @@
                 .cartsliderbar-header {
                     display: flex;
                     flex-wrap: wrap;
-                    border-bottom: $purpleborder;
+                    border-bottom: var(--purpleBorder);
                     padding: 25px;
                     align-items: center;
 
@@ -73,7 +73,7 @@
 
                     h3 {
                         font-size: 60px;
-                        color: $white;
+                        color: var(--white);
                         line-height: 1;
                         font-weight: 900;
 
@@ -89,7 +89,7 @@
                         margin-left: auto;
                         opacity: 1;
                         svg {
-                            fill: $apricotpeach;
+                            fill: var(--portage);
                             @media (max-width:$mobilelandscape) {
                                 height:18px;
                             }
@@ -117,7 +117,7 @@
                             width: 100%;
                             display: block;
                             font-size: 26px;
-                            color: $white;
+                            color: var(--white);
                             margin: 0 0 10px;
                             text-align: center;
                             @media (max-width:$mobilelandscape) {
@@ -184,7 +184,7 @@
                             h4 {
                                 font-size: $FontSize29;
                                 font-weight: 900;
-                                color: $white;
+                                color: var(--white);
                                 line-height: 1;
                                 margin: 0 0 10px 0;
                                 @media (max-width:$desktop18) {
@@ -204,7 +204,7 @@
                                     padding: 0;
                                     margin: 0;
                                     font-size: $FontSize18;
-                                    color: $bridalheath;
+                                    color: var(--offWhite);
                                     line-height: 1.4;
                                     font-weight: 400;
 
@@ -222,7 +222,7 @@
                                 display: block;
                                 font-size: $FontSize20;
                                 font-weight: 900;
-                                color: $white;
+                                color: var(--white);
                                 margin: 0;
                                 line-height: 1;
 
@@ -252,7 +252,7 @@
                                     width: 20px;
                                     height: 20px;
                                     font-size: 19px;
-                                    color: $white;
+                                    color: var(--white);
                                     font-weight: 500;
                                     justify-content: center;
                                     display: flex;
@@ -275,7 +275,7 @@
                                     }
 
                                     &.minus-icon:hover::before {
-                                        border-bottom-color: $madang;
+                                        border-bottom-color: var(--portage);
                                     }
 
                                     &.plus-icon::before {
@@ -290,7 +290,7 @@
                                     }
 
                                     &.plus-icon:hover::before {
-                                        border-top-color: $madang;
+                                        border-top-color: var(--portage);
                                     }
 
                                 }
@@ -299,7 +299,7 @@
                                     display: block;
                                     width: 100%;
                                     font-size: $FontSize25;
-                                    color: $white;
+                                    color: var(--white);
                                     font-weight: 900;
                                     line-height: 1;
                                     margin: 0;
@@ -316,7 +316,7 @@
                             .remove-link {
                                 display: block;
                                 font-size: 18px;
-                                color: $apricotpeach;
+                                color: var(--portage);
                                 font-weight: 500;
                                 margin: 10px 0 0 0;
                                 line-height: 1;
@@ -353,12 +353,12 @@
                                 display: flex;
                                 flex-wrap: wrap;
                                 font-size: 20px;
-                                color: $white;
+                                color: var(--white);
                                 margin: 0;
                                 padding: 0.85em 0.5em;
                                 line-height: 1;
                                 &:last-child {
-                                    border-top:$purpleborder;
+                                    border-top:var(--purpleBorder);
                                 }
                                 @media (max-width:$mobilelandscape) {
                                     font-size: $FontSize16;

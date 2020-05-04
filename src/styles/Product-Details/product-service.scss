@@ -1,7 +1,7 @@
 .product-service {
     display: flex;
     flex-wrap: wrap;
-    border-bottom: $purpleborder;
+    border-bottom: var(--purpleBorder);
     padding: 0px 0;
 
     @media (max-width:$ipadportrait) {
@@ -16,8 +16,8 @@
         padding: 20px;
         align-content: center;
         justify-content: space-between;
-        border-left: $purpleborder;
-        // background: $purpleA;
+        border-left: var(--purpleBorder);
+        // background: var(--purpleA);
 
         @media (max-width:$ipadlandscape) {
             padding: 10px;
@@ -35,7 +35,7 @@
         p {
             margin: 0 0 0 20px;
             font-size: $FontSize24;
-            color: $white;
+            color: var(--white);
             font-weight: 700;
 
             @media (max-width:$ipadlandscape) {
@@ -45,7 +45,7 @@
         }
         svg {
             font-size: 35px;
-            color:$white;
+            color:var(--white);
 
             @media (max-width: $desktop18) {
               height: 30px;

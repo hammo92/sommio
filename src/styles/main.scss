@@ -92,7 +92,7 @@
 
 .custom_cart {
   width: 100%;
-  background: $purpleC;
+  background: var(--purpleC);
   padding: 0px;
   display: flex;
 
@@ -217,7 +217,7 @@
 
   &.purple {
     h2.leading-loose {
-      color: $white;
+      color: var(--white);
 
       @media (max-width: $ipadportrait) {
         opacity: 1;
@@ -236,7 +236,7 @@
 
   &.purple {
     h2.leading-loose {
-      color: $white;
+      color: var(--white);
 
       @media (max-width: $ipadportrait) {
         opacity: 1;
@@ -256,7 +256,7 @@
 
   &.purple {
     h2.leading-loose {
-      color: $white;
+      color: var(--white);
 
       @media (max-width: $ipadportrait) {
         opacity: 1;
@@ -279,8 +279,8 @@
 .cart_first.purple,
 .cart_second.purple,
 .cart_third.purple {
-  background: $purpleA;
-  color: $white;
+  background: var(--purpleA);
+  color: var(--white);
 
   @media (max-width: $ipadportrait) {
     z-index: 9;
@@ -307,7 +307,7 @@
       .col-12 {
         padding: 0px;
         &:nth-child(2) {
-          border-left: 2px solid $purpleA;
+          border-left: 2px solid var(--purpleA);
         }
       }
     }
@@ -346,7 +346,7 @@
     transition: all 300ms ease 0s;
     color: #f8f8f8;
     border: 2px solid transparent;
-    background: $purpleB;
+    background: var(--purpleB);
     padding-left: 8px;
   }
 
@@ -370,7 +370,7 @@
     transition: all 300ms ease 0s;
     color: #f8f8f8;
     border: 2px solid transparent;
-    background: $purpleB;
+    background: var(--purpleB);
   }
 }
 
@@ -398,10 +398,10 @@
   }
 
   button {
-    background-color: $madang;
+    background-color: var(--portage);
     width: 100%;
     height: 60px;
-    color: $midnight;
+    color: var(--midnight);
     font-size: 20px;
     font-weight: 700;
     border: none;
@@ -514,7 +514,7 @@
       top: 50%;
       transform: translateY(-50%);
       font-size: 20px;
-      color: $white;
+      color: var(--white);
       text-decoration: none;
       line-height: 1;
       font-weight: bold;
@@ -599,14 +599,14 @@
     h5 {
       display: block;
       font-size: 16px;
-      color: $white;
+      color: var(--white);
       margin: 0 0 5px;
     }
 
     .qty-text {
       display: block;
       font-size: 14px;
-      color: $white;
+      color: var(--white);
       margin: 0;
     }
   }
@@ -614,7 +614,7 @@
   .price {
     width: 60px;
     font-size: 14px;
-    color: $white;
+    color: var(--white);
     text-align: right;
   }
 }
@@ -636,7 +636,7 @@
         display: flex;
         flex-wrap: wrap;
         font-size: 14px;
-        color: $white;
+        color: var(--white);
         padding: 10px 0;
 
         &:last-child {
@@ -650,7 +650,7 @@
 .DeliveryInformationWrap{
   .EmailNotYou{
     margin:0 0 1rem ;
-    background:$midnight;
+    background:var(--midnight);
     padding:.5rem .8rem .6rem;
     p{
       font-size:1rem;
@@ -685,13 +685,13 @@
         }
         li{
           display:block;
-          background:$purpleB;
+          background:var(--purpleB);
           border-radius:6px;
           margin:0 0 1rem;
           padding:.6rem 1rem;
           &.addressList{
             background:#8db1bf;
-            color:$purpleC;
+            color:var(--purpleC);
           }
           .d-flex{
             @media(max-width:767px){
@@ -725,7 +725,7 @@
     .AddressListBTN{
       margin:-1.7rem 0 1rem;
       button{
-        background: $midnight;
+        background: var(--midnight);
         border: 0;
         width: 100%;
         border-radius: 0 0 6px 6px;
@@ -733,9 +733,9 @@
         margin: 0;
         font-weight: 700;
         font-size: 1.2rem;
-        color:$madang;
+        color:var(--portage);
         + button{
-          background:$midnight;
+          background:var(--midnight);
           color:#8db1bf;
           margin: 1rem 0 0;
           width: 100%;

@@ -1,5 +1,5 @@
 .home-service {
-  background: $purpleB;
+  background: var(--purpleB);
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -20,8 +20,8 @@
     flex-wrap: wrap;
     align-items: center;
     padding: 35px 70px;
-    border-bottom: $purpleborder;
-    border-left: $purpleborder;
+    border-bottom: var(--purpleBorder);
+    border-left: var(--purpleBorder);
     justify-content: space-between;
     flex: 1;
     &:last-child {
@@ -43,7 +43,7 @@
 
     svg {
       font-size: 35px;
-      color: $white;
+      color: var(--white);
 
       @media (max-width: $desktop18) {
         height: 30px;
@@ -53,7 +53,7 @@
     p {
       padding: 0 0 0 30px;
       font-size: 30px;
-      color: $white;
+      color: var(--white);
       line-height: 1;
       font-weight: 900;
 

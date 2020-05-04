@@ -1,7 +1,7 @@
 .product-name {
     display: flex;
     flex-wrap: wrap;
-    border-bottom: $purpleborder;
+    border-bottom: var(--purpleBorder);
     padding: 20px 0;
     position: relative;
     z-index: 2;
@@ -15,7 +15,7 @@
         padding: 20px 30px;
         border-radius: 10px 10px 0 0;
         margin-top: -10px;
-        background-color: $midnight;
+        background-color: var(--midnight);
         position: relative;
     }
 
@@ -27,7 +27,7 @@
     h3 {
         margin: 0px;
         font-size: 130px;
-        color: $white;
+        color: var(--white);
         font-weight: 900;
         width: 80%;
         line-height: 1;
@@ -61,7 +61,7 @@
         flex-wrap: wrap;
         align-items: flex-end;
         font-size: $FontSize25;
-        color: $white;
+        color: var(--white);
         font-weight: 500;
         padding: 0 20px 0 0;
 

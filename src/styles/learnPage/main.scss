@@ -1,8 +1,8 @@
 .learnPage{
-    color:$white;
+    color:var(--white);
     h1 {
         font-size: 130px;
-        color: $white;
+        color: var(--white);
         font-weight: 900;
         line-height: 1.2;
         margin: 0 0 15px 0;

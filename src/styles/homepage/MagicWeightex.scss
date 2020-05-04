@@ -10,7 +10,7 @@
     h2 {
       font-size: 160px;
       font-weight: 700;
-      color: $lightgreen;
+      color: var(--lightgreen);
       white-space: nowrap;
 
       @media (max-width: $desktophidpi) {
@@ -25,7 +25,7 @@
 
   p {
     font-size: $FontSize30;
-    color: $white;
+    color: var(--white);
     line-height: 1.2;
     margin: 0 0 70px;
 
@@ -41,14 +41,14 @@
     //     padding-right: 15px;
 
     //     &:last-child {
-    //       color: $madang;
+    //       color: var(--portage);
     //     }
     //   }
     // }
 
     // p {
     //   font-size: 34px;
-    //   color: $white;
+    //   color: var(--white);
     //   line-height: 1.2;
     //   margin: 0 0 70px;
 

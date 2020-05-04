@@ -1,13 +1,14 @@
 header {
   @media (max-width: $ipadportrait) {
     padding: 1em 15px;
-    border-bottom: solid 2px rgba($madang, 0.3);
+    //border-bottom: var(--purpleBorder);
   }
+  background: var(--purpleA);
 }
 
 .navbar {
   padding: 0;
-  border-bottom: solid 2px rgba($madang, 0.3);
+  //border-bottom: var(--purpleBorder);
   align-content: center;
 
   @media (max-width: $ipadportrait) {
@@ -63,7 +64,7 @@ header {
       left: 0;
       right: 0;
       top: 100%;
-      background: $midnight;
+      background: var(--midnight);
       z-index: 9999;
     }
   }
@@ -83,7 +84,8 @@ header {
           background: none;
           border: 0;
           outline: 0;
-          border-left: solid 2px rgba($madang, 0.3);
+          //background: var(--purpleB);
+          //border-left: var(--purpleBorder);
         }
 
         a {
@@ -92,7 +94,7 @@ header {
           line-height: 1;
           font-weight: 700;
           font-size: $FontSize24;
-          color: $white;
+          color: var(--white);
           text-decoration: none;
           position: relative;
 
@@ -103,7 +105,7 @@ header {
               left: 0;
               right: 0;
               bottom: 0;
-              border-bottom: solid 3px rgba($madang, 0.5);
+              border-bottom: solid 3px rgba(var(--portage), 0.5);
             }
           }
         }
@@ -121,12 +123,12 @@ header {
     }
 
     &.cart-boxs {
-      border-left: solid 2px rgba($madang, 0.3);
+      //border-left: var(--purpleBorder);
       padding: 36px 30px;
 
       @media (max-width: $ipadportrait) {
         padding: 10px 0px;
-        border-left: 0;
+        //border-left: 0;
       }
 
       .nav-item {
@@ -153,9 +155,9 @@ header {
             justify-content: center;
             align-content: center;
             font-size: $FontSize23;
-            color: $white;
+            color: var(--white);
             font-weight: 700;
-            background: $lightgreen;
+            background: var(--lightgreen);
             border-radius: 50%;
             margin-left: 10px;
             line-height: 1;
@@ -172,7 +174,7 @@ header {
           top: 0;
           bottom: 0;
           width: 100%;
-          // background: rgba($bluezodiac, 0.5);
+          // background: rgba(var(--purpleB), 0.5);
           display: flex;
           flex-wrap: wrap;
           z-index: 9;
@@ -200,14 +202,14 @@ header {
             top: 0;
             bottom: 0;
             left: 0;
-            background: rgba($bluezodiac, 0.5);
+            background: rgba(var(--purpleB), 0.5);
             z-index: 1;
             display: none;
           }
 
           .cartsliderbar-boxs {
             width: 650px;
-            background: $bluezodiac;
+            background: var(--purpleB);
             margin-left: auto;
             height: 100%;
             overflow: auto;
@@ -221,7 +223,7 @@ header {
             .cartsliderbar-header {
               display: flex;
               flex-wrap: wrap;
-              border-bottom: $purpleborder;
+              border-bottom: var(--purpleBorder);
               padding: 25px;
               align-items: center;
 
@@ -231,7 +233,7 @@ header {
 
               h3 {
                 font-size: 60px;
-                color: $white;
+                color: var(--white);
                 line-height: 1;
                 font-weight: 900;
 
@@ -245,7 +247,7 @@ header {
                 opacity: 1;
 
                 svg {
-                  fill: $apricotpeach;
+                  fill: var(--portage);
                 }
               }
             }
@@ -268,7 +270,7 @@ header {
                   width: 100%;
                   display: block;
                   font-size: 26px;
-                  color: $white;
+                  color: var(--white);
                   margin: 0 0 10px;
                   text-align: center;
                 }
@@ -322,7 +324,7 @@ header {
                   h4 {
                     font-size: $FontSize29;
                     font-weight: 900;
-                    color: $white;
+                    color: var(--white);
                     line-height: 1;
                     margin: 0 0 10px 0;
 
@@ -340,7 +342,7 @@ header {
                       padding: 0;
                       margin: 0;
                       font-size: $FontSize18;
-                      color: $bridalheath;
+                      color: var(--offWhite);
                       line-height: 1.4;
                       font-weight: 400;
 
@@ -354,7 +356,7 @@ header {
                     display: block;
                     font-size: $FontSize20;
                     font-weight: 900;
-                    color: $white;
+                    color: var(--white);
                     margin: 0;
                     line-height: 1;
 
@@ -383,7 +385,7 @@ header {
                       width: 20px;
                       height: 20px;
                       font-size: 19px;
-                      color: $white;
+                      color: var(--white);
                       font-weight: 500;
                       justify-content: center;
                       display: flex;
@@ -404,7 +406,7 @@ header {
                       }
 
                       &.minus-icon:hover::before {
-                        border-bottom-color: $madang;
+                        border-bottom-color: var(--portage);
                       }
 
                       &.plus-icon::before {
@@ -419,7 +421,7 @@ header {
                       }
 
                       &.plus-icon:hover::before {
-                        border-top-color: $madang;
+                        border-top-color: var(--portage);
                       }
                     }
 
@@ -427,7 +429,7 @@ header {
                       display: block;
                       width: 100%;
                       font-size: $FontSize25;
-                      color: $white;
+                      color: var(--white);
                       font-weight: 900;
                       line-height: 1;
                       margin: 0;
@@ -443,7 +445,7 @@ header {
                   .remove-link {
                     display: block;
                     font-size: 18px;
-                    color: $apricotpeach;
+                    color: var(--portage);
                     font-weight: 500;
                     margin: 10px 0 0 0;
                     line-height: 1;
@@ -473,13 +475,13 @@ header {
                     display: flex;
                     flex-wrap: wrap;
                     font-size: 20px;
-                    color: $white;
+                    color: var(--white);
                     margin: 0;
                     padding: 0.85em 0.5em;
                     line-height: 1;
 
                     &:last-child {
-                      border-top: $purpleborder;
+                      border-top: var(--purpleBorder);
                     }
                   }
                 }

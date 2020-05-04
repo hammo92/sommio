@@ -93,6 +93,7 @@ const ProductPageInner = ({
         )}
       />
       <div className="container-fluid">
+        
         <div className="row no-gutters">
           <div className="col-12 col-lg-7 col-xl-8">
             <ProductService />
@@ -100,14 +101,16 @@ const ProductPageInner = ({
               <img src={inHand} alt="" />
             </div>
             <ProductTitle title={product.name} />
+            
           </div>
           <div className="col-12 col-lg-5 col-xl-4">
             <ProductReview />
           </div>
+          
 
           <div className="col-12">
             <div className="blanket-bg">
-              <div className="row productMain no-gutters">
+              <div className="row no-gutters productMain">
                 <div className="col-12 col-lg-5 col-xl-4">
                   <AddToCart
                     onChangeSelectedProduct={onChangeSelectedProduct}

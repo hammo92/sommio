@@ -45,7 +45,7 @@
     }
     h2{
       font-size: 80px;
-      color: $offWhite;
+      color: var(--offWhite);
       font-weight: 900;
       line-height: 100px;
       margin: 0 30px;
@@ -59,7 +59,7 @@
 
     h1 {
       font-size: 110px;
-      color: $offWhite;
+      color: var(--offWhite);
       font-weight: 900;
       line-height: 100px;
       margin: 30px 0 15px 30px;
@@ -85,7 +85,7 @@
 
       @media (max-width: $mobileportrait) {
         font-size: 44px;
-        color: $bridalheath;
+        color: var(--offWhite);
       }
 
       span {
@@ -93,7 +93,7 @@
         padding-right: 15px;
         .color{
           &:last-child {
-            color: $lightgreen;
+            color: var(--lightgreen);
           }
         }
 
@@ -152,7 +152,7 @@
         h2 {
           display: block;
           font-size: 90px;
-          color: $white;
+          color: var(--white);
           margin: 0;
           line-height: 1;
           font-weight: 900;
@@ -227,7 +227,7 @@
           flex-wrap: wrap;
           justify-content: center;
           align-items: center;
-          background-color: $madang;
+          background-color: var(--portage);
           border-radius: 50%;
 
           @media (max-width: $desktopmdpi) {
@@ -245,7 +245,7 @@
 
     p {
       font-size: $FontSize25;
-      color: $portage;
+      color: var(--portage);
       line-height: 1.5;
       margin-top: 15px;
       font-weight:500;
@@ -262,7 +262,7 @@
 
       @media (max-width: $mobileportrait) {
         font-size: 16px;
-        color: $linkwater;
+        color: var(--offWhite);
         line-height: 1.4;
       }
 

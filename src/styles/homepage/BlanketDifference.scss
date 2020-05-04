@@ -1,7 +1,7 @@
 .blanketdifference-main {
   display: block;
-  // border-top: solid 1px rgba($white, 0.3);
-  // border-bottom: solid 1px rgba($white, 0.3);
+  // border-top: solid 1px rgba(var(--white), 0.3);
+  // border-bottom: solid 1px rgba(var(--white), 0.3);
 
   @media (max-width: $mobileportrait) {
     border: 0;
@@ -14,7 +14,7 @@
       .nav-link {
         padding: 43px 0;
         font-size: 70px;
-        color: rgba($bridalheath, 0.64);
+        color: rgba(var(--offWhite), 0.64);
         text-align: center;
         font-weight: 900;
         border: 0;
@@ -31,8 +31,8 @@
         }
 
         &.active {
-          background: $purpleA;
-          color: $portage;
+          background: var(--purpleA);
+          color: var(--portage);
         }
       }
     }
@@ -40,13 +40,13 @@
 
   .tab-content {
     .tab-pane {
-      background: $purpleA;
+      background: var(--purpleA);
     }
   }
 
   .weightex-box {
     padding: 20px 6rem 40px;
-    border-bottom: solid 2px rgba($madang, 0.3);
+    border-bottom: var(--purpleBorder);
     text-align: center;
 
     @media (max-width: $desktophidpi) {
@@ -68,7 +68,7 @@
   }
 
   .bor-right {
-    border-right: solid 2px rgba($madang, 0.3);
+    border-right: var(--purpleBorder);
 
     @media (max-width: $ipadportrait) {
       border: 0;
@@ -78,7 +78,7 @@
   h2 {
     text-align: center;
     font-size: 56px;
-    color: $lightgreen;
+    color: var(--lightgreen);
     font-weight: 700;
     margin: 0 0 20px;
     line-height: 1;
@@ -100,7 +100,7 @@
   p {
     display: block;
     font-size: $FontSize25;
-    color: $white;
+    color: var(--white);
     line-height: 35px;
     margin: 0;
 
@@ -161,7 +161,7 @@
       display: block;
       width: 100%;
       font-size: 35px;
-      color: $lightgreen;
+      color: var(--lightgreen);
       font-weight: 700;
       margin: 1rem 0 0 0;
       line-height: 1;
@@ -206,7 +206,7 @@
       text-align: center;
       width: 100%;
       font-size: 35px;
-      color: $lightgreen;
+      color: var(--lightgreen);
       font-weight: 700;
       margin: 10px 0 25px 0;
 
@@ -227,7 +227,7 @@
     p {
       width: 100%;
       font-size: 25px;
-      color: $white;
+      color: var(--white);
       margin: 0;
       text-align: center;
 

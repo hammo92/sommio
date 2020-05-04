@@ -6,7 +6,7 @@
   h3 {
     display: block;
     font-size: 130px;
-    color: $white;
+    color: var(--white);
     font-weight: 900;
     margin: 0 0 50px 0;
     line-height: 1;
@@ -42,7 +42,7 @@
     position: relative;
 
     .review-boxs {
-      background: $purpleA;
+      background: var(--purpleA);
       margin-right: 20px;
       padding: 20px 25px;
       width: auto !important;
@@ -51,7 +51,7 @@
       @media (max-width: $desktop18) {
         margin-right: 15px;
         padding: 25px;
-        background: $purpleA;
+        background: var(--purpleA);
       }
       @media (max-width: $mobileportrait) {
         border-radius: 10px;
@@ -76,7 +76,7 @@
           display: block;
           font-size: $FontSize18;
           font-weight: 700;
-          color: $white;
+          color: var(--white);
           margin: 0;
 
           @media (max-width: $mobileportrait) {
@@ -113,7 +113,7 @@
       p {
         margin: 15px 0 50px 0;
         font-size: $FontSize25;
-        color: $white;
+        color: var(--white);
         line-height: 30px;
         font-weight: 400;
 
@@ -129,7 +129,7 @@
 
       span.date-text {
         font-size: $FontSize20;
-        color: $white;
+        color: var(--white);
         font-weight: 700;
         width: 100%;
         display: block;
@@ -184,7 +184,7 @@
 
       &:before {
         font-size: 45px;
-        background-color: rgba($madang, 0.4);
+        background-color: rgba(var(--portage), 0.4);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: auto 50%;

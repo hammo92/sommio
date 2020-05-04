@@ -3,13 +3,13 @@
   margin:auto;
 }
 body {
-  background: $midnight;
+  background: var(--midnight);
   font-family: $tksofiapro;
   user-select: none;
   cursor: url('/cursor.svg'), auto;
 
   &.so-checkout-page {
-    background: $midnight;
+    background: var(--midnight);
   }
 
   &.cartopen {
@@ -45,16 +45,16 @@ p {
   margin: 0px;
 }
 .borderBottom {
-  border-bottom: $purpleborder;
+  border-bottom: var(--purpleBorder);
 }
 .borderLeft {
-  border-left: $purpleborder;
+  border-left: var(--purpleBorder);
 }
 .borderTop {
-  border-top: $purpleborder;
+  border-top: var(--purpleBorder);
 }
 .borderRight {
-  border-right: $purpleborder;
+  border-right: var(--purpleBorder);
 }
 .table {
   .product-image {
@@ -152,13 +152,13 @@ p {
 .autocomplete-dropdown-container {
   color: #fff;
   width: 100%;
-  background: $purpleB;
+  background: var(--purpleB);
 
   .suggestion-item {
     padding: 5px 10px;
     color: #8db1bf;
     line-height: 1.2;
-    background: $purpleB;
+    background: var(--purpleB);
   }
   .suggestion-item--active {
     color: #ffffff;

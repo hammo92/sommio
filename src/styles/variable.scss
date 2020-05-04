@@ -4,28 +4,34 @@ $tkpoynteroldstyletext: 'poynter-oldstyle-text', serif;
 $tkitcavantgardegothicpro: 'itc-avant-garde-gothic-pro', sans-serif;
 
 /* border */
-$purpleborder: solid 2px rgba(216, 168, 255, 0.3);
+$purpleBorder: solid 2px rgba(216, 168, 255, 0.3);
 
-/* Color */
-$white: #fff;
-$offWhite:#F1E3D8;
-$black: #000;
-$midnight: #080a1e;
-$apricotpeach: #f9bebd;
-$bluezodiac: #0d223e;
-$purpleA: #1a172f;
-$purpleB: #2c2444;
-$purpleC: #080a1e;
-$perano: #acc7f0;
-$violet: #1a0e40;
-$azalea: #f7d3d5;
-$madang: #d8a8ff;
-$lightBlue: #a6daf0;
-$lightPurple: #cbacf0;
-$linkwater: #f4f7fc;
-$bridalheath: #fff9f4;
-$lightgreen: #7dc4b5;
-$portage: #D7C4FF;
+:root {
+    /* colors */
+    --white: #ffffff;
+    --offWhite:#F1E3D8;
+    --midnight: #080a1e;
+    --purpleA: #1a172f;
+    --purpleB: #2c2444;
+    --purpleC: #080a1e;
+    --lightgreen: #7dc4b5;
+    --portage: #D7C4FF;
+
+    /* border */
+    --purpleBorder:solid 2px rgba(216, 168, 255, 0.3);
+
+
+}
+
+[data-theme="light"] {
+    --primary-color: #9A97F3;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --bg-color: #161625;
+    --heading-color: #818cab;
+}
+
+
 
 /* Size */
 $FontSize14: 14px;

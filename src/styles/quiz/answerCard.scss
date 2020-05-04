@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   flex: 1;
-  background: $purpleB;
+  background: var(--purpleB);
   align-items: center;
   padding: 0 75px 0 40px;
   cursor: pointer;
@@ -19,20 +19,20 @@
   }
 
   &.active {
-    background: $lightgreen;
-    color: $violet;
+    background: var(--lightgreen);
+    color: var(--midnight);
     span {
-      color: $violet;
+      color: var(--midnight);
     }
 
     &:hover {
-      background: $lightgreen;
-      color: $violet;
+      background: var(--lightgreen);
+      color: var(--midnight);
     }
   }
 
   &:hover {
-    background: $madang;
+    background: var(--portage);
   }
 
   span {

@@ -54,7 +54,7 @@
                 &.slick-active {
 
                     button {
-                        background: $madang;
+                        background: var(--portage);
                     }
 
                 }
@@ -62,7 +62,7 @@
                 button {
                     width: 18px;
                     height: 18px;
-                    background: $white;
+                    background: var(--white);
                     border-radius: 50%;
 
                     &:before {
@@ -131,7 +131,7 @@
         bottom:0px;
         z-index:999;
         .photoIndicator{
-            background:$lightgreen;
+            background:var(--lightgreen);
             position:absolute;
             height:100%;
         }

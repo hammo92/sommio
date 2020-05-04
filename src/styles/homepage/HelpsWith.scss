@@ -144,7 +144,7 @@
 
       svg {
         font-size: 30px;
-        color: $midnight;
+        color: var(--midnight);
         cursor: pointer;
         transition: opacity 0.3s;
 
@@ -170,7 +170,7 @@
     h3 {
       display: block;
       font-size: 50px;
-      color: $offWhite;
+      color: var(--offWhite);
       font-weight: 700;
       padding-right: 30px;
 
@@ -269,7 +269,7 @@
 
       h2 {
         font-size: 80px;
-        color: $offWhite;
+        color: var(--offWhite);
         display: block;
         line-height: 1;
         margin: 0;
@@ -289,7 +289,7 @@
       }
 
       a.btn-link {
-        color: $white;
+        color: var(--white);
         font-size: $FontSize30;
         font-weight: 300;
         line-height: 1;

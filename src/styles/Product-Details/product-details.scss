@@ -44,7 +44,7 @@
         h5 {
             display: block;
             font-size: 60px;
-            color: $white;
+            color: var(--white);
             line-height: 1;
             font-weight: 900;
             margin: 0 0 30px;
@@ -58,7 +58,7 @@
             display: block;
             font-family: $tksofiapro;
             font-size: $FontSize30;
-            color: $white;
+            color: var(--white);
             line-height: 42px;
             margin: 0 10px 80px 0;
 

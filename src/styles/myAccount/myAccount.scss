@@ -25,7 +25,7 @@
         font-weight:900;
         display:block;
         line-height:100%;
-        color:$white;
+        color:var(--white);
         @media (max-width:$mobilelandscape) {
             font-size: 30px;
             margin: 10px 0 15px;
@@ -46,13 +46,13 @@
             margin:0 0 28px;
             padding:0;
             display:block;
-            color:$white;
+            color:var(--white);
             font-size:50px;
             font-family:$tksofiapro;
         }
     }
     .OrderListBox{
-        background:$purpleA;
+        background:var(--purpleA);
         border-radius:6px;
         margin-bottom: 55px;
         .OrderListBoxHead{
@@ -65,12 +65,12 @@
                 font-family:$tksofiapro;
                 font-weight:900;
                 display:block;
-                color:$white;
+                color:var(--white);
                 line-height:100%;
                 margin:0;
                 padding:0;
                 span{
-                    color:$lightgreen;
+                    color:var(--lightgreen);
                 }
                 @media (max-width:$mobilelandscape) {
                     font-size:24px;
@@ -131,7 +131,7 @@
                         font-weight:900;
                         display:block;
                         line-height:100%;
-                        color:$white;
+                        color:var(--white);
                         @media (max-width:$mobilelandscape) {
                             font-size:25px;
                         }
@@ -144,7 +144,7 @@
                         font-weight:500;
                         display:block;
                         line-height:normal;
-                        color:$white;
+                        color:var(--white);
                         @media (max-width:$mobilelandscape) {
                             font-size:18px;
                         }
@@ -159,7 +159,7 @@
                         font-weight:500;
                         display:block;
                         line-height:100%;
-                        color:$madang;
+                        color:var(--portage);
                         @media (max-width:$mobilelandscape) {
                             font-size:18px;
                             margin:10px 0 0;
@@ -178,12 +178,12 @@
                 font-family:$tksofiapro;
                 font-weight:900;
                 display:block;
-                color:$white;
+                color:var(--white);
                 line-height:100%;
                 margin:0;
                 padding:0;
                 span{
-                    color:$lightgreen;
+                    color:var(--lightgreen);
                 }
                 @media (max-width:$mobilelandscape) {
                     font-size:24px;
@@ -273,7 +273,7 @@
                         border-radius:6px;
                         height:auto;
                         opacity:1;
-                        &::-webkit-input-placeholder{color:$white;}
+                        &::-webkit-input-placeholder{color:var(--white);}
                         &::-moz-placeholder { color:#fff;}
                         &:-ms-input-placeholder { color:#fff;}
                         &:-moz-placeholder { color:#fff;}
@@ -385,7 +385,7 @@
                         border-radius:6px;
                         opacity:1;
                         height:auto;
-                        &::-webkit-input-placeholder{color:$white;}
+                        &::-webkit-input-placeholder{color:var(--white);}
                         &::-moz-placeholder { color:#fff;}
                         &:-ms-input-placeholder { color:#fff;}
                         &:-moz-placeholder { color:#fff;}
@@ -409,7 +409,7 @@
                 border-radius:6px;
                 opacity:1;
                 height:auto;
-                &::-webkit-input-placeholder{color:$white;}
+                &::-webkit-input-placeholder{color:var(--white);}
                 &::-moz-placeholder { color:#fff;}
                 &:-ms-input-placeholder { color:#fff;}
                 &:-moz-placeholder { color:#fff;}
