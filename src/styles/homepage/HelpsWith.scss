@@ -44,6 +44,8 @@
   position: relative;
   overflow: hidden;
   padding-bottom: 40px;
+  background:#030417;
+
 
   &.shiftUp {
     margin-top: -50px;
@@ -86,7 +88,7 @@
       position: relative;
       padding: 20px 0;
       align-items: center;
-      justify-content: space-between;
+      //justify-content: space-between;
     }
   }
 
@@ -167,8 +169,8 @@
 
     h3 {
       display: block;
-      font-size: 60px;
-      color: $white;
+      font-size: 50px;
+      color: $offWhite;
       font-weight: 700;
       padding-right: 30px;
 
@@ -211,8 +213,8 @@
     width: 100%;
     background: linear-gradient(
       0deg,
-      rgba(8, 10, 30, 0.9) 0%,
-      rgba(8, 10, 30, 0) 70%
+      rgba(8, 10, 30, 0.9) 20%,
+      rgba(8, 10, 30, 0) 90%
     );
   }
 
@@ -223,22 +225,22 @@
     border-radius: 5px;
     position: absolute;
     will-change: transform, width, opacity;
-    height: 400px;
+    height: 350px;
 
     @media (max-width: $desktop18) {
-      height: 370px;
+      height: 320px;
     }
 
     @media (max-width: $desktophidpi) {
-      height: 440px;
+      height: 350px;
     }
 
     @media (max-width: $ipadlandscape) {
-      height: 360px;
+      height: 320px;
     }
 
     @media (max-width: $ipadportrait) {
-      height: 420px;
+      height: 320px;
     }
 
     @media (max-width: $mobileportrait) {
@@ -266,8 +268,8 @@
       }
 
       h2 {
-        font-size: 100px;
-        color: $white;
+        font-size: 80px;
+        color: $offWhite;
         display: block;
         line-height: 1;
         margin: 0;

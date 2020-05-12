@@ -22,25 +22,45 @@ const Goodbye = () => {
     }
   `)
   return (
-    <div className="goodquiz-boxs">
-      <Head type={1}>Goodbye stress, hello rest.</Head>
-      <Img fluid={Top.file.childImageSharp.fluid} />
-      <div className="goodquiz-bottom">
-        <div className="goodquiz-content">
-          <h2>Explore the blanket </h2>
-          <Para>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
+    <div className="goodquiz-bg container-fluid">
+      <div className="row d-flex align-items-top">
+        <div className="col-7 goodquiz-boxs above-image">
+          <Head type={1}>Goodbye Stress</Head>
+          <Head type={1}>Hello rest...</Head>
+        </div>
+        <div className="col-5 goodquiz-boxs">
+          <Para >Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the
+            ever since the Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. 
           </Para>
         </div>
-        <div className="goodquiz-view">
-          <Button type="round large" link="/products/DEWR3J">
-            <FontAwesomeIcon icon={faEye} />
-          </Button>
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <div className="goodquiz-boxs">
+      
+            <Img fluid={Top.file.childImageSharp.fluid} />
+              {/*<div className="goodquiz-bottom">
+                <div className="goodquiz-content">
+                  <h2>Explore the blanket </h2>
+                  <Para>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy text
+                    ever since the
+                  </Para>
+                </div>
+                <div className="goodquiz-view">
+                  <Button type="round large" link="/products/DEWR3J">
+                    <FontAwesomeIcon icon={faEye} />
+                  </Button>
+                </div>
+              </div>
+              */}
         </div>
       </div>
     </div>
+  </div>
   )
 }
 export default Goodbye

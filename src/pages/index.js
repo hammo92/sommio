@@ -16,6 +16,7 @@ import { useStateValue } from '../context/SiteContext'
 import { animated, useSpring } from 'react-spring'
 import Footer from '../components/HomePage/footer'
 import ScrollText from '../components/HomePage/scrollText'
+import Head from '../components/AnimatedText/Head'
 
 const TRANSITION_LENGTH = 1
 
@@ -52,10 +53,23 @@ export const IndexInner = ({ transitionStatus }) => {
 
   return (
     <animated.div style={fadeUp} className="homepage-bg">
-      <div className="goodquiz-bg container-fluid">
-        {/* <div className="container-fluid"> */}
+      <Goodbye />
+      <div className="container-fluid goodquiz-bg">
+        <div className="row d-flex align-items-center">
+          <div className="col-12 col-lg-8 goodquiz-boxs">
+            <Head type={2}>Our beautifully crafted blankets are designed for the ultimate weighted experience.</Head>
+          </div>
+          <div className="col-12 col-lg-4">
+            <Quiz />
+          </div>
+        </div>
+        
+      </div>
+      <Carousel shifted={false} />
+      {/*<div className="goodquiz-bg container-fluid">
+        {/* <div className="container-fluid"> 
         <div className="row no-gutters">
-          <div className="col-12 col-lg-8">
+          <div className="col-12 col-lg-12">
             <Goodbye />
           </div>
           <div className="col-12 col-lg-4 d-flex flex-column-reverse flex-lg-column">
@@ -72,11 +86,12 @@ export const IndexInner = ({ transitionStatus }) => {
           </div>
         </div>
         */}
+      <div className="container-fluid">
 
         <SecretIngredient />
       </div>
 
-      <Carousel shifted={true} />
+      
       <ScrollText text={'Discover Calm • Discover Calm • Discover Calm'} />
       <div className="container-fluid">
         <div className="row no-gutters ">
