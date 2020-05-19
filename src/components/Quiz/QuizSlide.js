@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import AnswerCard from './AnswerCard'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+
 import { useStateValue } from '../../context/SiteContext';
 import YAMLData from '../../../content/Quiz.yaml' 
 import Button from '../Button'
@@ -22,7 +24,7 @@ const QuizSlide = () => {
             nextQuestion: {currentQuestion: quiz.currentQuestion - 1}
           })}
           >
-            <FaArrowLeft />
+            <FontAwesomeIcon icon={faArrowLeft} />
           </div>) : null}
 
           <div className="QuizCard">
@@ -45,7 +47,7 @@ const QuizSlide = () => {
             })}
             >
             <Button type="long">
-              <FaArrowRight />
+              <FontAwesomeIcon icon={faArrowRight} />
             </Button>
             </div>) : null}
           

@@ -2,12 +2,12 @@ import React, { useState, useRef } from 'react'
 import { useStaticQuery } from 'gatsby'
 import { Link } from 'gatsby'
 import { useTrail, animated, useTransition, useSpring } from 'react-spring'
-import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa'
+
 import useMedia from '../../hooks/useMedia'
 import useMeasure from 'react-use-measure'
 import Card from './Card'
 import AnimatedOver from './Animated'
-import Head from '../AnimatedText/Head'
+import AniText from '../AnimatedText/AniText'
 import Button from '../Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
@@ -90,7 +90,7 @@ const HelpsWith = ({ shifted }) => {
     >
       <div className="container-fluid">
         <div className="helpHeading">
-          <Head size="h3">Helps you with</Head>
+          <AniText type="h3">Helps you with</AniText>
           <div className="navIcons">
             <div
               className={page == 0 && 'disabled'}

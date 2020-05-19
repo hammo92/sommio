@@ -3,14 +3,12 @@ import VisibilitySensor from 'react-visibility-sensor'
 import { animated, useTrail } from 'react-spring'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
-const Head = ({ children, head, type }) => {
-  const [isVisible, setVisibility] = useState(true)
-  console.log('children =>', children)
-  console.log('head =>', head)
+const AniText = ({ children, head, type }) => {
+  const [isVisible, setVisibility] = useState(false)
   const onChange = visiblity => {
     setVisibility(visiblity)
   }
-  const CustomTag = type ? `h${type}` : `h3`
+  const CustomTag = type ? type : `p`
 
   const words = children ? children.split(' ') : head ? head.split(' ') : ''
   const config = { mass: 0.1, tension: 900, friction: 40 }
@@ -22,25 +20,26 @@ const Head = ({ children, head, type }) => {
     to: {
       opacity: !isVisible ? 0.3 : 1,
       transform: !isVisible
-        ? `translate3d(0px,30px,0)`
+        ? `translate3d(0px,20px,0)`
         : `translate3d(0px,0px,0)`
     },
     config
   })
+  const factor = Math.random().toString()
 
   return (
     <VisibilitySensor onChange={onChange} partialVisibility scrollCheck={true}>
       <CustomTag>
         {trail.map(({ opacity, transform }, index) => (
           <animated.span
-            key={words[index] + Math.random()}
             style={{ opacity, transform }}
           >
             {words[index]}
           </animated.span>
         ))}
-      </CustomTag>
+        </CustomTag>
     </VisibilitySensor>
+    
   )
 }
-export default Head
+export default AniText

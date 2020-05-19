@@ -3,13 +3,13 @@
   margin:auto;
 }
 body {
-  background: var(--midnight);
+  background: var(--purpleC);
   font-family: $tksofiapro;
   user-select: none;
   cursor: url('/cursor.svg'), auto;
 
   &.so-checkout-page {
-    background: var(--midnight);
+    background: var(--purpleC);
   }
 
   &.cartopen {

@@ -5,8 +5,7 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import PlayIcon from '../../images/play-duotone.png'
 import BlackboardImage from '../../images/blackboard.png'
 import { useStateValue } from '../../context/SiteContext'
-import Para from '../AnimatedText/Para'
-import Head from '../AnimatedText/Head'
+import AniText from '../AnimatedText/AniText'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { animated, useSpring } from 'react-spring'
 import Button from '../Button'
@@ -59,15 +58,15 @@ const Quiz = ({ display }) => {
         </div>
       )}
       <div className={display === 'wide' ? 'col-8 quizText' : 'quizText'}>
-        {display !== 'wide' && (
+        {/*display !== 'wide' && (
             <Img fluid={Blackboard.file.childImageSharp.fluid} />
-        )}
-        <Head>Is a weighted blanket, a good fit for you.</Head>
-        <Para>
+        )*/}
+        <AniText type={display === 'wide' ? "h3" : "h2"}>Is a weighted blanket, a good fit for you?</AniText>
+        <AniText type={"p"}>
           Take our short quiz to discover whether a sommio weighted blanket
           could help you sleep better and enjoy lower stress
-        </Para>
-        <Button link="/QuizNew" type={display === 'wide' && "thin"}>
+        </AniText>
+        <Button link="/QuizNew" type={"thin"}>
           <h3>
           {quiz.currentQuestion !== 0 && quiz.complete
           ? 'Your Results'

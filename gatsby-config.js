@@ -76,6 +76,12 @@ module.exports = {
       }
     },
 
-    'gatsby-plugin-stripe'
+    'gatsby-plugin-stripe',
+    {
+      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
+      options: {
+        devMode: true,
+      },
+    }
   ]
 }

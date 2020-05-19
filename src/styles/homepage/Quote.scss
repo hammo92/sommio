@@ -1,0 +1,21 @@
+.quoteBox{
+    display: block;
+    padding: 150px 50px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    h2{
+        font-size: 80px;
+        color: var(--offWhite);
+        font-weight: 900;
+        line-height: 100px;
+        margin: 0 30px;
+        z-index:2;
+        
+        span {
+          display: inline-block;
+          padding-right: 15px;
+          
+        }
+      }
+}

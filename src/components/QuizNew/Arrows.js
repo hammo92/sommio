@@ -1,5 +1,6 @@
 import React from 'react'
-import { FaArrowLeft, FaArrowRight, FaCircle } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { useStateValue } from '../../context/SiteContext';
 
 import Button from '../Button'
@@ -16,7 +17,7 @@ export const ArrowLeft = () => {
             nextQuestion: quiz.currentQuestion - 1
           })}
           >
-            <FaArrowLeft />
+            <FontAwesomeIcon icon={faArrowLeft} />
           </div>
     )
 }
@@ -48,7 +49,7 @@ export const ArrowRight = ({answered}) => {
         }
       >
         <Button type={`long`} disabled={!answered}>
-             <FaArrowRight />
+          <FontAwesomeIcon icon={faArrowRight} />
         </Button>
         </div>
     )

@@ -16,7 +16,7 @@ import { useStateValue } from '../context/SiteContext'
 import { animated, useSpring } from 'react-spring'
 import Footer from '../components/HomePage/footer'
 import ScrollText from '../components/HomePage/scrollText'
-import Head from '../components/AnimatedText/Head'
+import AniText from '../components/AnimatedText/AniText'
 
 const TRANSITION_LENGTH = 1
 
@@ -56,12 +56,10 @@ export const IndexInner = ({ transitionStatus }) => {
       <Goodbye />
       <div className="container-fluid goodquiz-bg">
         <div className="row d-flex align-items-center">
-          <div className="col-12 col-lg-8 goodquiz-boxs">
-            <Head type={2}>Our beautifully crafted blankets are designed for the ultimate weighted experience.</Head>
+          <div className="col-12 col-lg-12 quoteBox">
+            <AniText type={"h2"}>The world's most advanced weighted blanket, designed for the ultimate weighted experience.</AniText>
           </div>
-          <div className="col-12 col-lg-4">
-            <Quiz />
-          </div>
+          
         </div>
         
       </div>
@@ -86,10 +84,10 @@ export const IndexInner = ({ transitionStatus }) => {
           </div>
         </div>
         */}
-      <div className="container-fluid">
+      
 
-        <SecretIngredient />
-      </div>
+      <SecretIngredient />
+
 
       
       <ScrollText text={'Discover Calm • Discover Calm • Discover Calm'} />

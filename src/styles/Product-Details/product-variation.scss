@@ -183,7 +183,7 @@
                 &.btn-secondary {
                     border: 0;
                     border-radius: 10px;
-                    background: var(--purpleA);
+                    background: var(--purpleC);
                     padding: 0;
                     text-align: left;
 
@@ -305,7 +305,7 @@
                 width: 100%;
                 margin: 0;
                 border-radius: 0;
-                background: var(--purpleA);
+                background: var(--purpleC);
                 border: 0;
                 padding: 0;
 
@@ -393,7 +393,7 @@
     /*.weight-boxs {
         display: flex;
         flex-wrap: wrap;
-        background-color: var(--purpleA);
+        background-color: var(--purpleC);
         border-radius: 10px;
         margin: 0 0 10px;
         width: 100%;
@@ -528,7 +528,7 @@
                 display: block;
                 text-align: center;
                 font-size: 34px;
-                color: var(--midnight);
+                color: var(--purpleC);
                 line-height: 1;
                 background-color: var(--portage);
                 padding: 23px 0;
@@ -552,7 +552,7 @@
     .cover-box, .weight-box{
         display: grid;
         grid-template-columns: 5fr 3fr;
-        background-color: var(--purpleA);
+        background-color: var(--purpleC);
         border-radius: 10px;
         margin: 0 0 10px;
         width: 100%;
@@ -613,7 +613,7 @@
                     display: block;
                     text-align: center;
                     font-size: 34px;
-                    color: var(--midnight);
+                    color: var(--purpleC);
                     line-height: 1;
                     background-color: var(--portage);
                     padding: 23px 0;

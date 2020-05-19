@@ -5,7 +5,6 @@
   .quizText {
     display: block;
     z-index: 1;
-    background-color: var(--purpleA);
     padding: 45px 75px;
 
     @media (max-width: $desktop18) {
@@ -34,7 +33,7 @@
 
   &.wide {
     flex-direction: row;
-    background: var(--purpleA);
+    background: var(--purpleC);
     
     .quizText {
       align-content: center;
@@ -60,6 +59,36 @@
 
   h3 {
     font-size: 40px;
+    color: var(--offWhite);
+    font-weight: 700;
+    margin: 30px 0 15px;
+    line-height: 1.2;
+    z-index: 1;
+
+    @media (max-width: $desktop18) {
+      font-size: 40px;
+    }
+
+    @media (max-width: $desktopmdpi) {
+      font-size: 32px;
+    }
+
+    @media (max-width: $ipadportrait) {
+      font-size: 30px;
+      margin: 30px 0 15px;
+    }
+
+    span {
+      display: inline-block;
+      padding-right: 15px;
+
+      &:last-child {
+        color: var(--lightgreen);
+      }
+    }
+  }
+  h2 {
+    font-size: 80px;
     color: var(--offWhite);
     font-weight: 700;
     margin: 30px 0 15px;
@@ -139,9 +168,9 @@
   }
 
   p {
-    font-size: $FontSize20;
-    color: var(--portage);
-    line-height: 1.2;
+    font-size: $FontSize25;
+    color: var(--offWhite);
+    line-height: 1.4;
     margin: 0 0 25px 0px;
     z-index: 1;
 

@@ -1,15 +1,15 @@
 import React from 'react'
 import FlagIcon from '../../images/flag-of-europe.png'
-import Head from '../AnimatedText/Head'
+import AniText from '../AnimatedText/AniText'
 
 const ProductTitle = ({ title }) => {
   return (
     <div className="product-name">
-      <Head head={title}></Head>
-      <p className="ml-auto">
+      <AniText type={"h3"} head={title}></AniText>
+      {/*<p className="ml-auto">
         Made in Europe
         <img src={FlagIcon} />
-      </p>
+      </p>*/}
     </div>
   )
 }

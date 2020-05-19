@@ -18,6 +18,7 @@
 @import './homepage/MagicWeightex.scss';
 @import './homepage/BlanketDifference.scss';
 @import './homepage/CustomerReview.scss';
+@import './homepage/Quote.scss';
 
 @import './Product-Details/product-service.scss';
 @import './Product-Details/product-name.scss';
@@ -279,7 +280,7 @@
 .cart_first.purple,
 .cart_second.purple,
 .cart_third.purple {
-  background: var(--purpleA);
+  background: var(--purpleC);
   color: var(--white);
 
   @media (max-width: $ipadportrait) {
@@ -307,7 +308,7 @@
       .col-12 {
         padding: 0px;
         &:nth-child(2) {
-          border-left: 2px solid var(--purpleA);
+          border-left: 2px solid var(--purpleC);
         }
       }
     }
@@ -401,7 +402,7 @@
     background-color: var(--portage);
     width: 100%;
     height: 60px;
-    color: var(--midnight);
+    color: var(--purpleC);
     font-size: 20px;
     font-weight: 700;
     border: none;
@@ -650,7 +651,7 @@
 .DeliveryInformationWrap{
   .EmailNotYou{
     margin:0 0 1rem ;
-    background:var(--midnight);
+    background:var(--purpleC);
     padding:.5rem .8rem .6rem;
     p{
       font-size:1rem;
@@ -725,7 +726,7 @@
     .AddressListBTN{
       margin:-1.7rem 0 1rem;
       button{
-        background: var(--midnight);
+        background: var(--purpleC);
         border: 0;
         width: 100%;
         border-radius: 0 0 6px 6px;
@@ -735,7 +736,7 @@
         font-size: 1.2rem;
         color:var(--portage);
         + button{
-          background:var(--midnight);
+          background:var(--purpleC);
           color:#8db1bf;
           margin: 1rem 0 0;
           width: 100%;

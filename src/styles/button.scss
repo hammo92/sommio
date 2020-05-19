@@ -28,7 +28,7 @@
         position:absolute;
         width: 100%;
         background:var(--portage);
-        color:var(--midnight);
+        color:var(--purpleC);
         height:100%;
         z-index: 2;
         border-radius:10px;
@@ -42,7 +42,7 @@
         }
         h3, svg{
           font-size: 35px;
-          color:var(--midnight);
+          color:var(--purpleC);
           padding:0;
           margin:0;
           font-weight:600;
@@ -116,10 +116,10 @@
     &.btn-primary {
         background: var(--portage);
         font-size: $FontSize30;
-        color: var(--midnight);
+        color: var(--purpleC);
 
         &:hover {
-            background: var(--midnight);
+            background: var(--purpleC);
             color: var(--portage);
         }
 
@@ -129,7 +129,7 @@
         border-radius: 0;
         background: var(--portage);
         font-size: $FontSize30;
-        color: var(--midnight);
+        color: var(--purpleC);
         font-weight: 700;
         padding: 0;
     }
@@ -137,7 +137,7 @@
     &.btn-info {
         background: var(--portage);
         font-size: $FontSize30;
-        color: var(--midnight);
+        color: var(--purpleC);
         font-weight: 700;
         align-items: center;
         display: flex;
@@ -156,7 +156,7 @@
 
     &.btn-link {
         font-size: $FontSize17;
-        color: var(--midnight);
+        color: var(--purpleC);
         font-weight: 500;
         padding: 0;
         text-decoration: underline;

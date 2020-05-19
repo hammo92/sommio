@@ -4,8 +4,7 @@ import axios from 'axios'
 import { navigate } from 'gatsby'
 import Layout from "../components/Layout/Layout";
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
-import Para from '../components/AnimatedText/Para'
-import Head from '../components/AnimatedText/Head'
+import AniText from '../components/AnimatedText/AniText'
 
 const ContactInner = () => {
   const [values, setValues] = useState('')
@@ -36,9 +35,9 @@ const ContactInner = () => {
 
   return (
     <div className="container-fluid contactForm">
-    <Head type={1}>
+    <AniText type={"h1"}>
       Get in touch
-    </Head>
+    </AniText>
     <Form onSubmit={handleForm}>
       {({ handleSubmit, form, submitting, pristine, values }) => {
         return (

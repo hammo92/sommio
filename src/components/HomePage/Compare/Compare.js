@@ -11,8 +11,7 @@ import WeightexLeak from "../../../video/weightexCut.mp4"
 import PlayDuotone from "../../../images/play-duotone.png"
 import ReactPlayer from 'react-player'
 import VisibilitySensor from "react-visibility-sensor"
-import Head from '../../AnimatedText/Head'
-import Para from '../../AnimatedText/Para'
+import AniText from '../../AnimatedText/AniText'
 import { Tab, Row, Col, Nav } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faRedo, faStop } from '@fortawesome/free-solid-svg-icons'
@@ -67,8 +66,8 @@ const CompareBox = ({details: {title, text, url}, setPlaying, playing, left}) =>
           loop={false}
           onEnded={() => setPlaying(false)}
         />
-        <Head>{title}</Head>
-        <Para>{text}</Para>
+        <AniText>{title}</AniText>
+        <AniText type={"p"}>{text}</AniText>
       </div>
     </div>
   )

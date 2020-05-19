@@ -3,14 +3,14 @@ import { useStaticQuery, graphql } from "gatsby"
 import ReactPlayer from 'react-player'
 import Spin from '../../video/spin3.mp4'
 import VisibilitySensor from 'react-visibility-sensor'
-import Para from '../AnimatedText/Para'
-import Head from '../AnimatedText/Head'
+import AniText from '../AnimatedText/AniText'
 import secretContainImages from '../../images/secretContain-img.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook } from '@fortawesome/free-solid-svg-icons'
 import BookOpen from '../../images/book-open-solid.svg'
 import Button from '../Button'
 import Img from 'gatsby-image'
+import Quiz from './Quiz'
 
 const SecretIngredient = () => {
   const vid = useRef()
@@ -30,20 +30,7 @@ const SecretIngredient = () => {
     <div className="container-fluid secretContain">
       <div className="row">
         <div className="col-12 col-lg-6">
-          <div className="secretingredient-boxs">
-            <Head type={2}>Your secret ingredient</Head>
-
-            <Para>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the dummy text of the printing and typesetting
-              industry.
-            </Para>
-            <Button type="thin">
-              <h3>Learn</h3>
-              <FontAwesomeIcon icon={faBook} />
-            </Button>
-          </div>
+        <Quiz />
         </div>
         <div className="col-12 col-lg-6">
           <div className="img">

@@ -21,8 +21,8 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 import { animated, useSpring } from 'react-spring'
-import Head from '../components/AnimatedText/Head'
-import Para from '../components/AnimatedText/Para'
+import AniText from '../components/AnimatedText/AniText'
+
 import styled from 'styled-components'
 import inHand from '../images/inHand.jpg'
 import { Clearfix } from 'react-bootstrap'
@@ -92,20 +92,25 @@ const ProductPageInner = ({
           product && product.image_url ? product.image_url : Noimage
         )}
       />
-      <div className="container-fluid">
+      <div className="container-fluid productHead">
         
         <div className="row no-gutters">
           <div className="col-12 col-lg-7 col-xl-8">
-            <ProductService />
-            <div className="product-images">
+            {/*<ProductService />*/}
+            {/*<div className="product-images">
               <img src={inHand} alt="" />
-            </div>
+            </div>*/}
             <ProductTitle title={product.name} />
             
           </div>
           <div className="col-12 col-lg-5 col-xl-4">
             <ProductReview />
           </div>
+
+        </div>
+      </div>
+      <div className="container-fluid">
+        <div className="row no-gutters">
           
 
           <div className="col-12">
@@ -134,8 +139,8 @@ const ProductPageInner = ({
             <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example">
               <Tab eventKey="overview" title="Overview">
                 <Row noGutters>
-                  <Head
-                    type={2}
+                  <AniText
+                    type={"h2"}
                     head={
                       contentfulProduct && contentfulProduct.overviewHeading
                     }
@@ -165,11 +170,11 @@ const ProductPageInner = ({
                   className="justify-content-md-center backgroundPurple colorA videoWrap"
                 >
                   <Col md={6}>
-                    <Head type={3}>Look Inside</Head>
-                    <Para>
+                    <AniText type={"h3"}>Look Inside</AniText>
+                    <AniText type={"p"}>
                       Lorem Ipsum is simply dummy text of the printing and
                       typesetting industry.
-                    </Para>
+                    </AniText>
                   </Col>
 
                   <ProductVideo />

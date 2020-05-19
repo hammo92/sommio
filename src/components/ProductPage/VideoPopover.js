@@ -1,8 +1,9 @@
 import React, {useState, useRef, useEffect} from 'react'
 import Overlay from 'react-bootstrap/Overlay'
 import Popover from 'react-bootstrap/Popover'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-import { FaPlus } from 'react-icons/fa';
 
 
 
@@ -21,7 +22,7 @@ import { FaPlus } from 'react-icons/fa';
     const ref = useRef(null)
     return(
         <div className={"plusCircle " + (show ? "show " : "") + (display ? "toggled " : "")}  open={show} ref={ref} onClick={handleClick}>
-        <FaPlus />
+        <FontAwesomeIcon icon={faPlus} />
         <Overlay
             show={display}
             target={target}

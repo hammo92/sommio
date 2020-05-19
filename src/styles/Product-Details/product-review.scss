@@ -5,8 +5,8 @@
     padding: 10px;
     background: url(/review-bg.png) center center no-repeat;
     background-size: cover;
-    border-left: var(--purpleBorder);
-    border-bottom: var(--purpleBorder);
+    //border-left: var(--purpleBorder);
+    //border-bottom: var(--purpleBorder);
     z-index: 2;
 
     @media (max-width:$mobileportrait) {
@@ -65,7 +65,7 @@
     }
 
     .review-boxs {
-        background: var(--purpleA);
+        background: var(--purpleB);
         border-radius: 10px;
         padding: 15px;
 
@@ -74,7 +74,7 @@
 
             h4 {
                 display: block;
-                font-size: $FontSize28;
+                font-size: $FontSize24;
                 color: #fff;
                 font-weight: 900;
                 margin: 0 0 10px;
@@ -88,7 +88,7 @@
 
             span {
                 display: block;
-                font-size: $FontSize23;
+                font-size: $FontSize20;
                 font-weight: 700;
                 color: var(--white);
                 margin: 0;
@@ -113,9 +113,9 @@
         p {
             margin: 20px 0 0 0;
             font-family: $tksofiapro;
-            font-size: $FontSize22;
+            font-size: $FontSize20;
             color: var(--white);
-            line-height: 30px;
+            line-height: 25px;
             font-weight: 500;
 
             @media (max-width:$desktop18) {

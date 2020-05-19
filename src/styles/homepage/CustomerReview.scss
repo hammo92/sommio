@@ -42,7 +42,7 @@
     position: relative;
 
     .review-boxs {
-      background: var(--purpleA);
+      background: var(--purpleC);
       margin-right: 20px;
       padding: 20px 25px;
       width: auto !important;
@@ -51,7 +51,7 @@
       @media (max-width: $desktop18) {
         margin-right: 15px;
         padding: 25px;
-        background: var(--purpleA);
+        background: var(--purpleC);
       }
       @media (max-width: $mobileportrait) {
         border-radius: 10px;

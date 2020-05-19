@@ -3,7 +3,7 @@ header {
     padding: 1em 15px;
     //border-bottom: var(--purpleBorder);
   }
-  background: var(--purpleA);
+  background: var(--purpleC);
 }
 
 .navbar {
@@ -64,7 +64,7 @@ header {
       left: 0;
       right: 0;
       top: 100%;
-      background: var(--midnight);
+      background: var(--purpleC);
       z-index: 9999;
     }
   }

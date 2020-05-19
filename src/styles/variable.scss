@@ -9,18 +9,18 @@ $purpleBorder: solid 2px rgba(216, 168, 255, 0.3);
 :root {
     /* colors */
     --white: #ffffff;
-    --offWhite:#F1E3D8;
-    --midnight: #080a1e;
-    --purpleA: #1a172f;
+    --offWhite:#EFE9FF;
+    --purpleA: #080c1f;
     --purpleB: #2c2444;
-    --purpleC: #080a1e;
+    --purpleC: #1a172f;
     --lightgreen: #7dc4b5;
     --portage: #D7C4FF;
+    
 
     /* border */
     --purpleBorder:solid 2px rgba(216, 168, 255, 0.3);
 
-
+    
 }
 
 [data-theme="light"] {

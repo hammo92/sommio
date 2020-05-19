@@ -1,8 +1,12 @@
+
+.productHead{
+    background: var(--purpleA);
+}
 .product-name {
     display: flex;
     flex-wrap: wrap;
-    border-bottom: var(--purpleBorder);
-    padding: 20px 0;
+    //border-bottom: var(--purpleBorder);
+    padding: 60px 0;
     position: relative;
     z-index: 2;
 
@@ -15,7 +19,7 @@
         padding: 20px 30px;
         border-radius: 10px 10px 0 0;
         margin-top: -10px;
-        background-color: var(--midnight);
+        background-color: var(--purpleC);
         position: relative;
     }
 
@@ -27,7 +31,7 @@
     h3 {
         margin: 0px;
         font-size: 130px;
-        color: var(--white);
+        color: var(--offWhite);
         font-weight: 900;
         width: 80%;
         line-height: 1;
