@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import Para from '../AnimatedText/Para'
 import Head from '../AnimatedText/Head'
-import GoodquizImages from '../../images/goodquiz-img.jpg'
+// import GoodquizImages from '../../images/goodquiz-img.jpg'
 import { useStaticQuery, graphql } from 'gatsby'
 import GoodquizEyeIcon from '../../images/eye-solid.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
