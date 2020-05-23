@@ -1,8 +1,7 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { ShippingAndUserDetailContext } from '../../context/ShippingAndUserDetailContext'
-import { Link, useStaticQuery } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import CartItemList from '../../components/CartItemList'
-import CartIcon from '../../images/shopping-basket-duotone.svg'
 import { CartContext } from '../../context/CartContext'
 import { useStateValue } from '../../context/SiteContext'
 

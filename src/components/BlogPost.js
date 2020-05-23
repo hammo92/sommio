@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 
 export default function BlogPost() {
   const contentfulData = useStaticQuery(graphql`

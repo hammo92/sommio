@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'gatsby'
-import axios from 'axios'
 import { navigate } from 'gatsby'
 import Builton from '@builton/core-sdk'
 import {
@@ -9,12 +8,11 @@ import {
   FirebaseContext,
   CartContext
 } from '../../context'
-import { useSpring, animated, config } from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 import { useStateValue } from '../../context/SiteContext'
 import CartIcon from '../../images/shopping-basket-duotone.svg'
 import Logo from '../../images/logo.png'
 import logoCheckout from '../../images/logo-checkout.png'
-import CartButton from '../CartButton'
 import RegisterOrLogin from '../../components/Checkout/RegisterOrLogin'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -23,10 +21,7 @@ import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
-const Header = (
-  { siteTitle, collections, slug, human_id, transitionStatus },
-  props
-) => {
+const Header = ({ siteTitle, human_id, transitionStatus }, props) => {
   const [{ cart }, dispatch] = useStateValue()
   const { orderId } = useContext(CheckoutContext)
   const { setUserBuilton } = useContext(ShippingAndUserDetailContext)
@@ -35,9 +30,7 @@ const Header = (
   const [refresh, setRefresh] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [modal, setModal] = useState(false)
-  const [isLoading, setLoading] = useState(false)
   const toggleModal = () => setModal(!modal)
-  const toggleDropDown = () => setDropdownOpen(!dropdownOpen)
   const [collapsed, setCollapsed] = useState(true)
   let token = localStorage.getItem('firebaseToken')
   let details = JSON.parse(localStorage.getItem('details'))
@@ -52,8 +45,6 @@ const Header = (
   let newToken = newFirebaseToken()
 
   const handleCart = () => {
-    console.log('clicked')
-    console.log('cart state => ', cart)
     dispatch({
       type: 'setCart',
       setCart: { drawer: true }
@@ -98,7 +89,6 @@ const Header = (
           localStorage.removeItem('details')
         })
         .catch(err => {
-          console.log('err Logout => ', err)
           return err
         })
   }

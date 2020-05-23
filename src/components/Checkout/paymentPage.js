@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Form } from 'react-final-form'
-import { CardElement, injectStripe } from 'react-stripe-elements'
+import { CardElement } from 'react-stripe-elements'
 import { toast } from 'react-toastify'
-
 import {
   CheckoutContext,
   ShippingAndUserDetailContext,
@@ -11,17 +10,15 @@ import {
 } from '../../context'
 import ShippingSelectOption from './shippingSelectOption'
 import stripeValidation from '../../validation/stripe'
-import axios from 'axios'
 import { navigate } from 'gatsby'
+import _get from 'lodash/get'
+
 const PaymentPage = ({ changeFormEnable, isEditable }) => {
   const { paymentData, paymentDetails } = useContext(CheckoutContext)
   const { shipping_address, builton } = useContext(ShippingAndUserDetailContext)
-  const {
-    ProductsArray,
-    shippingCost,
-    shippingRate,
-    shippingProvider
-  } = useContext(CartContext)
+  const { ProductsArray, shippingRate, shippingProvider } = useContext(
+    CartContext
+  )
   const { firebase } = useContext(FirebaseContext)
   const [checkoutError, setCheckoutError] = useState(null)
   const [makeEnable, setMakeEnable] = useState(true)
@@ -37,12 +34,11 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
     //user authenticate
     await builton.users
       .authenticate({
-        first_name: shipping_address && shipping_address.first_name,
-        last_name: shipping_address && shipping_address.last_name,
+        first_name: _get(shipping_address, 'first_name', ''),
+        last_name: _get(shipping_address, 'last_name', ''),
         email: firebase && firebase.auth().currentUser.email
       })
       .catch(err => {
-        console.log('err builton =>', err)
         if (err.response.status === 401) {
           toast('Session expired please Login again!', {
             position: toast.POSITION.TOP_RIGHT,
@@ -61,24 +57,23 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
       })
 
     // update shipping price in builton
-    try {
-      const response = await axios.put(
-        url,
-        {
-          price: shippingRate
-        },
-        {
-          headers: {
-            Authorization: 'Bearer sa_b42dacef115c06749041d93bea4037',
-            'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
-            'Content-Type': 'application/json'
-          }
-        }
-      )
-    } catch (error) {
-      console.error('Here is Error ====>', error)
-      return error
-    }
+    // try {
+    //   const response = await axios.put(
+    //     url,
+    //     {
+    //       price: shippingRate
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: 'Bearer sa_b42dacef115c06749041d93bea4037',
+    //         'X-Builton-Api-Key': process.env.GATSBY_BUILTON_API_KEY,
+    //         'Content-Type': 'application/json'
+    //       }
+    //     }
+    //   )
+    // } catch (error) {
+    //   return error
+    // }
 
     setMakeEnable(false)
     paymentData(values)
@@ -121,14 +116,7 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
           <Form
             onSubmit={handlePayment}
             validate={stripeValidation}
-            render={({
-              handleSubmit,
-              submitting,
-              pristine,
-              invalid,
-              form,
-              values
-            }) => {
+            render={({ handleSubmit, invalid, form, values }) => {
               const onStripeChange = e => form.change('stripe', e)
               return (
                 <form onSubmit={handleSubmit}>
@@ -152,9 +140,9 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
                         id="payment"
                         style={stripeStyle}
                       />
-                      {values.stripe && values.stripe.error && (
+                      {_get(values, 'stripe.error', null) && (
                         <span className="text-red text-sm">
-                          {values.stripe.error.message}
+                          {_get(values, 'stripe.error.message', '')}
                         </span>
                       )}
                     </div>
@@ -188,8 +176,8 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
         <div className="mb-10">
           <h4 className="mb-3">Payment</h4>
           <p>
-            {paymentDetails && paymentDetails.stripe.brand}{' '}
-            {paymentDetails && paymentDetails.stripe.elementType}
+            {_get(paymentDetails, 'stripe.brand', '')}
+            {_get(paymentDetails, 'stripe.elementType', '')}
           </p>
         </div>
 

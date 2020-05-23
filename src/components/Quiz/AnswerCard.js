@@ -1,19 +1,11 @@
-import React, { useState } from 'react'
-import { useStateValue } from '../../context/SiteContext'
+import React from 'react'
 
-
-const AnswerCard = ({ans, i}) => {
-    const [{ quiz }, dispatch] = useStateValue();
-    console.log(quiz.currentQuestion)
-    return (
-        <div 
-        className="AnswerBlock" 
-        key={i}
-         >
-          <p>{ans}</p>
-        </div>
-    )
-
-  }
+const AnswerCard = ({ ans, i }) => {
+  return (
+    <div className="AnswerBlock" key={i}>
+      <p>{ans}</p>
+    </div>
+  )
+}
 
 export default AnswerCard

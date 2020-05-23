@@ -3,52 +3,45 @@ import Goodbye from '../components/HomePage/Goodbye'
 import Quiz from '../components/HomePage/Quiz'
 import HomeService from '../components/HomePage/HomeService'
 import SecretIngredient from '../components/HomePage/SecretIngredient'
-import HelpSlider from '../components/ProductPage/HelpSlider'
 import BlanketImages from '../components/HomePage/BlanketImages'
-import MagicWeightex from '../components/HomePage/MagicWeightex'
 import Compare from '../components/HomePage/Compare/Compare'
 import CustomerReview from '../components/HomePage/CustomerReview'
-import BlanketDifference from '../components/HomePage/BlanketDifference'
 import Carousel from '../components/Carousel/Carousel'
 import Layout from '../components/Layout/Layout'
-import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
-import { useStateValue } from '../context/SiteContext'
+import { TransitionState } from 'gatsby-plugin-transition-link'
 import { animated, useSpring } from 'react-spring'
 import Footer from '../components/HomePage/footer'
 import ScrollText from '../components/HomePage/scrollText'
 
-const TRANSITION_LENGTH = 1
+// const TRANSITION_LENGTH = 1
 
-const exitTransition = {
-  length: TRANSITION_LENGTH, // Take 1.5 seconds to leave
-  trigger: () => {
-    if (document) {
-      // Preventing overflow here make the animation smoother IMO
-    }
-  }
-}
+// const exitTransition = {
+//   length: TRANSITION_LENGTH, // Take 1.5 seconds to leave
+//   trigger: () => {
+//     if (document) {
+//       // Preventing overflow here make the animation smoother IMO
+//     }
+//   }
+// }
 
-const entryTransition = {
-  delay: TRANSITION_LENGTH, // Wait 1.5 seconds before entering
-  trigger: () => {
-    if (document && window) {
-      // Ensuring we're at the top of the page when the page loads
-      // prevents any additional JANK when the transition ends.
-      window.scrollTo(0, 0)
-    }
-  }
-}
+// const entryTransition = {
+//   delay: TRANSITION_LENGTH, // Wait 1.5 seconds before entering
+//   trigger: () => {
+//     if (document && window) {
+//       // Ensuring we're at the top of the page when the page loads
+//       // prevents any additional JANK when the transition ends.
+//       window.scrollTo(0, 0)
+//     }
+//   }
+// }
 
 export const IndexInner = ({ transitionStatus }) => {
-  const [{ quiz }, dispatch] = useStateValue()
+  // const [{ quiz }, dispatch] = useStateValue()
   const mount = ['entering', 'entered'].includes(transitionStatus)
 
   const fadeUp = useSpring({
     opacity: mount ? 1 : 0
   })
-  console.log('transitionStatus [homepage] => ', transitionStatus)
-  console.log('mount [homepage] => ', mount)
-  console.log('fadeUp [homepage] => ', fadeUp)
 
   return (
     <animated.div style={fadeUp} className="homepage-bg">

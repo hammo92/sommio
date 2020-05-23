@@ -5,13 +5,12 @@ import PaymentPage from '../components/Checkout/paymentPage'
 import ReviewOrder from '../components/Checkout/ReviewOrder'
 import OrderConfirmation from '../components/Checkout/OrderConfirmation'
 import Layout from '../components/Layout/Layout'
-import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import { TransitionState } from 'gatsby-plugin-transition-link'
 
 const CheckoutInner = () => {
   const { isEmpty } = useContext(CartContext)
 
   const { defaultPayment, checkoutClear } = useContext(CheckoutContext)
-  const { firebase } = useContext(FirebaseContext)
   const [formEnable, setFormEnable] = useState(false)
   const [isEditable, setIsEditable] = useState(false)
   const [gmapsLoaded, setGmapsLoaded] = useState(false)

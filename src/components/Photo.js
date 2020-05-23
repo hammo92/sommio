@@ -1,7 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
-import Noimage from '../images/no_img.jpg'
-export default function Photo({ src, cartImg, transparent, ...props }) {
+
+export default function Photo({ src, transparent, ...props }) {
   const imageClass = cx('product-image', {
     'bg-grey-light': !transparent
   })

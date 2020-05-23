@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
-import { Link, useStaticQuery } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import { navigate } from 'gatsby'
 import { toast } from 'react-toastify'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,10 +13,9 @@ import Loader from '../components/Loader'
 import { newFirebaseToken } from '../utils/newFirebaseToken'
 import Photo from '../components/Photo'
 import Layout from '../components/Layout/Layout'
-import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import { TransitionState } from 'gatsby-plugin-transition-link'
 
 import {
-  faBook,
   faReceipt,
   faCheck,
   faPencilAlt
@@ -81,18 +80,15 @@ const MyAccountInner = () => {
             }
           })
           .then(response => {
-            console.log('USER r => ', response)
             setFinalAddress(response.data.addresses)
           })
           .catch(err => {
-            console.log('USER err => ', err, err.response)
             if (err.response.status === 401) {
               firebase &&
                 firebase
                   .auth()
                   .signOut()
                   .then(res => {
-                    console.log('res => ', res)
                     navigate(`/`)
                     localStorage.removeItem('firebaseToken')
                     localStorage.removeItem('details')
@@ -108,7 +104,6 @@ const MyAccountInner = () => {
           })
       })
       .catch(err => {
-        console.log('err => ', err, err.code)
         if (err.response.status === 401) {
           firebase &&
             firebase
@@ -160,7 +155,7 @@ const MyAccountInner = () => {
           resetPasswordData()
         })
         .catch(error => {
-          console.log('error => ', error)
+          // console.log('error => ', error)
 
           firebase &&
             firebase
@@ -209,7 +204,7 @@ const MyAccountInner = () => {
     setError(errors)
     return formIsValid
   }
-  console.log('newPassword,confirmPassword => ', newPassword, confirmPassword)
+  // console.log('newPassword,confirmPassword => ', newPassword, confirmPassword)
   let _errors = {}
 
   const handleChangeNewPassword = e => {
@@ -256,7 +251,7 @@ const MyAccountInner = () => {
           addresses: tempAddressData
         })
         .then(response => {
-          console.log('[userOrder] response => ', response)
+          // console.log('[userOrder] response => ', response)
           setFinalAddress(response.addresses)
           setAddress('')
           setLoading(false)
@@ -267,7 +262,7 @@ const MyAccountInner = () => {
           })
         })
         .catch(error => {
-          console.log('[userOrder] errrr => ', error)
+          // console.log('[userOrder] errrr => ', error)
           toast('Address is Not updated !', {
             position: toast.POSITION.TOP_RIGHT,
             className: 'custom_toast'
@@ -307,8 +302,8 @@ const MyAccountInner = () => {
           <div className="col-12 col-lg-7 col-xl-8">
             <h4 className="MyAccount-SubTitle">Orders</h4>
             {userOrder && userOrder.length > 0 ? (
-              userOrder.map(order => (
-                <div className="OrderListBox">
+              userOrder.map((order, i) => (
+                <div className="OrderListBox" key={i}>
                   <div className="OrderListBoxHead d-flex">
                     <p>{new Date(order.created.$date).toDateString()}</p>
                     <p className="ml-auto">
@@ -318,8 +313,8 @@ const MyAccountInner = () => {
                   <ul className="OrderListUl">
                     {order.items
                       .filter(data => data.name !== 'Shipping cost')
-                      .map(prod => (
-                        <li className="revieworder-box">
+                      .map((prod, key) => (
+                        <li className="revieworder-box" key={key}>
                           <Photo
                             cartImg="cartImg"
                             src={
@@ -437,7 +432,7 @@ const MyAccountInner = () => {
                 <div className="AddressDetailsBody ">
                   {finalAddress
                     ? finalAddress.map((add, i) => (
-                        <div className="EditAddressDetailsBody">
+                        <div className="EditAddressDetailsBody" key={i}>
                           <textarea
                             disabled={textAreaDisable === true ? true : false}
                           >

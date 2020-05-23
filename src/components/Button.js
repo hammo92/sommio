@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { animated, useSpring, config } from 'react-spring'
+import React, { useEffect } from 'react'
+import { animated, useSpring } from 'react-spring'
 import { useGesture } from 'react-use-gesture'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
-const Button = ({ type, text, link, disabled, children, onClick }) => {
-  const domTarget = useRef(null)
-  const [hovered, setHovered] = useState(false)
+const Button = ({ type, link, disabled, children, onClick }) => {
   const configTwo = {
     mass: 2,
     tension: 252,
@@ -24,7 +22,6 @@ const Button = ({ type, text, link, disabled, children, onClick }) => {
       opacity: disabled ? 0.3 : 1
     })
   }, [disabled])
-  console.log('props => ', props)
   const bind = useGesture({
     onHover: props => {
       if (!disabled)

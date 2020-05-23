@@ -9,12 +9,9 @@ import {
   CheckoutContext,
   CartContext
 } from '../../context'
-import validation from '../../validation/shippingFormValidation'
-import { log } from 'util'
 import Builton from '@builton/core-sdk'
 import shippingFormValidation from '../../validation/shippingFormValidation'
 import LocationSearchInput from './GoogleAutocomplete'
-import countryWithThree from '../../../countryWithThree'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
 import Loader from '../Loader'
 const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
@@ -28,8 +25,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
     setAddress
   } = useContext(ShippingAndUserDetailContext)
   const { ProductsArray } = useContext(CartContext)
-  const { userOrder } = useContext(CheckoutContext)
-  console.log('userOrder => ', userOrder)
+  // const { userOrder } = useContext(CheckoutContext)
 
   let countryWithThree = country.filter(data => {
     return data.alpha2.toUpperCase() === countryCode
@@ -84,7 +80,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
         setLoading(false)
       })
       .catch(error => {
-        console.log('error => ', error)
+        // console.log('error => ', error)
         return error
       })
   }
@@ -111,13 +107,14 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   }
 
   const handleShippingCost = async values => {
-    retrieveAddress.push({
-      street_name: values.line_1,
-      city: values.city,
-      state: values.county,
-      zip_code: values.postcode,
-      country: values.country
-    })
+    retrieveAddress &&
+      retrieveAddress.push({
+        street_name: values.line_1,
+        city: values.city,
+        state: values.county,
+        zip_code: values.postcode,
+        country: values.country
+      })
     //update user's address in builton(multiple address)
 
     setUserBuilton(values.email, builton)
@@ -131,10 +128,10 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
           addresses: retrieveAddress
         })
         .then(response => {
-          console.log('[userOrder] response => ', response)
+          return response
         })
         .catch(error => {
-          console.log('[userOrder] errrr => ', error)
+          // console.log('[userOrder] errrr => ', error)
           return error
         })
     } else {
@@ -177,7 +174,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                 note: ''
               })
               .catch(err => {
-                console.log('err => ', err)
+                // console.log('err => ', err)
                 return err
               })
           })
@@ -203,8 +200,6 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
     e.preventDefault()
     setAddress({ [e.target.name]: e.target.value })
   }
-  console.log('addNewAddress => ', addNewAddress)
-  console.log('retrieveUserDetail => ', retrieveUserDetail)
 
   return loading === true ? (
     <Loader />
@@ -222,6 +217,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
               {retrieveUserDetail &&
                 retrieveUserDetail.addresses.map((data, i) => (
                   <li
+                    key={i}
                     onClick={() => selectedAddress(data, i)}
                     className={i === index ? 'addressList' : ''}
                   >

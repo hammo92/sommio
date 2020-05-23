@@ -1,14 +1,13 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
-
-import SEO from '../components/SEO'
+import Seo from '../components/SEO'
 import PageTitle from '../components/PageTitle'
 import ProductGrid from '../components/ProductGrid'
 import Layout from '../components/Layout/Layout'
-import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import { TransitionState } from 'gatsby-plugin-transition-link'
 
 const ProductsInner = ({ products }) => {
-  console.log('Index allBuiltonProduct =======>', products)
+  // console.log('Index allBuiltonProduct =======>', products)
 
   const baseProductList =
     products &&
@@ -20,7 +19,7 @@ const ProductsInner = ({ products }) => {
 
   return (
     <Fragment>
-      <SEO title="All Products" />
+      <Seo title="All Products" />
       <PageTitle>All Products</PageTitle>
       <ProductGrid products={baseProductList} />
     </Fragment>

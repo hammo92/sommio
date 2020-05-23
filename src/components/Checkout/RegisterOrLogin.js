@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-
 import { ShippingAndUserDetailContext, FirebaseContext } from '../../context'
 import Builton from '@builton/core-sdk'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
@@ -12,7 +11,6 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
     cartItemsBuilton,
     setUserBuilton
   } = useContext(ShippingAndUserDetailContext)
-
   const { firebase } = useContext(FirebaseContext)
 
   const [email, setEmail] = useState('')

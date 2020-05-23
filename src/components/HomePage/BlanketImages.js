@@ -1,16 +1,11 @@
 import React from 'react'
-import { useStaticQuery, graphql } from "gatsby"
-import HousealicefinalImage from '../../images/housealicefinal-img.jpg'
+import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-// import GridImg2 from '../../images/grid-img2.png'
-// import GridImg3 from '../../images/grid-img3.png'
-// import GridImg4 from '../../images/grid-img4.png'
-// import GridImg5 from '../../images/grid-img5.png'
 
 const BlanketImages = () => {
   const Room = useStaticQuery(graphql`
     query {
-      file(name: {eq: "housealicefinal-img"}) {
+      file(name: { eq: "housealicefinal-img" }) {
         childImageSharp {
           fluid(maxWidth: 1800, quality: 100) {
             ...GatsbyImageSharpFluid_withWebp
@@ -18,7 +13,7 @@ const BlanketImages = () => {
         }
       }
     }
-  `) 
+  `)
   return (
     <div className="github-main" id="image">
       <div className="row">
@@ -33,15 +28,6 @@ const BlanketImages = () => {
           <div className="row">
             <div className="col-12 col-lg-6">
               <img src={GridImg2} className="img-fluid w-100" />
-            </div>
-            <div className="col-12 col-lg-6">
-              <img src={GridImg3} className="img-fluid w-100" />
-            </div>
-            <div className="col-12 col-lg-6">
-              <img src={GridImg4} className="img-fluid w-100" />
-            </div>
-            <div className="col-12 col-lg-6">
-              <img src={GridImg5} className="img-fluid w-100" />
             </div>
           </div>
         </div> */}

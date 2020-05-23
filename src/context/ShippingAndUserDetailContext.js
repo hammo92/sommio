@@ -2,8 +2,6 @@ import React, { useContext, createContext, useReducer } from 'react'
 import axios from 'axios'
 import { FirebaseContext } from './FirebaseContext'
 
-import { CheckoutContext } from './CheckoutContext'
-
 import { CartContext } from './CartContext'
 export const SET_RATES = 'SET_RATES'
 export const SET_ADDRESS = 'SET_ADDRESS'
@@ -45,7 +43,6 @@ export default function reducer(state, action) {
       const shippingRatesArray =
         action.payload && action.payload.data.data.rates
       let loadingAfterRate = false
-      console.log('shippingRatesArray => ', shippingRatesArray)
 
       let test = {
         ...state,
@@ -56,8 +53,6 @@ export default function reducer(state, action) {
       return test
 
     case SET_ADDRESS:
-      console.log('action => ', action)
-
       const shipping_address = action.shippingData
       const customerDetails = action.user
       const paymentButton = true
@@ -104,7 +99,6 @@ export default function reducer(state, action) {
 
     case SET_VARIATION:
       var obj = {}
-      console.log('action => ', action)
 
       const price = action.payload.price
       obj[action.payload.name] = action.payload.value
@@ -212,7 +206,6 @@ function ShippingAndUserDetailProvider({ children, ...props }) {
     note
   ) => {
     dispatch({ type: SET_ADDRESS, user, shippingData, note })
-    console.log('shippingData => ', shippingData)
 
     const details = JSON.parse(localStorage.getItem('details'))
 
@@ -301,8 +294,6 @@ function ShippingAndUserDetailProvider({ children, ...props }) {
     dispatch({ type: SET_TOGGLE })
   }
   function setVariation(name, value, price) {
-    console.log('name, value, price => ', name, value, price)
-
     dispatch({
       type: SET_VARIATION,
       payload: { name, value, price }

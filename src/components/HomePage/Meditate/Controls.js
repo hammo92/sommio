@@ -1,6 +1,6 @@
-import React, { useRef } from "react"
-import { useThree, useRender, extend } from "react-three-fiber"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import React, { useRef } from 'react'
+import { useThree, extend, useFrame } from 'react-three-fiber'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 extend({ OrbitControls })
 const Controls = props => {

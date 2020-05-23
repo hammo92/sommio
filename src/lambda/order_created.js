@@ -1,7 +1,7 @@
 const axios = require('axios')
 let ejs = require('ejs')
 
-handler = async event => {
+const handler = async event => {
   const mailgunUrl =
     'https://api.eu.mailgun.net/v3/builton.sommio.co.uk/messages'
   const username = 'api'
@@ -76,7 +76,6 @@ handler = async event => {
     }).catch(errors => {
       return errors
     })
-    console.log('mailgun response => ', response)
   }
 
   return {

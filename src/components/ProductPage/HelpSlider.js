@@ -1,9 +1,7 @@
 import React from 'react'
 import Slider from 'react-slick'
 import { useStaticQuery } from 'gatsby'
-import { Link } from 'gatsby'
-import HelpImg from '../../images/help-img.png'
-import HelpImg2 from '../../images/help-img2.png'
+import { Link, graphql } from 'gatsby'
 
 const HelpSlider = () => {
   const { allContentfulCondition } = useStaticQuery(graphql`

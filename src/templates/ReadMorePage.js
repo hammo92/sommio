@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import { useSpring, animated, config } from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 import Layout from '../components/Layout/Layout'
@@ -40,7 +40,7 @@ const Next = ({ data, mount }) => {
     setScroll(offset + currPos.y)
   })
   const ref = useRef(null)
-  console.log('offset is => ', scroll)
+  // console.log('offset is => ', scroll)
   const props = useSpring({
     to: {
       opacity: 1,
@@ -56,9 +56,7 @@ const Next = ({ data, mount }) => {
       <div className="condition-hero">
         <div className="title">
           <h1>{data.contentfulNext.conditionName}</h1>
-          <h4>
-          {data.contentfulNext.subtitle}
-          </h4>
+          <h4>{data.contentfulNext.subtitle}</h4>
         </div>
         <div className="image">
           <Img
@@ -74,15 +72,13 @@ const Next = ({ data, mount }) => {
 }
 
 const Header = ({ data, mount }) => {
-  console.log("article data is => ",data)
+  // console.log("article data is => ",data)
   return (
     <div className="container-fluid">
       <div className="condition-hero">
         <div className="title">
           <h1>{data.contentfulCondition.conditionName}</h1>
-          <h4>
-            {data.contentfulCondition.subtitle}
-          </h4>
+          <h4>{data.contentfulCondition.subtitle}</h4>
         </div>
         <div className="image">
           <Img
@@ -143,7 +139,7 @@ const ReadInner = ({ transitionStatus, data, pageContext }) => {
 }
 
 const ReadMorePage = ({ data, pageContext }) => {
-  console.log('query , data => ', pageContext)
+  // console.log('query , data => ', pageContext)
   return (
     <TransitionState>
       {({ transitionStatus }) => (

@@ -1,22 +1,16 @@
-import React, { useRef } from 'react'
-import { useStaticQuery, graphql } from "gatsby"
-import ReactPlayer from 'react-player'
-import Spin from '../../video/spin3.mp4'
-import VisibilitySensor from 'react-visibility-sensor'
+import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 import Para from '../AnimatedText/Para'
 import Head from '../AnimatedText/Head'
-import secretContainImages from '../../images/secretContain-img.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook } from '@fortawesome/free-solid-svg-icons'
-import BookOpen from '../../images/book-open-solid.svg'
 import Button from '../Button'
 import Img from 'gatsby-image'
 
 const SecretIngredient = () => {
-  const vid = useRef()
   const Meditate = useStaticQuery(graphql`
     query {
-      file(name: {eq: "Meditate"}) {
+      file(name: { eq: "Meditate" }) {
         childImageSharp {
           fluid(maxWidth: 800, quality: 100) {
             ...GatsbyImageSharpFluid_withWebp
@@ -24,8 +18,7 @@ const SecretIngredient = () => {
         }
       }
     }
-  `) 
-  console.log("meditate is => ", Meditate)
+  `)
   return (
     <div className="container-fluid secretContain">
       <div className="row">
@@ -66,7 +59,7 @@ const SecretIngredient = () => {
           progressInterval={100}
 
           />
-          
+
         }
 
       </VisibilitySensor>

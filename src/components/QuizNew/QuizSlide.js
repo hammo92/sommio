@@ -1,19 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AnswerCard from './AnswerCard'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import { ArrowLeft, ArrowRight } from './Arrows'
 import { useStateValue } from '../../context/SiteContext'
 import YAMLData from '../../../content/Quiz.yaml'
-import { useTransition, useTrail, animated } from 'react-spring'
+import { useTransition, animated } from 'react-spring'
 
 const Questions = YAMLData
-const AnimatedAnswer = animated(AnswerCard)
 
 const QuizSlide = () => {
-  const [{ quiz }, dispatch] = useStateValue()
-  console.log('[squizSlide] quiz => ', quiz)
+  const [{ quiz }] = useStateValue()
 
   const CurrentQuestion = Questions[quiz.currentQuestion]
   const answered = quiz.questions[quiz.currentQuestion].Answer
@@ -27,10 +24,6 @@ const QuizSlide = () => {
       leave: { opacity: 0 }
     }
   )
-  const trail = useTrail(CurrentQuestion.Options.length, {
-    config,
-    opacity: 1
-  })
 
   return (
     <Row>
@@ -43,7 +36,7 @@ const QuizSlide = () => {
           </Col>
           <Col xs={12} lg={6} className="AnswerContain">
             {CurrentQuestion.Options.map((option, index) => (
-              <AnswerCard i={index} />
+              <AnswerCard i={index} key={index} />
             ))}
           </Col>
         </animated.div>

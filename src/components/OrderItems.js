@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { CheckoutContext, CartContext } from '../context'
-import CartItem from './CartItem'
 import Photo from './Photo'
-const OrderItems = props => {
+
+const OrderItems = () => {
   const { orderPrice, totalProductQuantity } = useContext(CheckoutContext)
-  const { productSubTotal, total, shippingRate, ProductsArray } = useContext(
+  const { productSubTotal, shippingRate, ProductsArray } = useContext(
     CartContext
   )
 
@@ -12,9 +12,9 @@ const OrderItems = props => {
     <div className="revieworder-box">
       <div>
         {ProductsArray &&
-          ProductsArray.map(p => {
+          ProductsArray.map((p, key) => {
             return (
-              <div>
+              <div key={key}>
                 <Photo
                   cartImg="cartImg"
                   src={p.media[0] && p.media[0].url}

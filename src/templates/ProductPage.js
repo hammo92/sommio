@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Helmet } from 'react-helmet'
+import React, { useState } from 'react'
 import { graphql, withPrefix } from 'gatsby'
-import SEO from '../components/SEO'
+import Seo from '../components/SEO'
 import AddToCart from '../components/ProductPage/AddToCart'
 import Noimage from '../images/no_img.jpg'
 import ProductService from '../components/ProductPage/ProductService'
@@ -18,14 +17,12 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import { TransitionState } from 'gatsby-plugin-transition-link'
 import { animated, useSpring } from 'react-spring'
 import Head from '../components/AnimatedText/Head'
 import Para from '../components/AnimatedText/Para'
 import styled from 'styled-components'
 import inHand from '../images/inHand.jpg'
-import { Clearfix } from 'react-bootstrap'
 
 const DarkRow = styled(Row)`
   margin: 20px 0 40px 0;
@@ -62,16 +59,16 @@ const ProductPageInner = ({
 }) => {
   let mount = ['entering', 'entered'].includes(transitionStatus)
 
-  console.log('transitionStatus [productpage]  => ', transitionStatus)
+  // console.log('transitionStatus [productpage]  => ', transitionStatus)
 
-  console.log('mount [productpage] => ', mount)
+  // console.log('mount [productpage] => ', mount)
 
   const fadeUp = useSpring({
     opacity: mount ? 1 : 0
   })
-  console.log('fadeUp [productpage] => ', fadeUp)
+  // console.log('fadeUp [productpage] => ', fadeUp)
 
-  const Titles = ['Overview', 'Materials', 'Learn', 'Usage', 'FAQ']
+  // const Titles = ['Overview', 'Materials', 'Learn', 'Usage', 'FAQ']
   const Overview = contentfulProduct && contentfulProduct.overview
   const Faq = contentfulProduct && contentfulProduct.faqQuestions
   const Features = contentfulProduct && contentfulProduct.feature
@@ -84,7 +81,7 @@ const ProductPageInner = ({
   }
   return (
     <animated.div style={fadeUp}>
-      <SEO
+      <Seo
         type="product"
         title={product.short_description || product.name}
         description={product.meta_description || product.description}
@@ -196,7 +193,7 @@ const ProductPageInner = ({
                 <Accordion defaultActiveKey="0">
                   {Faq &&
                     Faq.map((element, index) => (
-                      <Card>
+                      <Card key={index}>
                         <Accordion.Toggle as={Card.Header} eventKey={index}>
                           {element.question}
                         </Accordion.Toggle>
@@ -222,12 +219,11 @@ const ProductPageInner = ({
 }
 
 const ProductPageBuilton = ({ data }) => {
-  console.log("product page data =>", data)
+  // console.log("product page data =>", data)
   return (
     <TransitionState>
       {({ transitionStatus }) => (
         <Layout transitionStatus={transitionStatus}>
-          {console.log('transitionStatus', transitionStatus)}
           <ProductPageInner transitionStatus={transitionStatus} data={data} />
         </Layout>
       )}

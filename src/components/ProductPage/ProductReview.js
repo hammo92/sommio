@@ -1,6 +1,5 @@
 import React from 'react'
 import Slider from 'react-slick'
-import StarIconGreen from '../../images/star-icon-green.svg'
 import StarIconRed from '../../images/star-icon-red.svg'
 
 const ProductReview = () => {
@@ -16,19 +15,19 @@ const ProductReview = () => {
       <div className="review-totals">
         <div className="star-list">
           <div className="star">
-            <img src={StarIconRed} alt="redStarIcon" /> 
+            <img src={StarIconRed} alt="redStarIcon" />
           </div>
           <div className="star">
-            <img src={StarIconRed} alt="redStarIcon" /> 
+            <img src={StarIconRed} alt="redStarIcon" />
           </div>
           <div className="star">
-            <img src={StarIconRed} alt="redStarIcon" /> 
+            <img src={StarIconRed} alt="redStarIcon" />
           </div>
           <div className="star">
-            <img src={StarIconRed} alt="redStarIcon" /> 
+            <img src={StarIconRed} alt="redStarIcon" />
           </div>
           <div className="star">
-            <img src={StarIconRed} alt="redStarIcon" /> 
+            <img src={StarIconRed} alt="redStarIcon" />
           </div>
         </div>
         <span>120 Reviews</span>

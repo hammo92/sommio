@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from 'react'
-import { StaticQuery } from 'gatsby'
 import _ from 'lodash'
 let CartContext
 const { Provider, Consumer } = (CartContext = createContext())
@@ -75,7 +74,6 @@ export default function reducer(state, action) {
         return data.final_price * data.quantityBuilton
       })
       let finalTotal = productSubTotal + state.shippingRate
-      console.log('finalTotal  => ', finalTotal)
 
       sessionStorage.setItem('cartDetails', JSON.stringify(prods))
 
@@ -89,8 +87,6 @@ export default function reducer(state, action) {
       }
 
     case UPDATE_CART:
-      console.log('[testcart] UPDATE_CART => ', action)
-
       const product = action.payload.product
       const flag = action.payload.flag
 
@@ -127,7 +123,6 @@ export default function reducer(state, action) {
       let removeCount
       let z = _.findIndex(state.ProductsArray, selectedProduct)
       state.ProductsArray.splice(z, 1)
-      console.log('Remove state.ProductsArray => ', state.ProductsArray)
 
       removeCount = _.sumBy(state.ProductsArray, data => {
         return data.quantityBuilton
@@ -179,8 +174,6 @@ export default function reducer(state, action) {
         total: total
       }
     case SET_BUILTON_PRODUCT_PRICE:
-      console.log('SET_BUILTON_PRODUCT_PRICE action => ', action)
-
       let weightPrice = action.payload.selectWeightPrice
       let coverPrice = action.payload.selectCoverPrice
       let selectedWeight = action.payload.selectedWeight
@@ -195,7 +188,6 @@ export default function reducer(state, action) {
       }
 
     case CLEAN_CART:
-      console.log('CLEAN_CART action => ', action, initialState)
       return { ...initialState, ProductsArray: [] }
 
     default:
@@ -229,12 +221,6 @@ function CartProvider({ children, ...props }) {
   }
 
   const setSubProductPrice = (selectedWeight, selectedCover) => {
-    console.log(
-      '[cartcontext] selectedWeight,selectedCover =>',
-      selectedWeight,
-      selectedCover
-    )
-
     const selectWeightPrice = selectedWeight[0] && selectedWeight[0].price
     const selectCoverPrice = selectedWeight[0] && selectedCover[0].price
     dispatch({

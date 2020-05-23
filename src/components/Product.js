@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 
 import Photo from './Photo'
 
-const Product = ({ id, human_id, name, media, price, description }) => {
+const Product = ({ id, human_id, name, media, price }) => {
   return (
     <article key={id} className="px-5 py-2 w-full md:p-5 md:w-1/2 lg:w-1/3">
       <Link

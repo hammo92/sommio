@@ -6,9 +6,7 @@ import { CartContext } from '../context/CartContext'
 function CartItem({ locked, cartButton }) {
   const [removing, setRemoving] = useState(false)
 
-  const { remove_cart, ProductsArray, productSubTotal } = useContext(
-    CartContext
-  )
+  const { remove_cart, ProductsArray } = useContext(CartContext)
 
   const onRemove = data => {
     setRemoving(true)

@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
-import { useStaticQuery, navigate } from 'gatsby'
+import { useStaticQuery, navigate, graphql } from 'gatsby'
 import Photo from '../Photo'
 import Loader from '../../components/Loader'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
 import Layout from '../Layout/Layout'
-import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import { TransitionState } from 'gatsby-plugin-transition-link'
 import { toast } from 'react-toastify'
 import { FirebaseContext } from '../../context'
 
@@ -35,7 +35,6 @@ const UserOrderDetailsInner = props => {
   const orderId = props.id
 
   const retrieveOrderData = `https://api.builton.dev/orders/${orderId}`
-  const token = localStorage.getItem('firebaseToken')
 
   const [orderDetails, setOrderDetails] = useState(null)
   const [paymentMethod, setPaymentMethod] = useState(null)
@@ -67,7 +66,6 @@ const UserOrderDetailsInner = props => {
             }
           )
           .catch(error => {
-            console.log('error => ', error)
             return error
           })
         //get paymentMethod details
@@ -82,19 +80,19 @@ const UserOrderDetailsInner = props => {
               }
             }
           )
-          .catch(error => console.log('error => ', error))
+          .catch(error => {
+            return error
+          })
         setPaymentMethod(paymentMethodResponse.data)
         setLoading(false)
       })
       .catch(error => {
-        console.log('error =>', error, error.response)
         if (error.response.status === 401 || error.response.status === 403) {
           firebase &&
             firebase
               .auth()
               .signOut()
               .then(res => {
-                console.log('res => ', res)
                 navigate(`/`)
                 localStorage.removeItem('firebaseToken')
                 localStorage.removeItem('details')
@@ -132,8 +130,8 @@ const UserOrderDetailsInner = props => {
                   {orderDetails &&
                     orderDetails.items
                       .filter(data => data.name !== 'Shipping cost')
-                      .map(item => (
-                        <li className="revieworder-box">
+                      .map((item, key) => (
+                        <li className="revieworder-box" key={key}>
                           <div className="product-image bg-grey-light">
                             <Photo
                               src={

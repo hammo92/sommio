@@ -1,13 +1,12 @@
 import React from 'react'
 import ScrollText from './scrollText'
-import Head from '../AnimatedText/Head'
-import Para from '../AnimatedText/Para'
-
 
 const MagicWeightex = () => {
   return (
     <div className="magicweightex-main">
-      <ScrollText text={"Discover Calm • Discover Calm • Discover Calm • Discover Calm"}/>
+      <ScrollText
+        text={'Discover Calm • Discover Calm • Discover Calm • Discover Calm'}
+      />
       {/* <Head type={2}>
         The magic of Weightex™
       </Head>

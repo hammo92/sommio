@@ -1,27 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react'
-import axios from 'axios'
-import { Link } from 'gatsby'
-import {
-  ShippingAndUserDetailContext,
-  FirebaseContext,
-  CartContext
-} from '../../context'
+import { ShippingAndUserDetailContext, FirebaseContext } from '../../context'
 import AddressFields from './AddressFields'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 import RegisterOrLogin from '../Checkout/RegisterOrLogin'
-import { newFirebaseToken } from '../../utils/newFirebaseToken'
-import Loader from '../Loader'
+import _get from 'lodash/get'
 
 const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
-  const {
-    shipping_address,
-    customerDetails,
-    user,
-    shippingCostCalculate
-  } = useContext(ShippingAndUserDetailContext)
-  console.log('shipping_address SSI => ', shipping_address)
+  const { shipping_address } = useContext(ShippingAndUserDetailContext)
 
-  const { ProductsArray } = useContext(CartContext)
   const { firebase } = useContext(FirebaseContext)
   const [modal, setModal] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
@@ -57,24 +43,24 @@ const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
           </h2>
           <div className="mb-10">
             <h4 className="mb-3">Email Address</h4>
-            <p>{details && details.email}</p>
+            <p>{_get(details, 'email', '')}</p>
           </div>
           <div className="mb-10">
             <h4 className="mb-3">Shipping Address</h4>
             <p className="mb-1">
-              Name: {shipping_address && shipping_address.first_name}{' '}
-              {shipping_address && shipping_address.last_name}
+              Name: {_get(shipping_address, 'first_name', '')}{' '}
+              {_get(shipping_address, 'last_name', '')}
             </p>
             <p className="mb-1">
-              Address: {shipping_address && shipping_address.line_1}
+              Address: {_get(shipping_address, 'line_1', '')}
             </p>
-            <p className="mb-1">{shipping_address && shipping_address.city}</p>
+            <p className="mb-1">{_get(shipping_address, 'city', '')}</p>
             <p>
-              {shipping_address && shipping_address.county} {''}
-              {shipping_address && shipping_address.postcode}
+              {_get(shipping_address, 'county', '')} {''}
+              {_get(shipping_address, 'postcode', '')}
             </p>
-            <p>{shipping_address && shipping_address.country}</p>
-            <p>Contact Number: {shipping_address && shipping_address.phone}</p>
+            <p>{_get(shipping_address, 'country', '')}</p>
+            <p>Contact Number: {_get(shipping_address, 'phone', '')}</p>
           </div>
         </div>
         <div className="submit_btn">

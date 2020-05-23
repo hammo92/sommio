@@ -1,25 +1,9 @@
-import React, {
-  useContext,
-  useRef,
-  useState,
-  useEffect,
-  Fragment,
-  useLayoutEffect
-} from 'react'
+import React, { useRef, useState, useEffect, Fragment } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import Slider from 'react-slick'
-import { ShippingAndUserDetailContext } from '../../context/ShippingAndUserDetailContext'
-import {
-  useSprings,
-  useTransition,
-  useSpring,
-  animated,
-  useTrail
-} from 'react-spring'
+import { useTransition, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import clamp from 'lodash-es/clamp'
 import useMeasure from 'react-use-measure'
-import { fieldSubscriptionItems } from 'final-form'
 
 function Viewpager({ pages, width }) {
   const index = useRef(0)
@@ -117,6 +101,7 @@ function Viewpager({ pages, width }) {
       <div className="indicatorWrap">
         {transition.map(({ item, props: { xy, ...rest }, key }) => (
           <animated.div
+            key={key}
             className="photoIndicator"
             style={{
               transform: xy.interpolate(
@@ -127,7 +112,7 @@ function Viewpager({ pages, width }) {
           />
         ))}
       </div>
-      {cardTransition.map(({ item, props: { xy, scale, ...rest }, key }) => (
+      {cardTransition.map(({ item, props: { xy, scale }, key }) => (
         <animated.div
           className="springSlide"
           {...bind()}
@@ -155,7 +140,7 @@ function Viewpager({ pages, width }) {
   )
 }
 
-function ProductImage({ productId, selectedVariationId }) {
+function ProductImage({ selectedVariationId }) {
   //responsive width hook
   const [bind, { width }] = useMeasure()
 
@@ -184,9 +169,6 @@ function ProductImage({ productId, selectedVariationId }) {
     ({ _id: { _oid } }) => _oid === selectedVariationId
   ).media
 
-  const mainProduct = allBuiltonProduct.nodes.filter(product => {
-    return product.id === productId
-  })
   const [images, setImages] = useState(data)
   useEffect(() => setImages(data), [data])
 

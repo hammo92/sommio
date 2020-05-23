@@ -1,22 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { ShippingAndUserDetailContext } from '../../context/ShippingAndUserDetailContext'
 import PlushImages from '../../images/plush.jpg'
-import SommioModal from '../modal.js'
 import { useStateValue } from '../../context/SiteContext'
-import ArrowUp from '../../images/arrow-up.svg'
-import ArrowDown from '../../images/arrow-down.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faArrowLeft, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
-
 import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from 'reactstrap'
-import { useStaticQuery, Link } from 'gatsby'
+  faArrowRight,
+  faArrowLeft,
+  faArrowDown,
+  faArrowUp
+} from '@fortawesome/free-solid-svg-icons'
+import { useStaticQuery, graphql } from 'gatsby'
 import { CartContext } from '../../context/CartContext'
-const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
+const AddToCart = ({ productId, onChangeSelectedProduct }) => {
   const { allBuiltonProduct } = useStaticQuery(graphql`
     query {
       allBuiltonProduct {
@@ -49,9 +44,7 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       }
     }
   `)
-  const { setVariation, setToggle, toggle } = useContext(
-    ShippingAndUserDetailContext
-  )
+  const { setVariation, setToggle } = useContext(ShippingAndUserDetailContext)
   const {
     set_cart,
     setSubProductPrice,
@@ -65,7 +58,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   const [cover, setCover] = useState(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [coverIndex, setCoverIndex] = useState(0)
-
 
   let weightSubProduct = []
   let coverSubProduct = []
@@ -111,7 +103,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       coverSubProduct.push(sub)
     }
   })
-  
 
   // sort weight
   weightSubProduct.sort(compare)
@@ -124,7 +115,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
     }
   })
 
-
   const selectedWeight = weightSubProduct.filter(sub => {
     if (weight === null) {
       return sub.name === weightSubProduct[0].name
@@ -135,17 +125,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
   useEffect(() => {
     setSubProductPrice(selectedWeight, selectedCover)
   }, [weight, cover])
-
-  const [blanketCover, setblanketCover] = useState({
-    name: coverSubProduct[0].name,
-    desc: coverSubProduct[0].description,
-  })
-  const [dropdownOpen, setDropdownOpen] = useState(false)
-  let i = 0
-
-  const toggleHandle = () => {
-    setDropdownOpen(!dropdownOpen)
-  }
 
   const updateVariations = (e, name, price, id) => {
     onChangeSelectedProduct(id)
@@ -207,8 +186,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       setCart: { drawer: true }
     })
   }
-  let price =
-    selectedProduct && selectedProduct.price + weightPrice + coverPrice
 
   const arrowUp = index => {
     setCurrentIndex(index)
@@ -237,8 +214,6 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       coverSubProduct[index]._id._oid
     )
   }
-  console.log("covers =>", coverSubProduct)
-
   return (
     <div className="product-variation">
       <div className="blanket-boxs">
@@ -251,18 +226,17 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       <div className="weight-box">
         <div className="leftBox">
           <h2>Weight:</h2>
-          <div>   
+          <div>
             <p>Recommended for users who weigh between:</p>
             <h3>
-            {weightSubProduct[currentIndex] &&
-              weightSubProduct[currentIndex].short_description}
+              {weightSubProduct[currentIndex] &&
+                weightSubProduct[currentIndex].short_description}
             </h3>
           </div>
-          
         </div>
         <div className="rightBox weightChange">
           <div
-            className={`arrowBox ${currentIndex === 0 && "disabled"}`}
+            className={`arrowBox ${currentIndex === 0 && 'disabled'}`}
             onClick={() => arrowUp(currentIndex === 0 ? 0 : currentIndex - 1)}
           >
             <p>lighter</p> <FontAwesomeIcon icon={faArrowUp} />
@@ -272,7 +246,8 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
               weightSubProduct[currentIndex].name}
           </div>
           <div
-            className={`arrowBox ${currentIndex === weightSubProduct.length - 1 && "disabled"}`}
+            className={`arrowBox ${currentIndex ===
+              weightSubProduct.length - 1 && 'disabled'}`}
             onClick={() =>
               arrowDown(
                 currentIndex < weightSubProduct.length - 1
@@ -322,23 +297,28 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
 
       <div className="blanket-boxs cover-box">
         <div className="leftBox">
-        <h2>Cover:</h2>
+          <h2>Cover:</h2>
           <div>
             <h3>{coverSubProduct[coverIndex].name}</h3>
             <p>{coverSubProduct[coverIndex].description}</p>
           </div>
         </div>
         <div className="rightBox coverChange">
-            <div className="imageWrapper"><img src={PlushImages} alt="plushImages" /></div>
-          <div
-            className={`arrowBox ${coverIndex === 0 && "disabled"}`}
-            onClick={() => coverChange(coverIndex !== 0 && coverIndex - 1)}
-          >
-              <FontAwesomeIcon icon={faArrowLeft} />
+          <div className="imageWrapper">
+            <img src={PlushImages} alt="plushImages" />
           </div>
           <div
-            className={`arrowBox ${coverIndex === coverSubProduct.length - 1 && "disabled"}`}
-            onClick={() => coverChange(coverIndex < coverSubProduct.length && coverIndex + 1)}
+            className={`arrowBox ${coverIndex === 0 && 'disabled'}`}
+            onClick={() => coverChange(coverIndex !== 0 && coverIndex - 1)}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </div>
+          <div
+            className={`arrowBox ${coverIndex === coverSubProduct.length - 1 &&
+              'disabled'}`}
+            onClick={() =>
+              coverChange(coverIndex < coverSubProduct.length && coverIndex + 1)
+            }
           >
             <FontAwesomeIcon icon={faArrowRight} />
           </div>

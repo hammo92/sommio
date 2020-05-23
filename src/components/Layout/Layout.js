@@ -1,7 +1,6 @@
-import React, { useEffect, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { ToastContainer } from 'react-toastify'
-import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 import Header from './Header'

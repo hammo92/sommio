@@ -1,14 +1,10 @@
-import React, { useContext, useState } from 'react'
-import { Link } from 'gatsby'
-import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import React, { useContext } from 'react'
+import TransitionLink from 'gatsby-plugin-transition-link'
 import { CartContext } from '../context/CartContext'
 import CartItem from './CartItem'
-import CartButton from './CartButton'
 import { useStateValue } from '../context/SiteContext'
 
 export default function CartItemList(props) {
-  const TRANSITION_LENGTH = 0.5
-
   const exitTransition = {
     length: 0.8, // Take 1 seconds to leave
     trigger: () => {
@@ -21,10 +17,7 @@ export default function CartItemList(props) {
 
   const entryTransition = {
     delay: 0.8, // Wait 1 seconds before entering
-    trigger: () => {
-      if (document && window) {
-      }
-    }
+    trigger: () => {}
   }
   const [{ cart }, dispatch] = useStateValue()
   const { isEmpty, productSubTotal, total, shippingRate } = useContext(

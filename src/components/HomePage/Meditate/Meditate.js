@@ -1,10 +1,7 @@
-import React, { useState, useRef, useEffect } from "react"
-import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js';
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import { Canvas, extend, useLoader, useFrame, useThree, useRender } from "react-three-fiber"
-import { useSpring, a } from "react-spring/three"
+import React, { useRef } from 'react'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { Canvas, extend, useFrame, useThree } from 'react-three-fiber'
 
 extend({ OrbitControls })
 const Controls = props => {
@@ -14,28 +11,16 @@ const Controls = props => {
   return <orbitControls ref={ref} args={[camera, gl.domElement]} {...props} />
 }
 
-function Model ({ url }) {
-    const [gltf, set] = React.useState()
-    
-    React.useMemo(() => new GLTFLoader().load(url, set), [url])
-    
-
-    console.log(gltf)
-    return (
-      gltf ? 
-      <primitive object={gltf.scene} />
-      : null
-    )
+function Model({ url }) {
+  const [gltf, set] = React.useState()
+  React.useMemo(() => new GLTFLoader().load(url, set), [url])
+  return gltf ? <primitive object={gltf.scene} /> : null
 }
 
-
-  
-  
-function Meditate ({}) { 
-
+const Meditate = () => {
   return (
     <>
-        <Canvas camera={{ position: [0, 0, 20], fov: 25 }} shadowMap>
+      <Canvas camera={{ position: [0, 0, 20], fov: 25 }} shadowMap>
         <ambientLight intensity={0.8} />
         <pointLight intensity={0.51} position={[-10, -25, -10]} />
         <spotLight
@@ -58,7 +43,6 @@ function Meditate ({}) {
           minPolarAngle={Math.PI / 2}
         />
       </Canvas>
-
     </>
   )
 }

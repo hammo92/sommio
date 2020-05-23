@@ -20,11 +20,6 @@ const LocationSearchInput = () => {
     setZip(zipcode)
     setPostalCode(zipcode) //update context postal code value
   }
-  console.log(
-    'shipping_address =============>',
-    shipping_address,
-    shipping_address.country
-  )
 
   const handleSelect = address => {
     geocodeByAddress(address)
@@ -39,7 +34,6 @@ const LocationSearchInput = () => {
         getLatLng(results[0])
       })
       .catch(error => {
-        console.error('GoogleAutoComplete Error', error)
         return error
       })
   }
@@ -82,8 +76,6 @@ const LocationSearchInput = () => {
           <div className="autocomplete-dropdown-container">
             {loading && <div>Loading...</div>}
             {suggestions.map(suggestion => {
-              console.log('suggestion ==============> ', suggestion)
-
               const className = suggestion.active
                 ? 'suggestion-item--active'
                 : 'suggestion-item'

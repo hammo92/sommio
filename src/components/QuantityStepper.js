@@ -1,6 +1,4 @@
 import React, { useContext } from 'react'
-import _ from 'lodash'
-
 import { CartContext } from '../context/CartContext'
 
 export default function QuantityStepper({ product }) {

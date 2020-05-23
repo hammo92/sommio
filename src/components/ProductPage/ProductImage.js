@@ -1,30 +1,15 @@
-import React, {
-  useContext,
-  useRef,
-  useState,
-  useEffect,
-  Fragment,
-  useLayoutEffect
-} from 'react'
+import React, { useRef, useState, useEffect, Fragment } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import Slider from 'react-slick'
 
-import {
-  useSprings,
-  useTransition,
-  useSpring,
-  animated,
-  useTrail
-} from 'react-spring'
+import { useSprings, useTransition, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import clamp from 'lodash-es/clamp'
 import useMeasure from 'react-use-measure'
 
-function Viewpager({ pages, width}) {
+function Viewpager({ pages, width }) {
   const index = useRef(0)
   const [currentSlide, setCurrent] = useState(0)
   const config = { mass: 1, tension: 180, friction: 30 }
-  
 
   const [props, set] = useSprings(pages.length, i => ({
     x: i * width,
@@ -46,11 +31,11 @@ function Viewpager({ pages, width}) {
         config
       }
     })
-  },[pages])
+  }, [pages])
 
   let indicators = pages.map((indicator, i) => {
-    const indicatorWidth = width / pages.length 
-    const xy = [(width / pages.length ) * i, 0]
+    const indicatorWidth = width / pages.length
+    const xy = [(width / pages.length) * i, 0]
     return { ...indicator, position: i, width: indicatorWidth, xy }
   })
 
@@ -118,8 +103,9 @@ function Viewpager({ pages, width}) {
       <div className="slideChange back" /*onClick={prevSlide}*/ />
       <div className="slideChange next" /*onClick={nextSlide}*/ />
       <div className="indicatorWrap">
-        {transition.map(({ item, props: { xy, ...rest }, key }) => (
+        {transition.map(({ props: { xy, ...rest }, key }) => (
           <animated.div
+            key={key}
             className="photoIndicator"
             style={{
               transform: xy.interpolate(
@@ -134,7 +120,7 @@ function Viewpager({ pages, width}) {
   )
 }
 
-function ProductImage({ productId, selectedVariationId }) {
+function ProductImage({ selectedVariationId }) {
   //responsive width hook
   const [bind, { width }] = useMeasure()
 
@@ -158,21 +144,15 @@ function ProductImage({ productId, selectedVariationId }) {
       }
     `
   )
-  console.log("nodes =>", allBuiltonProduct.nodes)
 
   const data = allBuiltonProduct.nodes.find(
     ({ _id: { _oid } }) => _oid === selectedVariationId
   ).media
-  console.log('[productImage] data => ', data)
 
-  const mainProduct = allBuiltonProduct.nodes.filter(product => {
-    return product.id === productId
-  })
   const [images, setImages] = useState(data)
 
   useEffect(() => {
     setImages(data)
-
   }, [data])
 
   return (

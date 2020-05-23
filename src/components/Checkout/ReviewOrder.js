@@ -22,7 +22,7 @@ const RiviewOrder = ({ stripe, formEnable }) => {
     ProductsArray[0] && ProductsArray[0].shippingProductId
 
   let dataFrom = JSON.parse(sessionStorage.getItem('cartDetails'))
-  let details = JSON.parse(localStorage.getItem('details'))
+  // let details = JSON.parse(localStorage.getItem('details'))
 
   let orderItems =
     dataFrom &&
@@ -47,12 +47,12 @@ const RiviewOrder = ({ stripe, formEnable }) => {
 
     try {
       //Stripe token
-      console.log('Before generating token ===>')
-      console.log(
-        'Before generating token shipping_address ===>',
-        shipping_address,
-        builton
-      )
+      // console.log('Before generating token ===>')
+      // console.log(
+      //   'Before generating token shipping_address ===>',
+      //   shipping_address,
+      //   builton
+      // )
 
       const token = await stripe.createToken({
         name: `${shipping_address.first_name} ${shipping_address.last_name}`,
@@ -84,7 +84,6 @@ const RiviewOrder = ({ stripe, formEnable }) => {
         payment_method: paymentMethod.id,
         note: note
       })
-      console.log('After CreateOrder ===>', createdOrder)
 
       // dispatch method
       createOrderBuilton(createdOrder)
@@ -108,14 +107,14 @@ const RiviewOrder = ({ stripe, formEnable }) => {
             }
           }
         )
-        .catch(error => console.log('error => ', error))
-      console.log('payBuilton => ', payBuilton)
+        .catch(error => {
+          return error
+        })
       //dispatch method
       paymentBuilton(payBuilton)
 
       setLoading(false)
     } catch (errors) {
-      console.info('errors ====>', JSON.stringify(errors), errors)
       setCheckoutError(errors)
     }
   }
