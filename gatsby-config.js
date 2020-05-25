@@ -66,8 +66,7 @@ module.exports = {
         }
       }
     },
-    
-    
+
     {
       resolve: `gatsby-builton`,
       options: {
@@ -76,6 +75,13 @@ module.exports = {
       }
     },
 
-    'gatsby-plugin-stripe'
+    'gatsby-plugin-stripe',
+    {
+      resolve: `gatsby-plugin-minify`,
+      options: {
+        removeAttributeQuotes: true
+        // ...
+      }
+    }
   ]
 }
