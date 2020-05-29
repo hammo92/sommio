@@ -11,9 +11,19 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { useStaticQuery, graphql } from 'gatsby'
 import { CartContext } from '../../context/CartContext'
+import Img from 'gatsby-image'
+
 const AddToCart = ({ productId, onChangeSelectedProduct }) => {
-  const { allBuiltonProduct } = useStaticQuery(graphql`
+  const { allBuiltonProduct, file } = useStaticQuery(graphql`
     query {
+      file(name: { eq: "plush" }) {
+        childImageSharp {
+          fluid(maxWidth: 1800, quality: 100) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+
       allBuiltonProduct {
         nodes {
           _id {
@@ -305,7 +315,8 @@ const AddToCart = ({ productId, onChangeSelectedProduct }) => {
         </div>
         <div className="rightBox coverChange">
           <div className="imageWrapper">
-            <img src={PlushImages} alt="plushImages" />
+            {/* <img src={PlushImages} alt="plushImages" /> */}
+            <Img fluid={file.childImageSharp.fluid} />
           </div>
           <div
             className={`arrowBox ${coverIndex === 0 && 'disabled'}`}

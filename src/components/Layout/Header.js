@@ -21,6 +21,9 @@ import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
+import lazyApp from 'firebase/app'
+import 'firebase/auth'
+
 const Header = ({ siteTitle, human_id, transitionStatus }, props) => {
   const [{ cart }, dispatch] = useStateValue()
   const { orderId } = useContext(CheckoutContext)
@@ -52,18 +55,16 @@ const Header = ({ siteTitle, human_id, transitionStatus }, props) => {
   }
 
   useEffect(() => {
-    const lazyApp = import('firebase')
-    lazyApp.then(firebaseObj => {
-      const firebase = getFirebase(firebaseObj)
+    const firebaseObj = lazyApp
+    const firebase = getFirebase(firebaseObj)
 
-      setFirebase(firebase)
-      if (firebase && firebase.auth().currentUser) {
-        setModal(false)
-      }
-      !(firebase && firebase.auth().currentUser)
-        ? setTimeout(() => setRefresh(true), 1000)
-        : setRefresh(true)
-    })
+    setFirebase(firebase)
+    if (firebase && firebase.auth().currentUser) {
+      setModal(false)
+    }
+    !(firebase && firebase.auth().currentUser)
+      ? setTimeout(() => setRefresh(true), 1000)
+      : setRefresh(true)
 
     let dataFromStorage = sessionStorage.getItem('cartDetails')
     let cartData = JSON.parse(dataFromStorage)

@@ -139,21 +139,37 @@ function ProductImage({ selectedVariationId }) {
             }
             name
             image_url
+            image {
+              childImageSharp {
+                id
+                fluid {
+                  src
+                }
+              }
+            }
           }
         }
       }
     `
   )
 
+  console.info('--------------------------')
+  console.info('allBuiltonProduct =>', allBuiltonProduct, selectedVariationId)
+  console.info('--------------------------')
+
   const data = allBuiltonProduct.nodes.find(
     ({ _id: { _oid } }) => _oid === selectedVariationId
-  ).media
+  )
 
-  const [images, setImages] = useState(data)
+  const [images, setImages] = useState(data.media)
 
   useEffect(() => {
-    setImages(data)
+    setImages(data.media)
   }, [data])
+
+  console.info('--------------------------')
+  console.info('data1 =>', data)
+  console.info('--------------------------')
 
   return (
     <div ref={bind} className="col-12 col-lg-7 col-xl-8">
