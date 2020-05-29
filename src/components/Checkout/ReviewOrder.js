@@ -9,9 +9,11 @@ import {
 import CartItemList from '../CartItemList'
 import Loader from '../Loader'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
+import _sumBy from 'lodash/sumBy'
+import { navigate } from '@reach/router'
 
-const RiviewOrder = ({ stripe, formEnable }) => {
-  const { shipping_address, builton, note } = useContext(
+const RiviewOrder = ({ stripe, formEnable, paymentMethod, paymentOption }) => {
+  const { shipping_address, builton, note, user } = useContext(
     ShippingAndUserDetailContext
   )
   const { ProductsArray } = useContext(CartContext)
@@ -41,6 +43,7 @@ const RiviewOrder = ({ stripe, formEnable }) => {
 
   const [isLoading, setLoading] = useState(false)
   let payBuilton
+
   const handleOrder = async () => {
     setLoading(true)
     var authToken = await newFirebaseToken()
@@ -119,26 +122,101 @@ const RiviewOrder = ({ stripe, formEnable }) => {
     }
   }
 
+  const handleKlarnaOrder = async () => {
+    try {
+      let klarnaItems = dataFrom.map(item => {
+        return {
+          type: 'sku',
+          description: `${item.description} - ${item.weightName}`,
+          quantity: item.quantityBuilton,
+          currency: item.currency,
+          amount: parseInt(item.quantityBuilton) * parseInt(item.final_price)
+        }
+      })
+      klarnaItems.push({
+        type: 'tax',
+        description: 'Taxes',
+        currency: 'gbp',
+        amount: 0
+      })
+      klarnaItems.push({
+        type: 'shipping',
+        description: 'Free Shipping',
+        currency: 'gbp',
+        amount: 0
+      })
+      console.info('--------------------------')
+      console.info('klarnaItems =>', klarnaItems)
+      console.info('--------------------------')
+      stripe
+        .createSource({
+          type: 'klarna',
+          amount: _sumBy(klarnaItems, 'amount'),
+          currency: 'gbp',
+          klarna: {
+            product: 'payment',
+            purchase_country: 'GB',
+            custom_payment_methods: 'payin4,installments',
+            first_name: shipping_address.first_name,
+            last_name: shipping_address.last_name
+          },
+          owner: {
+            email: user,
+            name: `${shipping_address.first_name} ${shipping_address.last_name}`,
+            address: {
+              line1: shipping_address.line_1,
+              line2: shipping_address.line_2,
+              city: shipping_address.city,
+              state: shipping_address.county,
+              postal_code: shipping_address.postcode,
+              country: 'UK'
+            }
+          },
+          source_order: {
+            items: [...klarnaItems]
+          },
+          flow: 'redirect',
+          redirect: {
+            return_url: 'http://localhost:8000/checkout'
+          }
+        })
+        .then(result => {
+          console.info('--------------------------')
+          console.info('klarna result =>', result)
+          console.info('--------------------------')
+          navigate(result.source.klarna[paymentOption + '_redirect_url'])
+        })
+    } catch (err) {
+      console.info('--------------------------')
+      console.info('err =>', err)
+      console.info('--------------------------')
+    }
+  }
+
   return (
-    <div className={`${!formEnable ? 'form-disable' : ''}`}>
-      <h2 className="text-black font-medium leading-loose p-0 mb-3">
-        <span>3</span>
-        <span className="text">REVIEW ORDER</span>{' '}
-      </h2>
-      <CartItemList locked />
-      <div className="submit_btn">
-        {isLoading === true ? (
-          <Loader />
-        ) : (
-          <button
-            onClick={handleOrder}
-            disabled={isLoading === true || payBuilton ? true : false}
-          >
-            COMPLETE ORDER
-          </button>
-        )}
+    <>
+      <div className={`${!formEnable ? 'form-disable' : ''}`}>
+        <h2 className="text-black font-medium leading-loose p-0 mb-3">
+          <span>3</span>
+          <span className="text">REVIEW ORDER</span>{' '}
+        </h2>
+        <CartItemList locked />
+        <div className="submit_btn">
+          {isLoading === true ? (
+            <Loader />
+          ) : (
+            <button
+              onClick={
+                paymentMethod === 'stripe' ? handleOrder : handleKlarnaOrder
+              }
+              disabled={isLoading === true || payBuilton ? true : false}
+            >
+              COMPLETE ORDER
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

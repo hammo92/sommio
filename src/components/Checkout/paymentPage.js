@@ -12,8 +12,16 @@ import ShippingSelectOption from './shippingSelectOption'
 import stripeValidation from '../../validation/stripe'
 import { navigate } from 'gatsby'
 import _get from 'lodash/get'
+import PaymentSelectOption from './PaymentSelectOption'
+import KlarnaPaymentOption from './KlarnaPaymentOption'
 
-const PaymentPage = ({ changeFormEnable, isEditable }) => {
+const PaymentPage = ({
+  changeFormEnable,
+  isEditable,
+  setPaymentMethod,
+  paymentMethod,
+  setPaymentOption
+}) => {
   const { paymentData, paymentDetails } = useContext(CheckoutContext)
   const { shipping_address, builton } = useContext(ShippingAndUserDetailContext)
   const { ProductsArray, shippingRate, shippingProvider } = useContext(
@@ -112,59 +120,86 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
             Shipping Method
           </p>
           <ShippingSelectOption />
-
-          <Form
-            onSubmit={handlePayment}
-            validate={stripeValidation}
-            render={({ handleSubmit, invalid, form, values }) => {
-              const onStripeChange = e => form.change('stripe', e)
-              return (
-                <form onSubmit={handleSubmit}>
-                  {checkoutError && (
-                    <div className="bg-red text-white p-3 text-center">
-                      {checkoutError}
-                    </div>
-                  )}
-                  <div>
-                    <div className="my-2 w-full">
-                      <div className="bg-yellow text-sm p-3 my-6">
-                        Use the test card{' '}
-                        <pre className="inline">4242 4242 4242 4242</pre> and
-                        any future expiry and CVC below to checkout.
-                      </div>
-
-                      <CardElement
-                        name="st"
-                        onChange={onStripeChange}
-                        hidePostalCode={true}
-                        id="payment"
-                        style={stripeStyle}
-                      />
-                      {_get(values, 'stripe.error', null) && (
-                        <span className="text-red text-sm">
-                          {_get(values, 'stripe.error.message', '')}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="submit_btn">
-                    <p className="text-sm text-center mb-3">
-                      By clicking the button below you agree to our terms of
-                      sale.
-                    </p>
-
-                    <button
-                      type="submit"
-                      disabled={invalid}
-                      onClick={changeFormEnable}
-                    >
-                      NEXT
-                    </button>
-                  </div>
-                </form>
-              )
-            }}
+          <p className="text-black font-medium leading-loose p-0 mb-3 mt-3">
+            Payment Method
+          </p>
+          <PaymentSelectOption
+            onChange={value => setPaymentMethod(value)}
+            makeEnable={makeEnable}
           />
+          {paymentMethod === 'stripe' && (
+            <Form
+              onSubmit={handlePayment}
+              validate={stripeValidation}
+              render={({ handleSubmit, invalid, form, values }) => {
+                const onStripeChange = e => form.change('stripe', e)
+                return (
+                  <form onSubmit={handleSubmit}>
+                    {checkoutError && (
+                      <div className="bg-red text-white p-3 text-center">
+                        {checkoutError}
+                      </div>
+                    )}
+                    <div>
+                      <div className="my-2 w-full">
+                        <div className="bg-yellow text-sm p-3 my-6">
+                          Use the test card{' '}
+                          <pre className="inline">4242 4242 4242 4242</pre> and
+                          any future expiry and CVC below to checkout.
+                        </div>
+
+                        <CardElement
+                          name="st"
+                          onChange={onStripeChange}
+                          hidePostalCode={true}
+                          id="payment"
+                          style={stripeStyle}
+                        />
+                        {_get(values, 'stripe.error', null) && (
+                          <span className="text-red text-sm">
+                            {_get(values, 'stripe.error.message', '')}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="submit_btn">
+                      <p className="text-sm text-center mb-3">
+                        By clicking the button below you agree to our terms of
+                        sale.
+                      </p>
+
+                      <button
+                        type="submit"
+                        disabled={invalid}
+                        onClick={changeFormEnable}
+                      >
+                        NEXT
+                      </button>
+                    </div>
+                  </form>
+                )
+              }}
+            />
+          )}
+          {paymentMethod === 'klarna' && (
+            <>
+              <p className="text-black font-medium leading-loose p-0 mb-3 mt-3">
+                Klarna Payment Option
+              </p>
+              <KlarnaPaymentOption
+                onChange={value => setPaymentOption(value)}
+              />
+              <div className="submit_btn">
+                <p className="text-sm text-center mb-3">
+                  By clicking the button below you agree to our terms of sale.
+                </p>
+
+                <button type="button" onClick={changeFormEnable}>
+                  NEXT
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
       <div className={`${makeEnable ? 'hidden' : 'visible'}`}>
