@@ -61,7 +61,7 @@ exports.onCreateNode = async ({ node, actions, store, cache }) => {
           })
           if (fileNode) {
             // console.log('In fileNode If condition')
-            node.image___NODE = fileNode.id
+            med.image___NODE = fileNode.id
             return med
           }
         })

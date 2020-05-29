@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect, Fragment } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-
 import { useSprings, useTransition, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import clamp from 'lodash-es/clamp'
 import useMeasure from 'react-use-measure'
+import Img from 'gatsby-image'
 
 function Viewpager({ pages, width }) {
   const index = useRef(0)
@@ -92,12 +92,16 @@ function Viewpager({ pages, width }) {
             transform: x.interpolate(x => `translate3d(${x}px,0,0)`)
           }}
         >
-          <animated.div
+          <Img
+            fluid={pages[i].image.childImageSharp.fluid}
+            style={{ transform: scale.interpolate(scale => `scale(${scale})`) }}
+          />
+          {/* <animated.div
             style={{
               transform: scale.interpolate(scale => `scale(${scale})`),
               backgroundImage: `url(${pages[i].url})`
             }}
-          />
+          /> */}
         </animated.div>
       ))}
       <div className="slideChange back" /*onClick={prevSlide}*/ />
@@ -123,7 +127,6 @@ function Viewpager({ pages, width }) {
 function ProductImage({ selectedVariationId }) {
   //responsive width hook
   const [bind, { width }] = useMeasure()
-
   const { allBuiltonProduct } = useStaticQuery(
     graphql`
       query {
@@ -136,26 +139,22 @@ function ProductImage({ selectedVariationId }) {
             media {
               human_id
               url
-            }
-            name
-            image_url
-            image {
-              childImageSharp {
-                id
-                fluid {
-                  src
+              image {
+                childImageSharp {
+                  id
+                  fluid {
+                    src
+                  }
                 }
               }
             }
+            name
+            image_url
           }
         }
       }
     `
   )
-
-  console.info('--------------------------')
-  console.info('allBuiltonProduct =>', allBuiltonProduct, selectedVariationId)
-  console.info('--------------------------')
 
   const data = allBuiltonProduct.nodes.find(
     ({ _id: { _oid } }) => _oid === selectedVariationId
@@ -166,10 +165,6 @@ function ProductImage({ selectedVariationId }) {
   useEffect(() => {
     setImages(data.media)
   }, [data])
-
-  console.info('--------------------------')
-  console.info('data1 =>', data)
-  console.info('--------------------------')
 
   return (
     <div ref={bind} className="col-12 col-lg-7 col-xl-8">

@@ -53,6 +53,13 @@ export const query = graphql`
         media {
           human_id
           url
+          image {
+            childImageSharp {
+              fluid {
+                src
+              }
+            }
+          }
         }
         human_id
         description
