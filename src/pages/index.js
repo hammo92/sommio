@@ -83,7 +83,7 @@ export const IndexInner = ({ transitionStatus }) => {
 
           </div>
         </div>
-        */}
+        
       
 
       <SecretIngredient />
@@ -112,6 +112,7 @@ export const IndexInner = ({ transitionStatus }) => {
           </div>
         </div>
       </div>
+      */}
       <Footer />
     </animated.div>
   )

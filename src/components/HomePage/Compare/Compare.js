@@ -53,8 +53,6 @@ const details = [
 
   
 const CompareBox = ({details: {title, text, url}, setPlaying, playing, left}) => {
-  console.log("Details =>", url[Object.keys(url)[0]])
-  console.log(`playing ${title} => `, playing)
   return (
     <div className= {left ? "col-12 col-lg-6 bor-right" : "col-12 col-lg-6"}> 
       <div className="sommio-box">
@@ -104,21 +102,8 @@ const Compare = () => {
   return (
     <div className="col-12 blanketdifference-main">
 
-      <Tab.Container id="left-tabs-example" defaultActiveKey="first">
         <Row>
           <Col xs={12}>
-            <Nav variant="pills">
-              <Nav.Item>
-                <Nav.Link eventKey="first">Weightex</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="second">Cover</Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </Col>
-          <Col xs={12}>
-            <Tab.Content>
-              <Tab.Pane eventKey="first">
                 <div className="row no-gutters">
                   <div className="col-12 col-lg-6">
                     <div className="weightex-box">
@@ -137,14 +122,9 @@ const Compare = () => {
                 <CompareRow row={2} />
                 <CompareRow row={4}/>
                 {/*<CompareRow row={4}/>*/}
-              </Tab.Pane>
-              <Tab.Pane eventKey="second">
-                Lorem
-              </Tab.Pane>
-            </Tab.Content>
           </Col>
         </Row>
-      </Tab.Container>
+
 
       
       
