@@ -5,12 +5,14 @@ const config = {
 
 let firebaseInstance
 export const getFirebase = firebase => {
-  if (firebaseInstance) {
+  if (typeof window !== 'undefined') {
+    if (firebaseInstance) return firebaseInstance;
+
+    firebase.initializeApp(config)
+    firebaseInstance = firebase
     return firebaseInstance
   }
 
-  firebase.initializeApp(config)
-  firebaseInstance = firebase
-
-  return firebase
+  return null;
 }
+

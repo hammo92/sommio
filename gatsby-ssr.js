@@ -5,6 +5,7 @@ import { BuiltonProvider } from './src/context'
 import Layout from './src/components/Layout'
 import { StripeProvider } from 'react-stripe-elements'
 import { SiteProvider } from './src/context/SiteProvider'
+import "firebase/auth"
 
 export const wrapRootElement = ({ element }) => {
   if (typeof window !== 'undefined') {

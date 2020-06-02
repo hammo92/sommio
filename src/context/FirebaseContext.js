@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react'
-import { StaticQuery } from 'gatsby'
+
 let FirebaseContext
 const { Provider, Consumer } = (FirebaseContext = createContext())
 export const SET_FIREBASE = 'SET_FIREBASE'

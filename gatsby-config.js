@@ -66,6 +66,22 @@ module.exports = {
         }
       }
     },
+    {
+      resolve: "gatsby-plugin-firebase",
+      options: {
+        credentials: {
+          apiKey: process.env.FIREBASE_API_KEY,
+          authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+          databaseURL: "https://builton-61902.firebaseio.com",
+          projectId: "builton-61902",
+          storageBucket: "builton-61902.appspot.com",
+          messagingSenderId: "745570464230",
+          appId: "1:745570464230:web:43cc5861f629f575166627",
+          measurementId: "G-PWPJD009SL"
+
+        }
+      }
+    },
     
     
     {

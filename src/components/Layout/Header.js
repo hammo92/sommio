@@ -23,6 +23,10 @@ import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
+
+import firebase from "gatsby-plugin-firebase"
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 const Header = (
   { siteTitle, collections, slug, human_id, transitionStatus },
   props
@@ -42,6 +46,7 @@ const Header = (
   let token = localStorage.getItem('firebaseToken')
   let details = JSON.parse(localStorage.getItem('details'))
   let mount = ['entering', 'entered'].includes(transitionStatus)
+  
   const slide = useSpring({
     to: {
       opacity: mount ? 1 : 0,
@@ -50,15 +55,15 @@ const Header = (
   })
 
   let newToken = newFirebaseToken()
-
+  
+  /* show or hide cart drawer */
   const handleCart = () => {
-    console.log('clicked')
-    console.log('cart state => ', cart)
     dispatch({
       type: 'setCart',
       setCart: { drawer: true }
     })
   }
+  /****************************/
 
   useEffect(() => {
     const lazyApp = import('firebase')
