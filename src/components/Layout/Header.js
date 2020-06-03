@@ -24,8 +24,7 @@ import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
 
-import firebase from "gatsby-plugin-firebase"
-import { useAuthState } from 'react-firebase-hooks/auth';
+
 
 const Header = (
   { siteTitle, collections, slug, human_id, transitionStatus },
@@ -55,6 +54,8 @@ const Header = (
   })
 
   let newToken = newFirebaseToken()
+
+  console.log("FirebaseContext: ", FirebaseContext)
   
   /* show or hide cart drawer */
   const handleCart = () => {
