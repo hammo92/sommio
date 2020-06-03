@@ -82,6 +82,18 @@ module.exports = {
         }
       }
     },
+    {
+      resolve: 'gatsby-plugin-preconnect',
+      options: {
+        domains: [
+          'https://images.ctfassets.net',
+          'https://p.typekit.net',
+          'https://cdnjs.cloudflare.com',
+          'https://securetoken.googleapis.com',
+          'https://use.typekit.net',
+        ],
+      },
+    },
     
     
     {

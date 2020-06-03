@@ -41,7 +41,6 @@ const Layout = ({ children, transitionStatus }) => {
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-        <link rel="preconnect stylesheet" href="https://use.typekit.net/lam5mga.css"></link>
         <script src="https://unpkg.com/@builton/core-sdk@latest/dist/main.bundle.js"></script>
       </Helmet>
       <Header
