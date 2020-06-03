@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useStaticQuery } from 'gatsby'
 import { Link } from 'gatsby'
 import { useTrail, animated, useTransition, useSpring } from 'react-spring'
-
+import VisibilitySensor from 'react-visibility-sensor'
 import useMedia from '../../hooks/useMedia'
 import useMeasure from 'react-use-measure'
 import Card from './Card'
@@ -38,13 +38,14 @@ const HelpsWith = ({ shifted }) => {
       }
     }
   `)
+  /* visibility sensor */
+  const [isVisible, setVisibility] = useState(false)
+  const onChange = visiblity => {
+    setVisibility(visiblity)
+  }
+  const conditions = isVisible ? allContentfulCondition.nodes : []
 
-  //state for clicked card
-  const [expanded, setExpanded] = useState({
-    itemClicked: false,
-    xy: [0, 0],
-    width: 0
-  })
+
 
   //number of columns
   const columns = useMedia(
@@ -60,9 +61,9 @@ const HelpsWith = ({ shifted }) => {
   const [page, setPage] = useState(0)
 
   //Card count
-  const condCount = allContentfulCondition.nodes.length
+  const condCount = conditions.length
   //array of visible cards
-  const show = allContentfulCondition.nodes.slice(page, columns + page + 1)
+  const show = conditions.slice(page, columns + page + 1)
   const config = { mass: 1.5, tension: 170, friction: 25 }
 
   //map cards array and set position variables
@@ -84,6 +85,7 @@ const HelpsWith = ({ shifted }) => {
   })
 
   return (
+    <VisibilitySensor onChange={onChange} partialVisibility scrollCheck={true}>
     <div
       ref={bind}
       className={shifted ? 'helpsWith shiftUp' : 'helpsWith noShift'}
@@ -121,20 +123,14 @@ const HelpsWith = ({ shifted }) => {
               }}
               className="help-boxs"
               key={key}
-              onClick={() => {
-                setExpanded({
-                  itemClicked: item.id,
-                  xy: item.xy,
-                  width: item.width
-                })
-              }}
             >
               <Card item={item} />
             </animated.div>
           ))}
         </div>
       </div>
-    </div>
+      </div>
+    </VisibilitySensor>
   )
 }
 export default HelpsWith
