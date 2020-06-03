@@ -5,7 +5,6 @@ import axios from 'axios'
 import country from '../../../countryWithThree'
 import {
   ShippingAndUserDetailContext,
-  FirebaseContext,
   CheckoutContext,
   CartContext
 } from '../../context'
@@ -15,8 +14,11 @@ import Builton from '@builton/core-sdk'
 import shippingFormValidation from '../../validation/shippingFormValidation'
 import LocationSearchInput from './GoogleAutocomplete'
 import countryWithThree from '../../../countryWithThree'
+import firebase from "gatsby-plugin-firebase"
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
 import Loader from '../Loader'
+
 const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   const {
     shipping_address,
@@ -34,11 +36,12 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   let countryWithThree = country.filter(data => {
     return data.alpha2.toUpperCase() === countryCode
   })
+  
+  /* user logged in state */
+  const [currentUser, userLoading, userError] = useAuthState(firebase.auth());
 
-  const { firebase } = useContext(FirebaseContext)
-
-  const [isCurrentUser, SetCurrentUser] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  //const [isCurrentUser, SetCurrentUser] = useState(false)
+  //const [errorMessage, setErrorMessage] = useState('')
   const [retrieveUserDetail, setRetrieveUserDetail] = useState()
   const [addNewAddress, setAddNewAddress] = useState(false)
   const [index, setIndex] = useState(null)
@@ -55,7 +58,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
 
   useEffect(() => {
     if (details && details.email) {
-      SetCurrentUser(true)
+      //SetCurrentUser(true)
       fetchUserDetails()
     }
   }, [details && details.email])
@@ -122,7 +125,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
 
     setUserBuilton(values.email, builton)
     if (firebase && firebase.auth().currentUser) {
-      setErrorMessage('')
+      //setErrorMessage('')
       toggleEditable(true)
       shippingCostCalculate(user, values, ProductsArray, note)
       await builton.users
@@ -138,7 +141,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
           return error
         })
     } else {
-      setErrorMessage('')
+      //setErrorMessage('')
       firebase &&
         firebase
           .auth()
@@ -154,7 +157,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
               bearerToken: accessToken
             })
 
-            SetCurrentUser(resp.user)
+            //SetCurrentUser(resp.user)
             setUserBuilton(values.email, builton)
             shippingCostCalculate(user, values, ProductsArray, note)
             toggleEditable(true)
@@ -182,8 +185,8 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
               })
           })
           .catch(error => {
-            setErrorMessage(error.message)
-            SetCurrentUser(false)
+            //setErrorMessage(error.message)
+            //SetCurrentUser(false)
           })
     }
   }
@@ -277,7 +280,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
       onSubmit={handleShippingCost}
       initialValues={myInitData}
       validate={fieldValues =>
-        shippingFormValidation(fieldValues, isCurrentUser)
+        shippingFormValidation(fieldValues, currentUser)
       }
     >
       {({ handleSubmit, form, submitting, pristine, values }) => {
@@ -470,12 +473,12 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
                     />
                     <label for="email">Email</label>
                     {meta.error && meta.touched && <span>{meta.error}</span>}
-                    <span>{errorMessage}</span>
+                    <span>{userError}</span>
                   </div>
                 )}
               </Field>
             </div>
-            {!isCurrentUser && (
+            {!currentUser && (
               <>
                 <div className="frm_grp row">
                   <Field name="password">

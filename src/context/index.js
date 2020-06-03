@@ -6,7 +6,7 @@ import {
 } from './ShippingAndUserDetailContext'
 
 import { CheckoutProvider, CheckoutContext } from './CheckoutContext'
-import { FirebaseProvider, FirebaseContext } from './FirebaseContext'
+//import { FirebaseProvider, FirebaseContext } from './FirebaseContext'
 import { CartProvider, CartContext } from './CartContext'
 
 let BuiltonContext
@@ -20,13 +20,11 @@ function BuiltonProvider({ children, ...props }) {
         ...props
       }}
     >
-      <FirebaseProvider>
         <CartProvider>
           <ShippingAndUserDetailProvider>
             <CheckoutProvider>{children}</CheckoutProvider>
           </ShippingAndUserDetailProvider>
         </CartProvider>
-      </FirebaseProvider>
     </Provider>
   )
 }
@@ -37,6 +35,5 @@ export {
   BuiltonContext,
   ShippingAndUserDetailContext,
   CheckoutContext,
-  FirebaseContext,
   CartContext
 }

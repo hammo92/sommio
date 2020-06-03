@@ -1,17 +1,17 @@
 import React, { useState, useContext, useEffect, useRef } from 'react'
-import { CheckoutContext, FirebaseContext, CartContext } from '../context'
+import { CheckoutContext, CartContext } from '../context'
 import ShippingAddress from '../components/Checkout/shippingAddress'
 import PaymentPage from '../components/Checkout/paymentPage'
 import ReviewOrder from '../components/Checkout/ReviewOrder'
 import OrderConfirmation from '../components/Checkout/OrderConfirmation'
 import Layout from '../components/Layout/Layout'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import firebase from "gatsby-plugin-firebase"
 
 const CheckoutInner = () => {
   const { isEmpty } = useContext(CartContext)
 
   const { defaultPayment, checkoutClear } = useContext(CheckoutContext)
-  const { firebase } = useContext(FirebaseContext)
   const [formEnable, setFormEnable] = useState(false)
   const [isEditable, setIsEditable] = useState(false)
   const [gmapsLoaded, setGmapsLoaded] = useState(false)

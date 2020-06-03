@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react'
+/*import React, { createContext, useReducer } from 'react'
 
 let FirebaseContext
 const { Provider, Consumer } = (FirebaseContext = createContext())
@@ -41,3 +41,4 @@ function FirebaseProvider({ children, ...props }) {
 }
 
 export { FirebaseProvider, Consumer as FirebaseConsumer, FirebaseContext }
+*/

@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react'
 
-import { ShippingAndUserDetailContext, FirebaseContext } from '../../context'
+import { ShippingAndUserDetailContext } from '../../context'
 import Builton from '@builton/core-sdk'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
 import { toast } from 'react-toastify'
+import firebase from "gatsby-plugin-firebase"
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
   const {
@@ -13,14 +15,15 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
     setUserBuilton
   } = useContext(ShippingAndUserDetailContext)
 
-  const { firebase } = useContext(FirebaseContext)
+
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [user, loading, userError] = useAuthState(firebase.auth());
 
-  const [isCurrentUser, SetCurrentUser] = useState(
+  /*const [isCurrentUser, SetCurrentUser] = useState(
     firebase && firebase.auth().currentUser
-  )
+  )*/
   const [error, setRegisterError] = useState({
     email: 'Required',
     password: 'Required'
@@ -34,7 +37,7 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
         email: '',
         password: ''
       })
-      var user = firebase && firebase.auth().currentUser
+      //var user = firebase && firebase.auth().currentUser
 
       if (user !== null) {
         user
@@ -46,14 +49,14 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
             })
             localStorage.setItem('firebaseToken', idToken)
 
-            SetCurrentUser(user)
+            //SetCurrentUser(user)
             setUserBuilton({ email }, builton)
             toggleModal()
             setDropdownOpen(false)
             setErrorMessage('')
           })
           .catch(err => {
-            SetCurrentUser(false)
+            //SetCurrentUser(false)
             setErrorMessage(err.message)
           })
       } else {
@@ -78,7 +81,7 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
               })
 
               setUserBuilton({ email }, builton)
-              SetCurrentUser(res.user)
+              //SetCurrentUser(res.user)
               toggleModal()
               setDropdownOpen(false)
 
@@ -89,7 +92,7 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
               })
             })
             .catch(error => {
-              SetCurrentUser(false)
+              //SetCurrentUser(false)
               setErrorMessage(error.message)
             })
       }
@@ -159,7 +162,7 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
 
   return (
     <div>
-      {!isCurrentUser && isModal === true && (
+      {!user && isModal === true && (
         <>
           <div className="frm_grp">
             <input

@@ -1,6 +1,5 @@
 import React, { useContext, createContext, useReducer } from 'react'
 import axios from 'axios'
-import { FirebaseContext } from './FirebaseContext'
 
 import { CheckoutContext } from './CheckoutContext'
 
@@ -200,7 +199,6 @@ let ShippingAndUserDetailContext
 const { Provider, Consumer } = (ShippingAndUserDetailContext = createContext())
 
 function ShippingAndUserDetailProvider({ children, ...props }) {
-  const { firebase } = useContext(FirebaseContext)
   const { productSubTotal } = useContext(CartContext)
 
   const [state, dispatch] = useReducer(reducer, initialState)

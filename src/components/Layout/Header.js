@@ -6,7 +6,6 @@ import Builton from '@builton/core-sdk'
 import {
   ShippingAndUserDetailContext,
   CheckoutContext,
-  FirebaseContext,
   CartContext
 } from '../../context'
 import { useSpring, animated, config } from 'react-spring'
@@ -23,7 +22,8 @@ import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import { getFirebase } from '../../firebase/index'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
-
+import firebase from "gatsby-plugin-firebase"
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 const Header = (
@@ -34,7 +34,6 @@ const Header = (
   const { orderId } = useContext(CheckoutContext)
   const { setUserBuilton } = useContext(ShippingAndUserDetailContext)
   const { fetchCartDataFromStorage, count, isEmpty } = useContext(CartContext)
-  const { setFirebase, firebase } = useContext(FirebaseContext)
   const [refresh, setRefresh] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [modal, setModal] = useState(false)
@@ -55,7 +54,7 @@ const Header = (
 
   let newToken = newFirebaseToken()
 
-  console.log("FirebaseContext: ", FirebaseContext)
+  
   
   /* show or hide cart drawer */
   const handleCart = () => {
@@ -67,18 +66,18 @@ const Header = (
   /****************************/
 
   useEffect(() => {
-    const lazyApp = import('firebase')
-    lazyApp.then(firebaseObj => {
-      const firebase = getFirebase(firebaseObj)
+    //const lazyApp = import('firebase')
+    //lazyApp.then(firebaseObj => {
+    //  const firebase = getFirebase(firebaseObj)
 
-      setFirebase(firebase)
+    //  setFirebase(firebase)
       if (firebase && firebase.auth().currentUser) {
         setModal(false)
       }
       !(firebase && firebase.auth().currentUser)
         ? setTimeout(() => setRefresh(true), 1000)
         : setRefresh(true)
-    })
+    //})
 
     let dataFromStorage = sessionStorage.getItem('cartDetails')
     let cartData = JSON.parse(dataFromStorage)
@@ -94,19 +93,7 @@ const Header = (
   }, [])
 
   const handleLogout = () => {
-    firebase &&
-      firebase
-        .auth()
-        .signOut()
-        .then(res => {
-          navigate(`/`)
-          localStorage.removeItem('firebaseToken')
-          localStorage.removeItem('details')
-        })
-        .catch(err => {
-          console.log('err Logout => ', err)
-          return err
-        })
+    firebase.auth().signOut();
   }
 
   const toggleNavbar = () => {

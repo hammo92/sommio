@@ -4,16 +4,15 @@ import {
   CheckoutContext,
   ShippingAndUserDetailContext,
   CartContext,
-  FirebaseContext
 } from '../../context'
 import OrderItems from '../OrderItems'
+import firebase from "gatsby-plugin-firebase"
 
 export default function OrderConfirmation(props) {
   const { shipping_address } = useContext(ShippingAndUserDetailContext)
 
   const { deleteCartData } = useContext(CartContext)
   const { orderId } = useContext(CheckoutContext)
-  const { firebase } = useContext(FirebaseContext)
 
   useEffect(() => {
     return () => {

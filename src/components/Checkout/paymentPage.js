@@ -2,11 +2,11 @@ import React, { useState, useContext } from 'react'
 import { Form } from 'react-final-form'
 import { CardElement, injectStripe } from 'react-stripe-elements'
 import { toast } from 'react-toastify'
+import firebase from "gatsby-plugin-firebase"
 
 import {
   CheckoutContext,
   ShippingAndUserDetailContext,
-  FirebaseContext,
   CartContext
 } from '../../context'
 import ShippingSelectOption from './shippingSelectOption'
@@ -22,7 +22,7 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
     shippingRate,
     shippingProvider
   } = useContext(CartContext)
-  const { firebase } = useContext(FirebaseContext)
+
   const [checkoutError, setCheckoutError] = useState(null)
   const [makeEnable, setMakeEnable] = useState(true)
 

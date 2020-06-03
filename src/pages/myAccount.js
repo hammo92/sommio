@@ -6,7 +6,6 @@ import { toast } from 'react-toastify'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   CheckoutContext,
-  FirebaseContext,
   ShippingAndUserDetailContext
 } from '../context/index'
 import Loader from '../components/Loader'
@@ -14,6 +13,7 @@ import { newFirebaseToken } from '../utils/newFirebaseToken'
 import Photo from '../components/Photo'
 import Layout from '../components/Layout/Layout'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import firebase from "gatsby-plugin-firebase"
 
 import {
   faBook,
@@ -25,7 +25,7 @@ import Button from '../components/Button'
 
 const MyAccountInner = () => {
   const { userOrderData, userOrder } = useContext(CheckoutContext)
-  const { firebase } = useContext(FirebaseContext)
+  
   const { builton } = useContext(ShippingAndUserDetailContext)
 
   const [isLoading, setLoading] = useState(false)

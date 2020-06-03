@@ -7,10 +7,9 @@ import { newFirebaseToken } from '../../utils/newFirebaseToken'
 import Layout from '../Layout/Layout'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 import { toast } from 'react-toastify'
-import { FirebaseContext } from '../../context'
+import firebase from "gatsby-plugin-firebase"
 
 const UserOrderDetailsInner = props => {
-  const { firebase } = useContext(FirebaseContext)
 
   const { allBuiltonProduct } = useStaticQuery(graphql`
     query {

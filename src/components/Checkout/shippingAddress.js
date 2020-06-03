@@ -3,7 +3,6 @@ import axios from 'axios'
 import { Link } from 'gatsby'
 import {
   ShippingAndUserDetailContext,
-  FirebaseContext,
   CartContext
 } from '../../context'
 import AddressFields from './AddressFields'
@@ -11,6 +10,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 import RegisterOrLogin from '../Checkout/RegisterOrLogin'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
 import Loader from '../Loader'
+import firebase from "gatsby-plugin-firebase"
 
 const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
   const {
@@ -22,7 +22,7 @@ const ShippingAddress = ({ isCompleted, toggleEditable, gmapsLoaded }) => {
   console.log('shipping_address SSI => ', shipping_address)
 
   const { ProductsArray } = useContext(CartContext)
-  const { firebase } = useContext(FirebaseContext)
+ 
   const [modal, setModal] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
   // const [retrieveUserDetail, setRetrieveUserDetail] = useState()
