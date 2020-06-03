@@ -1,6 +1,9 @@
 import React, { createContext, useReducer } from 'react'
 import { StaticQuery } from 'gatsby'
-import _ from 'lodash'
+//import _ from 'lodash'
+import find from 'lodash/find'
+import sumBy from 'lodash/sumBy'
+import findIndex from 'lodash/findIndex'
 let CartContext
 const { Provider, Consumer } = (CartContext = createContext())
 export const SET_CART = 'SET_CART'
@@ -59,7 +62,7 @@ export default function reducer(state, action) {
       if (state.ProductsArray.length === 0) {
         prods.push(cartItemObj)
       } else {
-        let x = _.find(state.ProductsArray, {
+        let x = find(state.ProductsArray, {
           main_product_id: cartItemObj.main_product_id,
           coverId: cartItemObj.coverId,
           weightId: cartItemObj.weightId
@@ -68,10 +71,10 @@ export default function reducer(state, action) {
           prods.push(cartItemObj)
         }
       }
-      let count = _.sumBy(prods, data => {
+      let count = sumBy(prods, data => {
         return data.quantityBuilton
       })
-      let productSubTotal = _.sumBy(state.ProductsArray, data => {
+      let productSubTotal = sumBy(state.ProductsArray, data => {
         return data.final_price * data.quantityBuilton
       })
       let finalTotal = productSubTotal + state.shippingRate
@@ -94,7 +97,7 @@ export default function reducer(state, action) {
       const product = action.payload.product
       const flag = action.payload.flag
 
-      let y = _.findIndex(state.ProductsArray, product)
+      let y = findIndex(state.ProductsArray, product)
 
       if (flag === 1) {
         let updateToProduct = product
@@ -104,10 +107,10 @@ export default function reducer(state, action) {
         let updateToProduct = product
         updateToProduct.quantityBuilton = updateToProduct.quantityBuilton - 1
       }
-      let updateCount = _.sumBy(state.ProductsArray, data => {
+      let updateCount = sumBy(state.ProductsArray, data => {
         return data.quantityBuilton
       })
-      let prodSubTotal = _.sumBy(state.ProductsArray, data => {
+      let prodSubTotal = sumBy(state.ProductsArray, data => {
         return data.final_price * data.quantityBuilton
       })
       let updateTotal = prodSubTotal + state.shippingRate
@@ -125,14 +128,14 @@ export default function reducer(state, action) {
       let selectedProduct = action.payload
 
       let removeCount
-      let z = _.findIndex(state.ProductsArray, selectedProduct)
+      let z = findIndex(state.ProductsArray, selectedProduct)
       state.ProductsArray.splice(z, 1)
       console.log('Remove state.ProductsArray => ', state.ProductsArray)
 
-      removeCount = _.sumBy(state.ProductsArray, data => {
+      removeCount = sumBy(state.ProductsArray, data => {
         return data.quantityBuilton
       })
-      let removeSubTotal = _.sumBy(state.ProductsArray, data => {
+      let removeSubTotal = sumBy(state.ProductsArray, data => {
         return data.final_price * data.quantityBuilton
       })
       let removeTotal = removeSubTotal + state.shippingRate
@@ -150,10 +153,10 @@ export default function reducer(state, action) {
     case FETCH_CART_DATA:
       const cartProduct = action.payload
 
-      let updateTocount = _.sumBy(cartProduct, data => {
+      let updateTocount = sumBy(cartProduct, data => {
         return data.quantityBuilton
       })
-      let updateToSubTotal = _.sumBy(cartProduct, data => {
+      let updateToSubTotal = sumBy(cartProduct, data => {
         return data.final_price * data.quantityBuilton
       })
       let fetchTotal = updateToSubTotal + state.shippingRate

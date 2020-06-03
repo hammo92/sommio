@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import _ from 'lodash'
+//import _ from 'lodash'
 
 import { CartContext } from '../context/CartContext'
 
