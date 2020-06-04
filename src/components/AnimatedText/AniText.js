@@ -4,7 +4,7 @@ import { animated, useTrail } from 'react-spring'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 const AniText = ({ children, head, type }) => {
-  /*const [isVisible, setVisibility] = useState(false)
+  const [isVisible, setVisibility] = useState(false)
   const onChange = visiblity => {
     setVisibility(visiblity)
   }
@@ -25,11 +25,10 @@ const AniText = ({ children, head, type }) => {
     },
     config
   })
-  const factor = Math.random().toString()*/
+  const factor = Math.random().toString()
 
   return (
-    <></>
-    /*<VisibilitySensor onChange={onChange} partialVisibility scrollCheck={true}>
+    <VisibilitySensor onChange={onChange} partialVisibility scrollCheck={true}>
       <CustomTag>
         {trail.map(({ opacity, transform }, index) => (
           <animated.span
@@ -39,7 +38,7 @@ const AniText = ({ children, head, type }) => {
           </animated.span>
         ))}
         </CustomTag>
-    </VisibilitySensor>*/
+    </VisibilitySensor>
     
   )
 }
