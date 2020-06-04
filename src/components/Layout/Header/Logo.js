@@ -12,7 +12,7 @@ const Logo = () => {
                 color: "#1A172F"
                 blackOnWhite: false
                 }, width: 209) {
-                    tracedSVG
+                    ...GatsbyImageSharpFixed
                 }
             }
         }
