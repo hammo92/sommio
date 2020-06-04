@@ -6,64 +6,18 @@ import VisibilitySensor from 'react-visibility-sensor'
 import useMedia from '../../hooks/useMedia'
 import useMeasure from 'react-use-measure'
 import Card from './Card'
-import AnimatedOver from './Animated'
+import ReviewCard from './ReviewCard'
 import AniText from '../AnimatedText/AniText'
 import Button from '../Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
-const HelpsWith = ({ shifted }) => {
-  const { allContentfulCondition } = useStaticQuery(graphql`
-    query {
-      allContentfulCondition {
-        nodes {
-          slug
-          id
-          conditionName
-          content {
-            childMarkdownRemark {
-              html
-            }
-          }
-          cardImage {
-            fluid(maxWidth: 800) {
-              ...GatsbyContentfulFluid_withWebp
-            }
-            file {
-              url
-            }
-          }
-        }
-      }
-    }
-  `)
-  /* visibility sensor */
-  const [isVisible, setVisibility] = useState(false)
-  const onChange = visiblity => {
-    setVisibility(visiblity)
-  }
-  const conditions = isVisible ? allContentfulCondition.nodes : []
+const CarouselInner = ({elements, type, width, columns, page}) => {
+  
 
-
-
-  //number of columns
-  const columns = useMedia(
-    ['(min-width: 1500px)', '(min-width: 1000px)', '(min-width: 600px)'],
-    [3, 2, 1.3],
-    1
-  )
-
-  //responsive width hook
-  const [bind, { width }] = useMeasure()
-
-  //visible cards state
-  const [page, setPage] = useState(0)
-
-  //Card count
-  const condCount = conditions.length
   //array of visible cards
-  const show = conditions.slice(page, columns + page + 1)
+  const show = elements.slice(page, columns + page + 1)
   const config = { mass: 1.5, tension: 170, friction: 25 }
 
   //map cards array and set position variables
@@ -84,35 +38,8 @@ const HelpsWith = ({ shifted }) => {
     config
   })
 
-  return (
-    <VisibilitySensor onChange={onChange} partialVisibility scrollCheck={true}>
-    <div
-      ref={bind}
-      className={shifted ? 'helpsWith shiftUp' : 'helpsWith noShift'}
-    >
-      <div className="container-fluid">
-        <div className="helpHeading">
-          <AniText type="h3">Helps you with</AniText>
-          <div className="navIcons">
-            <div
-              className={page == 0 && 'disabled'}
-              onClick={() => setPage(page - 1)}
-            >
-              <Button type="round small">
-                <FontAwesomeIcon icon={faArrowLeft} />
-              </Button>
-            </div>
-            <div
-              className={page == condCount - columns && 'disabled'}
-              onClick={() => setPage(page + 1)}
-            >
-              <Button type="round small">
-                <FontAwesomeIcon icon={faArrowRight} />
-              </Button>
-            </div>
-          </div>
-        </div>
-        <div className="cardWrap">
+  return(
+    <div className="cardWrap">
           {transition.map(({ item, props: { xy, column, ...rest }, key }) => (
             <animated.div
               style={{
@@ -121,16 +48,88 @@ const HelpsWith = ({ shifted }) => {
                 ),
                 ...rest
               }}
-              className="help-boxs"
+              className="card-container"
               key={key}
             >
-              <Card item={item} />
+              {type === "conditions" && <Card item={item}/>}
+              {type === "reviews" && <ReviewCard item={item}/>}
             </animated.div>
           ))}
+    </div>
+  )
+
+}
+
+const Carousel = ({contents, slides = [3,2,1], type, title}) => {
+  /* visibility sensor */
+  const [isVisible, setVisibility] = useState(false)
+  const onChange = visiblity => {
+    setVisibility(visiblity)
+  }
+
+  /* unused for setting breakpoints through props
+  const { breakpoints : breakpoints = [1500,1000,600], slides : slides  = [3,2,1.3]} = responsive
+  breakpoints.map((item,i) => {
+    breakpoints[i] = `(min-width: ${item}px)`
+  })
+
+  /*set carousel to empty when out of view */
+  const elements = contents
+  
+  //number of columns
+  const columns = useMedia(
+      ['(min-width: 1500px)', '(min-width: 1000px)', '(min-width: 600px)'],
+      slides,
+      1
+  )
+
+  //responsive width hook
+  const [bind, { width }] = useMeasure()
+
+  //init paging
+  const [page, setPage] = useState(0)
+
+  
+
+
+
+  
+
+  
+
+  return (
+    <VisibilitySensor onChange={onChange} partialVisibility scrollCheck={true}>
+      <div
+      ref={bind}
+      className={'Carousel'}
+    >
+      <div className="container-fluid">
+        <div className="helpHeading">
+          <AniText type="h3">{title}</AniText>
+          <div className="navIcons">
+            <div
+              className={page === 0 && 'disabled'}
+              onClick={() => setPage(page - 1)}
+            >
+              <Button type="round small">
+                <FontAwesomeIcon icon={faArrowLeft} />
+              </Button>
+            </div>
+            <div
+              className={page === elements.length - columns && 'disabled'}
+              onClick={() => setPage(page + 1)}
+            >
+              <Button type="round small">
+                <FontAwesomeIcon icon={faArrowRight} />
+              </Button>
+            </div>
+          </div>
         </div>
+        {(isVisible || type === "reviews") && <CarouselInner width={width} columns={columns} elements={elements} type={type} page={page}/>}
       </div>
       </div>
+      
     </VisibilitySensor>
   )
 }
-export default HelpsWith
+export default Carousel

@@ -5,9 +5,8 @@ import SEO from '../components/SEO'
 import AddToCart from '../components/ProductPage/AddToCart'
 import Noimage from '../images/no_img.jpg'
 import ProductService from '../components/ProductPage/ProductService'
-import ProductReview from '../components/ProductPage/ProductReview'
+
 import ProductTitle from '../components/ProductPage/ProductTitle'
-import HelpSlider from '../components/ProductPage/HelpSlider'
 import FreeDelivery from '../components/ProductPage/FreeDelivery'
 import ProductImage from '../components/ProductPage/ProductImage'
 import ProductVideo from '../components/ProductPage/Video'
@@ -22,6 +21,7 @@ import Container from 'react-bootstrap/Container'
 import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
 import { animated, useSpring } from 'react-spring'
 import AniText from '../components/AnimatedText/AniText'
+import Carousel from '../components/Carousel/Carousel'
 
 import styled from 'styled-components'
 import inHand from '../images/inHand.jpg'
@@ -34,31 +34,11 @@ const DarkRow = styled(Row)`
     width: 100%;
   }
 `
-const ImageGrid = styled.div`
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
-  width: 100%;
-  height: 70vh;
 
-  div {
-    width: 100%;
-    display: flex;
-    align-items: end;
-    overflow: hidden;
-    &:first-child {
-      grid-row-start: 1;
-      grid-row-end: 3;
-    }
-    img {
-      width: 100%;
-    }
-  }
-`
 
 const ProductPageInner = ({
   transitionStatus,
-  data: { product, contentfulProduct }
+  data: { product, contentfulProduct, allContentfulReview }
 }) => {
   let mount = ['entering', 'entered'].includes(transitionStatus)
 
@@ -104,7 +84,7 @@ const ProductPageInner = ({
             
           </div>
           <div className="col-12 col-lg-5 col-xl-4">
-            <ProductReview />
+            <Carousel contents={allContentfulReview.nodes} slides={[1,1,1]} type={"reviews"} title={"Reviews"}/>
           </div>
 
         </div>
@@ -180,24 +160,13 @@ const ProductPageInner = ({
                   <ProductVideo />
                 </Row>
 
-                <ImageGrid>
-                  <div>
-                    <img src="https://cdn.shopify.com/s/files/1/0064/3262/0633/t/35/assets/sleepings.png?128218" />
-                  </div>
-                  <div>
-                    <img src="https://cdn.shopify.com/s/files/1/0064/3262/0633/t/35/assets/sleeping-sheets-2.png?128218" />
-                  </div>
-                  <div>
-                    <img src="https://cdn.shopify.com/s/files/1/0064/3262/0633/t/35/assets/pillow.png?128218" />
-                  </div>
-                </ImageGrid>
               </Tab>
 
               <Tab eventKey="learn" title="Learn">
-                <HelpSlider />
+
               </Tab>
               <Tab eventKey="usage" title="Usage">
-                <HelpSlider />
+
               </Tab>
               <Tab eventKey="faq" title="Quick Help">
                 <h3>Quick Help</h3>
@@ -245,6 +214,20 @@ const ProductPageBuilton = ({ data }) => {
 
 export const query = graphql`
   query($id: String!, $human: String!) {
+    allContentfulReview {
+      nodes {
+        reviewTitle
+        reviewerName
+        reviewScore
+        reviewDate
+        location
+        content {
+          childMarkdownRemark {
+            html
+          }
+        }
+      }
+    }
     product: builtonProduct(id: { eq: $id }) {
       _id {
         _oid

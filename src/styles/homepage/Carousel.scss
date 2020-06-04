@@ -40,48 +40,13 @@
   background: #0e0e0e;
 }
 
-.helpsWith {
+.Carousel {
   position: relative;
   overflow: hidden;
   padding-bottom: 40px;
   background:#030417;
 
 
-  &.shiftUp {
-    margin-top: -50px;
-
-    @media (max-width: $desktop18) {
-      margin-top: -50px;
-    }
-
-    @media (max-width: $desktophidpi) {
-      margin-top: -50px;
-    }
-
-    @media (max-width: $ipadlandscape) {
-      margin-top: 0;
-    }
-
-    @media (max-width: $ipadportrait) {
-      margin-top: 20px;
-    }
-
-    .helpHeading {
-      // border-bottom: solid 2px rgba(255, 255, 255, 0.3);
-      margin: 0 0 40px 0;
-      // padding-bottom: 20px;
-
-      @media (max-width: $desktophidpi) {
-        margin: 0 0 20px 0;
-      }
-
-      @media (max-width: $ipadportrait) {
-        padding: 0 30px;
-      }
-
-    }
-  }
-  &.noShift {
     .helpHeading {
       display: flex;
       margin: 10px 0 20px 0;
@@ -89,12 +54,7 @@
       padding: 20px 0;
       align-items: center;
       //justify-content: space-between;
-    }
-  }
 
-  .helpHeading {
-    display: flex;
-    align-items: center;
 
     .navIcons {
       display: flex;
@@ -218,7 +178,7 @@
     );
   }
 
-  .help-boxs {
+  .card-container {
     position: relative;
     padding: 0px;
     overflow: hidden;
