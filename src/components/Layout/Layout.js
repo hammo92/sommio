@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify'
 import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
-import Header from './Header'
+import Header from './Header/Header'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -20,8 +20,8 @@ const toastOptions = {
 }
 
 const Layout = ({ children, transitionStatus }) => {
-  const { site, allBuitlon } = useStaticQuery(categoriesQuery)
-  const builtonProduct = allBuitlon.nodes.find(ele => {
+  const { site, allBuilton } = useStaticQuery(categoriesQuery)
+  const builtonProduct = allBuilton.nodes.find(ele => {
     return ele.main_product === true && ele.tags.length > 0
   })
 
@@ -52,7 +52,7 @@ const categoriesQuery = graphql`
       }
     }
 
-    allBuitlon: allBuiltonProduct {
+    allBuilton: allBuiltonProduct {
       nodes {
         id
         name

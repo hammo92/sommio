@@ -591,14 +591,14 @@
             }
         }
         .rightBox{
-            .arrowBox{
+            button &.arrowBox{
                 cursor: url("http://localhost:8000/point.svg"), auto !important;
                 display:flex;
                 align-items: center;
                 justify-content: center;
                 background:var(--purpleB);
                 color:var(--white);
-                font-size:40px;
+                font-size:60px;
                 &.disabled{
                     opacity:0.3;
                     pointer-events: none;

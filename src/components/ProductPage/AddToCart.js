@@ -1,19 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { ShippingAndUserDetailContext } from '../../context/ShippingAndUserDetailContext'
 import PlushImages from '../../images/plush.jpg'
-import SommioModal from '../modal.js'
 import { useStateValue } from '../../context/SiteContext'
-import ArrowUp from '../../images/arrow-up.svg'
-import ArrowDown from '../../images/arrow-down.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowLeft, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from 'reactstrap'
 import { useStaticQuery, Link } from 'gatsby'
 import { CartContext } from '../../context/CartContext'
 const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {

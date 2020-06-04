@@ -9,6 +9,8 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           node {
             id
             human_id
+            main_product
+            name
           }
         }
       }
@@ -49,6 +51,21 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       }
     })
   })
+
+  pages.data.allProducts.edges.forEach(({ node: { id, human_id, name, main_product } }) => {
+    name = name.replace(/\s/g, '')
+    if (main_product){
+      createPage({
+        path: `/configure/${name}`,
+        component: path.resolve('./src/templates/ProductBuyPage.js'),
+        context: {
+          id: id,
+          human: human_id
+        }
+      })
+    }
+  })
+
 
   pages.data.contentfulCondition.edges.forEach(({ node }, index) => {
     const next =

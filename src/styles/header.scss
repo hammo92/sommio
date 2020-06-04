@@ -7,6 +7,20 @@ header {
 }
 
 .navbar {
+  .logo{
+    width:209px;
+    height:55px;
+    display:flex;
+    align-content: center;
+    .gatsby-image-wrapper{
+      flex:1
+    }
+    img{
+      width:100%
+    }
+
+  }
+
   padding: 0;
   //border-bottom: var(--purpleBorder);
   align-content: center;

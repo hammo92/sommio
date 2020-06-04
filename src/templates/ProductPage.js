@@ -42,14 +42,11 @@ const ProductPageInner = ({
 }) => {
   let mount = ['entering', 'entered'].includes(transitionStatus)
 
-  console.log('transitionStatus [productpage]  => ', transitionStatus)
-
-  console.log('mount [productpage] => ', mount)
 
   const fadeUp = useSpring({
     opacity: mount ? 1 : 0
   })
-  console.log('fadeUp [productpage] => ', fadeUp)
+
 
   const Titles = ['Overview', 'Materials', 'Learn', 'Usage', 'FAQ']
   const Overview = contentfulProduct && contentfulProduct.overview
