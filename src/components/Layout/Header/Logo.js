@@ -12,10 +12,10 @@ const Logo = () => {
                 color: "#1A172F"
                 blackOnWhite: false
                 }, width: 209) {
-                    ...GatsbyImageSharpFixed_tracedSVG
+                    tracedSVG
                 }
+            }
         }
-    }
     }
     `)
     console.log("logo: ",Logo) 
