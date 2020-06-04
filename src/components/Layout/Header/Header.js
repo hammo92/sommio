@@ -24,7 +24,9 @@ const Header = (
   { siteTitle, collections, slug, human_id, transitionStatus },
   props
 ) => {
+  const [{ cart }, dispatch] = useStateValue()
   const { orderId } = useContext(CheckoutContext)
+  const { fetchCartDataFromStorage, count, isEmpty } = useContext(CartContext)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [modal, setModal] = useState(false)
   const [isLoading, setLoading] = useState(false)
