@@ -38,7 +38,7 @@
         font-weight: 600;
         padding:0 20px;
         &:hover{
-          cursor: url("http://localhost:8000/point.svg"), auto !important;
+          cursor: pointer, auto !important;
         }
         h3, svg{
           font-size: 35px;

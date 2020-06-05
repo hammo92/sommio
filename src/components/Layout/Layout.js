@@ -30,7 +30,6 @@ const Layout = ({ children, transitionStatus }) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Sommio Gatsby</title>
-        <script src="https://unpkg.com/@builton/core-sdk@latest/dist/main.bundle.js"></script>
       </Helmet>
       <Header
         siteTitle={site.siteMetadata.title}

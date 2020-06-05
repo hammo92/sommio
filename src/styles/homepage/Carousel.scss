@@ -89,7 +89,7 @@
       > div {
         transition: opacity 0.3s;
         &:hover {
-          cursor: url('http://localhost:8000/point.svg'), auto !important;
+          cursor: pointer, auto !important;
         }
         &.disabled {
           opacity: 0.3;

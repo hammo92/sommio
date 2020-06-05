@@ -110,7 +110,7 @@
                     + label {
                         width: 100%;
                         margin: 0;
-                        cursor:url('/point.svg'),auto;
+                        cursor:pointer,auto;
 
                         .title {
                             height: 60px;
@@ -592,7 +592,7 @@
         }
         .rightBox{
             button &.arrowBox{
-                cursor: url("http://localhost:8000/point.svg"), auto !important;
+                cursor: pointer, auto !important;
                 display:flex;
                 align-items: center;
                 justify-content: center;
@@ -622,7 +622,7 @@
                 .arrowBox{
                     justify-content: space-between;
                     padding:0 20px;
-                    cursor: url("http://localhost:8000/point.svg"), auto !important;
+                    cursor: pointer, auto !important;
                     p{
                         font-size:20px;
                     }

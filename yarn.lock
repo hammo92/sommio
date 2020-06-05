@@ -1588,7 +1588,7 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@builton/core-sdk@^4.1.5":
+"@builton/core-sdk@^4.2.4":
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/@builton/core-sdk/-/core-sdk-4.2.4.tgz#d18368d9a02393b2a62b046984ece724380913c3"
   dependencies:
@@ -8102,11 +8102,11 @@ gatsby-plugin-manifest@^2.2.34:
     semver "^5.7.1"
     sharp "^0.25.1"
 
-gatsby-plugin-netlify@^2.1.32:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.3.2.tgz#19ce2715e747e3aa17d96f4262ddf94a6c6a6356"
+gatsby-plugin-netlify@^2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.3.4.tgz#96b99340dd8258dcc38d307e5b7399ea0881ab8d"
   dependencies:
-    "@babel/runtime" "^7.9.6"
+    "@babel/runtime" "^7.10.2"
     fs-extra "^8.1.0"
     kebab-hash "^0.1.2"
     lodash "^4.17.15"

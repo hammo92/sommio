@@ -18,8 +18,6 @@ const Header = (
   props
 ) => {
   const { orderId } = useContext(CheckoutContext)
-  const [dropdownOpen, setDropdownOpen] = useState(false)
-  const [collapsed, setCollapsed] = useState(true)
   let mount = ['entering', 'entered'].includes(transitionStatus)
   
   const slide = useSpring({

@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "@builton/core-sdk": "^4.1.5",
+    "@builton/core-sdk": "^4.2.4",
     "@fortawesome/fontawesome-pro": "^5.12.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
@@ -27,7 +27,7 @@
     "gatsby-plugin-firebase": "^0.2.0-beta.4",
     "gatsby-plugin-google-analytics": "^2.1.35",
     "gatsby-plugin-manifest": "^2.2.34",
-    "gatsby-plugin-netlify": "^2.1.32",
+    "gatsby-plugin-netlify": "^2.3.4",
     "gatsby-plugin-offline": "^3.0.34",
     "gatsby-plugin-postcss": "^2.1.1",
     "gatsby-plugin-preconnect": "^1.1.54",
