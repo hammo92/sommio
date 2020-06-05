@@ -1,8 +1,4 @@
 import React from 'react'
-import NightIcon from '../../images/moon-stars-duotone-home.svg'
-import WarantyIcon from '../../images/badge-check-duotone-home.svg'
-// import DeliveryIcon from '../../images/truck-duotone.svg'
-import DeliveryIcon from '../../images/truck-duotone-home.svg'
 import {useSpring, animated} from 'react-spring'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoonCloud } from '@fortawesome/pro-solid-svg-icons'

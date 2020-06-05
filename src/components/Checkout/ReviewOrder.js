@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { injectStripe } from 'react-stripe-elements'
+import {useStripe, useElements} from '@stripe/react-stripe-js';
 import axios from 'axios'
 import {
   ShippingAndUserDetailContext,
@@ -10,13 +10,16 @@ import CartItemList from '../CartItemList'
 import Loader from '../Loader'
 import { newFirebaseToken } from '../../utils/newFirebaseToken'
 
-const RiviewOrder = ({ stripe, formEnable }) => {
+const ReviewOrder = ({ formEnable }) => {
+  const stripe = useStripe();
+  const elements = useElements();
   const { shipping_address, builton, note } = useContext(
     ShippingAndUserDetailContext
   )
   const { ProductsArray } = useContext(CartContext)
   const { createOrderBuilton, paymentBuilton } = useContext(CheckoutContext)
   const [checkoutError, setCheckoutError] = useState(null)
+  
 
   const shipmentProductId =
     ProductsArray[0] && ProductsArray[0].shippingProductId
@@ -143,4 +146,5 @@ const RiviewOrder = ({ stripe, formEnable }) => {
   )
 }
 
-export default injectStripe(RiviewOrder)
+export default ReviewOrder
+

@@ -22,7 +22,7 @@ const Logo = () => {
     console.log("logo: ",Logo) 
     return (
         <Link to="/" className="mr-auto flex items-center logo">
-           {Logo ? <Img fluid={Logo.file.childImageSharp.fixed} /> : <img src={LogoImg} className="logofull" />}
+           {Logo.file.childImageSharp !== null ? <Img fluid={Logo.file.childImageSharp.fixed} /> : <img src={LogoImg} className="logofull" />}
         </Link>
     )
 }
