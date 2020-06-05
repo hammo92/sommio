@@ -20,7 +20,7 @@ const Logo = () => {
     `)
     console.log("logo: ",Logo) 
     return (
-        <Link to="/" className="mx-auto flex items-center logo">
+        <Link to="/" className="mr-auto flex items-center logo">
            <Img fluid={Logo.file.childImageSharp.fixed} />
         </Link>
     )

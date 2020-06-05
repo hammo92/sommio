@@ -139,6 +139,10 @@ header {
     &.cart-boxs {
       //border-left: var(--purpleBorder);
       padding: 36px 30px;
+      font-size: 30px;
+      svg{
+        color:var(--portage)
+      }
 
       @media (max-width: $ipadportrait) {
         padding: 10px 0px;
