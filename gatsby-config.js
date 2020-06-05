@@ -105,7 +105,6 @@ module.exports = {
     },
     `gatsby-plugin-netlify`,
 
-    'gatsby-plugin-stripe',
     {
       resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
       options: {

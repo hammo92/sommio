@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+/*import React, { useEffect, useState } from 'react'
 import { StripeProvider as Stripe } from 'react-stripe-elements'
 
 const StripeProvider = ({ children }) => {
@@ -18,3 +18,4 @@ const StripeProvider = ({ children }) => {
 }
 
 export default StripeProvider
+*/
