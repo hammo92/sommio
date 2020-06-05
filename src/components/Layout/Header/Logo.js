@@ -2,6 +2,7 @@ import React from 'react'
 import { useStaticQuery, graphql } from "gatsby"
 import Img from 'gatsby-image'
 import { Link } from 'gatsby'
+import LogoImg from '../../../images/logo.png'
 
 const Logo = () => {
     const Logo = useStaticQuery(graphql`
@@ -21,7 +22,7 @@ const Logo = () => {
     console.log("logo: ",Logo) 
     return (
         <Link to="/" className="mr-auto flex items-center logo">
-           <Img fluid={Logo.file.childImageSharp.fixed} />
+           {Logo ? <Img fluid={Logo.file.childImageSharp.fixed} /> : <img src={LogoImg} className="logofull" />}
         </Link>
     )
 }
