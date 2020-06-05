@@ -8,12 +8,7 @@ import firebase from "gatsby-plugin-firebase"
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
-  const {
-    shipping_address,
-    customerDetails,
-    cartItemsBuilton,
-    setUserBuilton
-  } = useContext(ShippingAndUserDetailContext)
+  const {setUserBuilton} = useContext(ShippingAndUserDetailContext)
 
 
 
@@ -21,9 +16,7 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
   const [password, setPassword] = useState('')
   const [user, loading, userError] = useAuthState(firebase.auth());
 
-  /*const [isCurrentUser, SetCurrentUser] = useState(
-    firebase && firebase.auth().currentUser
-  )*/
+
   const [error, setRegisterError] = useState({
     email: 'Required',
     password: 'Required'
@@ -37,65 +30,35 @@ const RegisterOrLogin = ({ isModal, toggleModal, setDropdownOpen }, props) => {
         email: '',
         password: ''
       })
-      //var user = firebase && firebase.auth().currentUser
+      firebase &&
+        firebase.auth().signInWithEmailAndPassword(email, password)
+          .then(res => {
+            var accessToken = JSON.parse(JSON.stringify(res.user)).stsTokenManager.accessToken
 
-      if (user !== null) {
-        user
-          .getIdToken()
-          .then(idToken => {
-            var builton = new Builton({
+            // set all thing in localstorage
+            localStorage.setItem('firebaseToken', accessToken)
+            localStorage.setItem('details', JSON.stringify(res.user))
+            const builton = new Builton({
               apiKey: process.env.GATSBY_BUILTON_API_KEY,
-              bearerToken: idToken
+              bearerToken: accessToken
             })
-            localStorage.setItem('firebaseToken', idToken)
 
-            //SetCurrentUser(user)
             setUserBuilton({ email }, builton)
+            //SetCurrentUser(res.user)
             toggleModal()
             setDropdownOpen(false)
+
             setErrorMessage('')
+            toast('Logged in successfully!', {
+              position: toast.POSITION.TOP_RIGHT,
+              className: 'custom_toast'
+            })
           })
-          .catch(err => {
+          .catch(error => {
             //SetCurrentUser(false)
-            setErrorMessage(err.message)
+            setErrorMessage(error.message)
           })
-      } else {
-        setRegisterError({
-          email: '',
-          password: ''
-        })
-        firebase &&
-          firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .then(res => {
-              var accessToken = JSON.parse(JSON.stringify(res.user))
-                .stsTokenManager.accessToken
-
-              // set all thing in localstorage
-              localStorage.setItem('firebaseToken', accessToken)
-              localStorage.setItem('details', JSON.stringify(res.user))
-              const builton = new Builton({
-                apiKey: process.env.GATSBY_BUILTON_API_KEY,
-                bearerToken: accessToken
-              })
-
-              setUserBuilton({ email }, builton)
-              //SetCurrentUser(res.user)
-              toggleModal()
-              setDropdownOpen(false)
-
-              setErrorMessage('')
-              toast('Logged in successfully!', {
-                position: toast.POSITION.TOP_RIGHT,
-                className: 'custom_toast'
-              })
-            })
-            .catch(error => {
-              //SetCurrentUser(false)
-              setErrorMessage(error.message)
-            })
-      }
+  
     } else {
       setRegisterError(checkValidation().msg)
     }

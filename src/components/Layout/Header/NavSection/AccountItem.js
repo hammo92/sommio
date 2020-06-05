@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect }  from 'react'
 import firebase from "gatsby-plugin-firebase"
-import { newFirebaseToken } from '../../../utils/newFirebaseToken'
+import { newFirebaseToken } from '../../../../utils/newFirebaseToken'
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { ShippingAndUserDetailContext } from '../../../context'
+import { ShippingAndUserDetailContext } from '../../../../context'
 import Builton from '@builton/core-sdk'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Modal from 'react-bootstrap/Modal'
 import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
-import RegisterOrLogin from '../../Checkout/RegisterOrLogin'
+import RegisterOrLogin from '../../../Checkout/RegisterOrLogin'
 
 
 const AccountItem = () => {
@@ -24,11 +24,8 @@ const AccountItem = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false)
 
     useEffect(() => {
-        //const lazyApp = import('firebase')
-        //lazyApp.then(firebaseObj => {
-        //  const firebase = getFirebase(firebaseObj)
     
-        //  setFirebase(firebase)
+        // If signed in disable modal
         user && setModal(false)
           
         !(firebase && firebase.auth().currentUser)
@@ -37,7 +34,7 @@ const AccountItem = () => {
         //})
     
         let dataFromStorage = sessionStorage.getItem('cartDetails')
-        let cartData = JSON.parse(dataFromStorage)
+        //let cartData = JSON.parse(dataFromStorage)
     
         
         var builton = new Builton({

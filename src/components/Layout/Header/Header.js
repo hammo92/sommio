@@ -18,7 +18,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/pro-solid-svg-icons'
 import Logo from './Logo'
-import AccountItem from './AccountItem'
+import AccountItem from './NavSection/AccountItem'
 
 const Header = (
   { siteTitle, collections, slug, human_id, transitionStatus },
