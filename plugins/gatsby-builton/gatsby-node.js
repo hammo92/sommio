@@ -1,11 +1,15 @@
 const Builton = require('@builton/core-sdk')
 const { createRemoteFileNode } = require('gatsby-source-filesystem')
 
-exports.sourceNodes = async (
-  { actions, createNodeId, createContentDigest, store, cache },
+exports.sourceNodes = async ({ 
+  actions, 
+  createNodeId,
+  createContentDigest,
+  },
   { apiKey }
 ) => {
   const { createNode } = actions
+  const builtonImageDomian = "https://d1vk7rtgnzzicy.cloudfront.net/"
 
   const builton = new Builton({
     apiKey
@@ -14,16 +18,13 @@ exports.sourceNodes = async (
   const processProduct = async product => {
     // console.log('product => ', product)
 
-    const nodeId = createNodeId(product.id)
-    const nodeContent = JSON.stringify(product)
-
     const nodeData = Object.assign({}, product, {
-      id: nodeId,
+      id: createNodeId(product.id),
       parent: null,
       children: [],
       internal: {
         type: `BuiltonProduct`,
-        content: nodeContent,
+        content: JSON.stringify(product),
         contentDigest: createContentDigest(product)
       }
     })
@@ -32,22 +33,29 @@ exports.sourceNodes = async (
   }
 
   const productList = await builton.products.getAll()
+  
   const products = productList.current
   return products.map(async product => {
+    //product.image_url = builtonImageDomian + product.image_url
+    //console.log("product image: ", product.image_url)
+    product.image_url && (product.image_url = builtonImageDomian + product.image_url)
+    console.log("product image: ", product.image_url)
     const nodeData = await processProduct(product)
     createNode(nodeData)
   })
 }
+
+
 exports.onCreateNode = async ({ node, actions, store, cache }) => {
   if (node.internal.type !== 'BuiltonProduct') {
     return
   }
 
-  // console.log('node => ', node.internal.type === 'BuiltonProduct' && node)
+   //console.log('node => ', node.internal.type === 'BuiltonProduct' && node)
 
   const { createNode } = actions
 
-  if (node.internal.type === 'BuiltonProduct' && node.media.length > 0) {
+  if (node.internal.type === 'BuiltonProduct' && (node.media.length ||  node.image_url) > 0) {
     await Promise.all(
       node.media &&
         node.media.map(async med => {

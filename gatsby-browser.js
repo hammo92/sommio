@@ -27,3 +27,4 @@ export const wrapRootElement = ({ element }) => {
 
 export const wrapPageElement = ({ element, props }) => {
 }
+

@@ -40,8 +40,7 @@ const AddressFields = ({ type, toggleEditable, gmapsLoaded }) => {
   /* user logged in state */
   const [currentUser, userLoading, userError] = useAuthState(firebase.auth());
 
-  //const [isCurrentUser, SetCurrentUser] = useState(false)
-  //const [errorMessage, setErrorMessage] = useState('')
+
   const [retrieveUserDetail, setRetrieveUserDetail] = useState()
   const [addNewAddress, setAddNewAddress] = useState(false)
   const [index, setIndex] = useState(null)

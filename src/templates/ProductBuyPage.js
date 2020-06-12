@@ -6,15 +6,9 @@ import AddToCart from '../components/ProductPage/AddToCart'
 import Noimage from '../images/no_img.jpg'
 import ProductService from '../components/ProductPage/ProductService'
 
-import ProductTitle from '../components/ProductPage/ProductTitle'
-import FreeDelivery from '../components/ProductPage/FreeDelivery'
+
 import ProductImage from '../components/ProductPage/ProductImage'
-import ProductVideo from '../components/ProductPage/Video'
 import Layout from '../components/Layout/Layout'
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
-import Tab from 'react-bootstrap/Tab'
-import Tabs from 'react-bootstrap/Tabs'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
@@ -24,19 +18,11 @@ import AniText from '../components/AnimatedText/AniText'
 import Carousel from '../components/Carousel/Carousel'
 
 import styled from 'styled-components'
-import inHand from '../images/inHand.jpg'
-import { Clearfix } from 'react-bootstrap'
-
-const DarkRow = styled(Row)`
-  margin: 20px 0 40px 0;
-
-  h3 {
-    width: 100%;
-  }
-`
+import Configure from '../components/BuyPage/Configure'
 
 
-const ProductPageInner = ({
+
+/*const BuyInner = ({
   transitionStatus,
   data: { product, contentfulProduct, allContentfulReview }
 }) => {
@@ -63,43 +49,19 @@ const ProductPageInner = ({
           product && product.image_url ? product.image_url : Noimage
         )}
       />
-      <div className="container-fluid">
-        <div className="row no-gutters">
-          
-
-          <div className="col-12">
-            <div className="blanket-bg">
-              <div className="row no-gutters productMain">
-                <div className="col-12 col-lg-5 col-xl-4">
-                  <AddToCart
-                    onChangeSelectedProduct={onChangeSelectedProduct}
-                    productId={product._id._oid}
-                    tags={product.tags}
-                  />
-                </div>
-                <ProductImage
-                  selectedVariationId={selectedVariationId}
-                  productId={product.id}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/*<Configure />
 
       
     </animated.div>
   )
-}
-
-const ProductPageBuilton = ({ data }) => {
+}*/
+const BuyPage = ({ data }) => {
   console.log("product page data =>", data)
   return (
     <TransitionState>
       {({ transitionStatus }) => (
         <Layout transitionStatus={transitionStatus}>
-          {console.log('transitionStatus', transitionStatus)}
-          <ProductPageInner transitionStatus={transitionStatus} data={data} />
+          {/*<BuyInner transitionStatus={transitionStatus} data={data} />*/}
         </Layout>
       )}
     </TransitionState>
@@ -107,25 +69,42 @@ const ProductPageBuilton = ({ data }) => {
 }
 
 export const query = graphql`
-  query($id: String!) {
-
-    product: builtonProduct(id: { eq: $id }) {
-      _id {
+  fragment productDetails on BuiltonProduct {
+    _id {
         _oid
       }
-      id
-      name
-      price
-      main_product
-      human_id
-      description
-      image_url
-      short_description
       tags
+      short_description
+      price
+      final_price
+      name
+      currency
+      parents {
+        _oid
+      }
       media {
+        human_id
         url
       }
+      main_product
+      image_url
+      id
+      human_id
+      description
+      _sub_products {
+        _oid
+      }
+  }
+  query($id: String!, $subProducts: [String]) {
+    product: allBuiltonProduct(filter: {id: { eq: $id }}) {
+      nodes{...productDetails}
+    }
+    covers: allBuiltonProduct(filter: {_id: {_oid: {in: $subProducts}}, attributes: {CoverSubProduct: {eq: true}}}){
+      nodes{...productDetails}
+    }
+    weights: allBuiltonProduct(filter: {_id: {_oid: {in: $subProducts}}, attributes: {WeightSubProduct: {eq: true}}}){
+      nodes{...productDetails}
     }
   }
 `
-export default ProductPageBuilton
+export default BuyPage

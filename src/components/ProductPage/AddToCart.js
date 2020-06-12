@@ -7,7 +7,9 @@ import { faArrowRight, faArrowLeft, faArrowDown, faArrowUp } from '@fortawesome/
 
 import { useStaticQuery, Link } from 'gatsby'
 import { CartContext } from '../../context/CartContext'
+
 const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
+  console.log("oid equals: ", productId)
   const { allBuiltonProduct } = useStaticQuery(graphql`
     query {
       allBuiltonProduct {
@@ -40,9 +42,11 @@ const AddToCart = ({ productId, tags, onChangeSelectedProduct }) => {
       }
     }
   `)
+
   const { setVariation, setToggle, toggle } = useContext(
     ShippingAndUserDetailContext
   )
+  
   const {
     set_cart,
     setSubProductPrice,
