@@ -10,7 +10,7 @@ import Quiz from '../components/HomePage/Quiz'
 import Carousel from '../components/Carousel/Carousel'
 import ScrollText from '../components/HomePage/scrollText'
 
-const LearnInner = () => {
+const LearnInner = ({data}) => {
   return(
   <div className="learnPage">
     <div className="container-fluid">
@@ -20,23 +20,48 @@ const LearnInner = () => {
       
       </div>
     </div>
-      <Carousel />
+    <Carousel contents={data.nodes} slides={[3,2,1]} type={"conditions"} title={"Helps you with"}/>
     </div>
   )
 }
 
-const LearnPage = () => {
+const LearnPage = ({data: {allContentfulCondition} }) => {
   return (
     <TransitionState>
       {({transitionStatus}) => (
         <Layout transitionStatus={transitionStatus}>
           <SEO title="Learn" />
-          <LearnInner transitionStatus={transitionStatus}/>
+          <LearnInner transitionStatus={transitionStatus} data={allContentfulCondition}/>
         </Layout>
       )}
     </TransitionState>
   )
 }
+export const query = graphql`
+  query MyQuery {
+    allContentfulCondition {
+      nodes {
+        slug
+        id
+        conditionName
+        content {
+          childMarkdownRemark {
+            html
+          }
+        }
+        cardImage {
+          fluid(maxWidth: 800) {
+            ...GatsbyContentfulFluid_withWebp
+          }
+          file {
+            url
+          }
+        }
+      }
+    }
+  }
+
+`
 
 export default LearnPage
 

@@ -7,6 +7,20 @@ header {
 }
 
 .navbar {
+  .logo{
+    width:209px;
+    height:55px;
+    display:flex;
+    align-content: center;
+    .gatsby-image-wrapper{
+      flex:1
+    }
+    img{
+      width:100%
+    }
+
+  }
+
   padding: 0;
   //border-bottom: var(--purpleBorder);
   align-content: center;
@@ -125,6 +139,10 @@ header {
     &.cart-boxs {
       //border-left: var(--purpleBorder);
       padding: 36px 30px;
+      font-size: 30px;
+      svg{
+        color:var(--portage)
+      }
 
       @media (max-width: $ipadportrait) {
         padding: 10px 0px;

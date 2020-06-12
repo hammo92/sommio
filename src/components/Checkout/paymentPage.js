@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Form } from 'react-final-form'
-import { CardElement, injectStripe } from 'react-stripe-elements'
+import { CardElement } from '@stripe/react-stripe-js'
 import { toast } from 'react-toastify'
 import firebase from "gatsby-plugin-firebase"
 
@@ -150,7 +150,9 @@ const PaymentPage = ({ changeFormEnable, isEditable }) => {
                         onChange={onStripeChange}
                         hidePostalCode={true}
                         id="payment"
-                        style={stripeStyle}
+                        options={{
+                          style:{stripeStyle}
+                        }}
                       />
                       {values.stripe && values.stripe.error && (
                         <span className="text-red text-sm">

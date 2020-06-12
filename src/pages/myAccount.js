@@ -379,6 +379,7 @@ const MyAccountInner = () => {
                         type="text"
                         name="street_name"
                         onChange={updateValue}
+                        aria-label="street_name"
                       />
                       <span className="ErrorMessage">{error.street_name}</span>
                     </li>
@@ -389,15 +390,17 @@ const MyAccountInner = () => {
                         type="text"
                         name="city"
                         onChange={updateValue}
+                        aria-label="city"
                       />
                       <span className="ErrorMessage">{error.city}</span>
                     </li>
                     <li>
                       <input
                         className="form-control"
-                        placeholder="zip_code"
+                        placeholder="Postcode"
                         type="text"
-                        name="zip_code"
+                        name="Postcode"
+                        aria-label="Postcode"
                         onChange={updateValue}
                       />
                       <span className="ErrorMessage">{error.zip_code}</span>
@@ -405,9 +408,10 @@ const MyAccountInner = () => {
                     <li>
                       <input
                         className="form-control"
-                        placeholder="state"
+                        placeholder="County"
                         type="text"
-                        name="state"
+                        name="County"
+                        aria-label="County"
                         onChange={updateValue}
                       />
                       <span className="ErrorMessage">{error.state}</span>
@@ -418,6 +422,7 @@ const MyAccountInner = () => {
                         placeholder="country"
                         type="text"
                         name="country"
+                        aria-label="Country"
                         onChange={updateValue}
                       />
                       <span className="ErrorMessage">{error.country}</span>
@@ -469,6 +474,7 @@ const MyAccountInner = () => {
                       name="newPassword"
                       type="password"
                       placeholder="New Password"
+                      aria-label="New Password"
                       onChange={e => handleChangeNewPassword(e)}
                     />
                     <span className="ErrorMessage">{error.newPassword}</span>
@@ -479,6 +485,7 @@ const MyAccountInner = () => {
                       name="confirmPassword"
                       type="password"
                       placeholder="Confirm Password"
+                      aria-label="New Password"
                       onChange={e => handleChangeConfirmPassword(e)}
                       value={confirmPassword}
                     />

@@ -5,8 +5,6 @@ import { useTrail, animated, useTransition, useSpring } from 'react-spring'
 import VisibilitySensor from 'react-visibility-sensor'
 import useMedia from '../../hooks/useMedia'
 import useMeasure from 'react-use-measure'
-import Card from './Card'
-import ReviewCard from './ReviewCard'
 import AniText from '../AnimatedText/AniText'
 import Button from '../Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -60,7 +58,7 @@ const CarouselInner = ({elements, type, width, columns, page}) => {
 
 }
 
-const Carousel = ({contents, slides = [3,2,1], type, title}) => {
+const Configure = ({contents, slides = [3,2,1], type, title}) => {
   /* visibility sensor */
   const [isVisible, setVisibility] = useState(false)
   const onChange = visiblity => {
@@ -124,4 +122,4 @@ const Carousel = ({contents, slides = [3,2,1], type, title}) => {
     </VisibilitySensor>
   )
 }
-export default Carousel
+export default Configure

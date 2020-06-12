@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import VisibilitySensor from 'react-visibility-sensor'
 import { animated, useTrail } from 'react-spring'
-import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 const AniText = ({ children, head, type }) => {
   const [isVisible, setVisibility] = useState(false)
@@ -25,7 +24,6 @@ const AniText = ({ children, head, type }) => {
     },
     config
   })
-  const factor = Math.random().toString()
 
   return (
     <VisibilitySensor onChange={onChange} partialVisibility scrollCheck={true}>

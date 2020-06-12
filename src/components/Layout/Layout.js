@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify'
 import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
-import Header from './Header'
+import Header from './Header/Header'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -20,8 +20,8 @@ const toastOptions = {
 }
 
 const Layout = ({ children, transitionStatus }) => {
-  const { site, allBuitlon } = useStaticQuery(categoriesQuery)
-  const builtonProduct = allBuitlon.nodes.find(ele => {
+  const { site, allBuilton } = useStaticQuery(categoriesQuery)
+  const builtonProduct = allBuilton.nodes.find(ele => {
     return ele.main_product === true && ele.tags.length > 0
   })
 
@@ -30,18 +30,6 @@ const Layout = ({ children, transitionStatus }) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Sommio Gatsby</title>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          charset="UTF-8"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        />
-        <script src="https://unpkg.com/@builton/core-sdk@latest/dist/main.bundle.js"></script>
       </Helmet>
       <Header
         siteTitle={site.siteMetadata.title}
@@ -63,7 +51,7 @@ const categoriesQuery = graphql`
       }
     }
 
-    allBuitlon: allBuiltonProduct {
+    allBuilton: allBuiltonProduct {
       nodes {
         id
         name

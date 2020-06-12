@@ -149,10 +149,10 @@
     width: 100%;
     height: 100%;
     will-change: transform;
-    cursor:url('/grabOpen.svg'),auto;
+    cursor:grab,auto;
 
     &:active{
-        cursor:url('/grabShut.svg'),auto;
+        cursor:grabbing,auto;
     }
 
     div{

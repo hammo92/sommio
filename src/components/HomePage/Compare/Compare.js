@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState} from 'react'
 
-import SommioImg3 from '../../../images/sommio-img3.png'
+
 
 import BeadOpen from "../../../video/Window.mp4"
 import BeadSmoke from "../../../video/Explode2.mp4"
@@ -8,13 +8,13 @@ import WeightexTurn from "../../../video/Turn.mp4"
 import WeightexExplode from "../../../video/Explode.mp4"
 import PocketLeak from "../../../video/pocketCut.mp4"
 import WeightexLeak from "../../../video/weightexCut.mp4"
-import PlayDuotone from "../../../images/play-duotone.png"
+
 import ReactPlayer from 'react-player'
-import VisibilitySensor from "react-visibility-sensor"
+
 import AniText from '../../AnimatedText/AniText'
-import { Tab, Row, Col, Nav } from 'react-bootstrap'
+import {Row, Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay, faRedo, faStop } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 import Button from '../../Button'
 
 const details = [

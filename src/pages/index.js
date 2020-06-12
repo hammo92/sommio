@@ -3,7 +3,6 @@ import Goodbye from '../components/HomePage/Goodbye'
 import Quiz from '../components/HomePage/Quiz'
 import HomeService from '../components/HomePage/HomeService'
 import SecretIngredient from '../components/HomePage/SecretIngredient'
-import HelpSlider from '../components/ProductPage/HelpSlider'
 import BlanketImages from '../components/HomePage/BlanketImages'
 import MagicWeightex from '../components/HomePage/MagicWeightex'
 import Compare from '../components/HomePage/Compare/Compare'
@@ -40,16 +39,13 @@ const entryTransition = {
   }
 }
 
-export const IndexInner = ({ transitionStatus }) => {
+export const IndexInner = ({ transitionStatus, carouselData }) => {
   const [{ quiz }, dispatch] = useStateValue()
   const mount = ['entering', 'entered'].includes(transitionStatus)
 
   const fadeUp = useSpring({
     opacity: mount ? 1 : 0
   })
-  console.log('transitionStatus [homepage] => ', transitionStatus)
-  console.log('mount [homepage] => ', mount)
-  console.log('fadeUp [homepage] => ', fadeUp)
 
   return (
     <animated.div style={fadeUp} className="homepage-bg">
@@ -63,7 +59,7 @@ export const IndexInner = ({ transitionStatus }) => {
         </div>
         
       </div>
-      <Carousel shifted={false} />
+      <Carousel contents={carouselData} slides={[3,2,1]} type={"conditions"} title={"Helps you with"}/>
       {/*<div className="goodquiz-bg container-fluid">
         {/* <div className="container-fluid"> 
         <div className="row no-gutters">
@@ -118,16 +114,42 @@ export const IndexInner = ({ transitionStatus }) => {
   )
 }
 
-const IndexPage = () => {
+const IndexPage = ({data: { allContentfulCondition }}) => {
   return (
     <TransitionState>
       {({ transitionStatus }) => (
         <Layout transitionStatus={transitionStatus}>
-          <IndexInner transitionStatus={transitionStatus} />
+          <IndexInner transitionStatus={transitionStatus} carouselData={ allContentfulCondition.nodes } />
         </Layout>
       )}
     </TransitionState>
   )
 }
+
+export const query = graphql`
+  query allContentfulCondition {
+    allContentfulCondition {
+      nodes {
+        slug
+        id
+        conditionName
+        content {
+          childMarkdownRemark {
+            html
+          }
+        }
+        cardImage {
+          fluid(maxWidth: 800) {
+            ...GatsbyContentfulFluid_withWebp
+          }
+          file {
+            url
+          }
+        }
+      }
+    }
+  }
+`
+
 
 export default IndexPage

@@ -103,12 +103,12 @@ module.exports = {
           'Rqd56FLNq539fNET8PGvIsA9kNkr12dkyHwk8SLyLtKISlMgEJ-cyQ3aTKtQapYxXNwx-u18dByEnViH59QBBQ=='
       }
     },
+    `gatsby-plugin-netlify`,
 
-    'gatsby-plugin-stripe',
     {
       resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
       options: {
-        devMode: true,
+        devMode: false,
       },
     }
   ]

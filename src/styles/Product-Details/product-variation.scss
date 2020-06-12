@@ -110,7 +110,7 @@
                     + label {
                         width: 100%;
                         margin: 0;
-                        cursor:url('/point.svg'),auto;
+                        cursor:pointer,auto;
 
                         .title {
                             height: 60px;
@@ -591,14 +591,14 @@
             }
         }
         .rightBox{
-            .arrowBox{
-                cursor: url("http://localhost:8000/point.svg"), auto !important;
+            button &.arrowBox{
+                cursor: pointer, auto !important;
                 display:flex;
                 align-items: center;
                 justify-content: center;
                 background:var(--purpleB);
                 color:var(--white);
-                font-size:40px;
+                font-size:60px;
                 &.disabled{
                     opacity:0.3;
                     pointer-events: none;
@@ -622,7 +622,7 @@
                 .arrowBox{
                     justify-content: space-between;
                     padding:0 20px;
-                    cursor: url("http://localhost:8000/point.svg"), auto !important;
+                    cursor: pointer, auto !important;
                     p{
                         font-size:20px;
                     }
