@@ -4,7 +4,7 @@
 }
 body {
   background: var(--purpleC);
-  font-family: $tksofiapro;
+  font-family: var(--tksofiapro);
   user-select: none;
   cursor: url('/cursor.svg'), auto;
 
@@ -40,7 +40,7 @@ h4,
 h5,
 h6,
 p {
-  font-family: $tksofiapro;
+  font-family: var(--tksofiapro);
   font-weight: normal;
   margin: 0px;
 }

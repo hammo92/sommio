@@ -1,7 +1,3 @@
-/* font */
-$tksofiapro: 'sofia-pro', sans-serif;
-$tkpoynteroldstyletext: 'poynter-oldstyle-text', serif;
-$tkitcavantgardegothicpro: 'itc-avant-garde-gothic-pro', sans-serif;
 
 /* border */
 $purpleBorder: solid 2px rgba(216, 168, 255, 0.3);
@@ -19,6 +15,9 @@ $purpleBorder: solid 2px rgba(216, 168, 255, 0.3);
 
     /* border */
     --purpleBorder:solid 2px rgba(216, 168, 255, 0.3);
+
+    /* font */
+    --tksofiapro: 'sofia-pro', sans-serif;
 
     
 }

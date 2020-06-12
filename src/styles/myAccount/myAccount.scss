@@ -4,7 +4,7 @@
     }
     h1{
         font-size:130px;
-        font-family:$tksofiapro;
+        font-family:var(--tksofiapro);
         color:#fff;
         border-bottom:1px solid rgba(216,168,255,.31);
         padding:0 0 38px;
@@ -21,7 +21,7 @@
         margin:20px 0 25px;
         padding:0;
         font-size:50px;
-        font-family:$tksofiapro;
+        font-family:var(--tksofiapro);
         font-weight:900;
         display:block;
         line-height:100%;
@@ -48,7 +48,7 @@
             display:block;
             color:var(--white);
             font-size:50px;
-            font-family:$tksofiapro;
+            font-family:var(--tksofiapro);
         }
     }
     .OrderListBox{
@@ -62,7 +62,7 @@
             }
             p{
                 font-size:30px;
-                font-family:$tksofiapro;
+                font-family:var(--tksofiapro);
                 font-weight:900;
                 display:block;
                 color:var(--white);
@@ -127,7 +127,7 @@
                         margin:0;
                         padding:0;
                         font-size:30px;
-                        font-family:$tksofiapro;
+                        font-family:var(--tksofiapro);
                         font-weight:900;
                         display:block;
                         line-height:100%;
@@ -140,7 +140,7 @@
                         margin:0;
                         padding:0;
                         font-size:24px;
-                        font-family:$tksofiapro;
+                        font-family:var(--tksofiapro);
                         font-weight:500;
                         display:block;
                         line-height:normal;
@@ -155,7 +155,7 @@
                         width: auto;
                         text-align: left;
                         font-size:30px;
-                        font-family:$tksofiapro;
+                        font-family:var(--tksofiapro);
                         font-weight:500;
                         display:block;
                         line-height:100%;
@@ -175,7 +175,7 @@
             }
             p{
                 font-size:30px;
-                font-family:$tksofiapro;
+                font-family:var(--tksofiapro);
                 font-weight:900;
                 display:block;
                 color:var(--white);
@@ -217,7 +217,7 @@
         margin-bottom:4rem;
         h5 {
             font-size: 30px;
-            font-family: "sofia-pro", sans-serif;
+            font-family: var(--tksofiapro);
             font-weight: 900;
             display: block;
             color: #fff;
@@ -251,7 +251,7 @@
                         font-size: 1.2rem;
                         color:#fff;
                         font-weight:500;
-                        font-family:$tksofiapro;
+                        font-family:var(--tksofiapro);
                         border-radius:6px;
                         height: 136px;
                         line-height: normal;
@@ -269,7 +269,7 @@
                         font-size: 1.2rem;
                         color:#fff;
                         font-weight:500;
-                        font-family:$tksofiapro;
+                        font-family:var(--tksofiapro);
                         border-radius:6px;
                         height:auto;
                         opacity:1;
@@ -305,7 +305,7 @@
                     font-size: 1.2rem;
                     color:#fff;
                     font-weight:500;
-                    font-family:$tksofiapro;
+                    font-family:var(--tksofiapro);
                     border-radius:6px;
                     height: 136px;
                     line-height: normal;
@@ -350,7 +350,7 @@
         }
         h5 {
             font-size: 30px;
-            font-family: "sofia-pro", sans-serif;
+            font-family: var(--tksofiapro);
             font-weight: 900;
             display: block;
             color: #fff;
@@ -381,7 +381,7 @@
                         font-size: 1.2rem;
                         color:#fff;
                         font-weight:500;
-                        font-family:$tksofiapro;
+                        font-family:var(--tksofiapro);
                         border-radius:6px;
                         opacity:1;
                         height:auto;
@@ -405,7 +405,7 @@
                 font-size: 1.2rem;
                 color:#fff;
                 font-weight:500;
-                font-family:$tksofiapro;
+                font-family:var(--tksofiapro);
                 border-radius:6px;
                 opacity:1;
                 height:auto;
