@@ -4,7 +4,7 @@ import { useGesture } from 'react-use-gesture'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import VisibilitySensor from 'react-visibility-sensor'
 
-const Button = ({ type, text, link, disabled, children, onClick }) => {
+const Button = ({ type, text, link, disabled, children, clickFunction }) => {
   const [isVisible, setVisibility] = useState(false)
   const onChange = visiblity => {
     setVisibility(visiblity)
@@ -28,7 +28,7 @@ const Button = ({ type, text, link, disabled, children, onClick }) => {
       left: disabled ? 0 : isVisible ? -5 : 0,
       opacity: disabled && isVisible ? 0.3 : isVisible ? 1 : 0
     })
-  })
+  },[isVisible])
   const bind = useGesture({
     onHover: props => {
       if (!disabled)
@@ -43,7 +43,7 @@ const Button = ({ type, text, link, disabled, children, onClick }) => {
     <button
       className={`buttonWrapper ${type}`}
       {...bind()}
-      onClick={onClick}
+      onClick={clickFunction}
       disabled={disabled}
     >
       {link && <AniLink paintDrip to={link} hex="#D8A8FF"></AniLink>}

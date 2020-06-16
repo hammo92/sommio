@@ -14,6 +14,14 @@ const initialState = {
     cart:{
       drawer:false,
     },
+    configure: {
+      page: 0,
+      size: false,
+      weight: false,
+      cover: false,
+      metric:true,
+    }
+    
   };
   
   const reducer = (state, action) => {
@@ -75,6 +83,30 @@ const initialState = {
           ...state,
           cart:action.setCart
         };
+        case 'setUnit':
+        return {
+          ...state,
+          configure: {
+            ...state.configure,
+            metric: action.setUnit
+          }
+        };
+        case 'changeConfigureStep':
+          return{
+            ...state,
+            configure: {
+            ...state.configure,
+            page: action.nextQuestion
+          }
+        };
+        case 'changeConfigureWeight':
+          return{
+            ...state,
+            configure: {
+            ...state.configure,
+              weight: action.setWeight,
+              page: action.nextQuestion
+        }};
         
         
       default:

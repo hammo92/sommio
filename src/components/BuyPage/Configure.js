@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { useStaticQuery } from 'gatsby'
 import { Link } from 'gatsby'
-import { useTrail, animated, useTransition, useSpring } from 'react-spring'
+import { useTrail, animated, useTransition, useSpring, config } from 'react-spring'
 import VisibilitySensor from 'react-visibility-sensor'
 import useMedia from '../../hooks/useMedia'
 import useMeasure from 'react-use-measure'
@@ -13,13 +13,14 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import Slide from './MainSlide'
 import WeightPage from './WeightPage'
 import ProductService from '../ProductPage/ProductService'
+import { useStateValue } from '../../context/SiteContext';
+const AnimatedWeightPage = animated(WeightPage)
 
-
-const CarouselInner = ({product, width, page}) => {
+const CarouselInner = ({product, page}) => {
   const pages = [
-    ({ style }) => <animated.div style={{ ...style }}><WeightPage weights={product.weights}/></animated.div>,
-    ({ style }) => <animated.div style={{ ...style }}><WeightPage weights={product.weights}/></animated.div>,
-    ({ style }) => <animated.div style={{ ...style }}>C</animated.div>,
+    ({ style }) => <animated.div style={{ ...style }} className="pageWrap"><WeightPage weights={product.weights}/></animated.div>,
+    ({ style }) => <animated.div style={{ ...style }} className="pageWrap"><WeightPage weights={product.weights}/></animated.div>,
+    ({ style }) => <animated.div style={{ ...style }} className="pageWrap"><WeightPage weights={product.weights}/></animated.div>
   ]
 
   /*const size = Object.keys(product).length;
@@ -28,10 +29,9 @@ const CarouselInner = ({product, width, page}) => {
   Object.keys(product).map((key,i)=>{
     elements[i] = product[key]
   })*/
-  console.log("product", product)
 
   //array of visible cards
-  const config = { mass: 1.5, tension: 170, friction: 25 }
+  //const config = { mass: 1.5, tension: 170, friction: 25 }
 
   //map cards array and set position variables
   /*let cards = show.map((card, i) => {
@@ -42,9 +42,10 @@ const CarouselInner = ({product, width, page}) => {
   })
   */
   const transitions = useTransition(page, p => p, {
-    from: { opacity: 1, transform: 'translate3d(100%,0,0)' },
+    from: { opacity: 0, transform: 'translate3d(50%,0,0)' },
     enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-    leave: { opacity: 1, transform: 'translate3d(-100%,0,0)' },
+    leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
+    config: config.gentle,
   })
 /*
   //react-spring transition for cards
@@ -57,18 +58,19 @@ const CarouselInner = ({product, width, page}) => {
     config
   })*/
 
-  return(
-    <div className="simple-trans-main" >
+  return (
+  <div className='container-fluid configureWrap position-relative'>
       {transitions.map(({ item, props, key }) => {
         const Page = pages[item]
         return <Page key={key} style={props} />
       })}
-    </div>
+  </div>
   )
 
 }
 
-const Configure = ({product}) => {
+const Configure = ({ product }) => {
+  const [{ configure }, dispatch] = useStateValue();
   /* visibility sensor */
 
 
@@ -81,40 +83,49 @@ const Configure = ({product}) => {
   /*set carousel to empty when out of view */
   //const elements = contents
   
-  //responsive width hook
-  const [bind, { width }] = useMeasure()
-
-  //init paging
-  const [page, setPage] = useState(1)
 
   return (
-      <div
-      ref={bind}
-      className={'ConfigureBody'}
-    >
-      <div className="container-fluid">
-        <div className="helpHeading">
-          <AniText type="h3">Hello</AniText>
-          <div className="navIcons">
+    <>
+      <div className='container-fluid ConfigureBody '>
+      <div className="row titleContain">
+        <div className="column title">
+          <FontAwesomeIcon icon={faArrowLeft} />
+          <AniText type="h3">{product.product.nodes[0].name}</AniText>
+        </div>
+        <div className="column priceBlock">
+          <h3>{`from £${product.product.nodes[0].final_price}`}</h3>
+        </div>   
+        </div>
+      </div>
+      <CarouselInner product={product} page={configure.page} />
+
+      <div className="container-fluid navIcons" >
+        
+
             <div
-              onClick={() => setPage(page - 1)}
+            onClick={
+                configure.page !== 0 && (
+                () => dispatch({
+                type: 'changeConfigureStep',
+                nextQuestion: configure.page - 1
+              }))}
             >
-              <Button type="round small">
+              <Button >
                 <FontAwesomeIcon icon={faArrowLeft} />
               </Button>
             </div>
             <div
-              onClick={() => setPage(page + 1)}
+              onClick={() => dispatch({
+                type: 'changeConfigureStep',
+                nextQuestion: configure.page + 1
+              })}
             >
               <Button type="round small">
                 <FontAwesomeIcon icon={faArrowRight} />
               </Button>
             </div>
           </div>
-        </div>
-      <CarouselInner width={width} product={product} page={page}/>}
-      </div>
-      </div>
+    </>
       
   )
 }
