@@ -14,7 +14,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 const CarouselInner = ({elements, type, width, columns, page}) => {
-  
+  console.log("elements are: ", elements)
 
   //array of visible cards
   const show = elements.slice(page, columns + page + 1)

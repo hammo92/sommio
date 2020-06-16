@@ -1,0 +1,59 @@
+.ConfigureBody{
+    height:100vh
+}
+.simple-trans-main > div {
+    cursor: pointer;
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: white;
+    font-weight: 800;
+    font-size: 5em;
+    will-change: transform, opacity;
+    text-shadow: 0px 2px 40px #00000020, 0px 2px 5px #00000030;
+  }
+
+  .weightCard{
+    background:var(--purpleB);
+    margin:10px;
+    display:flex;
+    flex:1;
+    flex-direction: column;
+    border-radius:10px;
+    color: var(--offWhite);
+    padding:15px;
+    position:relative;
+    .price{
+        display:block;
+        flex:1;
+        width:100%;
+        text-align: right;
+        font-size:25px;
+        font-weight:600px;
+    }
+    h2{
+        font-size:60px;
+        align-items: center;
+        justify-content: center;
+        display:flex;
+        flex:1;
+        font-weight:900;
+        span{
+            font-size:120px
+        }
+    }
+    p{
+        font-size:20px;
+        text-align:center;
+    }
+    button{
+        margin-top:15px
+
+    }
+
+    
+     
+  }

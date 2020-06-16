@@ -22,9 +22,9 @@ import Configure from '../components/BuyPage/Configure'
 
 
 
-/*const BuyInner = ({
+const BuyInner = ({
   transitionStatus,
-  data: { product, contentfulProduct, allContentfulReview }
+  data
 }) => {
   let mount = ['entering', 'entered'].includes(transitionStatus)
 
@@ -33,35 +33,25 @@ import Configure from '../components/BuyPage/Configure'
     opacity: mount ? 1 : 0
   })
 
-  const [selectedVariationId, setSelectedVariationId] = useState(
-    product._id._oid
-  )
-  const onChangeSelectedProduct = id => {
-    setSelectedVariationId(id)
-  }
   return (
     <animated.div style={fadeUp}>
       <SEO
         type="product"
-        title={product.short_description || product.name}
-        description={product.meta_description || product.description}
-        image={withPrefix(
-          product && product.image_url ? product.image_url : Noimage
-        )}
+        title="title"
       />
-      {/*<Configure />
+      <Configure product={data}/>
 
       
     </animated.div>
   )
-}*/
+}
+
 const BuyPage = ({ data }) => {
-  console.log("product page data =>", data)
   return (
     <TransitionState>
       {({ transitionStatus }) => (
         <Layout transitionStatus={transitionStatus}>
-          {/*<BuyInner transitionStatus={transitionStatus} data={data} />*/}
+          <BuyInner transitionStatus={transitionStatus} data={data} />
         </Layout>
       )}
     </TransitionState>

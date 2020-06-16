@@ -10,22 +10,43 @@ import Button from '../Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import Slide from './MainSlide'
+import WeightPage from './WeightPage'
+import ProductService from '../ProductPage/ProductService'
 
-const CarouselInner = ({elements, type, width, columns, page}) => {
-  
+
+const CarouselInner = ({product, width, page}) => {
+  const pages = [
+    ({ style }) => <animated.div style={{ ...style }}><WeightPage weights={product.weights}/></animated.div>,
+    ({ style }) => <animated.div style={{ ...style }}><WeightPage weights={product.weights}/></animated.div>,
+    ({ style }) => <animated.div style={{ ...style }}>C</animated.div>,
+  ]
+
+  /*const size = Object.keys(product).length;
+  //console.log("product =", product, size)
+  let elements = new Array(Object.keys(product).length) 
+  Object.keys(product).map((key,i)=>{
+    elements[i] = product[key]
+  })*/
+  console.log("product", product)
 
   //array of visible cards
-  const show = elements.slice(page, columns + page + 1)
   const config = { mass: 1.5, tension: 170, friction: 25 }
 
   //map cards array and set position variables
-  let cards = show.map((card, i) => {
+  /*let cards = show.map((card, i) => {
     const column = i
-    const xy = [(width / columns) * column, 0]
-    const cardWidth = width / columns - 30
+    const xy = [width * column, 0]
+    const cardWidth = width - 30
     return { ...card, xy, width: cardWidth }
   })
-
+  */
+  const transitions = useTransition(page, p => p, {
+    from: { opacity: 1, transform: 'translate3d(100%,0,0)' },
+    enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
+    leave: { opacity: 1, transform: 'translate3d(-100%,0,0)' },
+  })
+/*
   //react-spring transition for cards
   const transition = useTransition(cards, item => item.id, {
     trail: 300 / columns,
@@ -34,36 +55,22 @@ const CarouselInner = ({elements, type, width, columns, page}) => {
     update: ({ xy, width }) => ({ xy, width }),
     leave: { opacity: 0 },
     config
-  })
+  })*/
 
   return(
-    <div className="cardWrap">
-          {transition.map(({ item, props: { xy, column, ...rest }, key }) => (
-            <animated.div
-              style={{
-                transform: xy.interpolate(
-                  (x, y) => `translate3d(${x}px,${y}px,0)`
-                ),
-                ...rest
-              }}
-              className="card-container"
-              key={key}
-            >
-              {type === "conditions" && <Card item={item}/>}
-              {type === "reviews" && <ReviewCard item={item}/>}
-            </animated.div>
-          ))}
+    <div className="simple-trans-main" >
+      {transitions.map(({ item, props, key }) => {
+        const Page = pages[item]
+        return <Page key={key} style={props} />
+      })}
     </div>
   )
 
 }
 
-const Configure = ({contents, slides = [3,2,1], type, title}) => {
+const Configure = ({product}) => {
   /* visibility sensor */
-  const [isVisible, setVisibility] = useState(false)
-  const onChange = visiblity => {
-    setVisibility(visiblity)
-  }
+
 
   /* unused for setting breakpoints through props
   const { breakpoints : breakpoints = [1500,1000,600], slides : slides  = [3,2,1.3]} = responsive
@@ -72,33 +79,24 @@ const Configure = ({contents, slides = [3,2,1], type, title}) => {
   })
 
   /*set carousel to empty when out of view */
-  const elements = contents
+  //const elements = contents
   
-  //number of columns
-  const columns = useMedia(
-      ['(min-width: 1500px)', '(min-width: 1000px)', '(min-width: 600px)'],
-      slides,
-      1
-  )
-
   //responsive width hook
   const [bind, { width }] = useMeasure()
 
   //init paging
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
 
   return (
-    <VisibilitySensor onChange={onChange} partialVisibility scrollCheck={true}>
       <div
       ref={bind}
-      className={'Carousel'}
+      className={'ConfigureBody'}
     >
       <div className="container-fluid">
         <div className="helpHeading">
-          <AniText type="h3">{title}</AniText>
+          <AniText type="h3">Hello</AniText>
           <div className="navIcons">
             <div
-              className={page === 0 && 'disabled'}
               onClick={() => setPage(page - 1)}
             >
               <Button type="round small">
@@ -106,7 +104,6 @@ const Configure = ({contents, slides = [3,2,1], type, title}) => {
               </Button>
             </div>
             <div
-              className={page === elements.length - columns && 'disabled'}
               onClick={() => setPage(page + 1)}
             >
               <Button type="round small">
@@ -115,11 +112,10 @@ const Configure = ({contents, slides = [3,2,1], type, title}) => {
             </div>
           </div>
         </div>
-        {(isVisible || type === "reviews") && <CarouselInner width={width} columns={columns} elements={elements} type={type} page={page}/>}
+      <CarouselInner width={width} product={product} page={page}/>}
       </div>
       </div>
       
-    </VisibilitySensor>
   )
 }
 export default Configure
