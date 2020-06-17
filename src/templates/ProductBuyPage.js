@@ -78,6 +78,13 @@ export const query = graphql`
       }
       main_product
       image_url
+      mainImage {
+        childImageSharp {
+          fluid {
+            src
+          }
+        }
+      }
       id
       human_id
       description
@@ -93,6 +100,9 @@ export const query = graphql`
       nodes{...productDetails}
     }
     weights: allBuiltonProduct(filter: {_id: {_oid: {in: $subProducts}}, attributes: {WeightSubProduct: {eq: true}}}){
+      nodes{...productDetails}
+    }
+    sizes: allBuiltonProduct(filter: {_id: {_oid: {in: $subProducts}}, attributes: {SizeSubProduct: {eq: true}}}){
       nodes{...productDetails}
     }
   }

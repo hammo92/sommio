@@ -5,7 +5,7 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import VisibilitySensor from 'react-visibility-sensor'
 
 const Button = ({ type, text, link, disabled, children, clickFunction }) => {
-  const [isVisible, setVisibility] = useState(false)
+  const [isVisible, setVisibility] = useState(true)
   const onChange = visiblity => {
     setVisibility(visiblity)
   }
@@ -15,10 +15,10 @@ const Button = ({ type, text, link, disabled, children, clickFunction }) => {
     friction: 19
   }
   const [props, set] = useSpring(() => ({
-    transform:"scale(0)",
-    top:  0,
-    left:  0,
-    opacity: 0,
+    transform: isVisible ? "scale(1)" : "scale(0)",
+    top: disabled ? 0 : isVisible ? -5 : 0,
+    left: disabled ? 0 : isVisible ? -5 : 0,
+    opacity: disabled && isVisible ? 0.3 : isVisible ? 1 : 0,
     config: configTwo
   }))
   useEffect(() => {

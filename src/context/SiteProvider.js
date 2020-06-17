@@ -15,10 +15,23 @@ const initialState = {
       drawer:false,
     },
     configure: {
+      mainProduct:"Weighted Blanket",
       page: 0,
-      size: false,
-      weight: false,
-      cover: false,
+      size: {
+        id: false,
+        addPrice: 0,
+        size:false,
+      },
+      weight: {
+        id: false,
+        addPrice: 0,
+        weight:false,
+      },
+      cover: {
+        id: false,
+        addPrice: 0,
+        cover:false,
+      },
       metric:true,
     }
     
@@ -104,8 +117,39 @@ const initialState = {
             ...state,
             configure: {
             ...state.configure,
-              weight: action.setWeight,
+              weight:{
+                ...state.configure.weight,
+                id: action.setId,
+                addPrice: action.setAddPrice,
+                weight:action.setWeight,
+              },
               page: action.nextQuestion
+        }};
+        case 'changeConfigureSize':
+          return{
+            ...state,
+            configure: {
+            ...state.configure,
+              size:{
+                ...state.configure.size,
+                id: action.setId,
+                addPrice: action.setAddPrice,
+                size:action.setSize,
+
+              },
+              page: action.nextQuestion
+        }};
+        case 'changeConfigureCover':
+          return{
+            ...state,
+            configure: {
+            ...state.configure,
+              cover:{
+                ...state.configure.weight,
+                id: action.setId,
+                addPrice: action.setAddPrice,
+                cover:action.setCover,
+              },page: action.nextQuestion
         }};
         
         

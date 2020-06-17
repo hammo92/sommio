@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 import Button from '../Button'
 import { useStateValue } from '../../context/SiteContext';
 import UnitToggle from './UnitToggle'
+import { animated, useSpring, config } from 'react-spring'
 
 
 const WeightCard = ({ item }) => {
@@ -12,16 +13,18 @@ const WeightCard = ({ item }) => {
   const metric = configure.metric
   const weight = metric ? parseInt(item.name, 10) : Math.trunc(parseInt(item.name, 10) * 2.20462)
   const unit = metric ? "kg" : "lb"
-  const selected = parseInt(item.name, 10) === configure.weight
+  const selected = item._id._oid === configure.weight.id
   return(
     <div className={`weightCard ${selected ? "active" : ""}`}>
-      <h4 className="price">£{item.price}</h4>
+      <h4 className="price">+ £{item.price}</h4>
       <h2><span>{weight}</span> {unit}</h2>
       <p>recommended for users weighing: {item.short_description}</p>
       <Button disabled={selected} clickFunction={() => {
         dispatch({
           type: 'changeConfigureWeight',
-          setWeight: weight,
+          setWeight: weight + "kg",
+          setId: item._id._oid,
+          setAddPrice: item.price,
           nextQuestion: configure.page + 1
         })
       }}>
@@ -51,10 +54,10 @@ const WeightPage = ({ weights }) => {
     /********************* end *********************/
     return (
       <>
-        <div className="row WeightHeader">
-          <h1>Choose your blanket's weight</h1>
+        <div className="row ConfigureHeader">
+          <h1>Choose your blanket weight</h1>
           <p>We recommend a weight close to 10% of your body weight</p>
-          <UnitToggle />
+          <UnitToggle met={"kg"} imp={"lb"}/>
         </div>
         <div className="row cardWrap">
         { options.length > 1 ? (

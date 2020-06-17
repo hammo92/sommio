@@ -12,19 +12,22 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import Slide from './MainSlide'
 import WeightPage from './WeightPage'
+import SizePage from './SizePage'
+import CoverPage from './CoverPage'
 import ProductService from '../ProductPage/ProductService'
 import { useStateValue } from '../../context/SiteContext';
-const AnimatedWeightPage = animated(WeightPage)
+import { faCircle} from '@fortawesome/free-solid-svg-icons'
+import StepNav from './StepNav'
 
 const CarouselInner = ({product, page}) => {
   const pages = [
+    ({ style }) => <animated.div style={{ ...style }} className="pageWrap"><SizePage sizes={product.sizes}/></animated.div>,
     ({ style }) => <animated.div style={{ ...style }} className="pageWrap"><WeightPage weights={product.weights}/></animated.div>,
-    ({ style }) => <animated.div style={{ ...style }} className="pageWrap"><WeightPage weights={product.weights}/></animated.div>,
-    ({ style }) => <animated.div style={{ ...style }} className="pageWrap"><WeightPage weights={product.weights}/></animated.div>
+    ({ style }) => <animated.div style={{ ...style }} className="pageWrap"><CoverPage covers={product.covers}/></animated.div>
   ]
 
   /*const size = Object.keys(product).length;
-  //console.log("product =", product, size)
+  //console.log("product =", product, size) 
   let elements = new Array(Object.keys(product).length) 
   Object.keys(product).map((key,i)=>{
     elements[i] = product[key]
@@ -67,7 +70,62 @@ const CarouselInner = ({product, page}) => {
   </div>
   )
 
+
+
 }
+
+const StepIndicator = ({name, active, first}) => {
+  return(
+    <>
+    {!first && 
+    <div className={`stepConnector ${active ? "active" : ""}`}>
+      <span />
+    </div>
+    }
+    <div className={`stepIndicator ${active ? "active" : ""}`}>
+      <p>{name}</p>
+      <FontAwesomeIcon icon={faCircle} />
+      <p>text</p>
+    </div>
+    
+  </>
+  )
+}
+const Stepper = ({page}) => {
+  
+  const steps = ["Product", "Size", "Weight", "Cover"]
+  return(
+    <div className="stepper">
+    {steps.map((item, i) => (
+        <StepIndicator name={steps[i]} active={page >= i - 1} first={i === 0}/>
+    ))}
+    </div>
+  )
+}
+
+const NavBar = ({ product }) => {
+  const [{ configure }, dispatch] = useStateValue();
+  return(
+    <div className="container-fluid configNav" >
+
+        <button className="stepBack" onClick={
+          configure.page !== 0 && (
+          () => dispatch({
+          type: 'changeConfigureStep',
+          nextQuestion: configure.page - 1
+        }))}>
+          <FontAwesomeIcon icon={faArrowLeft} /> back
+        </button>
+        <StepNav/>
+        <Button type={"thin"} clickFunction={() => dispatch({
+          type: 'changeConfigureStep',
+          nextQuestion: configure.page + 1
+        })}>
+          <p>next</p> <FontAwesomeIcon icon={faArrowRight} />
+        </Button>
+    </div>
+  )
+} 
 
 const Configure = ({ product }) => {
   const [{ configure }, dispatch] = useStateValue();
@@ -93,38 +151,20 @@ const Configure = ({ product }) => {
           <AniText type="h3">{product.product.nodes[0].name}</AniText>
         </div>
         <div className="column priceBlock">
-          <h3>{`from £${product.product.nodes[0].final_price}`}</h3>
+          <h3>{
+            `Your ${product.product.nodes[0].name} 
+            price £${product.product.nodes[0].final_price}
+            ${configure.size.addPrice !== 0 ? (' + ' + configure.size.addPrice) : ""}
+            ${configure.weight.addPrice !== 0 ? (' + ' + configure.weight.addPrice) : ""}
+            ${configure.cover.addPrice !== 0 ? (' + ' + configure.cover.addPrice) : ""}`}
+            </h3>
         </div>   
         </div>
       </div>
       <CarouselInner product={product} page={configure.page} />
+      <NavBar product={product}/>
 
-      <div className="container-fluid navIcons" >
-        
-
-            <div
-            onClick={
-                configure.page !== 0 && (
-                () => dispatch({
-                type: 'changeConfigureStep',
-                nextQuestion: configure.page - 1
-              }))}
-            >
-              <Button >
-                <FontAwesomeIcon icon={faArrowLeft} />
-              </Button>
-            </div>
-            <div
-              onClick={() => dispatch({
-                type: 'changeConfigureStep',
-                nextQuestion: configure.page + 1
-              })}
-            >
-              <Button type="round small">
-                <FontAwesomeIcon icon={faArrowRight} />
-              </Button>
-            </div>
-          </div>
+      
     </>
       
   )

@@ -88,18 +88,7 @@ font-display:auto;
 font-style:normal;
 font-weight:600;
 }
-.alice-test{
-  color:#ffffff;
-  text-align:center;
-  transition:all 0.3s;
-  cursor: pointer;
-  &.clicked{
-    color:blue !important;
-    transform: translateX(-50px, 50px, 0);
-    border:3px solid white;
-  }
 
-}
 
 .tk-sofia-pro { font-family: "sofia-pro",sans-serif; }
 
